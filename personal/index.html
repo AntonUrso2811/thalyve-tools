@@ -49,6 +49,7 @@ tr:hover td{background:rgba(20,184,166,.03)}
     <div class="tab" onclick="nav('nutrition',this)">🍽 Nutrition</div>
     <div class="tab" onclick="nav('team',this)">👥 Personal Team</div>
     <div class="tab" onclick="nav('goals',this)">🎯 Goals</div>
+    <div class="tab" onclick="nav('sops',this)">📁 SOPs</div>
   </div>
 
   <!-- HEALTH OVERVIEW -->
@@ -141,16 +142,18 @@ tr:hover td{background:rgba(20,184,166,.03)}
   <div class="page" id="p-team">
     <div class="hl hl-g" style="margin-bottom:16px">
       <h3 style="font-size:14px;margin-bottom:4px">👥 Personal Team</h3>
-      <p style="font-size:11px;color:var(--muted)">The people behind your health and optimisation. Human experts, managed by Forge.</p>
+      <p style="font-size:11px;color:var(--muted)">World-class people around you. Ronaldo has his team. Jordan had his team. This is yours.</p>
+    </div>
+    <div class="grid g6" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:16px">
+      <div class="card" style="text-align:center"><div class="sl">Active Members</div><div class="sv green" id="pt-active">1</div></div>
+      <div class="card" style="text-align:center"><div class="sl">Planned Hires</div><div class="sv amber" id="pt-planned">2</div></div>
+      <div class="card" style="text-align:center"><div class="sl">Total Team</div><div class="sv teal" id="pt-total">3</div></div>
     </div>
     <div class="card">
+      <h2>🏆 Organisation</h2>
       <table>
-        <thead><tr><th>Status</th><th>Role</th><th>Name</th><th>What They Handle</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td><span class="green" style="font-weight:700">🟢 Active</span></td><td><strong>Health & Wellness Coach</strong></td><td>—</td><td>Training programming, accountability, nutrition guidance</td><td style="color:var(--muted)">Manages via WhatsApp</td></tr>
-          <tr><td><span class="amber" style="font-weight:700">🟡 TBD</span></td><td><strong>Physiotherapist</strong></td><td>—</td><td>Knee rehab, scapular work, injury management</td><td style="color:var(--amber)">Need to find one</td></tr>
-          <tr><td><span class="amber" style="font-weight:700">🟡 TBD</span></td><td><strong>GP / Doctor</strong></td><td>—</td><td>Bloodwork, general health, referrals</td><td style="color:var(--muted)">Routine checks</td></tr>
-        </tbody>
+        <thead><tr><th>Status</th><th>Name</th><th>Role</th><th>Type</th><th>Since</th><th>Responsibilities</th></tr></thead>
+        <tbody id="pt-table"></tbody>
       </table>
     </div>
   </div>
@@ -176,11 +179,85 @@ tr:hover td{background:rgba(20,184,166,.03)}
     </div>
   </div>
 
-  <div class="wm">💪 Anton Personal Hub v1.0 • Built by Forge 🔱</div>
+  <!-- SOPs -->
+  <div class="page" id="p-sops">
+    <div class="hl hl-g" style="margin-bottom:16px">
+      <h3 style="font-size:14px;margin-bottom:4px">📁 Personal SOPs</h3>
+      <p style="font-size:11px;color:var(--muted)">Standard operating procedures for your personal life. Maintained by Forge, always current.</p>
+    </div>
+    <div class="card">
+      <h2>📋 Active SOPs</h2>
+      <table>
+        <thead><tr><th>SOP</th><th>Category</th><th>Version</th><th>Last Updated</th><th>Status</th></tr></thead>
+        <tbody id="sop-table"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="wm">💪 Anton Personal Hub v1.1 • Built by Forge 🔱</div>
 </div>
 
 <script>
 function nav(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('p-'+id).classList.add('active');el.classList.add('active')}
+
+// Personal Team Data (synced by Forge)
+const personalTeam=[
+  {name:"—",role:"Health & Wellness Coach",type:"human",status:"active",since:null,responsibilities:"Training programming, accountability, nutrition guidance, weekly check-ins",notes:"Manages via WhatsApp. Provides coaching xlsx files."},
+  {name:"Forge 🔱",role:"Personal AI Assistant",type:"ai-agent",status:"active",since:"2026-02-22",responsibilities:"Health tracking, meal plans, personal SOPs, team coordination, goal tracking",notes:"24/7. Manages all personal systems."},
+  {name:"—",role:"Physiotherapist",type:"human",status:"planned",since:null,responsibilities:"Knee rehab (bilateral), scapular dysfunction, movement assessment, injury prevention",notes:"Priority hire. Need specialist in sports rehab."},
+  {name:"—",role:"GP / Doctor",type:"human",status:"planned",since:null,responsibilities:"Bloodwork panels, general health screening, referrals, longevity markers",notes:"Routine checks. Longevity-focused."},
+  {name:"—",role:"Sports Massage Therapist",type:"human",status:"planned",since:null,responsibilities:"Recovery, soft tissue work, injury prevention, mobility",notes:"Future hire. Supports training volume."},
+];
+
+function renderTeam(){
+  const active=personalTeam.filter(t=>t.status==='active');
+  const planned=personalTeam.filter(t=>t.status==='planned');
+  document.getElementById('pt-active').textContent=active.length;
+  document.getElementById('pt-planned').textContent=planned.length;
+  document.getElementById('pt-total').textContent=personalTeam.length;
+  const tb=document.getElementById('pt-table');
+  tb.innerHTML=personalTeam.map(t=>{
+    const icon=t.status==='active'?'🟢':t.status==='planned'?'🟡':'🔴';
+    const sc=t.status==='active'?'green':t.status==='planned'?'amber':'red';
+    const typeIcon=t.type==='human'?'👤':'🤖';
+    const since=t.since?new Date(t.since).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';
+    return'<tr>'+
+      '<td><span class="'+sc+'" style="font-weight:700">'+icon+' '+t.status.charAt(0).toUpperCase()+t.status.slice(1)+'</span></td>'+
+      '<td style="font-weight:700">'+t.name+'</td>'+
+      '<td style="font-size:11px">'+t.role+'</td>'+
+      '<td>'+typeIcon+' '+(t.type==='human'?'Human':'AI Agent')+'</td>'+
+      '<td style="font-size:10px">'+since+'</td>'+
+      '<td style="font-size:10px;max-width:250px;white-space:normal;color:var(--muted)">'+t.responsibilities+(t.notes?'<br><em style="color:var(--amber);font-size:9px">'+t.notes+'</em>':'')+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
+// Personal SOPs
+const personalSOPs=[
+  {name:"Morning Routine",category:"Daily",version:"1.0",updated:"2026-02-25",status:"draft"},
+  {name:"Training Protocol",category:"Training",version:"1.0",updated:"2026-02-25",status:"draft"},
+  {name:"Meal Prep",category:"Nutrition",version:"1.0",updated:"2026-02-25",status:"draft"},
+  {name:"Injury Management",category:"Health",version:"1.0",updated:"2026-02-25",status:"draft"},
+  {name:"Weekly Health Review",category:"Review",version:"1.0",updated:"2026-02-25",status:"draft"},
+];
+
+function renderSOPs(){
+  const tb=document.getElementById('sop-table');
+  tb.innerHTML=personalSOPs.map(s=>{
+    const sc=s.status==='active'?'green':s.status==='draft'?'amber':'red';
+    const icon=s.status==='active'?'✅':s.status==='draft'?'📝':'❌';
+    return'<tr>'+
+      '<td style="font-weight:600">'+s.name+'</td>'+
+      '<td>'+s.category+'</td>'+
+      '<td>v'+s.version+'</td>'+
+      '<td style="font-size:10px">'+s.updated+'</td>'+
+      '<td class="'+sc+'" style="font-weight:600">'+icon+' '+s.status.charAt(0).toUpperCase()+s.status.slice(1)+'</td>'+
+    '</tr>';
+  }).join('');
+}
+
+renderTeam();
+renderSOPs();
 </script>
 </body>
 </html>
