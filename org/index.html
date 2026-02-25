@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anton Empire — Organisation Chart</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05060a;--card:#0f1018;--card2:#12131d;--border:#1a1b28;--text:#eeeef2;--sub:#7c7c96;--accent:#7c5cfc;--accent2:#9b7dff;--green:#0fd68c;--amber:#ffb020;--red:#ff4d6a;--blue:#4d9eff}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+.app{max-width:1000px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:22px;font-weight:800;text-align:center;margin-bottom:4px}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent2),#c0afff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{text-align:center;color:var(--sub);font-size:12px;margin-bottom:30px}
+.nav{display:flex;gap:8px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+.nav a{font-size:11px;color:var(--accent2);text-decoration:none;padding:5px 14px;border:1px solid var(--border);border-radius:20px;transition:all .15s}
+.nav a:hover{border-color:var(--accent);background:rgba(124,92,252,.08)}
+
+/* Tree */
+.tree{display:flex;flex-direction:column;align-items:center;gap:0}
+.level{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;position:relative;margin-bottom:0}
+.connector{width:2px;height:30px;background:var(--border);margin:0 auto}
+.h-connector{display:flex;align-items:flex-start;justify-content:center;position:relative;margin-bottom:0}
+.h-connector::before{content:'';position:absolute;top:0;height:2px;background:var(--border)}
+
+.node{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 20px;text-align:center;min-width:160px;max-width:200px;transition:all .15s;position:relative}
+.node:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 20px rgba(124,92,252,.12)}
+.node.ceo{border-color:var(--accent);background:linear-gradient(135deg,rgba(124,92,252,.08),rgba(124,92,252,.02));box-shadow:0 0 20px rgba(124,92,252,.1)}
+.node.active{border-color:var(--green)}
+.node.planned{border-color:var(--border);opacity:.7}
+
+.node-icon{font-size:28px;margin-bottom:6px}
+.node-name{font-size:14px;font-weight:800;margin-bottom:2px}
+.node-role{font-size:10px;color:var(--sub);margin-bottom:6px;line-height:1.3}
+.node-type{display:inline-block;font-size:8px;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.5px}
+.type-human{background:rgba(77,158,255,.12);color:var(--blue);border:1px solid rgba(77,158,255,.2)}
+.type-ai{background:rgba(124,92,252,.12);color:var(--accent2);border:1px solid rgba(124,92,252,.2)}
+.type-planned{background:rgba(255,176,32,.1);color:var(--amber);border:1px solid rgba(255,176,32,.2)}
+
+.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px}
+.dot-active{background:var(--green)}
+.dot-planned{background:var(--amber)}
+
+.section{margin-top:40px}
+.section h2{font-size:14px;font-weight:700;color:var(--accent2);text-align:center;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+
+.dept{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px}
+.dept-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.dept-name{font-size:13px;font-weight:700}
+.dept-owner{font-size:10px;color:var(--sub)}
+.dept-members{display:flex;gap:8px;flex-wrap:wrap}
+.member{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:11px;display:flex;align-items:center;gap:6px}
+.member.active{border-color:var(--green)}
+.member.planned{border-color:var(--amber);opacity:.7}
+
+.legend{display:flex;gap:16px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--sub)}
+
+.footer{text-align:center;font-size:9px;color:#333;padding:20px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<h1>🔱 <em>Anton Empire</em> — Organisation</h1>
+<p class="sub">Company Structure & Team Roster</p>
+
+<div class="nav">
+<a href="../">🏠 Home</a>
+<a href="../dashboard/">📊 Dashboard</a>
+<a href="../hub/">📁 SOP Hub</a>
+</div>
+
+<!-- ORG TREE -->
+<div class="tree">
+
+  <!-- CEO Level -->
+  <div class="level">
+    <div class="node ceo">
+      <div class="node-icon">👤</div>
+      <div class="node-name">Anton</div>
+      <div class="node-role">CEO / Founder</div>
+      <span class="node-type type-human"><span class="status-dot dot-active"></span> Human · Active</span>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- COO Level -->
+  <div class="level">
+    <div class="node active">
+      <div class="node-icon">🔱</div>
+      <div class="node-name">Forge</div>
+      <div class="node-role">Master Agent — COO<br>Operations & Strategy</div>
+      <span class="node-type type-ai"><span class="status-dot dot-active"></span> AI Agent · Active</span>
+    </div>
+  </div>
+
+  <div class="connector"></div>
+
+  <!-- Department Heads -->
+  <div class="level">
+    <div class="node planned">
+      <div class="node-icon">🦅</div>
+      <div class="node-name">Hawk</div>
+      <div class="node-role">Market Intelligence<br>Research & Trends</div>
+      <span class="node-type type-planned"><span class="status-dot dot-planned"></span> Planned · Phase 2</span>
+    </div>
+    <div class="node planned">
+      <div class="node-icon">🔭</div>
+      <div class="node-name">Scout</div>
+      <div class="node-role">Ad Creative Research<br>Swipe Library & Analysis</div>
+      <span class="node-type type-planned"><span class="status-dot dot-planned"></span> Planned · Phase 2</span>
+    </div>
+    <div class="node planned">
+      <div class="node-icon">✒️</div>
+      <div class="node-name">Quill</div>
+      <div class="node-role">Copywriting & Content<br>Ad Copy & Descriptions</div>
+      <span class="node-type type-planned"><span class="status-dot dot-planned"></span> Planned · Phase 3</span>
+    </div>
+    <div class="node planned">
+      <div class="node-icon">🎬</div>
+      <div class="node-name">Director</div>
+      <div class="node-role">Video Ads Production<br>Scripts & Creative</div>
+      <span class="node-type type-planned"><span class="status-dot dot-planned"></span> Planned · Phase 3</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item"><span class="status-dot dot-active"></span> Active</div>
+  <div class="legend-item"><span class="status-dot dot-planned"></span> Planned</div>
+  <div class="legend-item"><span class="node-type type-human" style="font-size:8px">Human</span></div>
+  <div class="legend-item"><span class="node-type type-ai" style="font-size:8px">AI Agent</span></div>
+</div>
+
+<!-- DEPARTMENTS DETAIL -->
+<div class="section">
+  <h2>🏢 Departments</h2>
+
+  <div class="dept">
+    <div class="dept-head">
+      <div class="dept-name">🎯 Executive</div>
+      <div class="dept-owner">Strategy & Direction</div>
+    </div>
+    <div class="dept-members">
+      <div class="member active">👤 <strong>Anton</strong> — CEO / Founder (Human)</div>
+      <div class="member active">🔱 <strong>Forge</strong> — COO / Master Agent (AI · Opus)</div>
+    </div>
+  </div>
+
+  <div class="dept">
+    <div class="dept-head">
+      <div class="dept-name">🔍 Research & Intelligence</div>
+      <div class="dept-owner">Product discovery, market analysis, competitor tracking</div>
+    </div>
+    <div class="dept-members">
+      <div class="member active">🔱 <strong>Forge</strong> — Currently handling (temporary)</div>
+      <div class="member planned">🦅 <strong>Hawk</strong> — Market Intelligence (Planned · Sonnet model)</div>
+    </div>
+  </div>
+
+  <div class="dept">
+    <div class="dept-head">
+      <div class="dept-name">🎨 Creative & Ads</div>
+      <div class="dept-owner">Ad research, copy, video production, creative pipeline</div>
+    </div>
+    <div class="dept-members">
+      <div class="member planned">🔭 <strong>Scout</strong> — Ad Creative Research (Planned · Sonnet)</div>
+      <div class="member planned">✒️ <strong>Quill</strong> — Copywriting (Planned · Sonnet)</div>
+      <div class="member planned">🎬 <strong>Director</strong> — Video Production (Planned · Sonnet)</div>
+    </div>
+  </div>
+
+  <div class="dept">
+    <div class="dept-head">
+      <div class="dept-name">⚙️ Operations & Systems</div>
+      <div class="dept-owner">Tools, SOPs, automation, infrastructure</div>
+    </div>
+    <div class="dept-members">
+      <div class="member active">🔱 <strong>Forge</strong> — Full ownership (AI · Opus)</div>
+    </div>
+  </div>
+
+  <div class="dept">
+    <div class="dept-head">
+      <div class="dept-name">📦 Supply Chain</div>
+      <div class="dept-owner">Sourcing, COGS, Mutual Dropshipping relationship</div>
+    </div>
+    <div class="dept-members">
+      <div class="member active">👤 <strong>Anton</strong> — Mutual WhatsApp sourcing (temporary)</div>
+      <div class="member active">🔱 <strong>Forge</strong> — Message prep & COGS tracking</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- HIRING TIMELINE -->
+<div class="section">
+  <h2>📅 Hiring Timeline</h2>
+
+  <div class="dept">
+    <div style="display:grid;grid-template-columns:auto 1fr auto;gap:8px;font-size:12px">
+      <strong style="color:var(--green)">✅ Week 1</strong><span>Forge (COO) — operational</span><span style="color:var(--green)">ACTIVE</span>
+      <strong style="color:var(--amber)">🔜 Week 2-3</strong><span>Hawk (Market Intelligence) — when research volume exceeds Forge's capacity</span><span style="color:var(--amber)">PLANNED</span>
+      <strong style="color:var(--amber)">🔜 Week 2-3</strong><span>Scout (Ad Creative) — when 5+ validated products need creative analysis</span><span style="color:var(--amber)">PLANNED</span>
+      <strong style="color:var(--sub)">📋 Week 4-6</strong><span>Quill (Copywriting) — when first product is ready for ad launch</span><span style="color:var(--sub)">PLANNED</span>
+      <strong style="color:var(--sub)">📋 Week 4-6</strong><span>Director (Video Ads) — when creative pipeline needs scaling</span><span style="color:var(--sub)">PLANNED</span>
+    </div>
+  </div>
+</div>
+
+<div class="footer">🔱 Anton Empire Organisation Chart v1.0 — Updated automatically by Forge — February 2026</div>
+
+</div>
+</body>
+</html>
