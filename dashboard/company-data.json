@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdated": "2026-02-24T11:00:00Z",
+    "lastUpdated": "2026-02-25T08:00:00Z",
     "updatedBy": "Forge",
-    "version": "2.1"
+    "version": "3.0"
   },
   "company": {
     "name": "Anton Empire",
@@ -10,13 +10,10 @@
     "entity": "UK Ltd",
     "taxRate": 19,
     "targetNetMargin": 20,
-    "notes": "UK Ltd for now. Future plan: Hong Kong entity (0% tax). Corp tax 19% for small profits (<£50K), 25% for >£250K."
+    "targetMonthlyNet": 10000,
+    "notes": "UK Ltd for now. Future plan: Hong Kong entity (0% tax). Corp tax 19% for small profits (<£50K), 25% for >£250K. Target: £10k net/month."
   },
-  "companyExpenses": [
-    { "id": "ce-001", "name": "Shopify Advanced (Promo)", "category": "Subscriptions", "amount": 1, "currency": "GBP", "frequency": "monthly", "date": "2026-02-24", "notes": "£1/mo until March 12 2026. Then needs downgrade. Advanced normally £344/mo. Card rates: 1.5% + £0.25 online." },
-    { "id": "ce-002", "name": "OpenClaw / Anthropic API", "category": "AI/API Costs", "amount": 50, "frequency": "monthly", "date": "2026-02-24", "notes": "Usage-based estimate" },
-    { "id": "ce-003", "name": "Domain (thalyve.com)", "category": "Domain/Hosting", "amount": 15, "frequency": "annual", "date": "2026-02-24", "notes": "Estimated" }
-  ],
+  "companyExpenses": [],
   "brands": [
     {
       "id": "thalyve",
@@ -52,5 +49,67 @@
     "staffAccounts": 15,
     "action": "Downgrade before March 12 to suitable plan"
   },
-  "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 — MUST downgrade."
+  "kpiTargets": {
+    "weekOf": "2026-02-24",
+    "departments": {
+      "research": {
+        "name": "Product Research",
+        "owner": "Forge",
+        "targets": [
+          { "metric": "Products Researched", "target": 10, "current": 6, "unit": "products" },
+          { "metric": "Competitors Validated (SimilarWeb)", "target": 8, "current": 4, "unit": "brands" },
+          { "metric": "GetHookd Ad Swipes Saved", "target": 20, "current": 0, "unit": "ads" }
+        ]
+      },
+      "creative": {
+        "name": "Creative & Ads",
+        "owner": "Forge (future: Hawk)",
+        "targets": [
+          { "metric": "Ad Scripts Written", "target": 0, "current": 0, "unit": "scripts" },
+          { "metric": "Creative Angles Identified", "target": 5, "current": 0, "unit": "angles" }
+        ]
+      },
+      "operations": {
+        "name": "Operations & Systems",
+        "owner": "Forge",
+        "targets": [
+          { "metric": "SOPs Created/Updated", "target": 3, "current": 0, "unit": "SOPs" },
+          { "metric": "Tools Shipped", "target": 2, "current": 2, "unit": "tools" },
+          { "metric": "Systems Automated", "target": 2, "current": 1, "unit": "systems" }
+        ]
+      }
+    }
+  },
+  "roadmap": {
+    "thisWeek": {
+      "weekOf": "2026-02-24",
+      "priorities": [
+        { "task": "Deploy GitHub Pages — tools accessible on phone", "status": "done", "owner": "Forge" },
+        { "task": "Upgrade Tracker v4.0 — competitors, creatives, traffic context", "status": "in-progress", "owner": "Forge" },
+        { "task": "Upgrade Command Centre v3.0 — KPIs, roadmap, task log", "status": "in-progress", "owner": "Forge" },
+        { "task": "Build SOP Hub / Company Drive", "status": "in-progress", "owner": "Forge" },
+        { "task": "Run SOP-compliant research batch (Mon+Thu)", "status": "blocked", "owner": "Forge", "blocker": "Tools upgrade in progress" },
+        { "task": "Set up credential security (Keychain)", "status": "done", "owner": "Forge" },
+        { "task": "Shopify plan review — downgrade before Mar 12", "status": "planned", "owner": "Anton" }
+      ]
+    },
+    "nextWeek": {
+      "weekOf": "2026-03-03",
+      "priorities": [
+        { "task": "Full research batch — 10 products validated", "status": "planned", "owner": "Forge" },
+        { "task": "Mutual sourcing messages for top 3 products", "status": "planned", "owner": "Anton + Forge" },
+        { "task": "Evaluate sub-agent hire: Hawk (Market Intelligence)", "status": "planned", "owner": "Forge" },
+        { "task": "Ad creative research — GetHookd swipe library", "status": "planned", "owner": "Forge" },
+        { "task": "Shopify downgrade execution", "status": "planned", "owner": "Anton" }
+      ]
+    }
+  },
+  "taskLog": [
+    { "id": "tl-001", "task": "GitHub account setup + repo creation", "started": "2026-02-25T07:20:00Z", "finished": "2026-02-25T07:35:00Z", "status": "done", "owner": "Forge" },
+    { "id": "tl-002", "task": "GitHub Pages deployment (landing + tracker + dashboard)", "started": "2026-02-25T07:35:00Z", "finished": "2026-02-25T07:45:00Z", "status": "done", "owner": "Forge" },
+    { "id": "tl-003", "task": "Keychain credential storage setup", "started": "2026-02-25T08:00:00Z", "finished": "2026-02-25T08:10:00Z", "status": "done", "owner": "Forge" },
+    { "id": "tl-004", "task": "Tracker v4.0 — competitors, creative library, traffic context", "started": "2026-02-25T08:15:00Z", "finished": null, "status": "in-progress", "owner": "Forge" },
+    { "id": "tl-005", "task": "Command Centre v3.0 — KPIs, roadmap, task log, clean expenses", "started": "2026-02-25T08:15:00Z", "finished": null, "status": "in-progress", "owner": "Forge" }
+  ],
+  "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 — MUST downgrade. Target: £10k net/month. All expenses wiped clean for v3.0 fresh start."
 }

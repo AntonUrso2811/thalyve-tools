@@ -221,11 +221,13 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
           <div class="fi fi-2"><label>3. Additional Notes</label><textarea id="f-notes" placeholder="Angles, market observations, competitor intelligence, MRR potential..."></textarea></div>
           <div class="fi"><label>4. Mutual Link</label><input id="f-mutual" placeholder="https://mutual..."></div>
           <div class="fi"><label>5. Total COGS ($)</label><input type="number" id="f-cogs" step="0.01" placeholder="8.44"></div>
-          <div class="fi"><label>6. Competitor Ad Link</label><input id="f-adlink" placeholder="FB Ad Library / GetHookd"></div>
+          <div class="fi"><label>6. Competitor Brand</label><input id="f-competitor" placeholder="e.g. Maia, QuietLab"></div>
           <div class="fi"><label>7. Competitor Site</label><input id="f-site" placeholder="https://competitor.com"></div>
-          <div class="fi"><label>8. SimilarWeb Traffic</label><input type="number" id="f-traffic" placeholder="105000"></div>
-          <div class="fi"><label>9. Active FB Ads</label><input type="number" id="f-ads" placeholder="240"></div>
-          <div class="fi"><label>10. Selling Price ($)</label><input type="number" id="f-price" step="0.01" placeholder="49.00"></div>
+          <div class="fi"><label>8. GetHookd Original Ad</label><input id="f-gethookd" placeholder="https://app.gethookd.ai/share/ad/..."></div>
+          <div class="fi"><label>9. Competitor Ad Link</label><input id="f-adlink" placeholder="FB Ad Library / GetHookd"></div>
+          <div class="fi"><label>10. SimilarWeb Traffic</label><input type="number" id="f-traffic" placeholder="105000"></div>
+          <div class="fi"><label>11. Active FB Ads</label><input type="number" id="f-ads" placeholder="240"></div>
+          <div class="fi"><label>12. Selling Price ($)</label><input type="number" id="f-price" step="0.01" placeholder="49.00"></div>
           <div class="fi"><label>12. Sufficient Content?</label>
             <select id="f-content"><option value="">—</option><option value="Yes">Yes</option><option value="No">No</option><option value="Partial">Partial</option></select>
           </div>
@@ -285,18 +287,17 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
             <thead><tr>
               <th onclick="srt('date')"># <span class="si">↕</span></th>
               <th onclick="srt('name')">Product <span class="si">↕</span></th>
-              <th>What & Why</th>
-              <th>Notes</th>
+              <th>Competitor</th>
               <th>COGS</th>
               <th onclick="srt('price')">Price <span class="si">↕</span></th>
               <th onclick="srt('beroas')">B/E ROAS <span class="si">↕</span></th>
               <th onclick="srt('traffic')">Traffic <span class="si">↕</span></th>
+              <th onclick="srt('revenueEstimate')">Est. Revenue <span class="si">↕</span></th>
               <th onclick="srt('ads')">FB Ads <span class="si">↕</span></th>
-              <th>Content</th>
               <th onclick="srt('score')">Score <span class="si">↕</span></th>
               <th>Status</th>
               <th>MRR</th>
-              <th>Approval</th>
+              <th>Creatives</th>
               <th></th>
             </tr></thead>
             <tbody id="tbody"></tbody>
@@ -336,7 +337,7 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
     </div>
   </div>
 
-  <div class="footer">🔱 Anton Empire — Product Research Tracker v2.0 — SOP-Compliant — Data stored locally</div>
+  <div class="footer">🔱 Anton Empire — Product Research Tracker v4.0 — SOP-Compliant — Data stored locally</div>
 </div>
 
 <input type="file" id="impF" accept=".json" style="display:none" onchange="handleImp(event)">
@@ -369,13 +370,17 @@ function addProduct(){
   const cogs=parseFloat(v('f-cogs'))||0;const price=parseFloat(v('f-price'))||0;
   const marginPct=price>0?((price-cogs)/price*100):0;
   const beroas=price>0&&(price-cogs)>0?(price/(price-cogs)):0;
+  const traffic=parseInt(v('f-traffic'))||0;
+  const revEst=traffic&&price?(traffic*price*0.025):0;
   P.push({
     id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),
     date:new Date().toISOString().split('T')[0],
     name:n,what:v('f-what'),notes:v('f-notes'),
+    competitor:v('f-competitor'),competitorSite:v('f-site'),
+    gethookdOriginalAd:v('f-gethookd'),creativeSwipes:[],
     mutualLink:v('f-mutual'),cogs,adLink:v('f-adlink'),site:v('f-site'),
-    traffic:parseInt(v('f-traffic'))||0,ads:parseInt(v('f-ads'))||0,
-    price,margin:marginPct,beroas,
+    traffic,ads:parseInt(v('f-ads'))||0,
+    price,revenueEstimate:Math.round(revEst),margin:marginPct,beroas,
     content:v('f-content'),niche:v('f-niche'),format:v('f-format'),
     target:v('f-target'),mrr:v('f-mrr'),status:v('f-status'),
     scores:sc,score:Math.round(avg*10)/10,
@@ -387,7 +392,7 @@ function addProduct(){
 function v(id){return document.getElementById(id).value.trim()}
 function num(id){return parseInt(document.getElementById(id).value)||0}
 function clearForm(){
-  ['f-name','f-what','f-notes','f-mutual','f-cogs','f-adlink','f-site','f-traffic','f-ads','f-price','f-target',
+  ['f-name','f-what','f-notes','f-mutual','f-cogs','f-adlink','f-site','f-traffic','f-ads','f-price','f-target','f-competitor','f-gethookd',
    'sc-ad','sc-mkt','sc-comp','sc-fmt','sc-mgn','sc-aud','sc-drp'].forEach(id=>{document.getElementById(id).value=''});
   document.getElementById('f-content').value='';
   document.getElementById('f-mrr').value='No';
@@ -411,36 +416,46 @@ function render(){
   // Main table
   const tb=document.getElementById('tbody');
   if(!items.length){
-    tb.innerHTML=`<tr><td colspan="15"><div class="empty"><div class="empty-icon">📦</div><div class="empty-t">${q||filt!=='all'?'No matches':'No products yet'}</div><div class="empty-s">Use the form above to add products</div></div></td></tr>`;
+    tb.innerHTML=`<tr><td colspan="14"><div class="empty"><div class="empty-icon">📦</div><div class="empty-t">${q||filt!=='all'?'No matches':'No products yet'}</div><div class="empty-s">Use the form above to add products</div></div></td></tr>`;
   } else {
     tb.innerHTML=items.map((p,i)=>{
       const sc=p.score>=8?'s-hi':p.score>=5?'s-md':'s-lo';
       const stM={new:'ch-new',research:'ch-res',source:'ch-src',test:'ch-tst',kill:'ch-kil',scale:'ch-scl'};
       const stL={new:'New',research:'Research',source:'Sourcing',test:'Testing',kill:'Killed',scale:'Scaling'};
-      const br=p.beroas>0?p.beroas.toFixed(2):'—';
-      const brc=p.beroas>0&&p.beroas<=1.5?'m-hi':p.beroas<=2?'m-md':'m-lo';
+      const hasCogs=p.cogs&&p.cogs>0;
+      const br=hasCogs&&p.beroas>0?p.beroas.toFixed(2):'—';
+      const brc=hasCogs&&p.beroas>0&&p.beroas<=1.5?'m-hi':p.beroas<=2?'m-md':'m-lo';
+      const cogsDisplay=hasCogs?'$'+p.cogs.toFixed(2):'—';
       const tc=p.traffic>=30000?'m-hi':p.traffic>=10000?'m-md':'m-lo';
+      const revEst=p.traffic&&p.price?(p.traffic*p.price*0.025):0;
+      const revDisplay=revEst>0?'$'+fN(revEst):'—';
+      const revClass=revEst>=100000?'m-hi':revEst>=30000?'m-md':'m-lo';
       const links=[
-        p.site?`<a href="${esc(p.site)}" target="_blank" class="plink">↗ Site</a>`:'',
+        p.site||p.competitorSite?`<a href="${esc(p.competitorSite||p.site)}" target="_blank" class="plink">↗ Site</a>`:'',
         p.adLink?`<a href="${esc(p.adLink)}" target="_blank" class="plink">📣 Ads</a>`:'',
-        p.mutualLink?`<a href="${esc(p.mutualLink)}" target="_blank" class="plink">📦 Mutual</a>`:''
+        p.mutualLink&&!p.mutualLink.startsWith('PENDING')?`<a href="${esc(p.mutualLink)}" target="_blank" class="plink">📦 Mutual</a>`:''
       ].filter(Boolean).join(' ');
       const mrrTag=p.mrr&&p.mrr!=='No'?`<span class="tag tag-mrr">🔄 MRR</span>`:'';
+      const compName=p.competitor||'—';
+      const compLink=p.competitorSite?`<a href="${esc(p.competitorSite)}" target="_blank" class="plink">↗ ${esc(compName)}</a>`:esc(compName);
+      const ghLink=p.gethookdOriginalAd&&!p.gethookdOriginalAd.startsWith('PENDING')?`<a href="${esc(p.gethookdOriginalAd)}" target="_blank" class="plink">🎬 Original</a>`:'';
+      const swipes=p.creativeSwipes||[];
+      const swipeCount=swipes.length;
+      const swipeHtml=swipeCount>0?`<span class="tag tag-mrr" style="cursor:pointer" onclick="toggleSwipes('${p.id}')">${swipeCount} swipe${swipeCount>1?'s':''}</span>`:`<button class="btn-g" style="font-size:9px" onclick="addSwipe('${p.id}')">+ Add</button>`;
       return`<tr>
         <td style="color:var(--sub);font-size:10px;white-space:nowrap">${i+1}<br><span style="font-size:9px">${p.date}</span></td>
         <td><div class="pname">${esc(p.name)}</div><div style="margin-top:3px;display:flex;gap:6px;flex-wrap:wrap"><span class="tag tag-n">${esc(p.niche)}</span><span class="tag tag-f">${esc(p.format)}</span></div><div style="margin-top:3px">${links}</div></td>
-        <td class="notes">${esc(p.what||'—')}</td>
-        <td class="notes">${esc(p.notes||'—')}</td>
-        <td class="money">${p.cogs?'$'+p.cogs.toFixed(2):'—'}</td>
+        <td><div style="font-weight:600;font-size:11px">${compLink}</div>${ghLink}</td>
+        <td class="money">${cogsDisplay}${!hasCogs&&p.price?'<br><span style="font-size:8px;color:var(--amber)">Pending COGS</span>':''}</td>
         <td class="money" style="font-weight:700">${p.price?'$'+p.price.toFixed(2):'—'}</td>
-        <td class="${brc}" style="font-weight:700">${br}</td>
+        <td class="${brc}" style="font-weight:700">${br}${!hasCogs&&p.price?'<br><span style="font-size:8px;color:var(--amber)">Pending</span>':''}</td>
         <td class="${tc}" style="font-weight:600">${p.traffic?fN(p.traffic):'—'}</td>
+        <td class="${revClass}" style="font-weight:700">${revDisplay}</td>
         <td style="font-weight:700">${p.ads||'—'}</td>
-        <td>${p.content||'—'}</td>
         <td><span class="score-b ${sc}">${p.score.toFixed(1)}</span></td>
         <td><span class="chip ${stM[p.status]||'ch-new'}">${stL[p.status]||p.status}</span></td>
         <td>${mrrTag||'—'}</td>
-        <td>${p.approval||'⏳'}</td>
+        <td>${swipeHtml}</td>
         <td><button class="btn-d" onclick="del('${p.id}')">✕</button></td>
       </tr>`}).join('');
   }
@@ -503,6 +518,22 @@ function importJSON(){document.getElementById('impF').click()}
 function handleImp(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){try{const d=JSON.parse(ev.target.result);if(Array.isArray(d)){P=d;save();render();toast('Imported '+d.length+' products ✓')}}catch(e){toast('Bad file',1)}};r.readAsText(f);e.target.value=''}
 function dl(n,c,t){const b=new Blob([c],{type:t});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click()}
 function toast(m,e){const t=document.getElementById('toast');t.textContent=m;t.className='toast '+(e?'err':'ok')+' show';setTimeout(()=>t.classList.remove('show'),2800)}
+
+function addSwipe(id){
+  const url=prompt('GetHookd Ad Swipe URL:');if(!url)return;
+  const label=prompt('Label (optional):','');
+  const p=P.find(x=>x.id===id);if(!p)return;
+  if(!p.creativeSwipes)p.creativeSwipes=[];
+  p.creativeSwipes.push({url,label:label||'Ad Swipe'});
+  save();render();toast('Swipe added ✓');
+}
+function toggleSwipes(id){
+  const p=P.find(x=>x.id===id);if(!p||!p.creativeSwipes?.length)return;
+  const list=p.creativeSwipes.map((s,i)=>`${i+1}. ${s.label}: ${s.url}`).join('\n');
+  const action=prompt('Creative Swipes for '+p.name+':\n\n'+list+'\n\nType "add" to add new, or "clear" to remove all:');
+  if(action==='add')addSwipe(id);
+  else if(action==='clear'){p.creativeSwipes=[];save();render();toast('Swipes cleared');}
+}
 
 async function loadJSON(){try{const r=await fetch('research-data.json?t='+Date.now());if(!r.ok)return;const d=await r.json();if(Array.isArray(d)&&d.length){let a=0;d.forEach(np=>{if(!P.find(p=>p.id===np.id)){P.push(np);a++}});if(a){save();render();toast('Synced '+a+' from Forge ✓')}}}catch(e){}}
 
