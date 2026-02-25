@@ -262,7 +262,7 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
           </div>
         </div>
         <div style="display:flex;gap:8px;margin-top:16px">
-          <button class="btn-p" onclick="addProduct()">＋ Add Product</button>
+          <button class="btn-p" id="addBtn" onclick="addProduct()">＋ Add Product</button>
           <button class="btn-g" onclick="clearForm()">Clear</button>
         </div>
       </div>
@@ -366,6 +366,50 @@ function toggleColl(trigger){
   trigger.classList.toggle('open',!isOpen);
 }
 
+let editingId=null;
+function editProduct(id){
+  const p=P.find(x=>x.id===id);if(!p)return;
+  editingId=id;
+  document.getElementById('f-name').value=p.name||'';
+  document.getElementById('f-what').value=p.what||'';
+  document.getElementById('f-notes').value=p.notes||'';
+  document.getElementById('f-competitor').value=p.competitor||'';
+  document.getElementById('f-site').value=p.competitorSite||p.site||'';
+  document.getElementById('f-gethookd').value=p.gethookdOriginalAd||'';
+  document.getElementById('f-adlink').value=p.adLink||'';
+  document.getElementById('f-mutual').value=p.mutualLink||'';
+  document.getElementById('f-cogs').value=p.cogs||'';
+  document.getElementById('f-traffic').value=p.traffic||'';
+  document.getElementById('f-ads').value=p.ads||'';
+  document.getElementById('f-price').value=p.price||'';
+  document.getElementById('f-content').value=p.content||'';
+  document.getElementById('f-niche').value=p.niche||'Health/Wellness';
+  document.getElementById('f-format').value=p.format||'Stick';
+  document.getElementById('f-target').value=p.target||'';
+  document.getElementById('f-mrr').value=p.mrr||'No';
+  document.getElementById('f-status').value=p.status||'new';
+  document.getElementById('f-method').value=p.discoveryMethod||'gethookd-trending';
+  document.getElementById('f-filters').value=p.filtersUsed||'';
+  if(p.scores){
+    document.getElementById('sc-ad').value=p.scores.ad||'';
+    document.getElementById('sc-mkt').value=p.scores.market||'';
+    document.getElementById('sc-comp').value=p.scores.comp||'';
+    document.getElementById('sc-fmt').value=p.scores.format||'';
+    document.getElementById('sc-mgn').value=p.scores.margin||'';
+    document.getElementById('sc-aud').value=p.scores.audience||'';
+    document.getElementById('sc-drp').value=p.scores.dropship||'';
+  }
+  // Open the form if collapsed
+  const trigger=document.querySelector('.coll-trigger');
+  const body=trigger.nextElementSibling;
+  if(body.classList.contains('shut')){body.classList.remove('shut');body.classList.add('show');trigger.classList.add('open');}
+  // Scroll to top
+  window.scrollTo({top:0,behavior:'smooth'});
+  // Change button text
+  document.getElementById('addBtn').textContent='💾 Update Product';
+  toast('Editing: '+p.name);
+}
+
 function addProduct(){
   const n=v('f-name');if(!n){toast('Enter product name',1);return}
   const sc={ad:num('sc-ad'),market:num('sc-mkt'),comp:num('sc-comp'),format:num('sc-fmt'),margin:num('sc-mgn'),audience:num('sc-aud'),dropship:num('sc-drp')};
@@ -376,6 +420,30 @@ function addProduct(){
   const beroas=price>0&&(price-cogs)>0?(price/(price-cogs)):0;
   const traffic=parseInt(v('f-traffic'))||0;
   const revEst=traffic&&price?(traffic*price*0.025):0;
+
+  // If editing, update existing product
+  if(editingId){
+    const idx=P.findIndex(x=>x.id===editingId);
+    if(idx>=0){
+      P[idx]={...P[idx],
+        name:n,what:v('f-what'),notes:v('f-notes'),
+        competitor:v('f-competitor'),competitorSite:v('f-site'),
+        gethookdOriginalAd:v('f-gethookd'),
+        mutualLink:v('f-mutual'),cogs,adLink:v('f-adlink'),site:v('f-site'),
+        traffic,ads:parseInt(v('f-ads'))||0,
+        price,revenueEstimate:Math.round(revEst),margin:marginPct,beroas,
+        content:v('f-content'),niche:v('f-niche'),format:v('f-format'),
+        target:v('f-target'),mrr:v('f-mrr'),status:v('f-status'),
+        discoveryMethod:v('f-method'),filtersUsed:v('f-filters'),
+        scores:sc,score:Math.round(avg*10)/10
+      };
+    }
+    editingId=null;
+    document.getElementById('addBtn').textContent='＋ Add Product';
+    save();render();clearForm();toast('Product updated ✓');
+    return;
+  }
+
   P.push({
     id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),
     date:new Date().toISOString().split('T')[0],
@@ -397,6 +465,8 @@ function addProduct(){
 function v(id){return document.getElementById(id).value.trim()}
 function num(id){return parseInt(document.getElementById(id).value)||0}
 function clearForm(){
+  editingId=null;
+  document.getElementById('addBtn').textContent='＋ Add Product';
   ['f-name','f-what','f-notes','f-mutual','f-cogs','f-adlink','f-site','f-traffic','f-ads','f-price','f-target','f-competitor','f-gethookd','f-filters',
    'sc-ad','sc-mkt','sc-comp','sc-fmt','sc-mgn','sc-aud','sc-drp'].forEach(id=>{document.getElementById(id).value=''});
   document.getElementById('f-content').value='';
@@ -461,7 +531,7 @@ function render(){
         <td><span class="chip ${stM[p.status]||'ch-new'}">${stL[p.status]||p.status}</span></td>
         <td>${mrrTag||'—'}</td>
         <td>${swipeHtml}</td>
-        <td><button class="btn-d" onclick="del('${p.id}')">✕</button></td>
+        <td style="white-space:nowrap"><button class="btn-o" style="font-size:9px;padding:4px 8px;margin-right:3px" onclick="editProduct('${p.id}')">✏️</button><button class="btn-d" onclick="del('${p.id}')">✕</button></td>
       </tr>`}).join('');
   }
 
