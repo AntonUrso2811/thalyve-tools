@@ -281,6 +281,39 @@
       "since": null,
       "responsibilities": "Video ad scripting, UGC brief creation, creative production pipeline",
       "notes": "Phase 3 hire (Week 4-6). Trigger: when ad creative pipeline needs scaling."
+    },
+    {
+      "id": "coach",
+      "name": "—",
+      "role": "Health & Wellness Coach",
+      "type": "human",
+      "domain": "personal",
+      "status": "active",
+      "since": null,
+      "responsibilities": "Training programming, accountability, nutrition guidance",
+      "notes": "Manages via WhatsApp. Provides coaching xlsx files."
+    },
+    {
+      "id": "physio",
+      "name": "—",
+      "role": "Physiotherapist",
+      "type": "human",
+      "domain": "personal",
+      "status": "planned",
+      "since": null,
+      "responsibilities": "Knee rehab, scapular work, injury management, movement assessment",
+      "notes": "Need to find one. Priority: knee + scapula."
+    },
+    {
+      "id": "gp",
+      "name": "—",
+      "role": "GP / Doctor",
+      "type": "human",
+      "domain": "personal",
+      "status": "planned",
+      "since": null,
+      "responsibilities": "Bloodwork, general health, referrals, health screening",
+      "notes": "Routine checks. Longevity-focused."
     }
   ],
   "dailyCriticalTasks": {
