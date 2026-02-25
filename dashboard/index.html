@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anton Empire — Command Centre</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--card:#12121a;--border:#1e1e2e;--text:#e4e4e7;--muted:#71717a;--accent:#8b5cf6;--accent2:#a78bfa;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;--teal:#14b8a6}
+body{font-family:-apple-system,'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.ctr{max-width:1300px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:8px}
+h1{font-size:20px;font-weight:700}h1 span{color:var(--accent)}
+.badge{font-size:10px;padding:3px 9px;border-radius:16px;font-weight:600;background:var(--accent);color:#fff}
+.tabs{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:7px 15px;border-radius:7px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--muted);background:transparent;font-weight:500;transition:.2s}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab:hover:not(.active){border-color:var(--accent);color:var(--text)}
+.page{display:none}.page.active{display:block}
+.grid{display:grid;gap:12px;margin-bottom:16px}
+.g6{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.g2{grid-template-columns:1fr 1fr}
+@media(max-width:768px){.g2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:15px}
+.card h2{font-size:13px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.sl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.sv{font-size:22px;font-weight:700}
+.ss{font-size:10px;margin-top:2px}
+.green{color:var(--green)}.red{color:var(--red)}.amber{color:var(--amber)}.blue{color:var(--blue)}.purple{color:var(--accent2)}.teal{color:var(--teal)}
+.hl{border-radius:10px;padding:16px;margin-bottom:16px}
+.hl-p{background:linear-gradient(135deg,rgba(139,92,246,.1),rgba(59,130,246,.07));border:1px solid rgba(139,92,246,.25)}
+.hl-g{background:linear-gradient(135deg,rgba(34,197,94,.08),rgba(20,184,166,.06));border:1px solid rgba(34,197,94,.2)}
+.hl-r{background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(245,158,11,.06));border:1px solid rgba(239,68,68,.2)}
+.pl{display:grid;grid-template-columns:1fr auto;gap:3px 18px;max-width:450px;font-size:12px}
+.pl-sep{border-top:1px solid var(--border);padding-top:4px;font-weight:600}
+.pl-total{border-top:2px solid var(--accent);padding-top:5px;font-weight:700;font-size:14px}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.fg-item{display:flex;flex-direction:column;gap:3px}
+.fg-item label{font-size:10px;color:var(--muted);text-transform:uppercase}
+.fg-item input,.fg-item select{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:8px;border-radius:7px;font-size:12px;outline:none}
+.fg-item input:focus{border-color:var(--accent)}
+.fw{grid-column:1/-1}
+button{background:var(--accent);color:#fff;border:none;padding:9px 18px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s}
+button:hover{background:var(--accent2)}
+.btn-s{padding:4px 10px;font-size:10px}
+.btn-o{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.btn-o:hover{border-color:var(--accent);color:var(--text);background:transparent}
+.btn-r{background:var(--red)}.btn-r:hover{background:#dc2626}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{text-align:left;padding:7px 5px;color:var(--muted);font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border)}
+td{padding:7px 5px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(139,92,246,.03)}
+.empty{text-align:center;padding:25px;color:var(--muted);font-size:11px}
+.chart-row{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.chart-lbl{font-size:10px;color:var(--muted);width:50px;text-align:right;flex-shrink:0}
+.chart-bg{flex:1;height:22px;background:var(--bg);border-radius:5px;overflow:hidden}
+.chart-bar{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:6px;font-size:10px;font-weight:600;color:#fff;transition:width .4s}
+.toast{position:fixed;bottom:16px;right:16px;background:var(--green);color:#fff;padding:9px 16px;border-radius:7px;font-size:11px;font-weight:600;transform:translateY(80px);opacity:0;transition:.3s;z-index:100}
+.toast.show{transform:translateY(0);opacity:1}
+.wm{text-align:center;color:#333;font-size:9px;margin-top:25px;padding:12px}
+.brand-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--accent)}
+.brand-header h2{font-size:16px;margin:0}
+.brand-badge{font-size:10px;background:var(--green);color:#fff;padding:2px 8px;border-radius:10px}
+</style>
+</head>
+<body>
+<div class="ctr">
+  <header>
+    <div><h1>🔱 <span>Anton Empire</span> — Command Centre</h1><p style="font-size:10px;color:var(--muted);margin-top:2px">Company P&L • Brand Performance • Expenses • Tax Provisioning</p></div>
+    <div style="display:flex;gap:5px;align-items:center">
+      <button class="btn-s btn-o" onclick="exportAll()">📥 Export</button>
+      <button class="btn-s btn-o" onclick="exportJSON()">💾 Backup</button>
+      <span class="badge" id="lastSync">—</span>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" onclick="nav('overview',this)">📊 Company Overview</div>
+    <div class="tab" onclick="nav('brand',this)">🏷 THALYVE™</div>
+    <div class="tab" onclick="nav('expenses',this)">💰 Company Expenses</div>
+    <div class="tab" onclick="nav('log',this)">📅 Daily Log</div>
+    <div class="tab" onclick="nav('settings',this)">⚙️ Settings</div>
+  </div>
+
+  <!-- ===== COMPANY OVERVIEW ===== -->
+  <div class="page active" id="p-overview">
+    <div class="grid g6">
+      <div class="card"><div class="sl">Total Revenue (All Brands)</div><div class="sv green" id="o-rev">$0</div><div class="ss" id="o-orders">0 orders</div></div>
+      <div class="card"><div class="sl">Total Ad Spend</div><div class="sv red" id="o-ads">$0</div><div class="ss" id="o-adpct">—</div></div>
+      <div class="card"><div class="sl">Total COGS</div><div class="sv amber" id="o-cogs">$0</div><div class="ss" id="o-cogspct">—</div></div>
+      <div class="card"><div class="sl">Company Expenses</div><div class="sv blue" id="o-opex">$0</div><div class="ss" id="o-opexn">—</div></div>
+      <div class="card"><div class="sl">Tax Provision (est.)</div><div class="sv teal" id="o-tax">$0</div><div class="ss" id="o-taxr">—</div></div>
+      <div class="card"><div class="sl">Net Company Profit</div><div class="sv" id="o-net">$0</div><div class="ss" id="o-netm">—</div></div>
+    </div>
+
+    <!-- P&L Waterfall -->
+    <div class="hl hl-p">
+      <h3 style="font-size:13px;margin-bottom:10px">📋 Company P&L</h3>
+      <div class="pl" id="o-pl">
+        <span>Gross Revenue (all brands)</span><span class="green" id="pl-rev">$0</span>
+        <span>− Total COGS</span><span class="red" id="pl-cogs">$0</span>
+        <span class="pl-sep">Gross Profit</span><span class="pl-sep green" id="pl-gross">$0</span>
+        <span>− Total Ad Spend</span><span class="red" id="pl-ads">$0</span>
+        <span>− Company Expenses</span><span class="red" id="pl-opex">$0</span>
+        <span class="pl-sep">Pre-Tax Profit</span><span class="pl-sep" id="pl-pretax">$0</span>
+        <span>− Tax Provision (est.)</span><span class="red" id="pl-tax">$0</span>
+        <span class="pl-total">Net Profit (After Tax Est.)</span><span class="pl-total" id="pl-net">$0</span>
+      </div>
+    </div>
+
+    <!-- Brand Summary -->
+    <div class="card">
+      <h2>🏷 Brand Performance</h2>
+      <table>
+        <thead><tr><th>Brand</th><th>Revenue</th><th>Orders</th><th>Ad Spend</th><th>COGS</th><th>Brand Profit</th><th>ROAS</th><th>Margin</th></tr></thead>
+        <tbody id="o-brands"><tr><td colspan="8" class="empty">No brand data yet</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- 7-day chart -->
+    <div class="card" style="margin-top:12px">
+      <h2>📈 Last 7 Days</h2>
+      <div id="o-chart"><div class="empty">Add daily entries to see trends</div></div>
+    </div>
+  </div>
+
+  <!-- ===== BRAND PAGE ===== -->
+  <div class="page" id="p-brand">
+    <div class="brand-header"><h2>🏷 THALYVE™</h2><span class="brand-badge">ACTIVE</span></div>
+
+    <div class="grid g6">
+      <div class="card"><div class="sl">Brand Revenue</div><div class="sv green" id="b-rev">$0</div><div class="ss" id="b-orders">0 orders</div></div>
+      <div class="card"><div class="sl">Ad Spend</div><div class="sv red" id="b-ads">$0</div><div class="ss" id="b-daily">$100/day budget</div></div>
+      <div class="card"><div class="sl">COGS</div><div class="sv amber" id="b-cogs">$0</div></div>
+      <div class="card"><div class="sl">Brand Profit</div><div class="sv" id="b-profit">$0</div><div class="ss" id="b-margin">—</div></div>
+      <div class="card"><div class="sl">ROAS</div><div class="sv purple" id="b-roas">0.00x</div><div class="ss" id="b-roast">—</div></div>
+      <div class="card"><div class="sl">CPA</div><div class="sv amber" id="b-cpa">$0</div><div class="ss" id="b-cpat">—</div></div>
+    </div>
+
+    <!-- Product breakdown -->
+    <div class="card">
+      <h2>📦 Product Breakdown</h2>
+      <table>
+        <thead><tr><th>Product</th><th>Price</th><th>COGS</th><th>Margin</th><th>Max CPA</th><th>Orders</th><th>Revenue</th></tr></thead>
+        <tbody id="b-prods"></tbody>
+      </table>
+    </div>
+
+    <!-- Media Buying -->
+    <div class="hl hl-r" style="margin-top:12px">
+      <h3 style="font-size:13px;margin-bottom:8px">📡 Media Buying</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;text-align:center">
+        <div><div style="font-size:18px;font-weight:700" class="blue">Meta</div><div class="sl">Platform</div></div>
+        <div><div style="font-size:18px;font-weight:700">Ad Rail</div><div class="sl">Agency</div></div>
+        <div><div style="font-size:18px;font-weight:700" class="amber">$100/day</div><div class="sl">Test Budget</div></div>
+        <div><div style="font-size:18px;font-weight:700" class="green" id="b-adleft">$1,000</div><div class="sl">Account Balance</div></div>
+      </div>
+    </div>
+
+    <!-- Brand daily chart -->
+    <div class="card" style="margin-top:12px">
+      <h2>📈 Daily Performance</h2>
+      <div id="b-chart"><div class="empty">No data yet</div></div>
+    </div>
+  </div>
+
+  <!-- ===== EXPENSES ===== -->
+  <div class="page" id="p-expenses">
+    <div class="grid g2">
+      <div class="card">
+        <h2>➕ Add Company Expense</h2>
+        <div class="fg">
+          <div class="fg-item"><label>Description</label><input id="e-name" placeholder="e.g. Shopify"></div>
+          <div class="fg-item"><label>Category</label>
+            <select id="e-cat"><option>Subscriptions</option><option>AI/API Costs</option><option>Domain/Hosting</option><option>Media Buying</option><option>Design/Creative</option><option>Legal/Compliance</option><option>Samples/Testing</option><option>Software/Tools</option><option>Tax</option><option>Other</option></select>
+          </div>
+          <div class="fg-item"><label>Amount ($)</label><input type="number" id="e-amt" step="0.01"></div>
+          <div class="fg-item"><label>Frequency</label><select id="e-freq"><option value="monthly">Monthly</option><option value="annual">Annual</option><option value="one-time">One-time</option></select></div>
+          <div class="fg-item"><label>Date</label><input type="date" id="e-date"></div>
+          <div class="fg-item"><label>Notes</label><input id="e-notes"></div>
+          <div class="fg-item fw"><button onclick="addExpense()">Add Expense</button></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>🔥 Monthly Burn Rate</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;margin-bottom:15px">
+          <div><div style="font-size:20px;font-weight:700" class="red" id="e-recur">$0</div><div class="sl">Monthly Recurring</div></div>
+          <div><div style="font-size:20px;font-weight:700" class="amber" id="e-once">$0</div><div class="sl">One-time</div></div>
+          <div><div style="font-size:20px;font-weight:700" class="blue" id="e-burn">$0</div><div class="sl">Total / Month</div></div>
+        </div>
+        <table>
+          <thead><tr><th>Description</th><th>Category</th><th>Amount</th><th>Freq</th><th></th></tr></thead>
+          <tbody id="e-table"><tr><td colspan="5" class="empty">No expenses</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAILY LOG ===== -->
+  <div class="page" id="p-log">
+    <div class="card" style="margin-bottom:12px">
+      <h2>📊 Log Daily Numbers</h2>
+      <div class="fg">
+        <div class="fg-item"><label>Date</label><input type="date" id="d-date"></div>
+        <div class="fg-item"><label>Brand</label><select id="d-brand"></select></div>
+        <div class="fg-item"><label>Product</label><select id="d-prod"></select></div>
+        <div class="fg-item"><label>Orders</label><input type="number" id="d-orders" value="0" min="0"></div>
+        <div class="fg-item"><label>Revenue ($)</label><input type="number" id="d-rev" step="0.01" placeholder="Auto from orders"></div>
+        <div class="fg-item"><label>Ad Spend ($)</label><input type="number" id="d-ads" step="0.01" value="0"></div>
+        <div class="fg-item fw"><button onclick="addDaily()">+ Add Entry</button></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>📅 All Entries</h2>
+      <table>
+        <thead><tr><th>Date</th><th>Brand</th><th>Product</th><th>Orders</th><th>Revenue</th><th>Ad Spend</th><th>COGS</th><th>Profit</th><th>ROAS</th><th></th></tr></thead>
+        <tbody id="d-table"><tr><td colspan="10" class="empty">No entries</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== SETTINGS ===== -->
+  <div class="page" id="p-settings">
+    <div class="grid g2">
+      <div class="card">
+        <h2>⚙️ Company Settings</h2>
+        <div class="fg">
+          <div class="fg-item"><label>Company</label><input id="s-company" value="Anton Empire"></div>
+          <div class="fg-item"><label>Currency</label><select id="s-cur"><option value="$">USD ($)</option><option value="£">GBP (£)</option><option value="€">EUR (€)</option></select></div>
+          <div class="fg-item"><label>Tax Rate (%)</label><input type="number" id="s-tax" value="20"></div>
+          <div class="fg-item"><label>Target Margin (%)</label><input type="number" id="s-margin" value="20"></div>
+          <div class="fg-item fw"><button onclick="saveSettings()">Save</button></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>🗄 Data</h2>
+        <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Data auto-syncs from company-data.json (maintained by Forge). Manual entries also saved locally.</p>
+        <div style="display:flex;gap:5px;flex-wrap:wrap">
+          <button class="btn-s btn-o" onclick="exportAll()">📥 CSV</button>
+          <button class="btn-s btn-o" onclick="exportJSON()">💾 JSON</button>
+          <button class="btn-s btn-o" onclick="importJSON()">📂 Import</button>
+          <button class="btn-s btn-o" onclick="loadFromJSON()">🔄 Re-sync</button>
+          <button class="btn-s btn-r" onclick="resetAll()">🗑 Reset</button>
+        </div>
+        <input type="file" id="impFile" accept=".json" style="display:none" onchange="handleImport(event)">
+      </div>
+    </div>
+  </div>
+
+  <div class="wm">🔱 Anton Empire Command Centre v2.0 • Data: company-data.json (Forge-maintained) + local edits • Built by Forge</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const D={
+  company: JSON.parse(localStorage.getItem('ae2_company')||'{"name":"Anton Empire","currency":"$","taxRate":20,"targetNetMargin":20}'),
+  companyExpenses: JSON.parse(localStorage.getItem('ae2_companyExpenses')||'[]'),
+  brands: JSON.parse(localStorage.getItem('ae2_brands')||'[]'),
+  daily: JSON.parse(localStorage.getItem('ae2_daily')||'[]')
+};
+function sv(k){if(k)localStorage.setItem('ae2_'+k,JSON.stringify(D[k]));else['company','companyExpenses','brands','daily'].forEach(k=>localStorage.setItem('ae2_'+k,JSON.stringify(D[k])))}
+
+function nav(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('p-'+id).classList.add('active');el.classList.add('active')}
+
+// ===== EXPENSES =====
+function addExpense(){
+  const n=document.getElementById('e-name').value.trim();const a=parseFloat(document.getElementById('e-amt').value)||0;
+  if(!n||!a){toast('Fill name & amount',1);return}
+  D.companyExpenses.push({id:Date.now().toString(36),name:n,category:document.getElementById('e-cat').value,amount:a,frequency:document.getElementById('e-freq').value,date:document.getElementById('e-date').value||new Date().toISOString().split('T')[0],notes:document.getElementById('e-notes').value});
+  sv('companyExpenses');render();document.getElementById('e-name').value='';document.getElementById('e-amt').value='';document.getElementById('e-notes').value='';toast('Expense added');
+}
+function delExp(id){D.companyExpenses=D.companyExpenses.filter(e=>e.id!==id);sv('companyExpenses');render()}
+
+// ===== DAILY =====
+function addDaily(){
+  const date=document.getElementById('d-date').value;if(!date){toast('Pick date',1);return}
+  const brandId=document.getElementById('d-brand').value;
+  const prodId=document.getElementById('d-prod').value;
+  const orders=parseInt(document.getElementById('d-orders').value)||0;
+  const adSpend=parseFloat(document.getElementById('d-ads').value)||0;
+  const brand=D.brands.find(b=>b.id===brandId);
+  const prod=brand?brand.products.find(p=>p.id===prodId):null;
+  let rev=parseFloat(document.getElementById('d-rev').value);
+  if(isNaN(rev)&&prod)rev=prod.price*orders;else if(isNaN(rev))rev=0;
+  const cogs=prod?(prod.cogs+prod.shipping)*orders:0;
+  D.daily.push({id:Date.now().toString(36),date,brandId,brandName:brand?brand.name:'?',productId:prodId,productName:prod?prod.name:'?',orders,revenue:rev,adSpend,cogs});
+  D.daily.sort((a,b)=>a.date.localeCompare(b.date));
+  sv('daily');render();
+  document.getElementById('d-orders').value='0';document.getElementById('d-ads').value='0';document.getElementById('d-rev').value='';
+  toast('Entry added');
+}
+function delDaily(id){D.daily=D.daily.filter(e=>e.id!==id);sv('daily');render()}
+
+// ===== SETTINGS =====
+function saveSettings(){
+  D.company={name:document.getElementById('s-company').value,currency:document.getElementById('s-cur').value,taxRate:parseFloat(document.getElementById('s-tax').value)||20,targetNetMargin:parseFloat(document.getElementById('s-margin').value)||20};
+  sv('company');render();toast('Saved');
+}
+
+// ===== RENDER =====
+function render(){
+  const c=D.company.currency||'$';
+  const f=n=>(n>=0?c:'-'+c)+Math.abs(n).toFixed(2);
+
+  // Expense calcs
+  const mRecur=D.companyExpenses.filter(e=>e.frequency==='monthly').reduce((s,e)=>s+e.amount,0);
+  const aRecur=D.companyExpenses.filter(e=>e.frequency==='annual').reduce((s,e)=>s+e.amount/12,0);
+  const once=D.companyExpenses.filter(e=>e.frequency==='one-time').reduce((s,e)=>s+e.amount,0);
+  const totalOpex=mRecur+aRecur+once;
+
+  // Daily totals
+  const totRev=D.daily.reduce((s,e)=>s+e.revenue,0);
+  const totAds=D.daily.reduce((s,e)=>s+e.adSpend,0);
+  const totCogs=D.daily.reduce((s,e)=>s+e.cogs,0);
+  const totOrders=D.daily.reduce((s,e)=>s+e.orders,0);
+  const grossProfit=totRev-totCogs;
+  const preTax=grossProfit-totAds-totalOpex;
+  const taxEst=preTax>0?preTax*(D.company.taxRate||20)/100:0;
+  const netProfit=preTax-taxEst;
+  const roas=totAds>0?totRev/totAds:0;
+
+  // Overview KPIs
+  document.getElementById('o-rev').textContent=f(totRev);
+  document.getElementById('o-orders').textContent=totOrders+' orders';
+  document.getElementById('o-ads').textContent=f(totAds);
+  document.getElementById('o-adpct').textContent=totRev>0?(totAds/totRev*100).toFixed(1)+'% of revenue':'—';
+  document.getElementById('o-cogs').textContent=f(totCogs);
+  document.getElementById('o-cogspct').textContent=totRev>0?(totCogs/totRev*100).toFixed(1)+'% of revenue':'—';
+  document.getElementById('o-opex').textContent=f(totalOpex);
+  document.getElementById('o-opexn').textContent=D.companyExpenses.length+' items';
+  document.getElementById('o-tax').textContent=f(taxEst);
+  document.getElementById('o-taxr').textContent=(D.company.taxRate||20)+'% of pre-tax profit';
+  const onEl=document.getElementById('o-net');onEl.textContent=f(netProfit);onEl.className='sv '+(netProfit>=0?'green':'red');
+  document.getElementById('o-netm').textContent=totRev>0?(netProfit/totRev*100).toFixed(1)+'% net margin':'—';
+  document.getElementById('o-netm').className='ss '+(netProfit>=0?'green':'red');
+
+  // P&L
+  document.getElementById('pl-rev').textContent=f(totRev);
+  document.getElementById('pl-cogs').textContent=f(totCogs);
+  document.getElementById('pl-gross').textContent=f(grossProfit);document.getElementById('pl-gross').className='pl-sep '+(grossProfit>=0?'green':'red');
+  document.getElementById('pl-ads').textContent=f(totAds);
+  document.getElementById('pl-opex').textContent=f(totalOpex);
+  document.getElementById('pl-pretax').textContent=f(preTax);document.getElementById('pl-pretax').className='pl-sep '+(preTax>=0?'green':'red');
+  document.getElementById('pl-tax').textContent=f(taxEst);
+  const plN=document.getElementById('pl-net');plN.textContent=f(netProfit);plN.className='pl-total '+(netProfit>=0?'green':'red');
+
+  // Brand summary table
+  const obr=document.getElementById('o-brands');
+  if(D.brands.length===0){obr.innerHTML='<tr><td colspan="8" class="empty">No brands</td></tr>';}
+  else{
+    obr.innerHTML=D.brands.map(b=>{
+      const bd=D.daily.filter(d=>d.brandId===b.id);
+      const br=bd.reduce((s,d)=>s+d.revenue,0),bo=bd.reduce((s,d)=>s+d.orders,0),ba=bd.reduce((s,d)=>s+d.adSpend,0),bc=bd.reduce((s,d)=>s+d.cogs,0);
+      const bp=br-ba-bc,bm=br>0?(bp/br*100).toFixed(1):'0',broas=ba>0?(br/ba).toFixed(2):'—';
+      return`<tr><td><strong>${b.name}</strong></td><td class="green">${f(br)}</td><td>${bo}</td><td class="red">${f(ba)}</td><td>${f(bc)}</td><td class="${bp>=0?'green':'red'}">${f(bp)}</td><td>${broas}x</td><td class="${parseFloat(bm)>=0?'green':'red'}">${bm}%</td></tr>`;
+    }).join('');
+  }
+
+  // 7-day chart
+  const dates=[...new Set(D.daily.map(d=>d.date))].sort().slice(-7);
+  const oc=document.getElementById('o-chart');
+  if(!dates.length){oc.innerHTML='<div class="empty">Add daily entries to see trends</div>';}
+  else{
+    const dd=dates.map(dt=>{const e=D.daily.filter(d=>d.date===dt);return{date:dt,rev:e.reduce((s,d)=>s+d.revenue,0),prof:e.reduce((s,d)=>s+(d.revenue-d.adSpend-d.cogs),0)};});
+    const mx=Math.max(...dd.map(d=>d.rev),1);
+    oc.innerHTML=dd.map(d=>{const dt=new Date(d.date+'T12:00:00');const l=dt.toLocaleDateString('en-GB',{day:'numeric',month:'short'});return`<div class="chart-row"><div class="chart-lbl">${l}</div><div class="chart-bg"><div class="chart-bar" style="width:${(d.rev/mx*100).toFixed(1)}%;background:linear-gradient(90deg,var(--accent),var(--accent2))">${f(d.rev)}</div></div><div style="width:50px;text-align:right;font-size:10px;font-weight:600" class="${d.prof>=0?'green':'red'}">${d.prof>=0?'+':''}${f(d.prof)}</div></div>`;}).join('');
+  }
+
+  // ===== BRAND PAGE (THALYVE) =====
+  const tb=D.brands.find(b=>b.id==='thalyve');
+  if(tb){
+    const td=D.daily.filter(d=>d.brandId==='thalyve');
+    const tr=td.reduce((s,d)=>s+d.revenue,0),to=td.reduce((s,d)=>s+d.orders,0),ta=td.reduce((s,d)=>s+d.adSpend,0),tc=td.reduce((s,d)=>s+d.cogs,0);
+    const tp=tr-ta-tc;
+    document.getElementById('b-rev').textContent=f(tr);document.getElementById('b-orders').textContent=to+' orders';
+    document.getElementById('b-ads').textContent=f(ta);
+    document.getElementById('b-cogs').textContent=f(tc);
+    const bpEl=document.getElementById('b-profit');bpEl.textContent=f(tp);bpEl.className='sv '+(tp>=0?'green':'red');
+    document.getElementById('b-margin').textContent=tr>0?(tp/tr*100).toFixed(1)+'% margin':'—';
+    document.getElementById('b-margin').className='ss '+(tp>=0?'green':'red');
+    const br=ta>0?(tr/ta):0;document.getElementById('b-roas').textContent=br.toFixed(2)+'x';
+    document.getElementById('b-roast').textContent=br>=2?'🟢 Strong':br>=1?'🟡 Break-even':td.length?'🔴 Below BE':'—';
+    const bcpa=to>0?ta/to:0;document.getElementById('b-cpa').textContent=f(bcpa);
+    document.getElementById('b-cpat').textContent=bcpa>0?(bcpa<20?'🟢 Strong':bcpa<30?'🟡 Watch':'🔴 High'):'—';
+    document.getElementById('b-adleft').textContent=f(1000-ta);
+
+    // Product table
+    const bpt=document.getElementById('b-prods');
+    bpt.innerHTML=tb.products.map(p=>{
+      const fee=p.price*p.txnFee/100;const m=p.price-p.cogs-p.shipping-fee;const pct=p.price>0?(m/p.price*100):0;
+      const pd=td.filter(d=>d.productId===p.id);const po=pd.reduce((s,d)=>s+d.orders,0);const pr=pd.reduce((s,d)=>s+d.revenue,0);
+      return`<tr><td>${p.name}<br><span style="color:var(--muted);font-size:9px">${p.sku}</span></td><td>${c}${p.price}</td><td>${c}${p.cogs}</td><td class="${pct>=0?'green':'red'}">${pct.toFixed(1)}%</td><td class="amber">${f(m)}</td><td>${po}</td><td class="green">${f(pr)}</td></tr>`;
+    }).join('');
+
+    // Brand chart
+    const bc2=document.getElementById('b-chart');
+    const bdates=[...new Set(td.map(d=>d.date))].sort().slice(-7);
+    if(!bdates.length){bc2.innerHTML='<div class="empty">No data yet</div>';}
+    else{
+      const bdd=bdates.map(dt=>{const e=td.filter(d=>d.date===dt);return{date:dt,rev:e.reduce((s,d)=>s+d.revenue,0),prof:e.reduce((s,d)=>s+(d.revenue-d.adSpend-d.cogs),0)};});
+      const bmx=Math.max(...bdd.map(d=>d.rev),1);
+      bc2.innerHTML=bdd.map(d=>{const dt=new Date(d.date+'T12:00:00');const l=dt.toLocaleDateString('en-GB',{day:'numeric',month:'short'});return`<div class="chart-row"><div class="chart-lbl">${l}</div><div class="chart-bg"><div class="chart-bar" style="width:${(d.rev/bmx*100).toFixed(1)}%;background:linear-gradient(90deg,var(--green),var(--teal))">${f(d.rev)}</div></div><div style="width:50px;text-align:right;font-size:10px;font-weight:600" class="${d.prof>=0?'green':'red'}">${d.prof>=0?'+':''}${f(d.prof)}</div></div>`;}).join('');
+    }
+  }
+
+  // ===== EXPENSES TABLE =====
+  const et=document.getElementById('e-table');
+  if(!D.companyExpenses.length){et.innerHTML='<tr><td colspan="5" class="empty">No expenses</td></tr>';}
+  else{et.innerHTML=D.companyExpenses.map(e=>`<tr><td>${e.name}</td><td>${e.category}</td><td>${c}${e.amount.toFixed(2)}</td><td>${e.frequency}</td><td><button class="btn-s btn-r" onclick="delExp('${e.id}')">✕</button></td></tr>`).join('');}
+  document.getElementById('e-recur').textContent=f(mRecur+aRecur);
+  document.getElementById('e-once').textContent=f(once);
+  document.getElementById('e-burn').textContent=f(totalOpex);
+
+  // ===== DAILY TABLE =====
+  const dt2=document.getElementById('d-table');
+  if(!D.daily.length){dt2.innerHTML='<tr><td colspan="10" class="empty">No entries</td></tr>';}
+  else{dt2.innerHTML=D.daily.map(e=>{const p=e.revenue-e.adSpend-e.cogs;const r=e.adSpend>0?(e.revenue/e.adSpend).toFixed(2):'—';return`<tr><td>${e.date}</td><td>${e.brandName}</td><td>${e.productName}</td><td>${e.orders}</td><td class="green">${f(e.revenue)}</td><td class="red">${f(e.adSpend)}</td><td>${f(e.cogs)}</td><td class="${p>=0?'green':'red'}">${f(p)}</td><td>${r}x</td><td><button class="btn-s btn-r" onclick="delDaily('${e.id}')">✕</button></td></tr>`;}).join('');}
+
+  // Dropdowns
+  const bs=document.getElementById('d-brand');
+  bs.innerHTML=D.brands.map(b=>`<option value="${b.id}">${b.name}</option>`).join('')||'<option>No brands</option>';
+  updateProdDropdown();
+}
+
+function updateProdDropdown(){
+  const bid=document.getElementById('d-brand').value;
+  const b=D.brands.find(br=>br.id===bid);
+  const ps=document.getElementById('d-prod');
+  ps.innerHTML=b?b.products.map(p=>`<option value="${p.id}">${p.name} — ${D.company.currency}${p.price}</option>`).join(''):'<option>—</option>';
+}
+
+// ===== JSON SYNC =====
+async function loadFromJSON(){
+  try{
+    const r=await fetch('company-data.json?t='+Date.now());if(!r.ok)return;
+    const j=await r.json();
+    if(j.company)D.company={...D.company,...j.company};
+    if(j.companyExpenses&&j.companyExpenses.length){
+      j.companyExpenses.forEach(ne=>{if(!D.companyExpenses.find(e=>e.id===ne.id))D.companyExpenses.push(ne);});
+    }
+    if(j.brands&&j.brands.length){
+      j.brands.forEach(nb=>{
+        const ex=D.brands.find(b=>b.id===nb.id);
+        if(ex){ex.products=nb.products;ex.mediaBuying=nb.mediaBuying;ex.status=nb.status;}
+        else D.brands.push(nb);
+        if(nb.daily&&nb.daily.length){nb.daily.forEach(nd=>{if(!D.daily.find(d=>d.id===nd.id)){nd.brandId=nb.id;nd.brandName=nb.name;D.daily.push(nd);}});}
+      });
+    }
+    if(j.taxes)D.company.taxRate=j.taxes.estimatedRate||D.company.taxRate;
+    sv();
+    document.getElementById('s-company').value=D.company.name;
+    document.getElementById('s-cur').value=D.company.currency;
+    document.getElementById('s-tax').value=D.company.taxRate;
+    document.getElementById('s-margin').value=D.company.targetNetMargin;
+    document.getElementById('lastSync').textContent='Synced '+ new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    render();toast('Synced from Forge');
+  }catch(e){}
+}
+
+// ===== EXPORT =====
+function exportAll(){
+  let csv='Date,Brand,Product,Orders,Revenue,Ad Spend,COGS,Profit,ROAS\n';
+  D.daily.forEach(e=>{const p=e.revenue-e.adSpend-e.cogs;csv+=`${e.date},"${e.brandName}","${e.productName}",${e.orders},${e.revenue.toFixed(2)},${e.adSpend.toFixed(2)},${e.cogs.toFixed(2)},${p.toFixed(2)},${e.adSpend>0?(e.revenue/e.adSpend).toFixed(2):'0'}\n`;});
+  dl('anton-empire-daily.csv',csv,'text/csv');toast('Exported');
+}
+function exportJSON(){dl('anton-empire-backup.json',JSON.stringify(D,null,2),'application/json');toast('Backup saved');}
+function importJSON(){document.getElementById('impFile').click();}
+function handleImport(ev){
+  const f=ev.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=function(e){try{const d=JSON.parse(e.target.result);if(d.company)D.company=d.company;if(d.companyExpenses)D.companyExpenses=d.companyExpenses;if(d.brands)D.brands=d.brands;if(d.daily)D.daily=d.daily;sv();render();toast('Imported');}catch(e){toast('Bad file',1);}};
+  r.readAsText(f);
+}
+function resetAll(){if(confirm('Delete ALL data?')){D.companyExpenses=[];D.brands=[];D.daily=[];sv();render();toast('Reset');}}
+function dl(n,c,t){const b=new Blob([c],{type:t});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click();}
+function toast(m,e){const t=document.getElementById('toast');t.textContent=m;t.style.background=e?'var(--red)':'var(--green)';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+// ===== INIT =====
+document.getElementById('d-date').valueAsDate=new Date();
+document.getElementById('e-date').valueAsDate=new Date();
+document.getElementById('s-company').value=D.company.name;
+document.getElementById('s-cur').value=D.company.currency;
+document.getElementById('s-tax').value=D.company.taxRate;
+document.getElementById('s-margin').value=D.company.targetNetMargin;
+document.getElementById('d-brand').onchange=updateProdDropdown;
+render();
+loadFromJSON();
+</script>
+</body>
+</html>

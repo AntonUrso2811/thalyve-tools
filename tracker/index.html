@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Research Tracker — Anton Empire</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#05060a;--bg2:#0a0b12;--surface:#0f1018;--card:#12131d;--card2:#181924;
+  --border:#1a1b28;--border2:#252638;--border-hl:#2f3050;
+  --text:#eeeef2;--text2:#b8b8cc;--sub:#7c7c96;--dim:#4a4a62;
+  --accent:#7c5cfc;--accent2:#9b7dff;--accent3:#c0afff;--accent-glow:rgba(124,92,252,.12);
+  --green:#0fd68c;--green-bg:rgba(15,214,140,.08);--green-border:rgba(15,214,140,.18);
+  --red:#ff4d6a;--red-bg:rgba(255,77,106,.08);--red-border:rgba(255,77,106,.18);
+  --amber:#ffb020;--amber-bg:rgba(255,176,32,.08);--amber-border:rgba(255,176,32,.18);
+  --blue:#4d9eff;--blue-bg:rgba(77,158,255,.08);--blue-border:rgba(77,158,255,.18);
+  --teal:#00d4aa;--teal-bg:rgba(0,212,170,.08);
+  --pink:#ff6baa;--pink-bg:rgba(255,107,170,.08);
+  --radius:14px;--radius-sm:10px;--radius-xs:7px;
+  --shadow:0 2px 8px rgba(0,0,0,.3),0 0 1px rgba(124,92,252,.06);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.4);
+  --glow:0 0 20px rgba(124,92,252,.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--sub)}
+
+.app{max-width:1800px;margin:0 auto;padding:20px 24px 40px}
+
+/* ═══ TOPBAR ═══ */
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:20px 0 24px;border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),#5c3cdc);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 16px rgba(124,92,252,.25)}
+.brand h1{font-size:22px;font-weight:800;letter-spacing:-.4px}
+.brand h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.brand-sub{font-size:11px;color:var(--sub);font-weight:400;margin-top:1px;letter-spacing:.2px}
+.topbar-actions{display:flex;gap:6px;align-items:center}
+
+/* ═══ BUTTONS ═══ */
+button,.btn{font-family:'Inter',sans-serif;font-weight:600;cursor:pointer;transition:all .15s;border:none;outline:none}
+.btn-p{background:linear-gradient(135deg,var(--accent),#5c3cdc);color:#fff;padding:10px 22px;border-radius:var(--radius-xs);font-size:13px;box-shadow:0 3px 12px rgba(124,92,252,.2)}
+.btn-p:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,92,252,.3)}
+.btn-o{background:var(--card2);border:1px solid var(--border2);color:var(--text2);padding:7px 14px;border-radius:var(--radius-xs);font-size:11px;letter-spacing:.2px}
+.btn-o:hover{border-color:var(--accent);color:var(--accent2);background:var(--accent-glow)}
+.btn-d{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border);padding:5px 10px;border-radius:var(--radius-xs);font-size:10px}
+.btn-d:hover{background:var(--red);color:#fff}
+.btn-g{background:transparent;color:var(--sub);border:none;padding:5px;font-size:11px;border-radius:var(--radius-xs)}
+.btn-g:hover{color:var(--text);background:var(--card2)}
+.badge{font-size:11px;padding:6px 16px;border-radius:24px;font-weight:700;background:linear-gradient(135deg,var(--accent),#5c3cdc);color:#fff;letter-spacing:.2px;box-shadow:0 2px 10px rgba(124,92,252,.2)}
+
+/* ═══ TABS ═══ */
+.tabs{display:flex;gap:2px;margin:20px 0 16px;background:var(--surface);border-radius:var(--radius-sm);padding:3px;border:1px solid var(--border)}
+.tab{padding:10px 20px;border-radius:var(--radius-xs);font-size:12px;font-weight:600;color:var(--sub);cursor:pointer;transition:all .15s;letter-spacing:.2px}
+.tab:hover{color:var(--text)}
+.tab.active{background:var(--card2);color:var(--text);box-shadow:var(--shadow)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* ═══ STAT CARDS ═══ */
+.stats{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-bottom:18px}
+@media(max-width:1200px){.stats{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px;position:relative;overflow:hidden;transition:all .15s}
+.stat:hover{border-color:var(--border2);transform:translateY(-1px)}
+.stat::after{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.stat.c1::after{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.stat.c2::after{background:var(--green)}.stat.c3::after{background:var(--amber)}
+.stat.c4::after{background:var(--red)}.stat.c5::after{background:var(--blue)}
+.stat.c6::after{background:var(--teal)}.stat.c7::after{background:var(--pink)}
+.stat-n{font-size:28px;font-weight:800;letter-spacing:-.5px;line-height:1}
+.stat-l{font-size:9px;color:var(--sub);text-transform:uppercase;letter-spacing:.8px;font-weight:600;margin-top:5px}
+
+/* ═══ CARD ═══ */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow)}
+.card-h{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--border)}
+.card-t{font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;letter-spacing:-.1px}
+.card-body{padding:20px}
+
+/* ═══ FORM ═══ */
+.fg{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.fi{display:flex;flex-direction:column;gap:4px}
+.fi label{font-size:9px;color:var(--sub);text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.fi input,.fi select,.fi textarea{background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:10px 12px;border-radius:var(--radius-xs);font-size:12px;font-family:'Inter',sans-serif;outline:none;transition:all .15s}
+.fi input::placeholder,.fi textarea::placeholder{color:var(--dim)}
+.fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,252,.08)}
+.fi textarea{resize:vertical;min-height:70px;line-height:1.5}
+.fi-full{grid-column:1/-1}
+.fi-2{grid-column:span 2}
+
+.scoring-bar{margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.scoring-bar .lbl{font-size:10px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.sg{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.sg .fi input{text-align:center;font-weight:800;font-size:16px;padding:8px}
+
+/* Collapse */
+.coll-trigger{cursor:pointer;user-select:none}.coll-trigger .chev{transition:transform .2s;display:inline-block;font-size:10px;margin-left:4px}
+.coll-trigger.open .chev{transform:rotate(180deg)}
+.coll-body{transition:max-height .3s,opacity .2s,padding .2s}.coll-body.shut{max-height:0;opacity:0;padding:0 20px!important;overflow:hidden}.coll-body.show{max-height:4000px;opacity:1}
+
+/* ═══ FILTERS ═══ */
+.filters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.pill{padding:6px 14px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--border);color:var(--sub);background:transparent;transition:all .15s;letter-spacing:.2px}
+.pill:hover{border-color:var(--accent);color:var(--accent2)}
+.pill.on{background:linear-gradient(135deg,var(--accent),#5c3cdc);color:#fff;border-color:transparent;box-shadow:0 2px 10px rgba(124,92,252,.2)}
+.search-wrap{position:relative;display:inline-block}
+.search-wrap input{width:220px;padding-left:30px;background:var(--bg2);border:1px solid var(--border);color:var(--text);padding:8px 10px 8px 30px;border-radius:var(--radius-xs);font-size:12px;font-family:'Inter',sans-serif;outline:none}
+.search-wrap input:focus{border-color:var(--accent)}
+.search-wrap::before{content:'🔍';position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:11px;opacity:.3}
+
+/* ═══ TABLE ═══ */
+.tw{overflow-x:auto;max-height:68vh;overflow-y:auto;border:1px solid var(--border);border-radius:var(--radius-sm)}
+table{width:100%;border-collapse:collapse;font-size:11px;table-layout:auto}
+thead{position:sticky;top:0;z-index:10}
+th{text-align:left;padding:11px 12px;color:var(--sub);font-size:9px;text-transform:uppercase;letter-spacing:.7px;font-weight:700;background:var(--card2);border-bottom:2px solid var(--border);cursor:pointer;white-space:nowrap}
+th:hover{color:var(--accent2)}
+th .si{opacity:.25;font-size:8px;margin-left:2px}th:hover .si{opacity:.6}
+td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-child td{border-bottom:none}
+
+/* Cell */
+.pname{font-weight:700;font-size:12px;line-height:1.35;color:var(--text)}
+.plink{display:inline-flex;gap:3px;color:var(--accent2);font-size:9px;text-decoration:none;font-weight:500;opacity:.6;transition:.15s}
+.plink:hover{opacity:1}
+.score-b{display:inline-flex;align-items:center;justify-content:center;min-width:40px;padding:4px 8px;border-radius:6px;font-weight:800;font-size:12px}
+.s-hi{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.s-md{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.s-lo{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.chip{display:inline-flex;align-items:center;gap:3px;padding:4px 12px;border-radius:20px;font-size:9px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;white-space:nowrap}
+.ch-new{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border)}
+.ch-res{background:var(--accent-glow);color:var(--accent2);border:1px solid rgba(124,92,252,.15)}
+.ch-src{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.ch-tst{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.ch-kil{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.ch-scl{background:var(--teal-bg);color:var(--teal);border:1px solid rgba(0,212,170,.15)}
+.tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:600}
+.tag-n{background:var(--card2);color:var(--text2);border:1px solid var(--border)}
+.tag-f{background:var(--accent-glow);color:var(--accent3);border:1px solid rgba(124,92,252,.15)}
+.tag-mrr{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);font-size:8px;font-weight:800;letter-spacing:.3px}
+.m-hi{color:var(--green);font-weight:700}.m-md{color:var(--amber);font-weight:700}.m-lo{color:var(--red);font-weight:700}
+.money{font-variant-numeric:tabular-nums;font-weight:500}
+.notes{max-width:240px;white-space:normal;word-wrap:break-word;color:var(--text2);font-size:10px;line-height:1.45}
+.empty{text-align:center;padding:50px 20px;color:var(--dim)}
+.empty-icon{font-size:36px;margin-bottom:10px;opacity:.2}
+.empty-t{font-size:13px;font-weight:600;color:var(--sub);margin-bottom:3px}
+.empty-s{font-size:11px}
+
+/* ═══ TOAST ═══ */
+.toast{position:fixed;bottom:20px;right:20px;padding:12px 20px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;font-family:'Inter',sans-serif;transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.16,1,.3,1);z-index:1000;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:6px}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.ok{background:var(--green);color:#000}.toast.err{background:var(--red);color:#fff}
+
+/* ═══ FOOTER ═══ */
+.footer{text-align:center;padding:20px 0;font-size:9px;color:var(--dim);letter-spacing:.3px}
+
+/* ═══ ANIM ═══ */
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.card,.stat{animation:fi .25s ease both}
+.stat:nth-child(2){animation-delay:.03s}.stat:nth-child(3){animation-delay:.06s}
+.stat:nth-child(4){animation-delay:.09s}.stat:nth-child(5){animation-delay:.12s}
+.stat:nth-child(6){animation-delay:.15s}.stat:nth-child(7){animation-delay:.18s}
+
+@media(max-width:768px){.app{padding:12px}.fg{grid-template-columns:1fr 1fr}.sg{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ═══ TOPBAR ═══ -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-icon">🔱</div>
+      <div>
+        <h1><em>Product Research</em> Tracker</h1>
+        <div class="brand-sub">SOP-Compliant Pipeline · Scored & Ranked · Anton Empire</div>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn-o" onclick="exportCSV()">📥 CSV</button>
+      <button class="btn-o" onclick="exportXLSX()">📊 XLSX</button>
+      <button class="btn-o" onclick="exportJSON()">💾 Backup</button>
+      <button class="btn-o" onclick="importJSON()">📂 Import</button>
+      <span class="badge" id="cBadge">0</span>
+    </div>
+  </div>
+
+  <!-- ═══ TABS ═══ -->
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('research',this)">📋 Product Research</div>
+    <div class="tab" onclick="switchTab('scoring',this)">🎯 Scoring Matrix</div>
+    <div class="tab" onclick="switchTab('strategy',this)">🧠 Strategy Deep Dive</div>
+  </div>
+
+  <!-- ═══ STATS ═══ -->
+  <div class="stats">
+    <div class="stat c1"><div class="stat-n" style="color:var(--accent2)" id="s-tot">0</div><div class="stat-l">Total</div></div>
+    <div class="stat c2"><div class="stat-n" style="color:var(--green)" id="s-hi">0</div><div class="stat-l">Score 8+</div></div>
+    <div class="stat c3"><div class="stat-n" style="color:var(--amber)" id="s-md">0</div><div class="stat-l">Score 5–7.9</div></div>
+    <div class="stat c4"><div class="stat-n" style="color:var(--red)" id="s-lo">0</div><div class="stat-l">Below 5</div></div>
+    <div class="stat c5"><div class="stat-n" style="color:var(--blue)" id="s-td">0</div><div class="stat-l">Today</div></div>
+    <div class="stat c6"><div class="stat-n" style="color:var(--teal)" id="s-av">—</div><div class="stat-l">Avg Score</div></div>
+    <div class="stat c7"><div class="stat-n" style="color:var(--pink)" id="s-mrr">0</div><div class="stat-l">MRR Products</div></div>
+  </div>
+
+  <!-- ═══ TAB: PRODUCT RESEARCH ═══ -->
+  <div class="tab-panel active" id="tp-research">
+
+    <!-- Add Product -->
+    <div class="card">
+      <div class="card-h coll-trigger" onclick="toggleColl(this)">
+        <div class="card-t">➕ Add Research Entry</div>
+        <span class="chev">▼</span>
+      </div>
+      <div class="card-body coll-body show" id="addForm">
+        <div class="fg">
+          <div class="fi fi-2"><label>1. Product Name</label><input id="f-name" placeholder="e.g. Lymphatic Drainage Patches"></div>
+          <div class="fi fi-2"><label>2. What It Does & Why</label><textarea id="f-what" placeholder="Problem solved, why it's worth testing. Be specific."></textarea></div>
+          <div class="fi fi-2"><label>3. Additional Notes</label><textarea id="f-notes" placeholder="Angles, market observations, competitor intelligence, MRR potential..."></textarea></div>
+          <div class="fi"><label>4. Mutual Link</label><input id="f-mutual" placeholder="https://mutual..."></div>
+          <div class="fi"><label>5. Total COGS ($)</label><input type="number" id="f-cogs" step="0.01" placeholder="8.44"></div>
+          <div class="fi"><label>6. Competitor Ad Link</label><input id="f-adlink" placeholder="FB Ad Library / GetHookd"></div>
+          <div class="fi"><label>7. Competitor Site</label><input id="f-site" placeholder="https://competitor.com"></div>
+          <div class="fi"><label>8. SimilarWeb Traffic</label><input type="number" id="f-traffic" placeholder="105000"></div>
+          <div class="fi"><label>9. Active FB Ads</label><input type="number" id="f-ads" placeholder="240"></div>
+          <div class="fi"><label>10. Selling Price ($)</label><input type="number" id="f-price" step="0.01" placeholder="49.00"></div>
+          <div class="fi"><label>12. Sufficient Content?</label>
+            <select id="f-content"><option value="">—</option><option value="Yes">Yes</option><option value="No">No</option><option value="Partial">Partial</option></select>
+          </div>
+          <div class="fi"><label>Niche</label>
+            <select id="f-niche"><option>Health/Wellness</option><option>Beauty</option><option>Supplements</option><option>Pets</option><option>Home/Garden</option><option>Fashion</option><option>Tech</option><option>Other</option></select>
+          </div>
+          <div class="fi"><label>Format</label>
+            <select id="f-format"><option>Stick</option><option>Roll-on</option><option>Patch</option><option>Device</option><option>Drops</option><option>Serum</option><option>Cream</option><option>Spray</option><option>Pen</option><option>Powder</option><option>Mouthpiece</option><option>Other</option></select>
+          </div>
+          <div class="fi"><label>Target Audience</label><input id="f-target" placeholder="e.g. Women 25-45"></div>
+          <div class="fi"><label>MRR Product?</label>
+            <select id="f-mrr"><option value="No">No</option><option value="Yes">Yes — Monthly Recurring</option><option value="High">High — Repeat Buy Natural</option></select>
+          </div>
+          <div class="fi"><label>Status</label>
+            <select id="f-status"><option value="new">🔵 New</option><option value="research">🟣 Researching</option><option value="source">🟡 Sourcing</option><option value="test">🟢 Testing</option><option value="kill">🔴 Killed</option><option value="scale">🩵 Scaling</option></select>
+          </div>
+        </div>
+        <div class="scoring-bar">
+          <div class="lbl">🎯 Scoring Matrix (1–10 each)</div>
+          <div class="sg">
+            <div class="fi"><label>Ad Signal</label><input type="number" id="sc-ad" min="1" max="10" placeholder="—"></div>
+            <div class="fi"><label>Market Size</label><input type="number" id="sc-mkt" min="1" max="10" placeholder="—"></div>
+            <div class="fi"><label>Competition</label><input type="number" id="sc-comp" min="1" max="10" placeholder="—"></div>
+            <div class="fi"><label>Format</label><input type="number" id="sc-fmt" min="1" max="10" placeholder="—"></div>
+            <div class="fi"><label>Margin</label><input type="number" id="sc-mgn" min="1" max="10" placeholder="—"></div>
+            <div class="fi"><label>Audience</label><input type="number" id="sc-aud" min="1" max="10" placeholder="—"></div>
+            <div class="fi"><label>Dropship</label><input type="number" id="sc-drp" min="1" max="10" placeholder="—"></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:16px">
+          <button class="btn-p" onclick="addProduct()">＋ Add Product</button>
+          <button class="btn-g" onclick="clearForm()">Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pipeline Table -->
+    <div class="card">
+      <div class="card-h">
+        <div class="card-t">📋 Research Pipeline</div>
+        <div class="search-wrap"><input type="text" id="qSearch" placeholder="Search..." oninput="render()"></div>
+      </div>
+      <div class="card-body" style="padding:12px 16px">
+        <div class="filters">
+          <div class="pill on" onclick="setF('all',this)">All</div>
+          <div class="pill" onclick="setF('high',this)">🎯 8+</div>
+          <div class="pill" onclick="setF('mrr',this)">🔄 MRR</div>
+          <div class="pill" onclick="setF('new',this)">🔵 New</div>
+          <div class="pill" onclick="setF('research',this)">🟣 Research</div>
+          <div class="pill" onclick="setF('source',this)">🟡 Source</div>
+          <div class="pill" onclick="setF('test',this)">🟢 Test</div>
+          <div class="pill" onclick="setF('kill',this)">🔴 Killed</div>
+          <div class="pill" onclick="setF('scale',this)">🩵 Scale</div>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr>
+              <th onclick="srt('date')"># <span class="si">↕</span></th>
+              <th onclick="srt('name')">Product <span class="si">↕</span></th>
+              <th>What & Why</th>
+              <th>Notes</th>
+              <th>COGS</th>
+              <th onclick="srt('price')">Price <span class="si">↕</span></th>
+              <th onclick="srt('beroas')">B/E ROAS <span class="si">↕</span></th>
+              <th onclick="srt('traffic')">Traffic <span class="si">↕</span></th>
+              <th onclick="srt('ads')">FB Ads <span class="si">↕</span></th>
+              <th>Content</th>
+              <th onclick="srt('score')">Score <span class="si">↕</span></th>
+              <th>Status</th>
+              <th>MRR</th>
+              <th>Approval</th>
+              <th></th>
+            </tr></thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: SCORING MATRIX ═══ -->
+  <div class="tab-panel" id="tp-scoring">
+    <div class="card">
+      <div class="card-h"><div class="card-t">🎯 Scoring Matrix — All Products Ranked</div></div>
+      <div class="card-body" style="padding:12px 16px">
+        <div class="tw"><table>
+          <thead><tr>
+            <th>#</th><th>Product</th><th>Ad Signal</th><th>Market</th><th>Competition</th><th>Format</th><th>Margin</th><th>Audience</th><th>Dropship</th><th onclick="srt('score')">Average <span class="si">↕</span></th><th>Rank</th><th>Decision</th>
+          </tr></thead>
+          <tbody id="scoringBody"></tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: STRATEGY ═══ -->
+  <div class="tab-panel" id="tp-strategy">
+    <div class="card">
+      <div class="card-h"><div class="card-t">🧠 Strategy Deep Dive — Top Products</div></div>
+      <div class="card-body" style="padding:12px 16px">
+        <div class="tw"><table>
+          <thead><tr>
+            <th>#</th><th>Product</th><th>Target</th><th>Pain Point</th><th>Ad Angle</th><th>Pricing</th><th>MRR/Repeat</th><th>Competitors</th><th>Risk</th><th>Verdict</th>
+          </tr></thead>
+          <tbody id="stratBody"></tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">🔱 Anton Empire — Product Research Tracker v2.0 — SOP-Compliant — Data stored locally</div>
+</div>
+
+<input type="file" id="impF" accept=".json" style="display:none" onchange="handleImp(event)">
+<div class="toast" id="toast"></div>
+
+<script>
+let P=JSON.parse(localStorage.getItem('pr_products')||'[]');
+let filt='all',sCol='score',sAsc=false;
+
+function switchTab(id,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tp-'+id).classList.add('active');
+  render();
+}
+
+function toggleColl(trigger){
+  const body=trigger.nextElementSibling;
+  const isOpen=body.classList.contains('show');
+  body.classList.toggle('show',!isOpen);body.classList.toggle('shut',isOpen);
+  trigger.classList.toggle('open',!isOpen);
+}
+
+function addProduct(){
+  const n=v('f-name');if(!n){toast('Enter product name',1);return}
+  const sc={ad:num('sc-ad'),market:num('sc-mkt'),comp:num('sc-comp'),format:num('sc-fmt'),margin:num('sc-mgn'),audience:num('sc-aud'),dropship:num('sc-drp')};
+  const vals=Object.values(sc).filter(x=>x>0);
+  const avg=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;
+  const cogs=parseFloat(v('f-cogs'))||0;const price=parseFloat(v('f-price'))||0;
+  const marginPct=price>0?((price-cogs)/price*100):0;
+  const beroas=price>0&&(price-cogs)>0?(price/(price-cogs)):0;
+  P.push({
+    id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),
+    date:new Date().toISOString().split('T')[0],
+    name:n,what:v('f-what'),notes:v('f-notes'),
+    mutualLink:v('f-mutual'),cogs,adLink:v('f-adlink'),site:v('f-site'),
+    traffic:parseInt(v('f-traffic'))||0,ads:parseInt(v('f-ads'))||0,
+    price,margin:marginPct,beroas,
+    content:v('f-content'),niche:v('f-niche'),format:v('f-format'),
+    target:v('f-target'),mrr:v('f-mrr'),status:v('f-status'),
+    scores:sc,score:Math.round(avg*10)/10,
+    approval:'',coachNotes:''
+  });
+  save();render();clearForm();toast('Product added ✓');
+}
+
+function v(id){return document.getElementById(id).value.trim()}
+function num(id){return parseInt(document.getElementById(id).value)||0}
+function clearForm(){
+  ['f-name','f-what','f-notes','f-mutual','f-cogs','f-adlink','f-site','f-traffic','f-ads','f-price','f-target',
+   'sc-ad','sc-mkt','sc-comp','sc-fmt','sc-mgn','sc-aud','sc-drp'].forEach(id=>{document.getElementById(id).value=''});
+  document.getElementById('f-content').value='';
+  document.getElementById('f-mrr').value='No';
+}
+function del(id){if(!confirm('Remove?'))return;P=P.filter(p=>p.id!==id);save();render();toast('Removed')}
+function setF(f,el){filt=f;document.querySelectorAll('.pill').forEach(b=>b.classList.remove('on'));el.classList.add('on');render()}
+function srt(col){if(sCol===col)sAsc=!sAsc;else{sCol=col;sAsc=false}render()}
+function save(){localStorage.setItem('pr_products',JSON.stringify(P))}
+function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+function fN(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':n.toString()}
+
+function render(){
+  let items=[...P];
+  const q=(document.getElementById('qSearch')?.value||'').toLowerCase();
+  if(q)items=items.filter(p=>p.name.toLowerCase().includes(q)||(p.notes||'').toLowerCase().includes(q)||(p.what||'').toLowerCase().includes(q));
+  if(filt==='high')items=items.filter(p=>p.score>=8);
+  else if(filt==='mrr')items=items.filter(p=>p.mrr&&p.mrr!=='No');
+  else if(filt!=='all')items=items.filter(p=>p.status===filt);
+  items.sort((a,b)=>{let va=a[sCol]??'',vb=b[sCol]??'';if(typeof va==='string'){va=va.toLowerCase();vb=(vb||'').toLowerCase()}return sAsc?(va>vb?1:va<vb?-1:0):(va<vb?1:va>vb?-1:0)});
+
+  // Main table
+  const tb=document.getElementById('tbody');
+  if(!items.length){
+    tb.innerHTML=`<tr><td colspan="15"><div class="empty"><div class="empty-icon">📦</div><div class="empty-t">${q||filt!=='all'?'No matches':'No products yet'}</div><div class="empty-s">Use the form above to add products</div></div></td></tr>`;
+  } else {
+    tb.innerHTML=items.map((p,i)=>{
+      const sc=p.score>=8?'s-hi':p.score>=5?'s-md':'s-lo';
+      const stM={new:'ch-new',research:'ch-res',source:'ch-src',test:'ch-tst',kill:'ch-kil',scale:'ch-scl'};
+      const stL={new:'New',research:'Research',source:'Sourcing',test:'Testing',kill:'Killed',scale:'Scaling'};
+      const br=p.beroas>0?p.beroas.toFixed(2):'—';
+      const brc=p.beroas>0&&p.beroas<=1.5?'m-hi':p.beroas<=2?'m-md':'m-lo';
+      const tc=p.traffic>=30000?'m-hi':p.traffic>=10000?'m-md':'m-lo';
+      const links=[
+        p.site?`<a href="${esc(p.site)}" target="_blank" class="plink">↗ Site</a>`:'',
+        p.adLink?`<a href="${esc(p.adLink)}" target="_blank" class="plink">📣 Ads</a>`:'',
+        p.mutualLink?`<a href="${esc(p.mutualLink)}" target="_blank" class="plink">📦 Mutual</a>`:''
+      ].filter(Boolean).join(' ');
+      const mrrTag=p.mrr&&p.mrr!=='No'?`<span class="tag tag-mrr">🔄 MRR</span>`:'';
+      return`<tr>
+        <td style="color:var(--sub);font-size:10px;white-space:nowrap">${i+1}<br><span style="font-size:9px">${p.date}</span></td>
+        <td><div class="pname">${esc(p.name)}</div><div style="margin-top:3px;display:flex;gap:6px;flex-wrap:wrap"><span class="tag tag-n">${esc(p.niche)}</span><span class="tag tag-f">${esc(p.format)}</span></div><div style="margin-top:3px">${links}</div></td>
+        <td class="notes">${esc(p.what||'—')}</td>
+        <td class="notes">${esc(p.notes||'—')}</td>
+        <td class="money">${p.cogs?'$'+p.cogs.toFixed(2):'—'}</td>
+        <td class="money" style="font-weight:700">${p.price?'$'+p.price.toFixed(2):'—'}</td>
+        <td class="${brc}" style="font-weight:700">${br}</td>
+        <td class="${tc}" style="font-weight:600">${p.traffic?fN(p.traffic):'—'}</td>
+        <td style="font-weight:700">${p.ads||'—'}</td>
+        <td>${p.content||'—'}</td>
+        <td><span class="score-b ${sc}">${p.score.toFixed(1)}</span></td>
+        <td><span class="chip ${stM[p.status]||'ch-new'}">${stL[p.status]||p.status}</span></td>
+        <td>${mrrTag||'—'}</td>
+        <td>${p.approval||'⏳'}</td>
+        <td><button class="btn-d" onclick="del('${p.id}')">✕</button></td>
+      </tr>`}).join('');
+  }
+
+  // Scoring tab
+  const sb=document.getElementById('scoringBody');
+  const ranked=[...P].sort((a,b)=>b.score-a.score);
+  sb.innerHTML=ranked.map((p,i)=>{
+    const sc=p.score>=8?'s-hi':p.score>=5?'s-md':'s-lo';
+    const s=p.scores||{};
+    const dec=p.status==='kill'?'❌ Killed':p.status==='test'?'🟢 Testing':p.status==='scale'?'🚀 Scaling':p.score>=8?'⭐ Strong candidate':p.score>=6?'🔍 Worth investigating':'⚠️ Weak';
+    return`<tr>
+      <td>${i+1}</td><td class="pname">${esc(p.name)}</td>
+      <td>${s.ad||'—'}</td><td>${s.market||'—'}</td><td>${s.comp||'—'}</td><td>${s.format||'—'}</td>
+      <td>${s.margin||'—'}</td><td>${s.audience||'—'}</td><td>${s.dropship||'—'}</td>
+      <td><span class="score-b ${sc}">${p.score.toFixed(1)}</span></td>
+      <td style="font-weight:800;color:var(--accent2)">#${i+1}</td>
+      <td style="font-size:10px">${dec}</td>
+    </tr>`}).join('');
+
+  // Strategy tab
+  const stb=document.getElementById('stratBody');
+  stb.innerHTML=ranked.filter(p=>p.score>=5).map((p,i)=>{
+    const mrr=p.mrr&&p.mrr!=='No'?'✅ '+p.mrr:'❌ One-time';
+    return`<tr>
+      <td>${i+1}</td><td class="pname">${esc(p.name)}</td>
+      <td style="font-size:10px">${esc(p.target||'—')}</td>
+      <td class="notes">${esc(p.what||'—')}</td>
+      <td class="notes">${esc(p.notes||'—')}</td>
+      <td class="money">${p.price?'$'+p.price.toFixed(2):'—'}</td>
+      <td>${mrr}</td>
+      <td><a href="${esc(p.site||'#')}" target="_blank" class="plink">↗ View</a></td>
+      <td style="font-size:10px">${p.niche==='Health/Wellness'||p.niche==='Supplements'?'⚠️ Compliance':'✅ Low'}</td>
+      <td>${p.approval||'⏳ Pending'}</td>
+    </tr>`}).join('');
+
+  // Stats
+  const today=new Date().toISOString().split('T')[0];const tot=P.length;
+  document.getElementById('s-tot').textContent=tot;
+  document.getElementById('s-hi').textContent=P.filter(p=>p.score>=8).length;
+  document.getElementById('s-md').textContent=P.filter(p=>p.score>=5&&p.score<8).length;
+  document.getElementById('s-lo').textContent=P.filter(p=>p.score<5).length;
+  document.getElementById('s-td').textContent=P.filter(p=>p.date===today).length;
+  document.getElementById('s-av').textContent=tot?(P.reduce((s,p)=>s+p.score,0)/tot).toFixed(1):'—';
+  document.getElementById('s-mrr').textContent=P.filter(p=>p.mrr&&p.mrr!=='No').length;
+  document.getElementById('cBadge').textContent=tot+' product'+(tot===1?'':'s');
+}
+
+// Export
+function exportCSV(){
+  if(!P.length){toast('No data',1);return}
+  const h=['#','Product Name','What It Does & Why','Additional Notes','Mutual Link','Total COGS','Competitor Ad Link','Competitor Site','SimilarWeb Traffic','Active FB Ads','Selling Price','B/E ROAS','Sufficient Content','Coach Approval','Coach Comments','Niche','Format','Target','MRR','Status','Ad Signal','Market','Competition','Format Score','Margin','Audience','Dropship','Overall Score'];
+  let c=h.join(',')+'\n';
+  P.forEach((p,i)=>{c+=`${i+1},"${p.name}","${(p.what||'').replace(/"/g,'""')}","${(p.notes||'').replace(/"/g,'""')}","${p.mutualLink||''}",${p.cogs||''},"${p.adLink||''}","${p.site||''}",${p.traffic||''},${p.ads||''},${p.price||''},${(p.beroas||0).toFixed(2)},"${p.content||''}","${p.approval||''}","${p.coachNotes||''}","${p.niche}","${p.format}","${p.target||''}","${p.mrr||''}","${p.status}",${p.scores?.ad||''},${p.scores?.market||''},${p.scores?.comp||''},${p.scores?.format||''},${p.scores?.margin||''},${p.scores?.audience||''},${p.scores?.dropship||''},${p.score}\n`});
+  dl('Product Research Export.csv',c,'text/csv');toast('CSV exported ✓');
+}
+function exportXLSX(){toast('Use Forge to generate .xlsx — run: "update tracker xlsx"',0)}
+function exportJSON(){dl('product-research-backup.json',JSON.stringify(P,null,2),'application/json');toast('Backup saved ✓')}
+function importJSON(){document.getElementById('impF').click()}
+function handleImp(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){try{const d=JSON.parse(ev.target.result);if(Array.isArray(d)){P=d;save();render();toast('Imported '+d.length+' products ✓')}}catch(e){toast('Bad file',1)}};r.readAsText(f);e.target.value=''}
+function dl(n,c,t){const b=new Blob([c],{type:t});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;a.click()}
+function toast(m,e){const t=document.getElementById('toast');t.textContent=m;t.className='toast '+(e?'err':'ok')+' show';setTimeout(()=>t.classList.remove('show'),2800)}
+
+async function loadJSON(){try{const r=await fetch('research-data.json?t='+Date.now());if(!r.ok)return;const d=await r.json();if(Array.isArray(d)&&d.length){let a=0;d.forEach(np=>{if(!P.find(p=>p.id===np.id)){P.push(np);a++}});if(a){save();render();toast('Synced '+a+' from Forge ✓')}}}catch(e){}}
+
+render();loadJSON();
+</script>
+</body>
+</html>

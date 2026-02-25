@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "lastUpdated": "2026-02-24T11:00:00Z",
+    "updatedBy": "Forge",
+    "version": "2.1"
+  },
+  "company": {
+    "name": "Anton Empire",
+    "currency": "$",
+    "entity": "UK Ltd",
+    "taxRate": 19,
+    "targetNetMargin": 20,
+    "notes": "UK Ltd for now. Future plan: Hong Kong entity (0% tax). Corp tax 19% for small profits (<£50K), 25% for >£250K."
+  },
+  "companyExpenses": [
+    { "id": "ce-001", "name": "Shopify Advanced (Promo)", "category": "Subscriptions", "amount": 1, "currency": "GBP", "frequency": "monthly", "date": "2026-02-24", "notes": "£1/mo until March 12 2026. Then needs downgrade. Advanced normally £344/mo. Card rates: 1.5% + £0.25 online." },
+    { "id": "ce-002", "name": "OpenClaw / Anthropic API", "category": "AI/API Costs", "amount": 50, "frequency": "monthly", "date": "2026-02-24", "notes": "Usage-based estimate" },
+    { "id": "ce-003", "name": "Domain (thalyve.com)", "category": "Domain/Hosting", "amount": 15, "frequency": "annual", "date": "2026-02-24", "notes": "Estimated" }
+  ],
+  "brands": [
+    {
+      "id": "thalyve",
+      "name": "THALYVE™",
+      "status": "active",
+      "products": [
+        { "id": "thl-sms-01", "name": "Stretch Mark Stick (1x)", "sku": "THL-SMS-01", "price": 39.99, "cogs": 8.44, "shipping": 0, "txnFee": 2.9 },
+        { "id": "thl-sms-02", "name": "Stretch Mark Stick (2x)", "sku": "THL-SMS-02", "price": 69.99, "cogs": 16.88, "shipping": 0, "txnFee": 2.9 },
+        { "id": "thl-sms-03", "name": "Stretch Mark Stick (3x)", "sku": "THL-SMS-03", "price": 89.99, "cogs": 25.32, "shipping": 0, "txnFee": 2.9 }
+      ],
+      "mediaBuying": {
+        "platform": "Meta (Facebook/Instagram)",
+        "agency": "Ad Rail / Rock Ads",
+        "agencyFee": 3,
+        "agencyFeeNote": "3% on all deposits transferred to ad account (automatic)",
+        "dailyTestBudget": 100,
+        "accountDeposit": 1000
+      },
+      "daily": []
+    }
+  ],
+  "taxes": {
+    "entity": "UK Ltd",
+    "estimatedRate": 19,
+    "notes": "UK Corp Tax: 19% small profits (<£50K), 25% (>£250K). Future: HK entity restructure for 0% rate.",
+    "provisioned": []
+  },
+  "shopify": {
+    "plan": "Advanced (Promo £1/mo)",
+    "promoExpiry": "2026-03-12",
+    "normalPrice": "£344/mo",
+    "cardRates": { "online": "1.5% + £0.25", "inPerson": "1.5% + £0.00" },
+    "staffAccounts": 15,
+    "action": "Downgrade before March 12 to suitable plan"
+  },
+  "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 — MUST downgrade."
+}
