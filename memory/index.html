@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge Memory Vault — Anton Empire</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05060a;--card:#0f1018;--border:#1a1b28;--text:#eeeef2;--sub:#7c7c96;--accent:#7c5cfc;--accent2:#9b7dff;--green:#0fd68c;--amber:#ffb020;--red:#ff4d6a;--blue:#4d9eff}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.6}
+.app{max-width:800px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:22px;font-weight:800;text-align:center;margin-bottom:4px}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent2),#c0afff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{text-align:center;color:var(--sub);font-size:12px;margin-bottom:24px}
+.nav{display:flex;gap:8px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+.nav a{font-size:11px;color:var(--accent2);text-decoration:none;padding:5px 14px;border:1px solid var(--border);border-radius:20px;transition:all .15s}
+.nav a:hover{border-color:var(--accent);background:rgba(124,92,252,.08)}
+h2{font-size:15px;font-weight:700;color:var(--accent2);margin:24px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+h3{font-size:13px;font-weight:700;margin:16px 0 8px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+p{font-size:12px;color:var(--sub);margin-bottom:8px}
+ol,ul{font-size:12px;padding-left:20px;margin-bottom:12px}
+li{margin-bottom:6px}
+strong{color:var(--text)}
+code{background:#1a1b28;padding:2px 6px;border-radius:4px;font-size:11px;color:var(--accent2)}
+.file-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;cursor:pointer;transition:all .15s}
+.file-card:hover{border-color:var(--accent);transform:translateY(-1px)}
+.file-name{font-size:13px;font-weight:700;margin-bottom:2px}
+.file-desc{font-size:11px;color:var(--sub)}
+.file-loc{font-size:10px;color:var(--accent2);font-family:monospace;margin-top:4px}
+.important{background:rgba(255,77,106,.06);border:1px solid rgba(255,77,106,.2);border-radius:12px;padding:16px;margin-bottom:16px}
+.important strong{color:var(--red)}
+.step{display:flex;gap:10px;margin-bottom:10px}
+.step-num{width:24px;height:24px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:2px}
+.step-text{font-size:12px;flex:1}
+.footer{text-align:center;font-size:9px;color:#333;padding:20px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<h1>🧠 <em>Forge</em> Memory Vault</h1>
+<p class="sub">Everything that makes Forge "Forge" — and how to never lose it</p>
+
+<div class="nav">
+<a href="../">🏠 Home</a>
+<a href="../hub/">📁 SOP Hub</a>
+<a href="../sops/emergency-sos.html">🚨 Emergency SOS</a>
+</div>
+
+<!-- WHAT IS THIS -->
+<div class="card">
+<h3>What is this page?</h3>
+<p>Forge (your AI) wakes up fresh every session with no memory. These files ARE Forge's memory — they tell Forge who you are, who Forge is, what decisions have been made, and what's happened.</p>
+<p><strong>If these files are safe, Forge can never be truly lost.</strong> Even on a brand new machine, loading these files = full Forge recovery.</p>
+</div>
+
+<!-- THE KEY FILES -->
+<h2>📂 The Key Files</h2>
+<p>These live on Anton's Mac at <code>~/.openclaw/workspace/</code>. They're also backed up via git.</p>
+
+<div class="file-card">
+<div class="file-name">🧠 MEMORY.md — Long-Term Memory</div>
+<div class="file-desc">Everything Forge has learned. Who Anton is, business decisions, lessons, rules, preferences. The single most important file.</div>
+<div class="file-loc">~/.openclaw/workspace/MEMORY.md</div>
+</div>
+
+<div class="file-card">
+<div class="file-name">👤 USER.md — About Anton</div>
+<div class="file-desc">Your name, timezone, how to contact you, basic preferences.</div>
+<div class="file-loc">~/.openclaw/workspace/USER.md</div>
+</div>
+
+<div class="file-card">
+<div class="file-name">🔱 IDENTITY.md — Who Forge Is</div>
+<div class="file-desc">Forge's name, role, personality, emoji. The identity card.</div>
+<div class="file-loc">~/.openclaw/workspace/IDENTITY.md</div>
+</div>
+
+<div class="file-card">
+<div class="file-name">💫 SOUL.md — Forge's Personality</div>
+<div class="file-desc">How Forge behaves — tone, values, boundaries, communication style.</div>
+<div class="file-loc">~/.openclaw/workspace/SOUL.md</div>
+</div>
+
+<div class="file-card">
+<div class="file-name">📋 OPERATING-MODEL.md — How Forge Works</div>
+<div class="file-desc">SOP compliance, autonomous operation rules, decision framework.</div>
+<div class="file-loc">~/.openclaw/workspace/OPERATING-MODEL.md</div>
+</div>
+
+<div class="file-card">
+<div class="file-name">📝 memory/YYYY-MM-DD.md — Daily Notes</div>
+<div class="file-desc">Raw daily logs — what happened each day. Like a journal. Multiple files, one per day.</div>
+<div class="file-loc">~/.openclaw/workspace/memory/</div>
+</div>
+
+<!-- HOW TO VIEW -->
+<h2>👀 How to View These Files</h2>
+
+<div class="card">
+<h3>Option 1: Ask Forge (Easiest)</h3>
+<p>Just message Forge on Telegram:</p>
+<ul>
+<li><strong>"Show me MEMORY.md"</strong> — Forge will send the contents</li>
+<li><strong>"What's in your memory about X?"</strong> — Forge will search and tell you</li>
+<li><strong>"Send me all your memory files"</strong> — Forge will send them</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Option 2: GitHub (If Forge is down)</h3>
+<p>The workspace is backed up to git. If you push it to a private GitHub repo, you can view files at:</p>
+<p><code>github.com/AntonUrso2811/[private-repo]/blob/main/MEMORY.md</code></p>
+<p style="color:var(--amber)">⚠️ Private repo not yet created — tell Forge to set this up.</p>
+</div>
+
+<div class="card">
+<h3>Option 3: On the Mac Directly</h3>
+<p>Open Terminal on the Mac and run:</p>
+<ul>
+<li><code>cat ~/.openclaw/workspace/MEMORY.md</code> — view memory</li>
+<li><code>cat ~/.openclaw/workspace/USER.md</code> — view your profile</li>
+<li><code>ls ~/.openclaw/workspace/memory/</code> — list daily files</li>
+<li><code>nano ~/.openclaw/workspace/MEMORY.md</code> — edit memory (Ctrl+X to save)</li>
+</ul>
+</div>
+
+<!-- HOW TO EDIT -->
+<h2>✏️ How to Change Forge's Memory</h2>
+
+<div class="card">
+<h3>Method 1: Just Tell Forge</h3>
+<p><strong>Easiest way.</strong> Message Forge:</p>
+<ul>
+<li>"Remember that I prefer X"</li>
+<li>"Update your memory: my new timezone is PST"</li>
+<li>"Add to MEMORY.md: we decided to focus on beauty products"</li>
+</ul>
+<p>Forge will update the file immediately.</p>
+</div>
+
+<div class="card">
+<h3>Method 2: Edit on Mac</h3>
+<div class="step"><div class="step-num">1</div><div class="step-text">Open Terminal</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text"><code>nano ~/.openclaw/workspace/MEMORY.md</code></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Make your changes</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Press <strong>Ctrl+X</strong>, then <strong>Y</strong>, then <strong>Enter</strong> to save</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text">Next time Forge starts a session, it reads the updated file automatically</div></div>
+</div>
+
+<!-- HOW TO REBUILD -->
+<h2>🔄 How to Rebuild Forge From Scratch</h2>
+
+<div class="important">
+<p><strong>If you ever need to rebuild Forge on a new machine:</strong></p>
+</div>
+
+<div class="step"><div class="step-num">1</div><div class="step-text"><strong>Install OpenClaw:</strong> <code>npm install -g openclaw</code></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text"><strong>Run setup:</strong> <code>openclaw setup</code> — enter your Anthropic API key when asked</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text"><strong>Connect Telegram:</strong> <code>openclaw telegram setup</code> — use your bot token from @BotFather</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text"><strong>Copy memory files</strong> to <code>~/.openclaw/workspace/</code> — MEMORY.md, SOUL.md, USER.md, IDENTITY.md, OPERATING-MODEL.md, AGENTS.md, and the memory/ folder</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text"><strong>Start gateway:</strong> <code>openclaw gateway start</code></div></div>
+<div class="step"><div class="step-num">6</div><div class="step-text"><strong>Message Forge on Telegram</strong> — Forge reads the files and is fully operational ✅</div></div>
+
+<p style="font-size:13px;font-weight:700;color:var(--green);text-align:center;margin-top:20px">Total rebuild time: ~30 minutes 🔱</p>
+
+<!-- WHAT YOU NEED SAVED -->
+<h2>💾 What You Need Saved Outside the Mac</h2>
+
+<div class="card">
+<p><strong>Save these somewhere you can always access (phone notes, password manager, printed paper):</strong></p>
+<ol>
+<li><strong>Anthropic API key</strong> — from <a href="https://console.anthropic.com" style="color:var(--accent2)">console.anthropic.com</a></li>
+<li><strong>Telegram bot token</strong> — from @BotFather</li>
+<li><strong>GitHub login</strong> — email + password (or recovery email)</li>
+<li><strong>This URL</strong> — <a href="https://antonurso2811.github.io/thalyve-tools/" style="color:var(--accent2)">antonurso2811.github.io/thalyve-tools/</a></li>
+</ol>
+<p>With just these 4 things, you can rebuild everything from zero.</p>
+</div>
+
+<div class="footer">🧠 Forge Memory Vault v1.0 — Built by Forge 🔱 — February 2026</div>
+
+</div>
+</body>
+</html>

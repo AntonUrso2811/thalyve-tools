@@ -540,7 +540,7 @@ function toggleSwipes(id){
   else if(action==='clear'){p.creativeSwipes=[];save();render();toast('Swipes cleared');}
 }
 
-async function loadJSON(){try{const r=await fetch('research-data.json?t='+Date.now());if(!r.ok)return;const d=await r.json();if(Array.isArray(d)&&d.length){let a=0;d.forEach(np=>{if(!P.find(p=>p.id===np.id)){P.push(np);a++}});if(a){save();render();toast('Synced '+a+' from Forge ✓')}}}catch(e){}}
+async function loadJSON(){try{const r=await fetch('research-data.json?t='+Date.now());if(!r.ok)return;const d=await r.json();if(Array.isArray(d)){if(d.length===0&&P.length>0){P=[];save();render();toast('Data reset by Forge — clean slate ✓')}else if(d.length>0){let a=0;d.forEach(np=>{if(!P.find(p=>p.id===np.id)){P.push(np);a++}});if(a){save();render();toast('Synced '+a+' from Forge ✓')}}}}catch(e){}}
 
 render();loadJSON();
 </script>
