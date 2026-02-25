@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anton — Personal Hub</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0f;--card:#12121a;--border:#1e1e2e;--text:#e4e4e7;--muted:#71717a;--accent:#14b8a6;--accent2:#2dd4bf;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6;--purple:#8b5cf6}
+body{font-family:-apple-system,'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.ctr{max-width:1200px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+h1{font-size:20px;font-weight:700}h1 span{color:var(--accent)}
+.tabs{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:7px 15px;border-radius:7px;font-size:12px;cursor:pointer;border:1px solid var(--border);color:var(--muted);background:transparent;font-weight:500;transition:.2s}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab:hover:not(.active){border-color:var(--accent);color:var(--text)}
+.page{display:none}.page.active{display:block}
+.grid{display:grid;gap:12px;margin-bottom:16px}
+.g6{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.g2{grid-template-columns:1fr 1fr}
+@media(max-width:768px){.g2{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:15px;margin-bottom:12px}
+.card h2{font-size:13px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.sl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.sv{font-size:22px;font-weight:700}
+.green{color:var(--green)}.red{color:var(--red)}.amber{color:var(--amber)}.blue{color:var(--blue)}.purple{color:var(--purple)}.teal{color:var(--accent2)}
+.hl{border-radius:10px;padding:16px;margin-bottom:16px}
+.hl-g{background:linear-gradient(135deg,rgba(20,184,166,.1),rgba(34,197,94,.06));border:1px solid rgba(20,184,166,.2)}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{text-align:left;padding:7px 5px;color:var(--muted);font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border)}
+td{padding:7px 5px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(20,184,166,.03)}
+.back{display:inline-flex;align-items:center;gap:4px;color:var(--muted);font-size:11px;text-decoration:none;margin-bottom:12px;transition:.2s}
+.back:hover{color:var(--accent2)}
+.wm{text-align:center;color:#333;font-size:9px;margin-top:25px;padding:12px}
+</style>
+</head>
+<body>
+<div class="ctr">
+  <a href="../hub/" class="back">← Back to Hub</a>
+  <header>
+    <div><h1>💪 <span>Anton</span> — Personal Hub</h1><p style="font-size:10px;color:var(--muted);margin-top:2px">Health • Training • Nutrition • Personal Team</p></div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" onclick="nav('health',this)">💪 Health Overview</div>
+    <div class="tab" onclick="nav('training',this)">🏋️ Training</div>
+    <div class="tab" onclick="nav('nutrition',this)">🍽 Nutrition</div>
+    <div class="tab" onclick="nav('team',this)">👥 Personal Team</div>
+    <div class="tab" onclick="nav('goals',this)">🎯 Goals</div>
+  </div>
+
+  <!-- HEALTH OVERVIEW -->
+  <div class="page active" id="p-health">
+    <div class="hl hl-g">
+      <h3 style="font-size:14px;margin-bottom:4px">💪 Health & Personal Optimisation</h3>
+      <p style="font-size:11px;color:var(--muted)">Paul Saladino-inspired approach. Train hard, eat clean, optimise everything.</p>
+    </div>
+
+    <div class="grid g6">
+      <div class="card"><div class="sl">Height</div><div class="sv" style="font-size:18px">5'8.5"</div></div>
+      <div class="card"><div class="sl">Weight</div><div class="sv" style="font-size:18px">142 lbs</div></div>
+      <div class="card"><div class="sl">Age</div><div class="sv" style="font-size:18px">25</div></div>
+      <div class="card"><div class="sl">Training</div><div class="sv teal" style="font-size:18px">5x/wk</div></div>
+      <div class="card"><div class="sl">Cardio</div><div class="sv teal" style="font-size:18px">4x Z2</div></div>
+      <div class="card"><div class="sl">Diet</div><div class="sv" style="font-size:14px">Saladino</div></div>
+      <div class="card"><div class="sl">Cheat Meals</div><div class="sv red" style="font-size:16px">Zero</div></div>
+    </div>
+
+    <!-- Injuries -->
+    <div class="card">
+      <h2>⚠️ Active Injuries</h2>
+      <table>
+        <thead><tr><th>Area</th><th>Injury</th><th>Status</th><th>Management</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Left Knee</strong></td><td>Lateral meniscus tear</td><td class="amber">Active</td><td>Avoid deep squats, monitor load</td></tr>
+          <tr><td><strong>Right Knee</strong></td><td>Meniscectomy + ACL reconstruction</td><td class="amber">Post-surgical</td><td>Rehab protocol, controlled loading</td></tr>
+          <tr><td><strong>Right Scapula</strong></td><td>Scapular dysfunction</td><td class="amber">Active</td><td>Physio exercises, postural work</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRAINING -->
+  <div class="page" id="p-training">
+    <div class="card">
+      <h2>🏋️ Weekly Training Split</h2>
+      <table>
+        <thead><tr><th>Day</th><th>Session</th><th>Focus</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Monday</strong></td><td>🏋️ Weights + 🫀 Zone 2</td><td>Push / Upper</td><td>—</td></tr>
+          <tr><td><strong>Tuesday</strong></td><td>🏋️ Weights + 🫀 Zone 2</td><td>Pull / Back</td><td>—</td></tr>
+          <tr><td><strong>Wednesday</strong></td><td>🏋️ Weights</td><td>Legs</td><td>Knee-friendly variations</td></tr>
+          <tr><td><strong>Thursday</strong></td><td>🫀 Zone 2 Only</td><td>Active Recovery</td><td>—</td></tr>
+          <tr><td><strong>Friday</strong></td><td>🏋️ Weights</td><td>Upper / Arms</td><td>—</td></tr>
+          <tr><td><strong>Saturday</strong></td><td>🏋️ Weights</td><td>Full Body / Weak Points</td><td>—</td></tr>
+          <tr><td><strong>Sunday</strong></td><td>🫀 Zone 2 Only</td><td>Active Recovery</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <h2>📊 Training Stats</h2>
+        <div class="grid g6" style="margin:0">
+          <div><div class="sl">Weekly Sessions</div><div class="sv teal" style="font-size:18px">9</div><div style="font-size:9px;color:var(--muted)">5 weights + 4 cardio</div></div>
+          <div><div class="sl">Weights</div><div class="sv" style="font-size:18px">5x</div><div style="font-size:9px;color:var(--muted)">Mon-Wed, Fri-Sat</div></div>
+          <div><div class="sl">Zone 2</div><div class="sv" style="font-size:18px">4x</div><div style="font-size:9px;color:var(--muted)">Mon, Tue, Thu, Sun</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>⚠️ Training Restrictions</h2>
+        <div style="font-size:11px;line-height:1.8">
+          <div>🦵 <strong>Knees:</strong> No deep squats, no heavy lunges, controlled leg press only</div>
+          <div>🔄 <strong>Scapula:</strong> Warm up rotator cuff before pressing, face pulls every session</div>
+          <div>📏 <strong>General:</strong> Full ROM, controlled tempo, no ego lifting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NUTRITION -->
+  <div class="page" id="p-nutrition">
+    <div class="card">
+      <h2>🍽 Nutrition Protocol</h2>
+      <div style="padding:14px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">
+        <p style="font-size:13px;font-weight:700;margin-bottom:6px">Current Plan: Meal Plan v4.1</p>
+        <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Paul Saladino-inspired • Same meals daily • No cheat meals • Disciplined</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:12px">
+          <div class="card" style="margin:0;text-align:center"><div class="sl">Approach</div><div style="font-weight:700;font-size:13px">Animal-based</div></div>
+          <div class="card" style="margin:0;text-align:center"><div class="sl">Consistency</div><div style="font-weight:700;font-size:13px;color:var(--green)">Same daily</div></div>
+          <div class="card" style="margin:0;text-align:center"><div class="sl">Cheat Meals</div><div style="font-weight:700;font-size:13px;color:var(--red)">None</div></div>
+        </div>
+        <p style="font-size:10px;color:var(--muted);margin-top:12px">📄 Full plan: <code>health/meal-plan.html</code> — ask Forge to send latest version via Telegram</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL TEAM -->
+  <div class="page" id="p-team">
+    <div class="hl hl-g" style="margin-bottom:16px">
+      <h3 style="font-size:14px;margin-bottom:4px">👥 Personal Team</h3>
+      <p style="font-size:11px;color:var(--muted)">The people behind your health and optimisation. Human experts, managed by Forge.</p>
+    </div>
+    <div class="card">
+      <table>
+        <thead><tr><th>Status</th><th>Role</th><th>Name</th><th>What They Handle</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><span class="green" style="font-weight:700">🟢 Active</span></td><td><strong>Health & Wellness Coach</strong></td><td>—</td><td>Training programming, accountability, nutrition guidance</td><td style="color:var(--muted)">Manages via WhatsApp</td></tr>
+          <tr><td><span class="amber" style="font-weight:700">🟡 TBD</span></td><td><strong>Physiotherapist</strong></td><td>—</td><td>Knee rehab, scapular work, injury management</td><td style="color:var(--amber)">Need to find one</td></tr>
+          <tr><td><span class="amber" style="font-weight:700">🟡 TBD</span></td><td><strong>GP / Doctor</strong></td><td>—</td><td>Bloodwork, general health, referrals</td><td style="color:var(--muted)">Routine checks</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- GOALS -->
+  <div class="page" id="p-goals">
+    <div class="hl hl-g" style="margin-bottom:16px">
+      <h3 style="font-size:14px;margin-bottom:4px">🎯 Personal Goals</h3>
+      <p style="font-size:11px;color:var(--muted)">Health, wellness & longevity targets.</p>
+    </div>
+    <div class="card">
+      <h2>🎯 Active Goals</h2>
+      <table>
+        <thead><tr><th>Goal</th><th>Category</th><th>Target</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Consistent training</strong></td><td>Training</td><td>5x weights + 4x Zone 2 weekly</td><td class="green">Active</td></tr>
+          <tr><td><strong>Knee rehab</strong></td><td>Injury</td><td>Full controlled leg training without pain</td><td class="amber">In Progress</td></tr>
+          <tr><td><strong>Scapular stability</strong></td><td>Injury</td><td>Pain-free pressing, full ROM</td><td class="amber">In Progress</td></tr>
+          <tr><td><strong>Find physiotherapist</strong></td><td>Team</td><td>Regular appointments booked</td><td class="red">Not Started</td></tr>
+          <tr><td><strong>Bloodwork baseline</strong></td><td>Health</td><td>Full panel done + logged</td><td class="red">Not Started</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="wm">💪 Anton Personal Hub v1.0 • Built by Forge 🔱</div>
+</div>
+
+<script>
+function nav(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('p-'+id).classList.add('active');el.classList.add('active')}
+</script>
+</body>
+</html>

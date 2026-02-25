@@ -3,29 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anton Empire — Internal Tools &mdash; 🔱</title>
+<title>Anton Empire — Hub — 🔱</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center}
-.container{text-align:center;padding:2rem}
+.container{text-align:center;padding:2rem;max-width:800px}
 h1{font-size:2.5rem;margin-bottom:.5rem;letter-spacing:4px}
-.sub{color:#888;margin-bottom:3rem;font-size:1rem}
-.tools{display:flex;flex-direction:column;gap:1.5rem;max-width:400px;margin:0 auto}
-a.tool{display:block;padding:1.2rem 2rem;background:#111;border:1px solid #333;border-radius:12px;color:#fff;text-decoration:none;font-size:1.1rem;transition:all .2s}
-a.tool:hover{background:#1a1a1a;border-color:#666;transform:translateY(-2px)}
-.emoji{font-size:1.5rem;margin-right:.5rem}
+.sub{color:#888;margin-bottom:2.5rem;font-size:1rem}
+.sections{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:600px){.sections{grid-template-columns:1fr}}
+.section{border:1px solid #222;border-radius:16px;padding:24px 20px;text-align:center}
+.section-biz{background:linear-gradient(135deg,rgba(139,92,246,.06),rgba(59,130,246,.03));border-color:rgba(139,92,246,.2)}
+.section-personal{background:linear-gradient(135deg,rgba(20,184,166,.06),rgba(34,197,94,.03));border-color:rgba(20,184,166,.2)}
+.section h2{font-size:1.3rem;margin-bottom:4px}
+.section .label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.tools{display:flex;flex-direction:column;gap:10px}
+a.tool{display:block;padding:12px 16px;background:#111;border:1px solid #333;border-radius:10px;color:#fff;text-decoration:none;font-size:.95rem;transition:all .2s;text-align:left}
+a.tool:hover{background:#1a1a1a;border-color:#666;transform:translateY(-1px)}
+.emoji{font-size:1.2rem;margin-right:8px}
 </style>
 </head>
 <body>
 <div class="container">
-<h1>Anton Empire</h1>
-<p class="sub">Internal Tools &mdash; 🔱 🔱</p>
-<div class="tools">
-<a href="tracker/" class="tool"><span class="emoji">🔍</span> Product Research Tracker</a>
-<a href="dashboard/" class="tool"><span class="emoji">📊</span> Command Centre</a>
-<a href="hub/" class="tool"><span class="emoji">📁</span> SOP Hub / Company Drive</a>
-<a href="org/" class="tool"><span class="emoji">👥</span> Organisation Chart</a>
-<a href="memory/" class="tool"><span class="emoji">🧠</span> Forge Memory Vault</a>
+<h1>🔱 Anton Empire</h1>
+<p class="sub">Business · Personal · All in one place</p>
+<div class="sections">
+  <div class="section section-biz">
+    <h2>🏢 Business</h2>
+    <div class="label">Anton Empire Operations</div>
+    <div class="tools">
+      <a href="dashboard/" class="tool"><span class="emoji">📊</span> Command Centre</a>
+      <a href="tracker/" class="tool"><span class="emoji">🔍</span> Product Research Tracker</a>
+      <a href="hub/" class="tool"><span class="emoji">📁</span> SOP Hub / Company Drive</a>
+      <a href="org/" class="tool"><span class="emoji">👥</span> Organisation Chart</a>
+      <a href="memory/" class="tool"><span class="emoji">🧠</span> Forge Memory Vault</a>
+    </div>
+  </div>
+  <div class="section section-personal">
+    <h2>💪 Personal</h2>
+    <div class="label">Health · Training · Optimisation</div>
+    <div class="tools">
+      <a href="personal/" class="tool"><span class="emoji">💪</span> Personal Hub</a>
+    </div>
+  </div>
 </div>
 </div>
 </body>

@@ -84,7 +84,6 @@ tr:hover td{background:rgba(139,92,246,.03)}
     <div class="tab" onclick="nav('kpi',this)">🎯 KPI Targets</div>
     <div class="tab" onclick="nav('roadmap',this)">🗺 Roadmap</div>
     <div class="tab" onclick="nav('tasklog',this)">⚡ Task Log</div>
-    <div class="tab" onclick="nav('health',this)">💪 Health</div>
     <div class="tab" onclick="nav('settings',this)">⚙️ Settings</div>
   </div>
 
@@ -252,18 +251,11 @@ tr:hover td{background:rgba(139,92,246,.03)}
       <div class="card" style="text-align:center"><div class="sl">Active Members</div><div class="sv green" id="tm-active">0</div></div>
       <div class="card" style="text-align:center"><div class="sl">Planned Hires</div><div class="sv amber" id="tm-planned">0</div></div>
     </div>
-    <div class="card" style="margin-bottom:12px">
-      <h2>🏢 Business Team</h2>
+    <div class="card">
+      <h2>🏢 Team</h2>
       <table>
         <thead><tr><th>Status</th><th>Name</th><th>Role</th><th>Type</th><th>Since</th><th>Responsibilities</th></tr></thead>
         <tbody id="tm-table"><tr><td colspan="6" class="empty">Loading...</td></tr></tbody>
-      </table>
-    </div>
-    <div class="card">
-      <h2>💪 Personal Team</h2>
-      <table>
-        <thead><tr><th>Status</th><th>Name</th><th>Role</th><th>What They Handle</th><th>Notes</th></tr></thead>
-        <tbody id="tm-personal"><tr><td colspan="5" class="empty">Loading...</td></tr></tbody>
       </table>
     </div>
   </div>
@@ -301,76 +293,6 @@ tr:hover td{background:rgba(139,92,246,.03)}
       <table>
         <thead><tr><th>Status</th><th>Task</th><th>Owner</th><th>Started</th><th>Finished</th><th>Duration</th></tr></thead>
         <tbody id="tl-table"><tr><td colspan="6" class="empty">Loading...</td></tr></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- ===== HEALTH ===== -->
-  <div class="page" id="p-health">
-    <div class="hl hl-g" style="margin-bottom:16px">
-      <h3 style="font-size:14px;margin-bottom:4px">💪 Health & Personal Optimisation</h3>
-      <p style="font-size:11px;color:var(--muted)">Training, nutrition, health profile, and personal team — all in one place.</p>
-    </div>
-
-    <div class="grid g6" style="margin-bottom:16px">
-      <div class="card"><div class="sl">Height</div><div class="sv" style="font-size:18px" id="h-height">5'8.5"</div></div>
-      <div class="card"><div class="sl">Weight</div><div class="sv" style="font-size:18px" id="h-weight">142 lbs</div></div>
-      <div class="card"><div class="sl">Training</div><div class="sv" style="font-size:18px" id="h-training">5x/wk</div></div>
-      <div class="card"><div class="sl">Cardio</div><div class="sv" style="font-size:18px" id="h-cardio">4x Z2</div></div>
-      <div class="card"><div class="sl">Diet Style</div><div class="sv" style="font-size:14px" id="h-diet">Saladino</div></div>
-      <div class="card"><div class="sl">Cheat Meals</div><div class="sv red" style="font-size:18px">None</div></div>
-    </div>
-
-    <!-- Training Split -->
-    <div class="card" style="margin-bottom:12px">
-      <h2>🏋️ Training Split</h2>
-      <table>
-        <thead><tr><th>Day</th><th>Session</th><th>Focus</th><th>Notes</th></tr></thead>
-        <tbody id="h-split">
-          <tr><td><strong>Monday</strong></td><td>🏋️ Weights + 🫀 Zone 2</td><td>Push / Upper</td><td>—</td></tr>
-          <tr><td><strong>Tuesday</strong></td><td>🏋️ Weights + 🫀 Zone 2</td><td>Pull / Back</td><td>—</td></tr>
-          <tr><td><strong>Wednesday</strong></td><td>🏋️ Weights</td><td>Legs</td><td>Knee-friendly variations</td></tr>
-          <tr><td><strong>Thursday</strong></td><td>🫀 Zone 2 Only</td><td>Active Recovery</td><td>—</td></tr>
-          <tr><td><strong>Friday</strong></td><td>🏋️ Weights</td><td>Upper / Arms</td><td>—</td></tr>
-          <tr><td><strong>Saturday</strong></td><td>🏋️ Weights</td><td>Full Body / Weak Points</td><td>—</td></tr>
-          <tr><td><strong>Sunday</strong></td><td>🫀 Zone 2 Only</td><td>Active Recovery</td><td>—</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Injuries -->
-    <div class="card" style="margin-bottom:12px">
-      <h2>⚠️ Injury Log</h2>
-      <table>
-        <thead><tr><th>Area</th><th>Injury</th><th>Status</th><th>Management</th></tr></thead>
-        <tbody>
-          <tr><td>Left Knee</td><td>Lateral meniscus tear</td><td class="amber">Active</td><td>Avoid deep squats, monitor load</td></tr>
-          <tr><td>Right Knee</td><td>Meniscectomy + ACL reconstruction</td><td class="amber">Post-surgical</td><td>Rehab protocol, controlled loading</td></tr>
-          <tr><td>Right Scapula</td><td>Scapular dysfunction</td><td class="amber">Active</td><td>Physio exercises, postural work</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Meal Plan Link -->
-    <div class="card" style="margin-bottom:12px">
-      <h2>🍽 Nutrition</h2>
-      <div style="padding:12px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">
-        <p style="font-size:12px;margin-bottom:8px"><strong>Current Plan:</strong> Meal Plan v4.1 (HTML)</p>
-        <p style="font-size:10px;color:var(--muted);margin-bottom:8px">Paul Saladino-inspired • Same meals daily • No cheat meals • Disciplined</p>
-        <p style="font-size:10px;color:var(--muted)">📄 File: <code>health/meal-plan.html</code> — ask Forge to send latest version</p>
-      </div>
-    </div>
-
-    <!-- Personal Team -->
-    <div class="card">
-      <h2>👥 Personal Team</h2>
-      <table>
-        <thead><tr><th>Status</th><th>Role</th><th>Name</th><th>What They Handle</th><th>Notes</th></tr></thead>
-        <tbody id="h-team">
-          <tr><td><span class="green">🟢 Active</span></td><td>Health & Wellness Coach</td><td>—</td><td>Training programming, accountability, nutrition guidance</td><td>Manages via WhatsApp</td></tr>
-          <tr><td><span class="amber">🟡 TBD</span></td><td>Physiotherapist</td><td>—</td><td>Knee rehab, scapular work, injury management</td><td>Need to find one</td></tr>
-          <tr><td><span class="amber">🟡 TBD</span></td><td>GP / Doctor</td><td>—</td><td>Bloodwork, general health, referrals</td><td>Routine checks</td></tr>
-        </tbody>
       </table>
     </div>
   </div>
@@ -685,9 +607,8 @@ function renderTeam(data){
   if(!data||!data.team)return;
   const team=data.team;
   const biz=team.filter(t=>t.domain!=='personal');
-  const personal=team.filter(t=>t.domain==='personal');
-  const active=team.filter(t=>t.status==='active');
-  const planned=team.filter(t=>t.status==='planned');
+  const active=biz.filter(t=>t.status==='active');
+  const planned=biz.filter(t=>t.status==='planned');
   document.getElementById('tm-active').textContent=active.length;
   document.getElementById('tm-planned').textContent=planned.length;
   const tb=document.getElementById('tm-table');
@@ -705,21 +626,6 @@ function renderTeam(data){
       <td style="font-size:10px;max-width:250px;white-space:normal;color:var(--muted)">${t.responsibilities}${t.notes?'<br><em style="color:var(--amber);font-size:9px">'+t.notes+'</em>':''}</td>
     </tr>`;
   }).join('');
-  // Personal team
-  const ptb=document.getElementById('tm-personal');
-  if(personal.length){
-    ptb.innerHTML=personal.map(t=>{
-      const icon=t.status==='active'?'🟢':t.status==='planned'?'🟡':'🔴';
-      const statusColor=t.status==='active'?'green':t.status==='planned'?'amber':'red';
-      return`<tr>
-        <td><span class="${statusColor}" style="font-weight:700">${icon} ${t.status.charAt(0).toUpperCase()+t.status.slice(1)}</span></td>
-        <td style="font-size:11px;font-weight:600">${t.role}</td>
-        <td style="font-weight:700">${t.name}</td>
-        <td style="font-size:10px;max-width:250px;white-space:normal;color:var(--muted)">${t.responsibilities}</td>
-        <td style="font-size:10px;color:var(--amber)">${t.notes||'—'}</td>
-      </tr>`;
-    }).join('');
-  }
 }
 
 function renderKPI(data){
