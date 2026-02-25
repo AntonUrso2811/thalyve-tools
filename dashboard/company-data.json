@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdated": "2026-02-25T08:00:00Z",
+    "lastUpdated": "2026-02-25T09:30:00Z",
     "updatedBy": "Forge",
-    "version": "3.0"
+    "version": "3.1"
   },
   "company": {
     "name": "Anton Empire",
@@ -11,18 +11,42 @@
     "taxRate": 19,
     "targetNetMargin": 20,
     "targetMonthlyNet": 10000,
-    "notes": "UK Ltd for now. Future plan: Hong Kong entity (0% tax). Corp tax 19% for small profits (<£50K), 25% for >£250K. Target: £10k net/month."
+    "notes": "UK Ltd for now. Future plan: Hong Kong entity (0% tax). Corp tax 19% for small profits (<\u00a350K), 25% for >\u00a3250K. Target: \u00a310k net/month."
   },
   "companyExpenses": [],
   "brands": [
     {
       "id": "thalyve",
-      "name": "THALYVE™",
+      "name": "THALYVE\u2122",
       "status": "active",
       "products": [
-        { "id": "thl-sms-01", "name": "Stretch Mark Stick (1x)", "sku": "THL-SMS-01", "price": 39.99, "cogs": 8.44, "shipping": 0, "txnFee": 2.9 },
-        { "id": "thl-sms-02", "name": "Stretch Mark Stick (2x)", "sku": "THL-SMS-02", "price": 69.99, "cogs": 16.88, "shipping": 0, "txnFee": 2.9 },
-        { "id": "thl-sms-03", "name": "Stretch Mark Stick (3x)", "sku": "THL-SMS-03", "price": 89.99, "cogs": 25.32, "shipping": 0, "txnFee": 2.9 }
+        {
+          "id": "thl-sms-01",
+          "name": "Stretch Mark Stick (1x)",
+          "sku": "THL-SMS-01",
+          "price": 39.99,
+          "cogs": 8.44,
+          "shipping": 0,
+          "txnFee": 2.9
+        },
+        {
+          "id": "thl-sms-02",
+          "name": "Stretch Mark Stick (2x)",
+          "sku": "THL-SMS-02",
+          "price": 69.99,
+          "cogs": 16.88,
+          "shipping": 0,
+          "txnFee": 2.9
+        },
+        {
+          "id": "thl-sms-03",
+          "name": "Stretch Mark Stick (3x)",
+          "sku": "THL-SMS-03",
+          "price": 89.99,
+          "cogs": 25.32,
+          "shipping": 0,
+          "txnFee": 2.9
+        }
       ],
       "mediaBuying": {
         "platform": "Meta (Facebook/Instagram)",
@@ -38,14 +62,17 @@
   "taxes": {
     "entity": "UK Ltd",
     "estimatedRate": 19,
-    "notes": "UK Corp Tax: 19% small profits (<£50K), 25% (>£250K). Future: HK entity restructure for 0% rate.",
+    "notes": "UK Corp Tax: 19% small profits (<\u00a350K), 25% (>\u00a3250K). Future: HK entity restructure for 0% rate.",
     "provisioned": []
   },
   "shopify": {
-    "plan": "Advanced (Promo £1/mo)",
+    "plan": "Advanced (Promo \u00a31/mo)",
     "promoExpiry": "2026-03-12",
-    "normalPrice": "£344/mo",
-    "cardRates": { "online": "1.5% + £0.25", "inPerson": "1.5% + £0.00" },
+    "normalPrice": "\u00a3344/mo",
+    "cardRates": {
+      "online": "1.5% + \u00a30.25",
+      "inPerson": "1.5% + \u00a30.00"
+    },
     "staffAccounts": 15,
     "action": "Downgrade before March 12 to suitable plan"
   },
@@ -56,26 +83,66 @@
         "name": "Product Research",
         "owner": "Forge",
         "targets": [
-          { "metric": "Products Researched", "target": 10, "current": 6, "unit": "products" },
-          { "metric": "Competitors Validated (SimilarWeb)", "target": 8, "current": 4, "unit": "brands" },
-          { "metric": "GetHookd Ad Swipes Saved", "target": 20, "current": 0, "unit": "ads" }
+          {
+            "metric": "Products Researched",
+            "target": 10,
+            "current": 6,
+            "unit": "products"
+          },
+          {
+            "metric": "Competitors Validated (SimilarWeb)",
+            "target": 8,
+            "current": 4,
+            "unit": "brands"
+          },
+          {
+            "metric": "GetHookd Ad Swipes Saved",
+            "target": 20,
+            "current": 0,
+            "unit": "ads"
+          }
         ]
       },
       "creative": {
         "name": "Creative & Ads",
         "owner": "Forge (future: Hawk)",
         "targets": [
-          { "metric": "Ad Scripts Written", "target": 0, "current": 0, "unit": "scripts" },
-          { "metric": "Creative Angles Identified", "target": 5, "current": 0, "unit": "angles" }
+          {
+            "metric": "Ad Scripts Written",
+            "target": 0,
+            "current": 0,
+            "unit": "scripts"
+          },
+          {
+            "metric": "Creative Angles Identified",
+            "target": 5,
+            "current": 0,
+            "unit": "angles"
+          }
         ]
       },
       "operations": {
         "name": "Operations & Systems",
         "owner": "Forge",
         "targets": [
-          { "metric": "SOPs Created/Updated", "target": 3, "current": 0, "unit": "SOPs" },
-          { "metric": "Tools Shipped", "target": 2, "current": 2, "unit": "tools" },
-          { "metric": "Systems Automated", "target": 2, "current": 1, "unit": "systems" }
+          {
+            "metric": "SOPs Created/Updated",
+            "target": 3,
+            "current": 0,
+            "unit": "SOPs"
+          },
+          {
+            "metric": "Tools Shipped",
+            "target": 2,
+            "current": 2,
+            "unit": "tools"
+          },
+          {
+            "metric": "Systems Automated",
+            "target": 2,
+            "current": 1,
+            "unit": "systems"
+          }
         ]
       }
     }
@@ -84,40 +151,137 @@
     "thisWeek": {
       "weekOf": "2026-02-24",
       "priorities": [
-        { "task": "Deploy GitHub Pages — tools accessible on phone", "status": "done", "owner": "Forge" },
-        { "task": "Upgrade Tracker v4.0 — competitors, creatives, traffic context", "status": "in-progress", "owner": "Forge" },
-        { "task": "Upgrade Command Centre v3.0 — KPIs, roadmap, task log", "status": "in-progress", "owner": "Forge" },
-        { "task": "Build SOP Hub / Company Drive", "status": "in-progress", "owner": "Forge" },
-        { "task": "Run SOP-compliant research batch (Mon+Thu)", "status": "blocked", "owner": "Forge", "blocker": "Tools upgrade in progress" },
-        { "task": "Set up credential security (Keychain)", "status": "done", "owner": "Forge" },
-        { "task": "Shopify plan review — downgrade before Mar 12", "status": "planned", "owner": "Anton" }
+        {
+          "task": "Deploy GitHub Pages \u2014 tools accessible on phone",
+          "status": "done",
+          "owner": "Forge"
+        },
+        {
+          "task": "Upgrade Tracker v4.0 \u2014 competitors, creatives, traffic context",
+          "status": "in-progress",
+          "owner": "Forge"
+        },
+        {
+          "task": "Upgrade Command Centre v3.0 \u2014 KPIs, roadmap, task log",
+          "status": "in-progress",
+          "owner": "Forge"
+        },
+        {
+          "task": "Build SOP Hub / Company Drive",
+          "status": "in-progress",
+          "owner": "Forge"
+        },
+        {
+          "task": "Run SOP-compliant research batch (Mon+Thu)",
+          "status": "blocked",
+          "owner": "Forge",
+          "blocker": "Tools upgrade in progress"
+        },
+        {
+          "task": "Set up credential security (Keychain)",
+          "status": "done",
+          "owner": "Forge"
+        },
+        {
+          "task": "Shopify plan review \u2014 downgrade before Mar 12",
+          "status": "planned",
+          "owner": "Anton"
+        }
       ]
     },
     "nextWeek": {
       "weekOf": "2026-03-03",
       "priorities": [
-        { "task": "Full research batch — 10 products validated", "status": "planned", "owner": "Forge" },
-        { "task": "Mutual sourcing messages for top 3 products", "status": "planned", "owner": "Anton + Forge" },
-        { "task": "Evaluate sub-agent hire: Hawk (Market Intelligence)", "status": "planned", "owner": "Forge" },
-        { "task": "Ad creative research — GetHookd swipe library", "status": "planned", "owner": "Forge" },
-        { "task": "Shopify downgrade execution", "status": "planned", "owner": "Anton" }
+        {
+          "task": "Full research batch \u2014 10 products validated",
+          "status": "planned",
+          "owner": "Forge"
+        },
+        {
+          "task": "Mutual sourcing messages for top 3 products",
+          "status": "planned",
+          "owner": "Anton + Forge"
+        },
+        {
+          "task": "Evaluate sub-agent hire: Hawk (Market Intelligence)",
+          "status": "planned",
+          "owner": "Forge"
+        },
+        {
+          "task": "Ad creative research \u2014 GetHookd swipe library",
+          "status": "planned",
+          "owner": "Forge"
+        },
+        {
+          "task": "Shopify downgrade execution",
+          "status": "planned",
+          "owner": "Anton"
+        }
       ]
     }
   },
-  "taskLog": [
-    { "id": "tl-001", "task": "GitHub account setup + repo creation", "started": "2026-02-25T07:20:00Z", "finished": "2026-02-25T07:35:00Z", "status": "done", "owner": "Forge" },
-    { "id": "tl-002", "task": "GitHub Pages deployment (landing + tracker + dashboard)", "started": "2026-02-25T07:35:00Z", "finished": "2026-02-25T07:45:00Z", "status": "done", "owner": "Forge" },
-    { "id": "tl-003", "task": "Keychain credential storage setup", "started": "2026-02-25T08:00:00Z", "finished": "2026-02-25T08:10:00Z", "status": "done", "owner": "Forge" },
-    { "id": "tl-004", "task": "Tracker v4.0 — competitors, creative library, traffic context", "started": "2026-02-25T08:15:00Z", "finished": null, "status": "in-progress", "owner": "Forge" },
-    { "id": "tl-005", "task": "Command Centre v3.0 — KPIs, roadmap, task log, clean expenses", "started": "2026-02-25T08:15:00Z", "finished": null, "status": "in-progress", "owner": "Forge" }
-  ],
+  "taskLog": [],
   "team": [
-    { "id": "anton", "name": "Anton", "role": "CEO / Founder", "type": "human", "status": "active", "since": "2026-02-22", "responsibilities": "Strategy, final decisions, Mutual sourcing, ad account ownership, financial oversight", "notes": "20-30 min/week operational input. Guides direction, Forge executes." },
-    { "id": "forge", "name": "Forge 🔱", "role": "Master Agent — COO", "type": "ai-agent", "status": "active", "since": "2026-02-22", "responsibilities": "Operations, product research, tool building, SOP creation, sub-agent hiring, daily briefings, automation", "notes": "Runs 24/7. Autonomous execution with full hiring authority." },
-    { "id": "hawk", "name": "Hawk", "role": "Market Intelligence Agent", "type": "ai-agent", "status": "planned", "since": null, "responsibilities": "Google Trends analysis, market research, trending product identification, competitive intelligence", "notes": "Phase 2 hire (Week 2-3). Trigger: when research volume exceeds Forge's capacity." },
-    { "id": "scout", "name": "Scout", "role": "Ad Creative Research Agent", "type": "ai-agent", "status": "planned", "since": null, "responsibilities": "GetHookd ad analysis, creative swipe library, ad script writing, creative angle identification", "notes": "Phase 2 hire (Week 2-3). Trigger: when we have 5+ validated products needing creative." },
-    { "id": "quill", "name": "Quill", "role": "Copywriting & Content Agent", "type": "ai-agent", "status": "planned", "since": null, "responsibilities": "Ad copy, product descriptions, email sequences, landing page copy", "notes": "Phase 3 hire (Week 4-6). Trigger: first product ready for ad launch." },
-    { "id": "director", "name": "Director", "role": "Video Ads Production Agent", "type": "ai-agent", "status": "planned", "since": null, "responsibilities": "Video ad scripting, UGC brief creation, creative production pipeline", "notes": "Phase 3 hire (Week 4-6). Trigger: when ad creative pipeline needs scaling." }
+    {
+      "id": "anton",
+      "name": "Anton",
+      "role": "CEO / Founder",
+      "type": "human",
+      "status": "active",
+      "since": "2026-02-22",
+      "responsibilities": "Strategy, final decisions, Mutual sourcing, ad account ownership, financial oversight",
+      "notes": "20-30 min/week operational input. Guides direction, Forge executes."
+    },
+    {
+      "id": "forge",
+      "name": "Forge \ud83d\udd31",
+      "role": "Master Agent \u2014 COO",
+      "type": "ai-agent",
+      "status": "active",
+      "since": "2026-02-22",
+      "responsibilities": "Operations, product research, tool building, SOP creation, sub-agent hiring, daily briefings, automation",
+      "notes": "Runs 24/7. Autonomous execution with full hiring authority."
+    },
+    {
+      "id": "hawk",
+      "name": "Hawk",
+      "role": "Market Intelligence Agent",
+      "type": "ai-agent",
+      "status": "planned",
+      "since": null,
+      "responsibilities": "Google Trends analysis, market research, trending product identification, competitive intelligence",
+      "notes": "Phase 2 hire (Week 2-3). Trigger: when research volume exceeds Forge's capacity."
+    },
+    {
+      "id": "scout",
+      "name": "Scout",
+      "role": "Ad Creative Research Agent",
+      "type": "ai-agent",
+      "status": "planned",
+      "since": null,
+      "responsibilities": "GetHookd ad analysis, creative swipe library, ad script writing, creative angle identification",
+      "notes": "Phase 2 hire (Week 2-3). Trigger: when we have 5+ validated products needing creative."
+    },
+    {
+      "id": "quill",
+      "name": "Quill",
+      "role": "Copywriting & Content Agent",
+      "type": "ai-agent",
+      "status": "planned",
+      "since": null,
+      "responsibilities": "Ad copy, product descriptions, email sequences, landing page copy",
+      "notes": "Phase 3 hire (Week 4-6). Trigger: first product ready for ad launch."
+    },
+    {
+      "id": "director",
+      "name": "Director",
+      "role": "Video Ads Production Agent",
+      "type": "ai-agent",
+      "status": "planned",
+      "since": null,
+      "responsibilities": "Video ad scripting, UGC brief creation, creative production pipeline",
+      "notes": "Phase 3 hire (Week 4-6). Trigger: when ad creative pipeline needs scaling."
+    }
   ],
-  "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 — MUST downgrade. Target: £10k net/month. All expenses wiped clean for v3.0 fresh start."
+  "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 \u2014 MUST downgrade. Target: \u00a310k net/month. All expenses wiped clean for v3.0 fresh start."
 }
