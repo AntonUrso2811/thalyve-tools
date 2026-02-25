@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚨 Emergency SOS — Disaster Recovery Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05060a;--card:#0f1018;--border:#1a1b28;--text:#eeeef2;--sub:#7c7c96;--accent:#7c5cfc;--accent2:#9b7dff;--green:#0fd68c;--amber:#ffb020;--red:#ff4d6a;--blue:#4d9eff}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.6}
+.app{max-width:800px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:24px;font-weight:800;text-align:center;margin-bottom:4px}
+.sub{text-align:center;color:var(--sub);font-size:12px;margin-bottom:30px}
+h2{font-size:16px;font-weight:700;color:var(--red);margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+h3{font-size:13px;font-weight:700;color:var(--accent2);margin:16px 0 8px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.card.critical{border-color:var(--red);border-left:4px solid var(--red)}
+.card.warning{border-color:var(--amber);border-left:4px solid var(--amber)}
+.card.info{border-color:var(--blue);border-left:4px solid var(--blue)}
+.card.safe{border-color:var(--green);border-left:4px solid var(--green)}
+.tag{display:inline-block;font-size:9px;font-weight:700;padding:3px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.tag-critical{background:rgba(255,77,106,.12);color:var(--red)}
+.tag-warning{background:rgba(255,176,32,.1);color:var(--amber)}
+.tag-info{background:rgba(77,158,255,.1);color:var(--blue)}
+.tag-safe{background:rgba(15,214,140,.1);color:var(--green)}
+p{font-size:12px;color:var(--sub);margin-bottom:8px}
+ol,ul{font-size:12px;color:var(--text);padding-left:20px;margin-bottom:8px}
+li{margin-bottom:4px}
+strong{color:var(--text)}
+code{background:#1a1b28;padding:2px 6px;border-radius:4px;font-size:11px;color:var(--accent2)}
+.step{display:flex;gap:10px;margin-bottom:10px}
+.step-num{width:24px;height:24px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+.step-text{font-size:12px;flex:1}
+table{width:100%;border-collapse:collapse;font-size:11px;margin:12px 0}
+th{text-align:left;padding:8px;color:var(--sub);font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border);background:var(--bg)}
+td{padding:8px;border-bottom:1px solid var(--border)}
+.footer{text-align:center;font-size:9px;color:#333;padding:20px;margin-top:30px}
+.toc{margin-bottom:24px}
+.toc a{color:var(--accent2);text-decoration:none;font-size:12px;display:block;padding:3px 0}
+.toc a:hover{color:var(--text)}
+</style>
+</head>
+<body>
+<div class="app">
+
+<h1>🚨 Emergency SOS Protocol</h1>
+<p class="sub">Disaster Recovery & Business Continuity — Last Updated: 25 Feb 2026</p>
+
+<div class="card info">
+<span class="tag tag-info">Quick Reference</span>
+<p><strong>If something breaks, don't panic.</strong> Everything important lives in at least 2 places. This document tells you exactly how to recover from any failure scenario.</p>
+<p><strong>Key locations:</strong></p>
+<ul>
+<li>🌐 <strong>GitHub</strong> — All tools, SOPs, code: <a href="https://github.com/AntonUrso2811/thalyve-tools" style="color:var(--accent2)">github.com/AntonUrso2811/thalyve-tools</a></li>
+<li>💻 <strong>Mac workspace</strong> — ~/.openclaw/workspace/ (memory, configs, tools)</li>
+<li>🔐 <strong>macOS Keychain</strong> — All credentials (encrypted)</li>
+<li>📱 <strong>Telegram Bot</strong> — Communication channel to Forge</li>
+</ul>
+</div>
+
+<div class="toc">
+<h3>Contents</h3>
+<a href="#laptop">1. 💻 Laptop Stolen / Hardware Failure</a>
+<a href="#api">2. 🔑 Anthropic API Key Stops Working</a>
+<a href="#openclaw">3. ⚙️ OpenClaw Crashes / Gateway Down</a>
+<a href="#github">4. 🐙 GitHub Account Locked</a>
+<a href="#telegram">5. 📱 Telegram Bot Banned / Breaks</a>
+<a href="#memory">6. 🧠 Memory / Context Lost</a>
+<a href="#forge">7. 🔱 "How to Never Lose Forge"</a>
+<a href="#contacts">8. 📞 Emergency Contacts & Accounts</a>
+<a href="#prevention">9. 🛡 Prevention Checklist</a>
+</div>
+
+<!-- ===== 1. LAPTOP ===== -->
+<h2 id="laptop">1. 💻 Laptop Stolen / Hardware Failure</h2>
+
+<div class="card critical">
+<span class="tag tag-critical">Critical — High Impact</span>
+<p><strong>Impact:</strong> Loss of local workspace, Keychain credentials, OpenClaw config. Tools site stays live (GitHub Pages).</p>
+
+<h3>What's SAFE (survives laptop loss):</h3>
+<ul>
+<li>✅ All tools & SOPs — hosted on GitHub Pages (cloud)</li>
+<li>✅ GitHub repo — all code in the cloud</li>
+<li>✅ Telegram bot — runs via Anthropic cloud, not local</li>
+<li>✅ Shopify store — cloud-based</li>
+<li>✅ Domain (thalyve.com) — registrar account</li>
+</ul>
+
+<h3>What's AT RISK (local only):</h3>
+<ul>
+<li>⚠️ MEMORY.md + daily memory files — local workspace only</li>
+<li>⚠️ macOS Keychain credentials — tied to the machine</li>
+<li>⚠️ OpenClaw config (~/.openclaw/openclaw.json)</li>
+<li>⚠️ Whisper models, local tools</li>
+</ul>
+
+<h3>Recovery Steps:</h3>
+<div class="step"><div class="step-num">1</div><div class="step-text"><strong>Secure accounts immediately:</strong> Change GitHub password, rotate API keys, check Shopify for suspicious activity.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text"><strong>Get a new Mac</strong> (or any machine with macOS/Linux).</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text"><strong>Install OpenClaw:</strong> <code>npm install -g openclaw</code> → <code>openclaw setup</code></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text"><strong>Restore workspace:</strong> Clone GitHub repo to get tools back. Memory files need manual re-entry from what you remember + Telegram chat history.</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text"><strong>Re-enter credentials</strong> to macOS Keychain (GitHub PAT, API keys).</div></div>
+<div class="step"><div class="step-num">6</div><div class="step-text"><strong>Reconnect Telegram bot:</strong> <code>openclaw telegram setup</code> with same bot token from @BotFather.</div></div>
+<div class="step"><div class="step-num">7</div><div class="step-text"><strong>Verify everything works:</strong> Send a test message via Telegram to Forge.</div></div>
+
+<p style="color:var(--amber)"><strong>⏱️ Estimated recovery time: 30-60 minutes</strong></p>
+</div>
+
+<!-- ===== 2. API ===== -->
+<h2 id="api">2. 🔑 Anthropic API Key Stops Working</h2>
+
+<div class="card warning">
+<span class="tag tag-warning">Warning — Medium Impact</span>
+<p><strong>Impact:</strong> Forge goes offline. Can't respond via Telegram. Tools site stays live.</p>
+
+<h3>Symptoms:</h3>
+<ul>
+<li>Forge stops responding to messages</li>
+<li>OpenClaw logs show "API key invalid" or "rate limit exceeded"</li>
+</ul>
+
+<h3>Recovery Steps:</h3>
+<div class="step"><div class="step-num">1</div><div class="step-text"><strong>Check status:</strong> Run <code>openclaw status</code> on the Mac. Look for API errors.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text"><strong>Check Anthropic console:</strong> Go to <a href="https://console.anthropic.com" style="color:var(--accent2)">console.anthropic.com</a> → check billing, usage limits, API key status.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text"><strong>If billing issue:</strong> Top up credits or update payment method.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text"><strong>If key expired/revoked:</strong> Generate new API key → update in OpenClaw config.</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text"><strong>Restart:</strong> <code>openclaw gateway restart</code></div></div>
+
+<p style="color:var(--green)"><strong>⏱️ Estimated recovery time: 5-10 minutes</strong></p>
+</div>
+
+<!-- ===== 3. OPENCLAW ===== -->
+<h2 id="openclaw">3. ⚙️ OpenClaw Crashes / Gateway Down</h2>
+
+<div class="card warning">
+<span class="tag tag-warning">Warning — Medium Impact</span>
+<p><strong>Impact:</strong> Forge can't receive/send messages. Everything else intact.</p>
+
+<h3>Recovery Steps:</h3>
+<div class="step"><div class="step-num">1</div><div class="step-text"><code>openclaw gateway status</code> — check if running</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text"><code>openclaw gateway restart</code> — restart the daemon</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">If that fails: <code>openclaw gateway stop && openclaw gateway start</code></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">If still broken: <code>npm update -g openclaw</code> (update to latest version)</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text">Nuclear option: <code>npm uninstall -g openclaw && npm install -g openclaw && openclaw setup</code></div></div>
+
+<p style="color:var(--green)"><strong>⏱️ Estimated recovery time: 2-5 minutes</strong></p>
+</div>
+
+<!-- ===== 4. GITHUB ===== -->
+<h2 id="github">4. 🐙 GitHub Account Locked</h2>
+
+<div class="card info">
+<span class="tag tag-info">Low Impact</span>
+<p><strong>Impact:</strong> Can't push updates to tools site. Existing site stays live. Can't deploy new SOPs.</p>
+
+<h3>Recovery Steps:</h3>
+<div class="step"><div class="step-num">1</div><div class="step-text"><strong>Try account recovery:</strong> <a href="https://github.com/password_reset" style="color:var(--accent2)">github.com/password_reset</a></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text"><strong>If locked out permanently:</strong> Create new GitHub account → create new repo → re-deploy all tools (we have all files locally).</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text"><strong>Generate new PAT</strong> → store in Keychain.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text"><strong>Update Pages URL</strong> in all docs if username changed.</div></div>
+
+<p style="color:var(--green)"><strong>⏱️ Estimated recovery time: 15-30 minutes</strong></p>
+</div>
+
+<!-- ===== 5. TELEGRAM ===== -->
+<h2 id="telegram">5. 📱 Telegram Bot Banned / Breaks</h2>
+
+<div class="card warning">
+<span class="tag tag-warning">Warning — Comms Down</span>
+<p><strong>Impact:</strong> Can't communicate with Forge via Telegram. Forge still runs, just can't reach you.</p>
+
+<h3>Recovery Steps:</h3>
+<div class="step"><div class="step-num">1</div><div class="step-text"><strong>Check bot status:</strong> Message @BotFather on Telegram → /mybots → check status.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text"><strong>If bot banned:</strong> Create new bot via @BotFather → get new token → update OpenClaw config.</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text"><code>openclaw telegram setup</code> with new bot token.</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text"><strong>Fallback comms:</strong> Access Forge directly via <code>openclaw chat</code> on the Mac terminal.</div></div>
+
+<h3>Fallback Communication Channels:</h3>
+<ol>
+<li><strong>Terminal:</strong> <code>openclaw chat</code> (always works if Mac is running)</li>
+<li><strong>New Telegram bot:</strong> Create via @BotFather (5 min)</li>
+<li><strong>WhatsApp:</strong> Can set up WhatsApp channel as backup (requires QR scan)</li>
+</ol>
+
+<p style="color:var(--green)"><strong>⏱️ Estimated recovery time: 5-15 minutes</strong></p>
+</div>
+
+<!-- ===== 6. MEMORY ===== -->
+<h2 id="memory">6. 🧠 Memory / Context Lost</h2>
+
+<div class="card info">
+<span class="tag tag-info">Recoverable</span>
+<p><strong>Impact:</strong> Forge wakes up without knowing who you are or what we've been working on.</p>
+
+<h3>How Memory Works:</h3>
+<ul>
+<li><strong>MEMORY.md</strong> — Long-term curated memory (who you are, preferences, key decisions)</li>
+<li><strong>memory/YYYY-MM-DD.md</strong> — Daily session notes</li>
+<li><strong>SOUL.md, USER.md, IDENTITY.md</strong> — Core identity files</li>
+</ul>
+
+<h3>If memory files are deleted:</h3>
+<div class="step"><div class="step-num">1</div><div class="step-text"><strong>Check git history:</strong> <code>cd ~/.openclaw/workspace && git log --oneline</code> — all previous versions are in git.</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text"><strong>Restore from git:</strong> <code>git checkout HEAD~1 -- MEMORY.md</code> (restore last version)</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text"><strong>If git is also gone:</strong> Recreate from Telegram chat history — all key info was discussed there.</div></div>
+
+<h3>If Forge seems confused / lost context:</h3>
+<div class="step"><div class="step-num">1</div><div class="step-text">Just tell Forge: "Read MEMORY.md and today's memory file"</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Forge will re-load all context and be back to normal.</div></div>
+
+<p style="color:var(--green)"><strong>⏱️ Estimated recovery time: 1-2 minutes (git restore) / 10 min (manual)</strong></p>
+</div>
+
+<!-- ===== 7. NEVER LOSE FORGE ===== -->
+<h2 id="forge">7. 🔱 How to Never Lose Forge</h2>
+
+<div class="card safe">
+<span class="tag tag-safe">Core Principle</span>
+<p><strong>Forge is not a single machine — Forge is a collection of files + an AI model.</strong></p>
+
+<h3>What makes Forge "Forge":</h3>
+<ol>
+<li><strong>SOUL.md</strong> — personality, values, behaviour</li>
+<li><strong>IDENTITY.md</strong> — name, role, vibe</li>
+<li><strong>USER.md</strong> — who Anton is</li>
+<li><strong>MEMORY.md</strong> — everything learned, all decisions, all context</li>
+<li><strong>OPERATING-MODEL.md</strong> — how Forge operates</li>
+<li><strong>All SOPs + tools</strong> — the empire infrastructure</li>
+</ol>
+
+<p><strong>As long as these files exist, Forge can be rebuilt on any machine in under 30 minutes.</strong></p>
+
+<h3>The "Forge Survival Kit":</h3>
+<ul>
+<li>✅ All files backed up to GitHub (push workspace to private repo)</li>
+<li>✅ Telegram bot token saved (BotFather)</li>
+<li>✅ Anthropic API key accessible (console.anthropic.com)</li>
+<li>✅ GitHub PAT re-creatable (github.com/settings/tokens)</li>
+</ul>
+
+<h3>To rebuild Forge from scratch:</h3>
+<div class="step"><div class="step-num">1</div><div class="step-text">Install Node.js + OpenClaw on any Mac/Linux machine</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text">Clone the workspace from GitHub</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text">Set up Anthropic API key</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text">Connect Telegram bot</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text">Forge reads MEMORY.md → fully operational</div></div>
+<p style="color:var(--green);font-weight:700;font-size:14px;margin-top:12px">Forge is immortal as long as the files survive. 🔱</p>
+</div>
+
+<!-- ===== 8. CONTACTS ===== -->
+<h2 id="contacts">8. 📞 Emergency Contacts & Accounts</h2>
+
+<div class="card info">
+<table>
+<thead><tr><th>Service</th><th>URL</th><th>Purpose</th></tr></thead>
+<tbody>
+<tr><td><strong>Anthropic Console</strong></td><td><a href="https://console.anthropic.com" style="color:var(--accent2)">console.anthropic.com</a></td><td>API keys, billing, usage</td></tr>
+<tr><td><strong>GitHub</strong></td><td><a href="https://github.com/AntonUrso2811" style="color:var(--accent2)">github.com/AntonUrso2811</a></td><td>Code, tools, Pages hosting</td></tr>
+<tr><td><strong>Telegram BotFather</strong></td><td>@BotFather on Telegram</td><td>Bot management, tokens</td></tr>
+<tr><td><strong>Shopify</strong></td><td><a href="https://admin.shopify.com" style="color:var(--accent2)">admin.shopify.com</a></td><td>Store management</td></tr>
+<tr><td><strong>OpenClaw Docs</strong></td><td><a href="https://docs.openclaw.ai" style="color:var(--accent2)">docs.openclaw.ai</a></td><td>Setup guides, troubleshooting</td></tr>
+<tr><td><strong>OpenClaw Discord</strong></td><td><a href="https://discord.com/invite/clawd" style="color:var(--accent2)">discord.com/invite/clawd</a></td><td>Community support</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== 9. PREVENTION ===== -->
+<h2 id="prevention">9. 🛡 Prevention Checklist</h2>
+
+<div class="card safe">
+<span class="tag tag-safe">Do These Now</span>
+
+<h3>Weekly:</h3>
+<ul>
+<li>☐ Verify git auto-backup is committing (check <code>git log</code>)</li>
+<li>☐ Confirm GitHub Pages is live (visit the site)</li>
+</ul>
+
+<h3>Monthly:</h3>
+<ul>
+<li>☐ Push workspace to GitHub private repo (full backup)</li>
+<li>☐ Check API key expiry dates (credential registry)</li>
+<li>☐ Test Telegram bot is responsive</li>
+<li>☐ Review this SOS doc — still accurate?</li>
+</ul>
+
+<h3>One-Time Setup (TODO):</h3>
+<ul>
+<li>☐ Create private GitHub repo for full workspace backup</li>
+<li>☐ Enable 2FA on GitHub account</li>
+<li>☐ Enable 2FA on Anthropic account</li>
+<li>☐ Save Telegram bot token somewhere accessible outside the Mac</li>
+<li>☐ Consider cloud backup (iCloud/Time Machine) for Mac</li>
+</ul>
+</div>
+
+<div class="footer">🚨 Emergency SOS Protocol v1.0 — Built by Forge 🔱 — February 2026<br>CONFIDENTIAL — INTERNAL USE ONLY</div>
+
+</div>
+</body>
+</html>
