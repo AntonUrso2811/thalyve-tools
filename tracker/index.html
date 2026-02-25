@@ -244,6 +244,10 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
           <div class="fi"><label>Status</label>
             <select id="f-status"><option value="new">🔵 New</option><option value="research">🟣 Researching</option><option value="source">🟡 Sourcing</option><option value="test">🟢 Testing</option><option value="kill">🔴 Killed</option><option value="scale">🩵 Scaling</option></select>
           </div>
+          <div class="fi"><label>Discovery Method</label>
+            <select id="f-method"><option value="gethookd-trending">GetHookd Trending</option><option value="gethookd-niche">GetHookd Niche Filter</option><option value="fb-adlibrary">FB Ad Library Search</option><option value="competitor-analysis">Competitor Analysis</option><option value="coach-rec">Coach Recommendation</option><option value="market-scan">Market/Trend Scan</option><option value="manual">Manual Find</option><option value="other">Other</option></select>
+          </div>
+          <div class="fi"><label>Filters/Criteria Used</label><input id="f-filters" placeholder="e.g. Health niche, 7+ days, 4+ stars"></div>
         </div>
         <div class="scoring-bar">
           <div class="lbl">🎯 Scoring Matrix (1–10 each)</div>
@@ -377,6 +381,7 @@ function addProduct(){
     date:new Date().toISOString().split('T')[0],
     name:n,what:v('f-what'),notes:v('f-notes'),
     competitor:v('f-competitor'),competitorSite:v('f-site'),
+    discoveryMethod:v('f-method'),filtersUsed:v('f-filters'),
     gethookdOriginalAd:v('f-gethookd'),creativeSwipes:[],
     mutualLink:v('f-mutual'),cogs,adLink:v('f-adlink'),site:v('f-site'),
     traffic,ads:parseInt(v('f-ads'))||0,
@@ -392,7 +397,7 @@ function addProduct(){
 function v(id){return document.getElementById(id).value.trim()}
 function num(id){return parseInt(document.getElementById(id).value)||0}
 function clearForm(){
-  ['f-name','f-what','f-notes','f-mutual','f-cogs','f-adlink','f-site','f-traffic','f-ads','f-price','f-target','f-competitor','f-gethookd',
+  ['f-name','f-what','f-notes','f-mutual','f-cogs','f-adlink','f-site','f-traffic','f-ads','f-price','f-target','f-competitor','f-gethookd','f-filters',
    'sc-ad','sc-mkt','sc-comp','sc-fmt','sc-mgn','sc-aud','sc-drp'].forEach(id=>{document.getElementById(id).value=''});
   document.getElementById('f-content').value='';
   document.getElementById('f-mrr').value='No';

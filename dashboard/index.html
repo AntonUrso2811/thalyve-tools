@@ -79,6 +79,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
     <div class="tab" onclick="nav('brand',this)">🏷 THALYVE™</div>
     <div class="tab" onclick="nav('expenses',this)">💰 Company Expenses</div>
     <div class="tab" onclick="nav('log',this)">📅 Daily Log</div>
+    <div class="tab" onclick="nav('team',this)">👥 Team</div>
     <div class="tab" onclick="nav('kpi',this)">🎯 KPI Targets</div>
     <div class="tab" onclick="nav('roadmap',this)">🗺 Roadmap</div>
     <div class="tab" onclick="nav('tasklog',this)">⚡ Task Log</div>
@@ -218,6 +219,25 @@ tr:hover td{background:rgba(139,92,246,.03)}
       <table>
         <thead><tr><th>Date</th><th>Brand</th><th>Product</th><th>Orders</th><th>Revenue</th><th>Ad Spend</th><th>COGS</th><th>Profit</th><th>ROAS</th><th></th></tr></thead>
         <tbody id="d-table"><tr><td colspan="10" class="empty">No entries</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== TEAM ===== -->
+  <div class="page" id="p-team">
+    <div class="hl hl-p" style="margin-bottom:16px">
+      <h3 style="font-size:14px;margin-bottom:4px">👥 Team Roster</h3>
+      <p style="font-size:11px;color:var(--muted)">Current team + planned hires. Updates automatically when Forge onboards new agents.</p>
+    </div>
+    <div class="grid g2" style="margin-bottom:16px">
+      <div class="card" style="text-align:center"><div class="sl">Active Members</div><div class="sv green" id="tm-active">0</div></div>
+      <div class="card" style="text-align:center"><div class="sl">Planned Hires</div><div class="sv amber" id="tm-planned">0</div></div>
+    </div>
+    <div class="card">
+      <h2>🏢 Organisation</h2>
+      <table>
+        <thead><tr><th>Status</th><th>Name</th><th>Role</th><th>Type</th><th>Since</th><th>Responsibilities</th></tr></thead>
+        <tbody id="tm-table"><tr><td colspan="6" class="empty">Loading...</td></tr></tbody>
       </table>
     </div>
   </div>
@@ -494,7 +514,7 @@ async function loadFromJSON(){
     document.getElementById('s-margin').value=D.company.targetNetMargin;
     document.getElementById('lastSync').textContent='Synced '+ new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
     _jsonData=j;
-    renderKPI(j);renderRoadmap(j);renderTaskLog(j);
+    renderTeam(j);renderKPI(j);renderRoadmap(j);renderTaskLog(j);
     render();toast('Synced from Forge');
   }catch(e){}
 }
@@ -517,6 +537,30 @@ function dl(n,c,t){const b=new Blob([c],{type:t});const a=document.createElement
 function toast(m,e){const t=document.getElementById('toast');t.textContent=m;t.style.background=e?'var(--red)':'var(--green)';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
 // ===== KPI / ROADMAP / TASKLOG RENDER =====
+function renderTeam(data){
+  if(!data||!data.team)return;
+  const team=data.team;
+  const active=team.filter(t=>t.status==='active');
+  const planned=team.filter(t=>t.status==='planned');
+  document.getElementById('tm-active').textContent=active.length;
+  document.getElementById('tm-planned').textContent=planned.length;
+  const tb=document.getElementById('tm-table');
+  tb.innerHTML=team.map(t=>{
+    const icon=t.status==='active'?'🟢':t.status==='planned'?'🟡':'🔴';
+    const statusColor=t.status==='active'?'green':t.status==='planned'?'amber':'red';
+    const typeIcon=t.type==='human'?'👤':'🤖';
+    const since=t.since?new Date(t.since).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):'—';
+    return`<tr>
+      <td><span class="${statusColor}" style="font-weight:700">${icon} ${t.status.charAt(0).toUpperCase()+t.status.slice(1)}</span></td>
+      <td style="font-weight:700">${t.name}</td>
+      <td style="font-size:11px">${t.role}</td>
+      <td>${typeIcon} ${t.type==='human'?'Human':'AI Agent'}</td>
+      <td style="font-size:10px">${since}</td>
+      <td style="font-size:10px;max-width:250px;white-space:normal;color:var(--muted)">${t.responsibilities}${t.notes?'<br><em style="color:var(--amber);font-size:9px">'+t.notes+'</em>':''}</td>
+    </tr>`;
+  }).join('');
+}
+
 function renderKPI(data){
   if(!data||!data.kpiTargets)return;
   const kt=data.kpiTargets;

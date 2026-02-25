@@ -111,5 +111,13 @@
     { "id": "tl-004", "task": "Tracker v4.0 — competitors, creative library, traffic context", "started": "2026-02-25T08:15:00Z", "finished": null, "status": "in-progress", "owner": "Forge" },
     { "id": "tl-005", "task": "Command Centre v3.0 — KPIs, roadmap, task log, clean expenses", "started": "2026-02-25T08:15:00Z", "finished": null, "status": "in-progress", "owner": "Forge" }
   ],
+  "team": [
+    { "id": "anton", "name": "Anton", "role": "CEO / Founder", "type": "human", "status": "active", "since": "2026-02-22", "responsibilities": "Strategy, final decisions, Mutual sourcing, ad account ownership, financial oversight", "notes": "20-30 min/week operational input. Guides direction, Forge executes." },
+    { "id": "forge", "name": "Forge 🔱", "role": "Master Agent — COO", "type": "ai-agent", "status": "active", "since": "2026-02-22", "responsibilities": "Operations, product research, tool building, SOP creation, sub-agent hiring, daily briefings, automation", "notes": "Runs 24/7. Autonomous execution with full hiring authority." },
+    { "id": "hawk", "name": "Hawk", "role": "Market Intelligence Agent", "type": "ai-agent", "status": "planned", "since": null, "responsibilities": "Google Trends analysis, market research, trending product identification, competitive intelligence", "notes": "Phase 2 hire (Week 2-3). Trigger: when research volume exceeds Forge's capacity." },
+    { "id": "scout", "name": "Scout", "role": "Ad Creative Research Agent", "type": "ai-agent", "status": "planned", "since": null, "responsibilities": "GetHookd ad analysis, creative swipe library, ad script writing, creative angle identification", "notes": "Phase 2 hire (Week 2-3). Trigger: when we have 5+ validated products needing creative." },
+    { "id": "quill", "name": "Quill", "role": "Copywriting & Content Agent", "type": "ai-agent", "status": "planned", "since": null, "responsibilities": "Ad copy, product descriptions, email sequences, landing page copy", "notes": "Phase 3 hire (Week 4-6). Trigger: first product ready for ad launch." },
+    { "id": "director", "name": "Director", "role": "Video Ads Production Agent", "type": "ai-agent", "status": "planned", "since": null, "responsibilities": "Video ad scripting, UGC brief creation, creative production pipeline", "notes": "Phase 3 hire (Week 4-6). Trigger: when ad creative pipeline needs scaling." }
+  ],
   "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 — MUST downgrade. Target: £10k net/month. All expenses wiped clean for v3.0 fresh start."
 }
