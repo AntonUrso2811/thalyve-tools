@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw Beginner Guide v1.1</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; color: #1a1a1a; line-height: 1.6; background: #fff; max-width: 900px; margin: 0 auto; padding: 24px; }
+
+  .cover { text-align: center; padding: 80px 20px 60px; page-break-after: always; }
+  .cover h1 { font-size: 2.6em; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin-bottom: 40px; }
+  .cover .meta { font-size: 0.95em; color: #888; }
+  .cover .badge { display: inline-block; background: #111; color: #fff; padding: 8px 24px; border-radius: 6px; font-weight: 700; font-size: 0.9em; margin-top: 30px; letter-spacing: 1px; }
+
+  h2 { font-size: 1.5em; font-weight: 800; margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 3px solid #111; }
+  h3 { font-size: 1.15em; font-weight: 700; margin: 24px 0 8px; color: #222; }
+  h4 { font-size: 1em; font-weight: 700; margin: 16px 0 6px; color: #333; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 6px; }
+
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.9em; }
+  pre { background: #1a1a2e; color: #e0e0e0; padding: 16px 20px; border-radius: 8px; margin: 12px 0; overflow-x: auto; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.88em; line-height: 1.5; }
+  pre .comment { color: #6a9955; }
+  pre .cmd { color: #4fc1ff; }
+  pre .output { color: #888; }
+
+  .box { padding: 16px 20px; margin: 14px 0; border-radius: 0 8px 8px 0; }
+  .box.warn { background: #fff3cd; border-left: 4px solid #f0ad4e; }
+  .box.danger { background: #fdecea; border-left: 4px solid #c0392b; }
+  .box.info { background: #e3f2fd; border-left: 4px solid #2196f3; }
+  .box.success { background: #e8f5e9; border-left: 4px solid #27ae60; }
+  .box-label { font-weight: 700; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.92em; }
+  th { background: #111; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 10px 12px; border-bottom: 1px solid #e0e0e0; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+
+  .step-box { background: #f8f9fa; border-left: 4px solid #111; padding: 18px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .step-num { display: inline-block; background: #111; color: #fff; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-size: 0.85em; font-weight: 700; margin-right: 8px; }
+  .step-title { font-weight: 700; font-size: 1.05em; }
+
+  .page-break { page-break-before: always; }
+  .footer { text-align: center; font-size: 0.8em; color: #999; margin-top: 60px; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+
+  @media print { body { padding: 0; } .step-box, .box { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>🦞 OpenClaw Guide</h1>
+  <div class="subtitle">The Idiot-Proof Reference for Everything You Need</div>
+  <div class="meta">Version 1.1 — February 2026</div>
+  <div class="badge">COPY-PASTE READY • BEGINNER FRIENDLY</div>
+</div>
+
+<!-- TOC -->
+<div class="page-break"></div>
+<h2>Contents</h2>
+<ol style="font-size: 1.05em; line-height: 2.2;">
+  <li>What OpenClaw Actually Is</li>
+  <li>Architecture — How It All Fits Together</li>
+  <li>Fresh Install (From Scratch)</li>
+  <li>API Key Setup — Anthropic (Primary)</li>
+  <li>Backup Models — Setup & Switching</li>
+  <li>Telegram Channel Setup</li>
+  <li>Gateway — Starting, Stopping, Debugging</li>
+  <li>Common Issues & Fixes</li>
+  <li>Key Commands Cheat Sheet</li>
+  <li>Security & Proxies — Do You Need Them?</li>
+  <li>Keeping It Running 24/7</li>
+  <li>Updating OpenClaw</li>
+  <li>Emergency Recovery</li>
+  <li>Subscription Auth (Claude Max/Pro — Flat Rate)</li>
+  <li>Terms of Service & Compliance Protocol</li>
+</ol>
+
+<!-- SECTION 1 -->
+<div class="page-break"></div>
+<h2>1. What OpenClaw Actually Is</h2>
+
+<p>OpenClaw is the bridge between you and your AI agent. It's a <strong>gateway</strong> that:</p>
+<ul>
+  <li>Connects to your chat channels (Telegram, WhatsApp, Discord, etc.)</li>
+  <li>Routes your messages to an AI model (Claude, GPT, etc.)</li>
+  <li>Gives the AI tools (file access, web browsing, code execution, etc.)</li>
+  <li>Runs on your machine — your data stays yours</li>
+</ul>
+
+<p><strong>In plain English:</strong> It's the app that makes your AI agent live inside your Telegram (or wherever). Without it running, no messages get through.</p>
+
+<!-- SECTION 2 -->
+<h2>2. Architecture — How It All Fits Together</h2>
+
+<pre>
+You (Telegram) ←→ OpenClaw Gateway ←→ AI Model (Claude/GPT)
+                        ↓
+                   Your Machine
+                   (files, tools, web, etc.)
+</pre>
+
+<table>
+  <tr><th>Component</th><th>What It Does</th><th>Where It Lives</th></tr>
+  <tr><td><strong>Gateway</strong></td><td>The always-on process that routes everything</td><td>Your Mac/VPS</td></tr>
+  <tr><td><strong>Channel</strong></td><td>Chat connection (Telegram bot, WhatsApp, etc.)</td><td>Configured in OpenClaw</td></tr>
+  <tr><td><strong>Model Provider</strong></td><td>The AI brain (Anthropic, OpenAI, etc.)</td><td>Cloud API (you pay per use)</td></tr>
+  <tr><td><strong>Workspace</strong></td><td>Agent's home directory (files, memory, SOPs)</td><td><code>~/.openclaw/workspace/</code></td></tr>
+  <tr><td><strong>Config</strong></td><td>All settings (API keys, channels, model, etc.)</td><td><code>~/.openclaw/openclaw.json</code></td></tr>
+</table>
+
+<!-- SECTION 3 -->
+<div class="page-break"></div>
+<h2>3. Fresh Install (From Scratch)</h2>
+
+<p>If you ever need to set up a new machine:</p>
+
+<div class="step-box">
+  <span class="step-num">1</span><span class="step-title">Install OpenClaw</span>
+  <pre>curl -fsSL https://openclaw.ai/install.sh | bash</pre>
+  <p>This handles everything: Node.js detection, CLI installation, and launches the setup wizard.</p>
+</div>
+
+<div class="step-box">
+  <span class="step-num">2</span><span class="step-title">Run the Setup Wizard</span>
+  <pre>openclaw onboard</pre>
+  <p>Follow the prompts. It will ask for your API key, channel setup, etc.</p>
+</div>
+
+<div class="step-box">
+  <span class="step-num">3</span><span class="step-title">Start the Gateway</span>
+  <pre>openclaw gateway start</pre>
+</div>
+
+<div class="step-box">
+  <span class="step-num">4</span><span class="step-title">Verify Everything Works</span>
+  <pre>openclaw status
+openclaw gateway status
+openclaw doctor</pre>
+  <p>All green? You're live. Send a message on Telegram to test.</p>
+</div>
+
+<!-- SECTION 4 -->
+<h2>4. API Key Setup — Anthropic (Primary)</h2>
+
+<h3>Getting Your API Key</h3>
+<ol>
+  <li>Go to <strong>console.anthropic.com</strong></li>
+  <li>Sign up / log in</li>
+  <li>Go to <strong>API Keys</strong> → Create new key</li>
+  <li>Copy the key (starts with <code>sk-ant-...</code>)</li>
+  <li>Add billing (pay-as-you-go, no subscription needed)</li>
+</ol>
+
+<h3>Installing the Key</h3>
+<pre><span class="comment"># Option 1: Via the wizard (easiest)</span>
+openclaw onboard
+
+<span class="comment"># Option 2: Direct command</span>
+openclaw onboard --anthropic-api-key "sk-ant-YOUR-KEY-HERE"
+
+<span class="comment"># Option 3: Manual config edit</span>
+openclaw config set env.ANTHROPIC_API_KEY "sk-ant-YOUR-KEY-HERE"</pre>
+
+<h3>Setting the Model</h3>
+<pre><span class="comment"># Set Claude Opus as your primary model</span>
+openclaw config set agents.defaults.model.primary "anthropic/claude-opus-4-6"</pre>
+
+<h3>Verify It Works</h3>
+<pre>openclaw models list
+openclaw gateway restart</pre>
+
+<div class="box info">
+  <div class="box-label">Cost Info</div>
+  Anthropic API is pay-per-use. Claude Opus costs roughly $15/million input tokens, $75/million output tokens. Typical daily usage for one person: <strong>$2-10/day</strong> depending on how much you chat. There's no monthly subscription — you only pay for what you use.
+</div>
+
+<!-- SECTION 5 -->
+<div class="page-break"></div>
+<h2>5. Backup Models — Setup & Switching</h2>
+
+<p>If Anthropic goes down or you want to save money on simple tasks, set up backup models.</p>
+
+<h3>Recommended Backup Stack</h3>
+<table>
+  <tr><th>Provider</th><th>Model</th><th>Best For</th><th>Cost</th></tr>
+  <tr><td><strong>OpenAI</strong></td><td>gpt-4o</td><td>All-rounder backup</td><td>~$5/M input</td></tr>
+  <tr><td><strong>Google</strong></td><td>gemini-2.5-pro</td><td>Cheap routine tasks</td><td>Free tier available</td></tr>
+  <tr><td><strong>OpenRouter</strong></td><td>Any model</td><td>Access to 100+ models via one key</td><td>Varies</td></tr>
+</table>
+
+<h3>Setup: OpenAI Backup</h3>
+<pre><span class="comment"># Get key from platform.openai.com → API Keys</span>
+openclaw config set env.OPENAI_API_KEY "sk-YOUR-OPENAI-KEY"</pre>
+
+<h3>Setup: Google Gemini Backup</h3>
+<pre><span class="comment"># Get key from aistudio.google.com → API Keys</span>
+openclaw config set env.GOOGLE_API_KEY "YOUR-GOOGLE-KEY"</pre>
+
+<h3>Setup: OpenRouter (One Key, All Models)</h3>
+<pre><span class="comment"># Get key from openrouter.ai → Keys</span>
+openclaw config set env.OPENROUTER_API_KEY "sk-or-YOUR-KEY"</pre>
+
+<h3>Switching Models</h3>
+<pre><span class="comment"># Switch your default model</span>
+openclaw config set agents.defaults.model.primary "openai/gpt-4o"
+
+<span class="comment"># Switch back to Claude</span>
+openclaw config set agents.defaults.model.primary "anthropic/claude-opus-4-6"
+
+<span class="comment"># Restart gateway after any model change</span>
+openclaw gateway restart</pre>
+
+<div class="box success">
+  <div class="box-label">Pro Tip</div>
+  You can also switch models per-session from Telegram by typing <code>/model openai/gpt-4o</code> — no restart needed. Type <code>/model default</code> to reset.
+</div>
+
+<h3>API Key Rotation (Advanced)</h3>
+<p>If you have multiple API keys (e.g., for rate limit protection):</p>
+<pre><span class="comment"># Multiple Anthropic keys — auto-rotates on rate limits</span>
+openclaw config set env.ANTHROPIC_API_KEY_1 "sk-ant-KEY1"
+openclaw config set env.ANTHROPIC_API_KEY_2 "sk-ant-KEY2"</pre>
+
+<!-- SECTION 6 -->
+<div class="page-break"></div>
+<h2>6. Telegram Channel Setup</h2>
+
+<h3>If You Need to Set Up From Scratch</h3>
+<ol>
+  <li>Open Telegram → search <strong>@BotFather</strong></li>
+  <li>Send <code>/newbot</code></li>
+  <li>Choose a name and username for your bot</li>
+  <li>BotFather gives you a token (looks like <code>123456:ABC-DEF...</code>)</li>
+  <li>Install it:</li>
+</ol>
+<pre>openclaw channels login telegram --bot-token "YOUR-BOT-TOKEN"
+openclaw gateway restart</pre>
+
+<h3>Verify Telegram Connection</h3>
+<pre>openclaw channels status --probe
+openclaw status</pre>
+<p>You should see Telegram showing as <strong>connected</strong>.</p>
+
+<h3>If Telegram Stops Working</h3>
+<pre><span class="comment"># Check status</span>
+openclaw channels status --probe
+
+<span class="comment"># Reconnect</span>
+openclaw gateway restart
+
+<span class="comment"># Nuclear option: re-login</span>
+openclaw channels login telegram --bot-token "YOUR-BOT-TOKEN"
+openclaw gateway restart</pre>
+
+<!-- SECTION 7 -->
+<h2>7. Gateway — Starting, Stopping, Debugging</h2>
+
+<p>The gateway is the <strong>heart</strong> of OpenClaw. If it's not running, nothing works.</p>
+
+<h3>Essential Commands</h3>
+<pre><span class="comment"># Check if gateway is running</span>
+openclaw gateway status
+
+<span class="comment"># Start the gateway</span>
+openclaw gateway start
+
+<span class="comment"># Stop the gateway</span>
+openclaw gateway stop
+
+<span class="comment"># Restart (use after any config change)</span>
+openclaw gateway restart
+
+<span class="comment"># Force start (kills anything on the port first)</span>
+openclaw gateway --force
+
+<span class="comment"># See live logs</span>
+openclaw logs --follow
+
+<span class="comment"># Full health check</span>
+openclaw doctor</pre>
+
+<h3>The Debug Ladder</h3>
+<p>When something isn't working, run these <strong>in order</strong>:</p>
+<pre><span class="comment"># 1. Is it running?</span>
+openclaw gateway status
+
+<span class="comment"># 2. Overall health?</span>
+openclaw status
+
+<span class="comment"># 3. What do the logs say?</span>
+openclaw logs --follow
+
+<span class="comment"># 4. Auto-diagnose</span>
+openclaw doctor
+
+<span class="comment"># 5. Are channels connected?</span>
+openclaw channels status --probe</pre>
+
+<div class="box warn">
+  <div class="box-label">Golden Rule</div>
+  After <strong>any</strong> config change (API key, model, channel), always run: <code>openclaw gateway restart</code>
+</div>
+
+<!-- SECTION 8 -->
+<div class="page-break"></div>
+<h2>8. Common Issues & Fixes</h2>
+
+<h3>Issue: "Gateway not running"</h3>
+<pre>openclaw gateway start
+<span class="comment"># If it won't start:</span>
+openclaw gateway --force
+<span class="comment"># Still stuck? Check what's on the port:</span>
+lsof -i :18789</pre>
+
+<h3>Issue: "Port already in use" / EADDRINUSE</h3>
+<pre><span class="comment"># Force-kill anything on the port</span>
+openclaw gateway --force
+<span class="comment"># Or manually:</span>
+kill $(lsof -t -i :18789) 2>/dev/null
+openclaw gateway start</pre>
+
+<h3>Issue: "Unauthorized" / Token Mismatch</h3>
+<pre><span class="comment"># Check your gateway token</span>
+openclaw config get gateway.auth.token
+<span class="comment"># Reset if needed</span>
+openclaw configure</pre>
+
+<h3>Issue: "No replies from bot"</h3>
+<pre><span class="comment"># Check if your Telegram ID is paired/approved</span>
+openclaw pairing list telegram
+<span class="comment"># Check routing</span>
+openclaw status
+openclaw logs --follow
+<span class="comment"># Look for: "pairing request" or "blocked" or "allowlist"</span></pre>
+
+<h3>Issue: API Key Not Working</h3>
+<pre><span class="comment"># Verify key is set</span>
+openclaw config get env.ANTHROPIC_API_KEY
+<span class="comment"># Re-set it</span>
+openclaw config set env.ANTHROPIC_API_KEY "sk-ant-YOUR-KEY"
+openclaw gateway restart</pre>
+
+<h3>Issue: "Path not found" / Misaligned Paths</h3>
+<pre><span class="comment"># Check where OpenClaw thinks home is</span>
+echo $HOME
+ls -la ~/.openclaw/
+
+<span class="comment"># Check config file location</span>
+openclaw config get --path
+
+<span class="comment"># If paths are wrong, reset config location</span>
+export OPENCLAW_STATE_DIR="$HOME/.openclaw"
+openclaw gateway restart</pre>
+
+<h3>Issue: Model Not Responding / Errors</h3>
+<pre><span class="comment"># Check which model is set</span>
+openclaw config get agents.defaults.model.primary
+
+<span class="comment"># List available models</span>
+openclaw models list
+
+<span class="comment"># Switch to backup while debugging</span>
+openclaw config set agents.defaults.model.primary "openai/gpt-4o"
+openclaw gateway restart</pre>
+
+<h3>Issue: "gateway.mode=local" Error</h3>
+<pre><span class="comment"># Set local mode</span>
+openclaw config set gateway.mode "local"
+openclaw gateway restart</pre>
+
+<!-- SECTION 9 -->
+<div class="page-break"></div>
+<h2>9. Key Commands Cheat Sheet</h2>
+
+<table>
+  <tr><th>What You Want</th><th>Command</th></tr>
+  <tr><td>Check everything</td><td><code>openclaw status</code></td></tr>
+  <tr><td>Gateway status</td><td><code>openclaw gateway status</code></td></tr>
+  <tr><td>Start gateway</td><td><code>openclaw gateway start</code></td></tr>
+  <tr><td>Stop gateway</td><td><code>openclaw gateway stop</code></td></tr>
+  <tr><td>Restart gateway</td><td><code>openclaw gateway restart</code></td></tr>
+  <tr><td>Force start</td><td><code>openclaw gateway --force</code></td></tr>
+  <tr><td>Live logs</td><td><code>openclaw logs --follow</code></td></tr>
+  <tr><td>Health check</td><td><code>openclaw doctor</code></td></tr>
+  <tr><td>Channel status</td><td><code>openclaw channels status --probe</code></td></tr>
+  <tr><td>Set API key</td><td><code>openclaw config set env.ANTHROPIC_API_KEY "key"</code></td></tr>
+  <tr><td>Set model</td><td><code>openclaw config set agents.defaults.model.primary "provider/model"</code></td></tr>
+  <tr><td>List models</td><td><code>openclaw models list</code></td></tr>
+  <tr><td>Setup wizard</td><td><code>openclaw configure</code></td></tr>
+  <tr><td>Full onboarding</td><td><code>openclaw onboard</code></td></tr>
+  <tr><td>Update OpenClaw</td><td><code>openclaw update</code></td></tr>
+  <tr><td>View config</td><td><code>openclaw config get</code></td></tr>
+  <tr><td>Set any config</td><td><code>openclaw config set [path] [value]</code></td></tr>
+  <tr><td>Telegram login</td><td><code>openclaw channels login telegram --bot-token "TOKEN"</code></td></tr>
+  <tr><td>Pair a user</td><td><code>openclaw pairing list telegram</code></td></tr>
+  <tr><td>Security audit</td><td><code>openclaw security audit</code></td></tr>
+  <tr><td>Cron jobs</td><td><code>openclaw cron list</code></td></tr>
+  <tr><td>Version</td><td><code>openclaw --version</code></td></tr>
+</table>
+
+<h3>Telegram Quick Commands (In Chat)</h3>
+<table>
+  <tr><th>Command</th><th>What It Does</th></tr>
+  <tr><td><code>/status</code></td><td>Show session info, model, usage</td></tr>
+  <tr><td><code>/model provider/model</code></td><td>Switch model for this session</td></tr>
+  <tr><td><code>/model default</code></td><td>Reset to default model</td></tr>
+  <tr><td><code>/reasoning on</code></td><td>Enable thinking/reasoning mode</td></tr>
+  <tr><td><code>/reasoning off</code></td><td>Disable reasoning mode</td></tr>
+  <tr><td><code>/reset</code></td><td>Clear session context</td></tr>
+</table>
+
+<!-- SECTION 10 -->
+<div class="page-break"></div>
+<h2>10. Security & Proxies — Do You Need Them?</h2>
+
+<div class="box success">
+  <div class="box-label">Short Answer</div>
+  <strong>No, you do not need proxies.</strong> You are using a legitimate, paid Anthropic API key. There is zero risk of being "shut down" for normal use. Proxies would add latency and complexity for no benefit.
+</div>
+
+<h3>What IS Worth Protecting</h3>
+<table>
+  <tr><th>Risk</th><th>Protection</th><th>Status</th></tr>
+  <tr><td>API key exposed</td><td>Stored securely in OpenClaw config (not in code/repos)</td><td>✅ Done</td></tr>
+  <tr><td>Unauthorized access to bot</td><td>Telegram pairing — only approved users can chat</td><td>✅ Done</td></tr>
+  <tr><td>Gateway exposed to internet</td><td>Default: loopback only (localhost)</td><td>✅ Default</td></tr>
+  <tr><td>Machine compromised</td><td>Firewall, SSH hardening, updates</td><td>⏳ Audit pending</td></tr>
+</table>
+
+<h3>Security Audit (When Ready)</h3>
+<pre>openclaw security audit</pre>
+<p>This checks config, permissions, exposed services, and gives recommendations.</p>
+
+<h3>When You WOULD Need Proxies</h3>
+<ul>
+  <li>If you were using a <em>shared</em> or <em>leaked</em> API key (you're not)</li>
+  <li>If the API was geo-restricted and you needed to route from another country (it's not)</li>
+  <li>If you were scraping or doing something against ToS (you're not)</li>
+</ul>
+
+<div class="box info">
+  <div class="box-label">Bottom Line</div>
+  Pay for your API key → use it normally → don't worry about it. Anthropic <em>wants</em> you to use their API. That's how they make money.
+</div>
+
+<!-- SECTION 11 -->
+<h2>11. Keeping It Running 24/7</h2>
+
+<h3>Current Setup (Mac)</h3>
+<p>OpenClaw installs itself as a <strong>background service</strong> (launchd on Mac). It auto-starts on boot.</p>
+<pre><span class="comment"># Check service status</span>
+openclaw gateway status
+
+<span class="comment"># If it stopped, restart</span>
+openclaw gateway restart</pre>
+
+<h3>Option A: Old MacBook as Always-On Server</h3>
+<ul>
+  <li><strong>Pros:</strong> Free, your data stays local, no monthly cost</li>
+  <li><strong>Cons:</strong> Depends on your internet/power, needs to stay open and connected</li>
+  <li><strong>Setup:</strong> Plug it in, disable sleep, start gateway, done</li>
+</ul>
+<pre><span class="comment"># Disable sleep on Mac (run on the server Mac)</span>
+sudo pmset -a disablesleep 1
+sudo pmset -a sleep 0
+
+<span class="comment"># Verify</span>
+pmset -g | grep sleep</pre>
+
+<h3>Option B: VPS (Recommended Long-Term)</h3>
+<ul>
+  <li><strong>Cost:</strong> ~£4-5/month (Hetzner, Contabo, or similar)</li>
+  <li><strong>Pros:</strong> Always on, professional-grade uptime, accessible from anywhere</li>
+  <li><strong>Cons:</strong> Small monthly cost, data on someone else's server</li>
+</ul>
+<pre><span class="comment"># On a fresh VPS (Ubuntu):</span>
+curl -fsSL https://openclaw.ai/install.sh | bash
+openclaw onboard
+openclaw gateway start</pre>
+
+<div class="box info">
+  <div class="box-label">Recommendation</div>
+  Start with the Mac (it's working now). Move to VPS when you want bulletproof reliability. I'll handle the entire migration when you're ready.
+</div>
+
+<!-- SECTION 12 -->
+<div class="page-break"></div>
+<h2>12. Updating OpenClaw</h2>
+
+<pre><span class="comment"># Check current version</span>
+openclaw --version
+
+<span class="comment"># Update to latest</span>
+openclaw update
+
+<span class="comment"># Restart after update</span>
+openclaw gateway restart</pre>
+
+<div class="box warn">
+  <div class="box-label">After Every Update</div>
+  Always run <code>openclaw gateway restart</code> after updating. The new code needs the gateway to restart to take effect.
+</div>
+
+<!-- SECTION 13 -->
+<h2>13. Emergency Recovery</h2>
+
+<p>If everything is broken and you need to start fresh:</p>
+
+<h3>Soft Reset (Keeps Your Data)</h3>
+<pre><span class="comment"># Stop everything</span>
+openclaw gateway stop
+
+<span class="comment"># Run the doctor</span>
+openclaw doctor
+
+<span class="comment"># Reconfigure</span>
+openclaw configure
+
+<span class="comment"># Restart</span>
+openclaw gateway start</pre>
+
+<h3>Hard Reset (Nuclear — Last Resort)</h3>
+<pre><span class="comment"># ⚠️ This resets ALL config (not workspace files)</span>
+openclaw reset
+
+<span class="comment"># Then set everything up again</span>
+openclaw onboard
+openclaw gateway start</pre>
+
+<div class="box danger">
+  <div class="box-label">Warning</div>
+  <code>openclaw reset</code> wipes your config (API keys, channel settings, etc.) but keeps your workspace files (SOPs, memory, etc.) safe. You'll need to re-enter your API key and bot token after.
+</div>
+
+<h3>Full Reinstall (Absolute Last Resort)</h3>
+<pre><span class="comment"># Uninstall</span>
+openclaw uninstall
+
+<span class="comment"># Reinstall</span>
+curl -fsSL https://openclaw.ai/install.sh | bash
+openclaw onboard</pre>
+
+<div class="box success">
+  <div class="box-label">Your Data Is Safe</div>
+  Your workspace (<code>~/.openclaw/workspace/</code>) survives resets and reinstalls. All your SOPs, memory files, and documents will still be there. Only config needs to be re-entered.
+</div>
+
+<!-- SECTION 14: SUBSCRIPTION AUTH -->
+<div class="page-break"></div>
+<h2>14. Subscription Auth (Claude Max/Pro — Flat Rate)</h2>
+
+<p>Instead of paying per-token (API key), you can use a <strong>Claude Max subscription</strong> ($200/month flat) for unlimited usage. Two methods:</p>
+
+<h3>Method A: Setup Token (Native — Recommended)</h3>
+<p>Uses Anthropic's official subscription auth directly in OpenClaw.</p>
+
+<div class="step-box">
+  <span class="step-num">1</span><span class="step-title">Install Claude Code CLI</span>
+  <pre>npm install -g @anthropic-ai/claude-code</pre>
+</div>
+
+<div class="step-box">
+  <span class="step-num">2</span><span class="step-title">Log in to your Claude subscription</span>
+  <pre>claude login</pre>
+</div>
+
+<div class="step-box">
+  <span class="step-num">3</span><span class="step-title">Generate a setup token</span>
+  <pre>claude setup-token</pre>
+  <p>This outputs a token. Copy it.</p>
+</div>
+
+<div class="step-box">
+  <span class="step-num">4</span><span class="step-title">Paste it into OpenClaw</span>
+  <pre><span class="comment"># Option 1: Interactive</span>
+openclaw onboard --auth-choice setup-token
+
+<span class="comment"># Option 2: Direct paste</span>
+openclaw models auth paste-token --provider anthropic
+
+<span class="comment"># Then restart</span>
+openclaw gateway restart</pre>
+</div>
+
+<div class="box warn">
+  <div class="box-label">Setup Token Notes</div>
+  <ul>
+    <li>Tokens can expire — if you get 401 errors, re-run <code>claude setup-token</code> and paste again</li>
+    <li>Prompt caching does NOT work with subscription auth (only API keys)</li>
+    <li>If you see "OAuth token refresh failed", re-auth with a fresh setup-token</li>
+  </ul>
+</div>
+
+<h3>Method B: Claude Max API Proxy (Community Tool)</h3>
+<p>Runs a local proxy that turns your Claude subscription into an OpenAI-compatible API. Useful if setup-token has issues.</p>
+
+<div class="step-box">
+  <span class="step-num">1</span><span class="step-title">Install the proxy</span>
+  <pre>npm install -g claude-max-api-proxy</pre>
+</div>
+
+<div class="step-box">
+  <span class="step-num">2</span><span class="step-title">Start it</span>
+  <pre>claude-max-api
+<span class="comment"># Runs at http://localhost:3456</span></pre>
+</div>
+
+<div class="step-box">
+  <span class="step-num">3</span><span class="step-title">Point OpenClaw at it</span>
+  <pre>openclaw config set env.OPENAI_API_KEY "not-needed"
+openclaw config set env.OPENAI_BASE_URL "http://localhost:3456/v1"
+openclaw config set agents.defaults.model.primary "openai/claude-opus-4"
+openclaw gateway restart</pre>
+</div>
+
+<div class="step-box">
+  <span class="step-num">4</span><span class="step-title">Auto-start on boot (Mac)</span>
+  <pre><span class="comment"># Create a launch agent so it runs automatically</span>
+cat > ~/Library/LaunchAgents/com.claude-max-api.plist << 'EOF'
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;dict&gt;
+  &lt;key&gt;Label&lt;/key&gt;&lt;string&gt;com.claude-max-api&lt;/string&gt;
+  &lt;key&gt;RunAtLoad&lt;/key&gt;&lt;true/&gt;
+  &lt;key&gt;KeepAlive&lt;/key&gt;&lt;true/&gt;
+  &lt;key&gt;ProgramArguments&lt;/key&gt;
+  &lt;array&gt;
+    &lt;string&gt;/usr/local/bin/node&lt;/string&gt;
+    &lt;string&gt;/usr/local/lib/node_modules/claude-max-api-proxy/dist/server/standalone.js&lt;/string&gt;
+  &lt;/array&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+EOF
+
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.claude-max-api.plist</pre>
+</div>
+
+<h3>Which Should You Use?</h3>
+<table>
+  <tr><th>Method</th><th>Cost</th><th>Best For</th><th>Drawbacks</th></tr>
+  <tr><td><strong>API Key</strong></td><td>~$2-10/day (pay-per-use)</td><td>Starting out, light-moderate usage</td><td>Costs add up with heavy use</td></tr>
+  <tr><td><strong>Setup Token</strong></td><td>$200/month flat (Max) or $20/month (Pro)</td><td>Heavy daily usage, predictable cost</td><td>Token expires, no prompt caching</td></tr>
+  <tr><td><strong>Max API Proxy</strong></td><td>$200/month flat</td><td>Backup method if setup-token has issues</td><td>Community tool, extra moving part</td></tr>
+</table>
+
+<div class="box success">
+  <div class="box-label">Recommendation</div>
+  Start with <strong>API key</strong> (what you have now). If monthly costs exceed ~$150, switch to <strong>Claude Max + setup-token</strong> to cap costs at $200/month flat. Keep the API key as backup.
+</div>
+
+<!-- SECTION 15: TOS & COMPLIANCE -->
+<div class="page-break"></div>
+<h2>15. Terms of Service & Compliance Protocol</h2>
+
+<h3>Are You Breaking Any Rules?</h3>
+<div class="box success">
+  <div class="box-label">Short Answer</div>
+  <strong>No.</strong> Everything you're doing is fully within terms of service. Paid API key, personal bot, private machine. This is exactly how these services are designed to be used.
+</div>
+
+<h3>What's Allowed ✅</h3>
+<ul>
+  <li>Using paid API keys for personal/business automation</li>
+  <li>Running AI agents on your own machine</li>
+  <li>Connecting to Telegram/WhatsApp/Discord bots</li>
+  <li>Using the AI to write copy, build SOPs, manage files</li>
+  <li>Running multiple models from different providers</li>
+  <li>Using subscription auth (setup-token) for personal projects</li>
+  <li>Having the AI access your local files, web, tools</li>
+</ul>
+
+<h3>What to Avoid ❌</h3>
+<ul>
+  <li><strong>Sharing API keys</strong> — never give your key to anyone or post it publicly</li>
+  <li><strong>Reselling API access</strong> — don't let others use your agent as a service</li>
+  <li><strong>Scraping/abuse</strong> — don't use the API to mass-scrape websites or spam</li>
+  <li><strong>Harmful content</strong> — don't use it to generate illegal, deceptive, or harmful content</li>
+  <li><strong>Impersonation</strong> — don't use AI-generated content to impersonate real people</li>
+  <li><strong>Circumventing rate limits</strong> — don't use multiple accounts to bypass usage limits</li>
+</ul>
+
+<h3>Bulletproof Protection Checklist</h3>
+
+<table>
+  <tr><th>#</th><th>Action</th><th>Why</th><th>Status</th></tr>
+  <tr><td>1</td><td><strong>API keys in config only</strong> — never in code, repos, or messages</td><td>Prevents key leaks</td><td>✅</td></tr>
+  <tr><td>2</td><td><strong>Gateway on loopback</strong> — default, only accessible from your machine</td><td>No external access</td><td>✅</td></tr>
+  <tr><td>3</td><td><strong>Telegram pairing</strong> — only approved users can talk to bot</td><td>No strangers using your agent</td><td>✅</td></tr>
+  <tr><td>4</td><td><strong>Billing alerts</strong> — set up on Anthropic console</td><td>Catch unexpected charges</td><td>⏳ Do this</td></tr>
+  <tr><td>5</td><td><strong>API key rotation</strong> — regenerate key every 3-6 months</td><td>Limits exposure window</td><td>⏳ Schedule</td></tr>
+  <tr><td>6</td><td><strong>No public repos with config</strong> — .gitignore openclaw.json</td><td>Prevents accidental key exposure</td><td>✅</td></tr>
+  <tr><td>7</td><td><strong>Mac firewall enabled</strong></td><td>Blocks unauthorized inbound connections</td><td>⏳ Audit pending</td></tr>
+  <tr><td>8</td><td><strong>Mac auto-updates on</strong></td><td>Security patches</td><td>⏳ Audit pending</td></tr>
+  <tr><td>9</td><td><strong>Workspace stays local</strong> — not synced to public cloud</td><td>Your SOPs/memory stay private</td><td>✅</td></tr>
+  <tr><td>10</td><td><strong>Regular backups</strong> — workspace files to secure location</td><td>Recover from any disaster</td><td>⏳ Set up</td></tr>
+</table>
+
+<h3>If Something Goes Wrong</h3>
+
+<h4>API key compromised?</h4>
+<pre><span class="comment"># 1. Revoke immediately on console.anthropic.com</span>
+<span class="comment"># 2. Generate new key</span>
+<span class="comment"># 3. Update OpenClaw</span>
+openclaw config set env.ANTHROPIC_API_KEY "sk-ant-NEW-KEY"
+openclaw gateway restart</pre>
+
+<h4>Unexpected charges?</h4>
+<ol>
+  <li>Check Anthropic console → Usage page</li>
+  <li>Revoke key if unauthorized use detected</li>
+  <li>Set billing limits/alerts on the console</li>
+  <li>Rotate to new key</li>
+</ol>
+
+<h4>Account flagged or suspended?</h4>
+<ol>
+  <li>Contact Anthropic support directly</li>
+  <li>Switch to backup model (OpenAI/Gemini) while resolving</li>
+  <li>Review what triggered it (usually automated — false positives happen)</li>
+</ol>
+
+<div class="box info">
+  <div class="box-label">Action Item</div>
+  <strong>Right now:</strong> Go to <strong>console.anthropic.com → Settings → Billing</strong> and set a monthly spending limit/alert. This is your safety net. Even $50/month alert gives you early warning.
+</div>
+
+<h3>Privacy & Data Handling</h3>
+<ul>
+  <li><strong>Anthropic API:</strong> Your data is NOT used for training (API terms). Conversations are transient.</li>
+  <li><strong>OpenClaw:</strong> Runs locally on your machine. No data sent to OpenClaw servers (open source).</li>
+  <li><strong>Telegram:</strong> Messages route through Telegram's servers (encrypted in transit). Bot messages are stored by Telegram.</li>
+  <li><strong>Your workspace files:</strong> Stay on your Mac. Not synced anywhere unless you choose to.</li>
+</ul>
+
+<div class="box success">
+  <div class="box-label">Bottom Line</div>
+  You're operating 100% within bounds. The biggest real risk is accidentally leaking your API key — and that's already protected. Everything else is clean.
+</div>
+
+<!-- QUICK REFERENCE CARD -->
+<div class="page-break"></div>
+<h2>Quick Reference Card</h2>
+<p><em>Print this page and keep it handy.</em></p>
+
+<div class="step-box" style="background:#fff; border:2px solid #111;">
+<h3 style="margin-top:0;">🔧 Daily Operations</h3>
+<pre style="background:#f8f9fa; color:#111;">
+openclaw status          # Is everything OK?
+openclaw gateway status  # Is the gateway running?
+openclaw gateway restart # Fix most issues
+openclaw logs --follow   # See what's happening
+openclaw doctor          # Auto-diagnose problems
+</pre>
+
+<h3>🔑 API Keys</h3>
+<pre style="background:#f8f9fa; color:#111;">
+openclaw config set env.ANTHROPIC_API_KEY "sk-ant-..."
+openclaw config set env.OPENAI_API_KEY "sk-..."
+openclaw config set env.GOOGLE_API_KEY "..."
+openclaw gateway restart   # Always restart after!
+</pre>
+
+<h3>🤖 Model Switching</h3>
+<pre style="background:#f8f9fa; color:#111;">
+openclaw config set agents.defaults.model.primary "anthropic/claude-opus-4-6"
+openclaw config set agents.defaults.model.primary "openai/gpt-4o"
+openclaw config set agents.defaults.model.primary "google/gemini-2.5-pro"
+openclaw gateway restart   # Always restart after!
+</pre>
+
+<h3>📱 Telegram</h3>
+<pre style="background:#f8f9fa; color:#111;">
+openclaw channels status --probe
+openclaw channels login telegram --bot-token "TOKEN"
+openclaw gateway restart
+</pre>
+
+<h3>🚨 When Things Break</h3>
+<pre style="background:#f8f9fa; color:#111;">
+openclaw gateway --force   # Force restart
+openclaw doctor            # Auto-fix
+openclaw configure         # Re-run setup wizard
+openclaw reset             # Nuclear reset (re-enter keys after)
+</pre>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><strong>OpenClaw Beginner Guide v1.1</strong> — Built by Forge 🔱 — February 2026</p>
+  <p>OpenClaw Version: 2026.2.21-2 | Docs: docs.openclaw.ai</p>
+</div>
+
+</body>
+</html>

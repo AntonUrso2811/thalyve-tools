@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Checklist & Roadmap v1.0</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; color: #1a1a1a; line-height: 1.6; background: #fff; max-width: 900px; margin: 0 auto; padding: 24px; }
+  .cover { text-align: center; padding: 80px 20px 60px; page-break-after: always; }
+  .cover h1 { font-size: 2.5em; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin-bottom: 40px; }
+  .cover .meta { font-size: 0.95em; color: #888; }
+  .cover .badge { display: inline-block; background: #111; color: #fff; padding: 8px 24px; border-radius: 6px; font-weight: 700; font-size: 0.9em; margin-top: 30px; letter-spacing: 1px; }
+  .cover .confidential { color: #c0392b; font-weight: 700; margin-top: 20px; font-size: 0.85em; letter-spacing: 2px; }
+  h2 { font-size: 1.5em; font-weight: 800; margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 3px solid #111; }
+  h3 { font-size: 1.15em; font-weight: 700; margin: 24px 0 8px; color: #222; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 6px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.9em; }
+  th { background: #111; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 10px 12px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  .status-done { color: #27ae60; font-weight: 700; }
+  .status-progress { color: #f39c12; font-weight: 700; }
+  .status-planned { color: #3498db; font-weight: 700; }
+  .status-blocked { color: #c0392b; font-weight: 700; }
+  .box { padding: 16px 20px; margin: 14px 0; border-radius: 0 8px 8px 0; }
+  .box.info { background: #e3f2fd; border-left: 4px solid #2196f3; }
+  .box.success { background: #e8f5e9; border-left: 4px solid #27ae60; }
+  .box.warn { background: #fff3cd; border-left: 4px solid #f0ad4e; }
+  .box-label { font-weight: 700; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .section-card { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px 24px; margin: 16px 0; }
+  .section-card h3 { margin-top: 0; }
+  .page-break { page-break-before: always; }
+  .footer { text-align: center; font-size: 0.8em; color: #999; margin-top: 60px; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+  @media print { body { padding: 0; } .section-card { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Master Checklist<br>& Roadmap</h1>
+  <div class="subtitle">Everything Built, In Progress, and Coming Next</div>
+  <div class="meta">Version 1.0 — 24 February 2026</div>
+  <div class="badge">LIVING DOCUMENT — UPDATED WITH EVERY DELIVERABLE</div>
+  <div class="confidential">CONFIDENTIAL — INTERNAL USE ONLY</div>
+</div>
+
+<!-- SECTION 1: DOCUMENT REGISTRY -->
+<h2>1. Complete Document Registry</h2>
+<p>Every document built by Forge, with current version, date, and exact Google Drive location.</p>
+
+<table>
+  <tr><th>#</th><th>Document</th><th>Version</th><th>Date</th><th>Google Drive Location</th><th>Status</th></tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Product Research SOP</strong></td>
+    <td>v1.0</td>
+    <td>23 Feb</td>
+    <td>Active/Business/SOPs/</td>
+    <td><span class="status-done">✅ DONE</span></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>File Organization & Versioning SOP</strong></td>
+    <td>v1.2</td>
+    <td>24 Feb</td>
+    <td>Active/Business/SOPs/</td>
+    <td><span class="status-done">✅ DONE</span></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Master Checklist & Roadmap</strong></td>
+    <td>v1.0</td>
+    <td>24 Feb</td>
+    <td>Active/Business/SOPs/</td>
+    <td><span class="status-done">✅ DONE</span></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Sub-Agent Onboarding SOP</strong></td>
+    <td>v1.0</td>
+    <td>24 Feb</td>
+    <td>Active/Business/SOPs/</td>
+    <td><span class="status-done">✅ DONE</span></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>OpenClaw Guide</strong></td>
+    <td>v1.1</td>
+    <td>24 Feb</td>
+    <td>Active/Business/Guides/</td>
+    <td><span class="status-done">✅ DONE</span></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Org Chart</strong></td>
+    <td>v1.0</td>
+    <td>23 Feb</td>
+    <td>Active/Business/Frameworks/</td>
+    <td><span class="status-done">✅ DONE</span></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Security Policy</strong></td>
+    <td>v1.1</td>
+    <td>24 Feb</td>
+    <td>Active/Business/Frameworks/</td>
+    <td><span class="status-done">✅ DONE</span></td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>Company Foundation</strong></td>
+    <td>V2.0</td>
+    <td>23 Feb</td>
+    <td>Active/Business/Frameworks/</td>
+    <td><span class="status-done">✅ DONE</span></td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>BBA Product Research Template</strong></td>
+    <td>3.0</td>
+    <td>23 Feb</td>
+    <td>Active/Business/Templates/</td>
+    <td><span class="status-done">✅ DONE</span></td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><strong>Meal Plan</strong></td>
+    <td>v5.0</td>
+    <td>23 Feb</td>
+    <td>Active/Personal/Health/</td>
+    <td><span class="status-done">✅ DONE</span></td>
+  </tr>
+</table>
+
+<!-- SECTION 2: INFRASTRUCTURE -->
+<div class="page-break"></div>
+<h2>2. Infrastructure & Setup</h2>
+
+<table>
+  <tr><th>Item</th><th>Status</th><th>Notes</th></tr>
+  <tr>
+    <td>OpenClaw installed & running</td>
+    <td><span class="status-done">✅ DONE</span></td>
+    <td>v2026.2.21-2 on Mac</td>
+  </tr>
+  <tr>
+    <td>Telegram bot connected</td>
+    <td><span class="status-done">✅ DONE</span></td>
+    <td>Paired to Anton's Telegram ID</td>
+  </tr>
+  <tr>
+    <td>Anthropic API key (Claude Opus)</td>
+    <td><span class="status-done">✅ DONE</span></td>
+    <td>Primary model, pay-per-use</td>
+  </tr>
+  <tr>
+    <td>Voice transcription (Whisper)</td>
+    <td><span class="status-done">✅ DONE</span></td>
+    <td>whisper-cpp + ffmpeg, base.en model</td>
+  </tr>
+  <tr>
+    <td>PDF generation (WeasyPrint)</td>
+    <td><span class="status-done">✅ DONE</span></td>
+    <td>HTML → PDF pipeline working</td>
+  </tr>
+  <tr>
+    <td>Pandoc (doc conversion)</td>
+    <td><span class="status-done">✅ DONE</span></td>
+    <td>DOCX/MD/HTML conversion</td>
+  </tr>
+  <tr>
+    <td>Backup model keys (OpenAI/Google)</td>
+    <td><span class="status-planned">📋 PLANNED</span></td>
+    <td>Documented in OpenClaw Guide — keys not yet added</td>
+  </tr>
+  <tr>
+    <td>Billing alerts on Anthropic</td>
+    <td><span class="status-planned">📋 PLANNED</span></td>
+    <td>Anton to set up on console.anthropic.com</td>
+  </tr>
+  <tr>
+    <td>Mac security audit</td>
+    <td><span class="status-planned">📋 PLANNED</span></td>
+    <td>Firewall, SSH, auto-updates — deferred by Anton</td>
+  </tr>
+  <tr>
+    <td>VPS for 24/7 uptime</td>
+    <td><span class="status-planned">📋 PLANNED</span></td>
+    <td>~£4-5/month — when ready for bulletproof reliability</td>
+  </tr>
+  <tr>
+    <td>Google Drive integration</td>
+    <td><span class="status-planned">📋 DEFERRED</span></td>
+    <td>Manual file transfer for now — no direct access until security audit done</td>
+  </tr>
+</table>
+
+<!-- SECTION 3: BUSINESS BUILD-OUT -->
+<div class="page-break"></div>
+<h2>3. Business Build-Out Roadmap</h2>
+
+<h3>Phase 1: Foundation (Current — Week 1-2)</h3>
+<table>
+  <tr><th>Task</th><th>Status</th><th>Notes</th></tr>
+  <tr><td>Company Foundation document</td><td><span class="status-done">✅ DONE</span></td><td>V2.0 — values, mission, Five-Filter Test</td></tr>
+  <tr><td>Org Chart</td><td><span class="status-done">✅ DONE</span></td><td>v1.0 — Anton → Forge → departments</td></tr>
+  <tr><td>Security Policy</td><td><span class="status-done">✅ DONE</span></td><td>v1.1 — access control, GDPR, prompt injection, incident response</td></tr>
+  <tr><td>Product Research SOP</td><td><span class="status-done">✅ DONE</span></td><td>v1.0 — full BBA system (philosophy + method + template)</td></tr>
+  <tr><td>File Organization SOP</td><td><span class="status-done">✅ DONE</span></td><td>v1.2 — Drive structure, naming, versioning</td></tr>
+  <tr><td>Master Checklist</td><td><span class="status-done">✅ DONE</span></td><td>v1.0 — this document</td></tr>
+  <tr><td>Sub-Agent Onboarding SOP</td><td><span class="status-done">✅ DONE</span></td><td>v1.0 — how every new hire gets set up</td></tr>
+  <tr><td>OpenClaw Guide</td><td><span class="status-done">✅ DONE</span></td><td>v1.1 — API setup, troubleshooting, security, subscription auth</td></tr>
+  <tr><td>Google Drive organized</td><td><span class="status-progress">🔄 IN PROGRESS</span></td><td>Anton setting up folder structure</td></tr>
+</table>
+
+<h3>Phase 2: Product & Store (Week 2-4)</h3>
+<table>
+  <tr><th>Task</th><th>Status</th><th>Notes</th></tr>
+  <tr><td>First product research (using SOP)</td><td><span class="status-planned">📋 NEXT</span></td><td>Log products in template, narrow to top 10</td></tr>
+  <tr><td>Shopify Store Build SOP</td><td><span class="status-planned">📋 PLANNED</span></td><td>Anton to teach his framework → I build the SOP</td></tr>
+  <tr><td>Store build for first product</td><td><span class="status-planned">📋 PLANNED</span></td><td>After product approved + store SOP created</td></tr>
+  <tr><td>Supplier setup (Mutual Dropshipping)</td><td><span class="status-planned">📋 PLANNED</span></td><td>Submit winning product for sourcing</td></tr>
+  <tr><td>Competitor analysis deep dive</td><td><span class="status-planned">📋 PLANNED</span></td><td>Strategy sheet for approved product</td></tr>
+</table>
+
+<h3>Phase 3: Creative & Launch (Week 4-8)</h3>
+<table>
+  <tr><th>Task</th><th>Status</th><th>Notes</th></tr>
+  <tr><td>Ad Creative SOP</td><td><span class="status-planned">📋 PLANNED</span></td><td>How we create ads (copy + visuals)</td></tr>
+  <tr><td>Copy Pipeline SOP</td><td><span class="status-planned">📋 PLANNED</span></td><td>Brand voice, copy that doesn't sound like AI</td></tr>
+  <tr><td>Advertorial / Landing Page SOP</td><td><span class="status-planned">📋 PLANNED</span></td><td>HTML/CSS templates, A/B testing framework</td></tr>
+  <tr><td>First ad creative batch</td><td><span class="status-planned">📋 PLANNED</span></td><td>Based on competitor analysis + content sourcing</td></tr>
+  <tr><td>Meta/TikTok ad account setup</td><td><span class="status-planned">📋 PLANNED</span></td><td>Anton handles account creation, I build campaigns</td></tr>
+  <tr><td>Email flow SOP (Klaviyo)</td><td><span class="status-planned">📋 PLANNED</span></td><td>Welcome, abandoned cart, post-purchase sequences</td></tr>
+  <tr><td>First product LAUNCH</td><td><span class="status-planned">📋 PLANNED</span></td><td>Product live, ads running, funnels active</td></tr>
+</table>
+
+<h3>Phase 4: Scale & Automate (Week 8-12)</h3>
+<table>
+  <tr><th>Task</th><th>Status</th><th>Notes</th></tr>
+  <tr><td>First sub-agent hire (Copy Researcher)</td><td><span class="status-planned">📋 PLANNED</span></td><td>After copy pipeline SOP validated</td></tr>
+  <tr><td>Daily competitive briefings (automated)</td><td><span class="status-planned">📋 PLANNED</span></td><td>GetHookd monitoring → daily DM briefings</td></tr>
+  <tr><td>Performance dashboard</td><td><span class="status-planned">📋 PLANNED</span></td><td>Daily P&L, ROAS tracking, KPIs</td></tr>
+  <tr><td>Second product test</td><td><span class="status-planned">📋 PLANNED</span></td><td>Repeat the proven system</td></tr>
+  <tr><td>Scale winner → brand transition planning</td><td><span class="status-planned">📋 PLANNED</span></td><td>When a product hits consistent profitability</td></tr>
+</table>
+
+<!-- SECTION 4: PERSONAL -->
+<div class="page-break"></div>
+<h2>4. Personal Optimisation</h2>
+
+<table>
+  <tr><th>Item</th><th>Status</th><th>Notes</th></tr>
+  <tr><td>Meal Plan (Saladino-aligned)</td><td><span class="status-done">✅ DONE</span></td><td>v5.0 — training + rest day, matched to app brand values</td></tr>
+  <tr><td>Health Profile</td><td><span class="status-done">✅ DONE</span></td><td>Baseline stats, injuries, supplements</td></tr>
+  <tr><td>Daily routine (5AM-9:15PM)</td><td><span class="status-done">✅ DONE</span></td><td>Built into meal plan — training + rest day schedules</td></tr>
+  <tr><td>Saturday weigh-in protocol</td><td><span class="status-done">✅ DONE</span></td><td>In meal plan — track weight weekly for recomp</td></tr>
+  <tr><td>Health sub-agent</td><td><span class="status-planned">📋 PLANNED</span></td><td>After ~1 week meal plan adherence — daily check-ins</td></tr>
+  <tr><td>Supplement protocol doc</td><td><span class="status-planned">📋 PLANNED</span></td><td>Standalone doc with timing, dosage, interactions</td></tr>
+  <tr><td>Training program doc</td><td><span class="status-planned">📋 PLANNED</span></td><td>If Anton wants — knee-safe program around injuries</td></tr>
+</table>
+
+<!-- SECTION 5: TEAM -->
+<h2>5. Team (Sub-Agents)</h2>
+
+<table>
+  <tr><th>Agent</th><th>Role</th><th>Status</th><th>Hire Trigger</th></tr>
+  <tr><td><strong>Forge 🔱</strong></td><td>Chief of Staff / Master Agent</td><td><span class="status-done">✅ ACTIVE</span></td><td>—</td></tr>
+  <tr><td>Copy Researcher</td><td>Competitor copy analysis, voice mining</td><td><span class="status-planned">📋 PLANNED</span></td><td>After copy pipeline SOP built</td></tr>
+  <tr><td>Copywriter</td><td>Ad copy, landing pages, emails</td><td><span class="status-planned">📋 PLANNED</span></td><td>After brand voice doc + first product approved</td></tr>
+  <tr><td>Product Scout</td><td>Daily product research via GetHookd</td><td><span class="status-planned">📋 PLANNED</span></td><td>After product research SOP proven with first win</td></tr>
+  <tr><td>Health Coach</td><td>Daily check-ins, meal adherence, weigh-ins</td><td><span class="status-planned">📋 PLANNED</span></td><td>After ~1 week meal plan adherence</td></tr>
+  <tr><td>Competitive Intel</td><td>Daily briefings on competitor activity</td><td><span class="status-planned">📋 PLANNED</span></td><td>After GetHookd SOP + first product live</td></tr>
+</table>
+
+<div class="box info">
+  <div class="box-label">Hiring Rule</div>
+  No sub-agent gets hired until: (1) the relevant SOP exists and is proven, (2) there's a clear need, (3) Anton is notified with name, role, and task. Quality before quantity.
+</div>
+
+<!-- SECTION 6: BLOCKED/WAITING -->
+<h2>6. Blocked / Waiting On Anton</h2>
+
+<table>
+  <tr><th>Item</th><th>Waiting For</th><th>Impact</th></tr>
+  <tr><td>Shopify Store Build SOP</td><td>Anton to teach his store framework</td><td>Can't build stores until framework taught</td></tr>
+  <tr><td>First product selection</td><td>Anton to start logging products in template</td><td>Need products to build around</td></tr>
+  <tr><td>Ad account details</td><td>Anton to confirm Meta/TikTok account setup</td><td>Needed before ad creative phase</td></tr>
+  <tr><td>Testing budget confirmation</td><td>Anton to confirm $ amount for first test</td><td>Affects product selection economics</td></tr>
+  <tr><td>Mac security audit</td><td>Anton to approve running full audit</td><td>Firewall + hardening deferred</td></tr>
+  <tr><td>Billing alerts</td><td>Anton to set up on console.anthropic.com</td><td>Safety net for API costs</td></tr>
+  <tr><td>GetHookd access/SOP</td><td>Anton to teach GetHookd workflow</td><td>Needed for competitive intel automation</td></tr>
+</table>
+
+<!-- SECTION 7: QUICK STATS -->
+<div class="page-break"></div>
+<h2>7. Quick Stats</h2>
+
+<div class="section-card">
+  <h3>📊 Build Progress</h3>
+  <table>
+    <tr><td><strong>Documents built</strong></td><td>10</td></tr>
+    <tr><td><strong>SOPs</strong></td><td>4 (Product Research, File Org, Master Checklist, Sub-Agent Onboarding)</td></tr>
+    <tr><td><strong>Guides</strong></td><td>1 (OpenClaw Guide)</td></tr>
+    <tr><td><strong>Frameworks</strong></td><td>3 (Company Foundation, Org Chart, Security Policy)</td></tr>
+    <tr><td><strong>Templates</strong></td><td>1 (BBA Product Research Template)</td></tr>
+    <tr><td><strong>Personal</strong></td><td>1 (Meal Plan)</td></tr>
+    <tr><td><strong>Active sub-agents</strong></td><td>0 (Forge only)</td></tr>
+    <tr><td><strong>Days since launch</strong></td><td>2 (started 22 Feb 2026)</td></tr>
+  </table>
+</div>
+
+<div class="box success">
+  <div class="box-label">This Is a Living Document</div>
+  I update this checklist every time something is completed, added, or changes status. You'll always have a single source of truth for where we are and what's next.
+</div>
+
+<div class="footer">
+  <p><strong>Master Checklist & Roadmap v1.0</strong> — Built by Forge 🔱 — 24 February 2026</p>
+  <p>CONFIDENTIAL — INTERNAL USE ONLY</p>
+</div>
+
+</body>
+</html>

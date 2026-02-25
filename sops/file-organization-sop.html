@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>File Organization & Versioning SOP v1.2</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; color: #1a1a1a; line-height: 1.6; background: #fff; max-width: 900px; margin: 0 auto; padding: 24px; }
+  .cover { text-align: center; padding: 80px 20px 60px; page-break-after: always; }
+  .cover h1 { font-size: 2.5em; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin-bottom: 40px; }
+  .cover .meta { font-size: 0.95em; color: #888; }
+  .cover .badge { display: inline-block; background: #111; color: #fff; padding: 8px 24px; border-radius: 6px; font-weight: 700; font-size: 0.9em; margin-top: 30px; letter-spacing: 1px; }
+  .cover .confidential { color: #c0392b; font-weight: 700; margin-top: 20px; font-size: 0.85em; letter-spacing: 2px; }
+  h2 { font-size: 1.5em; font-weight: 800; margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 3px solid #111; }
+  h3 { font-size: 1.15em; font-weight: 700; margin: 24px 0 8px; color: #222; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 6px; }
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-family: 'SF Mono', monospace; font-size: 0.9em; }
+  pre { background: #f8f9fa; color: #1a1a1a; padding: 16px 20px; border-radius: 8px; margin: 12px 0; font-family: 'SF Mono', monospace; font-size: 0.88em; line-height: 1.6; white-space: pre-wrap; }
+  .box { padding: 16px 20px; margin: 14px 0; border-radius: 0 8px 8px 0; }
+  .box.info { background: #e3f2fd; border-left: 4px solid #2196f3; }
+  .box.success { background: #e8f5e9; border-left: 4px solid #27ae60; }
+  .box.warn { background: #fff3cd; border-left: 4px solid #f0ad4e; }
+  .box-label { font-weight: 700; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.92em; }
+  th { background: #111; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 10px 12px; border-bottom: 1px solid #e0e0e0; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  .page-break { page-break-before: always; }
+  .footer { text-align: center; font-size: 0.8em; color: #999; margin-top: 60px; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+  @media print { body { padding: 0; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>File Organization &<br>Versioning SOP</h1>
+  <div class="subtitle">How We Name, Store, Version, and Deliver Every Document</div>
+  <div class="meta">Version 1.2 — February 2026</div>
+  <div class="badge">STANDARD OPERATING PROCEDURE</div>
+  <div class="confidential">CONFIDENTIAL — INTERNAL USE ONLY</div>
+</div>
+
+<h2>1. Google Drive Master Folder Structure</h2>
+
+<pre>
+📁 [Business Name] Master/
+│
+├── 📁 Pre-Forge/
+│   └── Everything from before Forge came onboard
+│       (courses, old notes, past brand files, etc.)
+│       ⚠️ Never modified by Forge — your archive
+│
+├── 📁 Active/
+│   │
+│   ├── 📁 Business/
+│   │   ├── 📁 SOPs/
+│   │   │   ├── Product Research SOP v1.0.pdf
+│   │   │   ├── File Organization SOP v1.1.pdf
+│   │   │   ├── [Store Build SOP — coming]
+│   │   │   ├── [Ad Creative SOP — coming]
+│   │   │   └── [Copy Pipeline SOP — coming]
+│   │   │
+│   │   ├── 📁 Guides/
+│   │   │   ├── OpenClaw Guide v1.1.pdf
+│   │   │   └── [future guides]
+│   │   │
+│   │   ├── 📁 Frameworks/
+│   │   │   ├── Company Foundation V2.0.docx
+│   │   │   └── [Business Operating Framework — coming]
+│   │   │
+│   │   ├── 📁 Templates/
+│   │   │   ├── BBA Product Research Template 3.0.xlsx
+│   │   │   └── [future templates]
+│   │   │
+│   │   └── 📁 Creative/
+│   │       ├── [Ad copy — future]
+│   │       ├── [Landing pages — future]
+│   │       └── [Product images — future]
+│   │
+│   └── 📁 Personal/
+│       ├── 📁 Health/
+│       │   ├── Meal Plan v5.0.pdf
+│       │   └── Health Profile.pdf
+│       │
+│       ├── 📁 Wellness/
+│       │   └── [Supplement protocols, routines — future]
+│       │
+│       └── 📁 Guides/
+│           └── [Personal optimization guides — future]
+│
+├── 📁 Archive/
+│   └── Old versions of any document
+│       (e.g., "OpenClaw Guide v1.0.pdf" after v1.1 ships)
+│
+└── 📁 Team/
+    └── Sub-agent outputs when we scale
+        (organized by agent role)
+</pre>
+
+<div class="box info">
+  <div class="box-label">Rule</div>
+  <strong>Active/</strong> always has the LATEST version only. When a doc is updated, the old version moves to <strong>Archive/</strong>. No duplicates. No confusion.
+</div>
+
+<h2>2. Naming Convention</h2>
+
+<p>Every file follows this format:</p>
+
+<pre>[Document Name] v[Major].[Minor].pdf</pre>
+
+<table>
+  <tr><th>Element</th><th>Rule</th><th>Example</th></tr>
+  <tr><td><strong>Document Name</strong></td><td>Clear, descriptive, title case</td><td>Product Research SOP</td></tr>
+  <tr><td><strong>Major version</strong></td><td>Bumps on significant changes (new sections, restructure)</td><td>v1.0 → v2.0</td></tr>
+  <tr><td><strong>Minor version</strong></td><td>Bumps on small updates (fixes, additions, tweaks)</td><td>v1.0 → v1.1</td></tr>
+  <tr><td><strong>Format</strong></td><td>Always PDF (unless spreadsheet/template)</td><td>.pdf / .xlsx</td></tr>
+</table>
+
+<div class="box info">
+  <div class="box-label">Critical Rule</div>
+  The <strong>actual file name</strong> I send you via Telegram will always match this convention exactly. For example: <code>Product Research SOP v1.0.pdf</code> — not <code>product-research-sop.pdf</code>. What you receive is what goes straight into your Google Drive folder. No renaming needed.
+</div>
+
+<h3>Examples</h3>
+<ul>
+  <li><code>Product Research SOP v1.0.pdf</code></li>
+  <li><code>OpenClaw Guide v1.1.pdf</code></li>
+  <li><code>Meal Plan v5.0.pdf</code></li>
+  <li><code>BBA Product Research Template 3.0.xlsx</code> (keeps original naming)</li>
+</ul>
+
+<h2>3. Versioning Protocol</h2>
+
+<h3>When Forge Updates a Document</h3>
+<p>Every time I update any SOP, guide, or document, here's exactly what happens:</p>
+
+<table>
+  <tr><th>Step</th><th>What Happens</th><th>Who Does It</th></tr>
+  <tr><td>1</td><td>I build the updated version</td><td>Forge</td></tr>
+  <tr><td>2</td><td>I send you the new PDF via Telegram with a <strong>changelog</strong></td><td>Forge</td></tr>
+  <tr><td>3</td><td>The changelog tells you: version number, what changed, which folder it goes in</td><td>Forge</td></tr>
+  <tr><td>4</td><td>You move the OLD version from <strong>Active/</strong> → <strong>Archive/</strong></td><td>Anton</td></tr>
+  <tr><td>5</td><td>You save the NEW version into <strong>Active/</strong></td><td>Anton</td></tr>
+</table>
+
+<h3>Changelog Format</h3>
+<p>Every update message will look like this:</p>
+
+<pre>
+📄 [Document Name] updated: v1.0 → v1.1
+📁 Folder: Active/SOPs/
+
+Changes:
+• Added Section X
+• Fixed Y
+• Updated Z
+
+Action: Move old v1.0 to Archive/, save this as v1.1 in Active/SOPs/
+</pre>
+
+<div class="box success">
+  <div class="box-label">Zero Confusion</div>
+  You always know: what changed, which version is current, and exactly where to put it. No guesswork.
+</div>
+
+<h2>4. Document Types & Where They Live</h2>
+
+<table>
+  <tr><th>Type</th><th>Folder</th><th>Examples</th></tr>
+  <tr><td><strong>SOPs</strong></td><td>Active/Business/SOPs/</td><td>Product Research SOP, Store Build SOP, Ad Creative SOP</td></tr>
+  <tr><td><strong>Guides (Biz)</strong></td><td>Active/Business/Guides/</td><td>OpenClaw Guide, Shopify Setup Guide</td></tr>
+  <tr><td><strong>Frameworks</strong></td><td>Active/Business/Frameworks/</td><td>Company Foundation, Business Operating Framework</td></tr>
+  <tr><td><strong>Templates</strong></td><td>Active/Business/Templates/</td><td>Product Research Template, Ad Copy Template</td></tr>
+  <tr><td><strong>Creative</strong></td><td>Active/Business/Creative/</td><td>Ad copy, landing pages, product images (future)</td></tr>
+  <tr><td><strong>Health</strong></td><td>Active/Personal/Health/</td><td>Meal Plan, Health Profile</td></tr>
+  <tr><td><strong>Wellness</strong></td><td>Active/Personal/Wellness/</td><td>Supplement protocols, routines</td></tr>
+  <tr><td><strong>Guides (Personal)</strong></td><td>Active/Personal/Guides/</td><td>Personal optimization guides</td></tr>
+  <tr><td><strong>Old versions</strong></td><td>Archive/</td><td>Any superseded document</td></tr>
+  <tr><td><strong>Sub-agent work</strong></td><td>Team/</td><td>Outputs from hired sub-agents (future)</td></tr>
+  <tr><td><strong>Pre-Forge files</strong></td><td>Pre-Forge/</td><td>Your existing files from before this system</td></tr>
+</table>
+
+<h2>5. Current Document Registry</h2>
+
+<p>Master list of everything built so far:</p>
+
+<table>
+  <tr><th>Document</th><th>Version</th><th>Date</th><th>Folder</th></tr>
+  <tr><td>Product Research SOP</td><td>v1.0</td><td>2026-02-23</td><td>Active/Business/SOPs/</td></tr>
+  <tr><td>File Organization & Versioning SOP</td><td>v1.2</td><td>2026-02-24</td><td>Active/Business/SOPs/</td></tr>
+  <tr><td>OpenClaw Guide</td><td>v1.1</td><td>2026-02-24</td><td>Active/Business/Guides/</td></tr>
+  <tr><td>Org Chart</td><td>v1.0</td><td>2026-02-23</td><td>Active/Business/Frameworks/</td></tr>
+  <tr><td>Security Policy</td><td>v1.0</td><td>2026-02-23</td><td>Active/Business/Frameworks/</td></tr>
+  <tr><td>Company Foundation</td><td>V2.0</td><td>2026-02-23</td><td>Active/Business/Frameworks/</td></tr>
+  <tr><td>BBA Product Research Template</td><td>3.0</td><td>2026-02-23</td><td>Active/Business/Templates/</td></tr>
+  <tr><td>Meal Plan</td><td>v5.0</td><td>2026-02-23</td><td>Active/Personal/Health/</td></tr>
+</table>
+
+<div class="box warn">
+  <div class="box-label">I'll Keep This Updated</div>
+  Every time I build or update a document, I update this registry internally. You'll always know what's current.
+</div>
+
+<div class="page-break"></div>
+<h2>6. Your Action Items (One-Time Setup)</h2>
+
+<ol>
+  <li><strong>Create the master folder</strong> on Google Drive with the structure from Section 1</li>
+  <li><strong>Move your existing files</strong> into <code>Pre-Forge/</code></li>
+  <li><strong>Save current documents</strong> into the correct <code>Active/</code> subfolders:
+    <ul>
+      <li><code>Active/Business/SOPs/</code> → Product Research SOP v1.0.pdf, File Organization SOP v1.2.pdf</li>
+      <li><code>Active/Business/Guides/</code> → OpenClaw Guide v1.1.pdf</li>
+      <li><code>Active/Business/Frameworks/</code> → Company Foundation V2.0.docx, Org Chart v1.0.pdf, Security Policy v1.0.pdf</li>
+      <li><code>Active/Business/Templates/</code> → BBA Product Research Template 3.0.xlsx</li>
+      <li><code>Active/Personal/Health/</code> → Meal Plan v5.0.pdf</li>
+    </ul>
+  </li>
+  <li><strong>Done.</strong> From now on, I handle the rest — you just swap files when I send updates.</li>
+</ol>
+
+<div class="footer">
+  <p><strong>File Organization & Versioning SOP v1.2</strong> — Built by Forge 🔱 — February 2026</p>
+  <p>CONFIDENTIAL — INTERNAL USE ONLY</p>
+</div>
+
+</body>
+</html>

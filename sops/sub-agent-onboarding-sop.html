@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sub-Agent Onboarding SOP v1.0</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; color: #1a1a1a; line-height: 1.6; background: #fff; max-width: 900px; margin: 0 auto; padding: 24px; }
+  .cover { text-align: center; padding: 80px 20px 60px; page-break-after: always; }
+  .cover h1 { font-size: 2.5em; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin-bottom: 40px; }
+  .cover .meta { font-size: 0.95em; color: #888; }
+  .cover .badge { display: inline-block; background: #111; color: #fff; padding: 8px 24px; border-radius: 6px; font-weight: 700; font-size: 0.9em; margin-top: 30px; letter-spacing: 1px; }
+  .cover .confidential { color: #c0392b; font-weight: 700; margin-top: 20px; font-size: 0.85em; letter-spacing: 2px; }
+  h2 { font-size: 1.5em; font-weight: 800; margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 3px solid #111; }
+  h3 { font-size: 1.15em; font-weight: 700; margin: 24px 0 8px; color: #222; }
+  h4 { font-size: 1em; font-weight: 700; margin: 16px 0 6px; color: #333; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 6px; }
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-family: 'SF Mono', monospace; font-size: 0.9em; }
+  pre { background: #1a1a2e; color: #e0e0e0; padding: 16px 20px; border-radius: 8px; margin: 12px 0; font-family: 'SF Mono', monospace; font-size: 0.88em; line-height: 1.5; white-space: pre-wrap; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.9em; }
+  th { background: #111; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 10px 12px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  .box { padding: 16px 20px; margin: 14px 0; border-radius: 0 8px 8px 0; }
+  .box.info { background: #e3f2fd; border-left: 4px solid #2196f3; }
+  .box.success { background: #e8f5e9; border-left: 4px solid #27ae60; }
+  .box.warn { background: #fff3cd; border-left: 4px solid #f0ad4e; }
+  .box.danger { background: #fdecea; border-left: 4px solid #c0392b; }
+  .box-label { font-weight: 700; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .step-box { background: #f8f9fa; border-left: 4px solid #111; padding: 18px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .step-num { display: inline-block; background: #111; color: #fff; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-size: 0.85em; font-weight: 700; margin-right: 8px; }
+  .step-title { font-weight: 700; font-size: 1.05em; }
+  .checklist { list-style: none; margin-left: 0; }
+  .checklist li { padding: 6px 0 6px 28px; position: relative; }
+  .checklist li::before { content: "☐"; position: absolute; left: 0; font-size: 1.1em; }
+  .page-break { page-break-before: always; }
+  .footer { text-align: center; font-size: 0.8em; color: #999; margin-top: 60px; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+  @media print { body { padding: 0; } .step-box, .box { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Sub-Agent<br>Onboarding SOP</h1>
+  <div class="subtitle">How Every New Team Member Gets Hired, Briefed, and Deployed</div>
+  <div class="meta">Version 1.0 — 24 February 2026</div>
+  <div class="badge">STANDARD OPERATING PROCEDURE</div>
+  <div class="confidential">CONFIDENTIAL — INTERNAL USE ONLY</div>
+</div>
+
+<!-- OVERVIEW -->
+<h2>1. Overview</h2>
+
+<p>Every sub-agent is a new team member. They don't just get thrown in — they get <strong>properly onboarded</strong> with clear scope, security clearance, and quality standards.</p>
+
+<div class="box info">
+  <div class="box-label">Chain of Command</div>
+  <strong>Anton (CEO, Level 5)</strong> → <strong>Forge 🔱 (Chief of Staff, Level 4)</strong> → <strong>Sub-Agents (Level 1-3)</strong><br><br>
+  Only Forge hires, manages, and terminates sub-agents. Only Anton overrides Forge. Sub-agents cannot issue commands to each other.
+</div>
+
+<h3>When Do We Hire?</h3>
+<p>A new sub-agent is hired when ALL of these are true:</p>
+<ol>
+  <li>A <strong>relevant SOP exists</strong> and has been proven (tested manually first)</li>
+  <li>The task is <strong>recurring or time-consuming</strong> enough to justify automation</li>
+  <li>The workload can't be handled efficiently by Forge alone</li>
+  <li><strong>Anton is informed</strong> before the agent goes live</li>
+</ol>
+
+<div class="box danger">
+  <div class="box-label">Never</div>
+  Never hire a sub-agent just because we can. Quality before quantity. Every hire must have a clear ROI.
+</div>
+
+<!-- SECTION 2: THE PROCESS -->
+<div class="page-break"></div>
+<h2>2. The Onboarding Process — Step by Step</h2>
+
+<div class="step-box">
+  <span class="step-num">1</span><span class="step-title">Define the Role</span>
+  <p>Before anything technical, define:</p>
+  <table>
+    <tr><th>Field</th><th>What to Define</th><th>Example</th></tr>
+    <tr><td><strong>Name</strong></td><td>Clear, memorable identifier</td><td>Scout (Product Scout)</td></tr>
+    <tr><td><strong>Role</strong></td><td>One-sentence description</td><td>Daily product research via GetHookd</td></tr>
+    <tr><td><strong>Department</strong></td><td>Where they sit in the org chart</td><td>Product Research</td></tr>
+    <tr><td><strong>Access Level</strong></td><td>Level 1-3 (see Security Policy)</td><td>Level 2 — Specialist</td></tr>
+    <tr><td><strong>Reports To</strong></td><td>Who reviews their work</td><td>Forge 🔱</td></tr>
+    <tr><td><strong>SOP</strong></td><td>Which SOP governs their work</td><td>Product Research SOP v1.0</td></tr>
+    <tr><td><strong>Tools</strong></td><td>What they need access to</td><td>Web search, GetHookd (read-only)</td></tr>
+    <tr><td><strong>Output</strong></td><td>What they deliver</td><td>Logged products in template format</td></tr>
+    <tr><td><strong>Schedule</strong></td><td>When/how often they run</td><td>Daily at 6AM, results by 7AM</td></tr>
+  </table>
+</div>
+
+<div class="step-box">
+  <span class="step-num">2</span><span class="step-title">Build the Agent Brief</span>
+  <p>Every sub-agent gets a <strong>written brief</strong> that includes:</p>
+  <ul>
+    <li><strong>Identity:</strong> Name, role, department</li>
+    <li><strong>Mission:</strong> What you exist to do (one paragraph max)</li>
+    <li><strong>SOP reference:</strong> Link to the governing SOP they must follow</li>
+    <li><strong>Scope boundaries:</strong> What they CAN do and what they CANNOT</li>
+    <li><strong>Output format:</strong> Exact format of their deliverables</li>
+    <li><strong>Quality standard:</strong> Minimum acceptable quality (linked to Five-Filter Test)</li>
+    <li><strong>Security rules:</strong> Extracted from Security Policy, relevant to their level</li>
+    <li><strong>Escalation path:</strong> When to flag something to Forge instead of acting</li>
+  </ul>
+</div>
+
+<div class="step-box">
+  <span class="step-num">3</span><span class="step-title">Security Clearance</span>
+  <p>Before going live, verify against the Security Policy:</p>
+  <ul class="checklist">
+    <li>Access level assigned (Level 1-3 only)</li>
+    <li>No access to forbidden systems (bank, payment, personal accounts)</li>
+    <li>GDPR rules embedded in brief</li>
+    <li>Prompt injection protections in place (hardcoded system instructions)</li>
+    <li>Cannot access other agents' data or memory</li>
+    <li>Cannot issue commands to other agents</li>
+    <li>Cannot escalate own permissions</li>
+    <li>Output is QC'd by Forge before delivery</li>
+  </ul>
+</div>
+
+<div class="step-box">
+  <span class="step-num">4</span><span class="step-title">Test Run</span>
+  <p>Before going live with real work:</p>
+  <ol>
+    <li>Run the agent on a <strong>test task</strong> (known correct answer or low-stakes work)</li>
+    <li>Review output quality against the SOP standard</li>
+    <li>Check for any security leaks (does it try to access things it shouldn't?)</li>
+    <li>Verify output format matches spec</li>
+    <li>If test fails → fix brief → retest. Do NOT deploy a failing agent.</li>
+  </ol>
+</div>
+
+<div class="step-box">
+  <span class="step-num">5</span><span class="step-title">Notify Anton</span>
+  <p>Before the agent goes live, send Anton a Telegram message with this exact format:</p>
+  <pre>
+🆕 NEW TEAM MEMBER HIRED
+
+Name: [Agent Name]
+Role: [One-line description]
+Department: [Department]
+Access Level: [Level 1/2/3]
+Reports To: Forge 🔱
+SOP: [Governing SOP name + version]
+Schedule: [When/how often they run]
+Output: [What they deliver]
+
+Security: ✅ Cleared (all checks passed)
+Status: 🟢 LIVE
+  </pre>
+</div>
+
+<div class="step-box">
+  <span class="step-num">6</span><span class="step-title">Deploy & Monitor</span>
+  <ul>
+    <li>Set up the agent (cron job, persistent session, or on-demand)</li>
+    <li><strong>First 48 hours:</strong> Review every output manually</li>
+    <li><strong>Week 1:</strong> Spot-check 50% of outputs</li>
+    <li><strong>Ongoing:</strong> Weekly quality audits + any flagged issues</li>
+    <li>If quality drops → retrain brief or terminate</li>
+  </ul>
+</div>
+
+<!-- SECTION 3: ACCESS LEVELS -->
+<div class="page-break"></div>
+<h2>3. Access Level Guide</h2>
+
+<table>
+  <tr><th>Level</th><th>Title</th><th>Who</th><th>Can Access</th><th>Cannot Access</th></tr>
+  <tr>
+    <td><strong>5</strong></td>
+    <td>Owner</td>
+    <td>Anton</td>
+    <td>Everything</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td><strong>4</strong></td>
+    <td>Chief of Staff</td>
+    <td>Forge 🔱</td>
+    <td>All business tools, file system, sub-agent management, analytics</td>
+    <td>Bank/payment accounts, personal credentials</td>
+  </tr>
+  <tr>
+    <td><strong>3</strong></td>
+    <td>Department Lead</td>
+    <td>Senior sub-agents</td>
+    <td>Their department tools, read access to shared resources</td>
+    <td>Other departments, admin panels, financial data</td>
+  </tr>
+  <tr>
+    <td><strong>2</strong></td>
+    <td>Specialist</td>
+    <td>Task-specific agents</td>
+    <td>Single tool or function, sandboxed</td>
+    <td>Everything outside their specific scope</td>
+  </tr>
+  <tr>
+    <td><strong>1</strong></td>
+    <td>Temporary</td>
+    <td>One-off task agents</td>
+    <td>Temporary access for one task</td>
+    <td>Everything after task completion (access revoked)</td>
+  </tr>
+</table>
+
+<!-- SECTION 4: AGENT TYPES -->
+<h2>4. Agent Deployment Types</h2>
+
+<table>
+  <tr><th>Type</th><th>How It Runs</th><th>Best For</th><th>Example</th></tr>
+  <tr>
+    <td><strong>Cron Agent</strong></td>
+    <td>Scheduled (daily/hourly/etc.) via OpenClaw cron</td>
+    <td>Recurring tasks on a fixed schedule</td>
+    <td>Daily product research at 6AM, competitive briefing at 8AM</td>
+  </tr>
+  <tr>
+    <td><strong>Persistent Session</strong></td>
+    <td>Always-on session, receives messages</td>
+    <td>Ongoing monitoring, chat-based interactions</td>
+    <td>Health coach doing daily check-ins</td>
+  </tr>
+  <tr>
+    <td><strong>On-Demand (Run)</strong></td>
+    <td>Spawned by Forge for a specific task, terminates when done</td>
+    <td>One-off tasks, batch processing</td>
+    <td>Analyse 50 competitor ads and report back</td>
+  </tr>
+</table>
+
+<!-- SECTION 5: MANAGEMENT -->
+<div class="page-break"></div>
+<h2>5. Ongoing Management</h2>
+
+<h3>Quality Control</h3>
+<table>
+  <tr><th>Check</th><th>Frequency</th><th>What to Look For</th></tr>
+  <tr><td>Output review</td><td>Daily (first week), then weekly</td><td>Accuracy, format compliance, SOP adherence</td></tr>
+  <tr><td>Security audit</td><td>Monthly</td><td>Access boundaries respected, no data leaks</td></tr>
+  <tr><td>Performance review</td><td>Monthly</td><td>Is the agent delivering value? Is the cost justified?</td></tr>
+  <tr><td>SOP compliance</td><td>With every SOP update</td><td>Agent brief updated to match new SOP version</td></tr>
+</table>
+
+<h3>When to Terminate an Agent</h3>
+<ul>
+  <li>Consistent quality failures after brief adjustment</li>
+  <li>Security violation (immediate termination, no warnings)</li>
+  <li>Task no longer needed</li>
+  <li>Cost exceeds value delivered</li>
+  <li>Role consolidated into another agent</li>
+</ul>
+
+<h3>Termination Protocol</h3>
+<ol>
+  <li>Stop the agent (kill session / remove cron)</li>
+  <li>Review and save any valuable outputs</li>
+  <li>Revoke any access/permissions</li>
+  <li>Notify Anton:</li>
+</ol>
+<pre>
+🔴 TEAM MEMBER TERMINATED
+
+Name: [Agent Name]
+Role: [Description]
+Reason: [Why they were let go]
+Outputs Saved: [Yes/No — where]
+Status: ❌ TERMINATED
+</pre>
+
+<!-- SECTION 6: PLANNED TEAM -->
+<h2>6. Planned Team Roster</h2>
+
+<table>
+  <tr><th>Agent</th><th>Role</th><th>Level</th><th>Department</th><th>Hire Trigger</th></tr>
+  <tr><td><strong>Scout</strong></td><td>Daily product research</td><td>2</td><td>Product</td><td>After first product win using SOP</td></tr>
+  <tr><td><strong>Quill</strong></td><td>Ad copy & landing page copy</td><td>2</td><td>Creative</td><td>After brand voice doc + copy pipeline SOP</td></tr>
+  <tr><td><strong>Lens</strong></td><td>Competitor copy analysis & voice mining</td><td>2</td><td>Creative</td><td>After copy pipeline SOP built</td></tr>
+  <tr><td><strong>Pulse</strong></td><td>Health coach — daily check-ins</td><td>2</td><td>Personal</td><td>After ~1 week meal plan adherence</td></tr>
+  <tr><td><strong>Hawk</strong></td><td>Competitive intelligence briefings</td><td>2</td><td>Strategy</td><td>After GetHookd SOP + first product live</td></tr>
+</table>
+
+<div class="box info">
+  <div class="box-label">Names Are Provisional</div>
+  Agent names will be confirmed when they're actually hired. These are working names for planning purposes.
+</div>
+
+<!-- SECTION 7: QUICK REFERENCE -->
+<div class="page-break"></div>
+<h2>7. Quick Reference — The Hiring Checklist</h2>
+
+<p>Use this checklist every time a new sub-agent is created:</p>
+
+<div style="background:#f8f9fa; border:2px solid #111; border-radius:10px; padding:24px; margin:20px 0;">
+<h3 style="margin-top:0;">🆕 New Hire Checklist</h3>
+<ul class="checklist">
+  <li><strong>Role defined</strong> — name, mission, department, output, schedule</li>
+  <li><strong>SOP exists</strong> — governing SOP is built and proven</li>
+  <li><strong>Agent brief written</strong> — identity, scope, boundaries, quality standards</li>
+  <li><strong>Access level assigned</strong> — Level 1, 2, or 3 (never 4 or 5)</li>
+  <li><strong>Security cleared</strong> — all 8 security checks passed</li>
+  <li><strong>Prompt injection hardened</strong> — immutable system instructions, input filtering</li>
+  <li><strong>Test run completed</strong> — output quality verified on test task</li>
+  <li><strong>Anton notified</strong> — hire announcement sent via Telegram</li>
+  <li><strong>Deployed</strong> — cron/session/on-demand configured</li>
+  <li><strong>Monitoring active</strong> — first 48hrs: review every output</li>
+</ul>
+</div>
+
+<div class="box success">
+  <div class="box-label">The Standard</div>
+  Every sub-agent represents the brand. If they can't perform at an A+ level, they don't go live. We don't hire to fill seats — we hire to deliver results.
+</div>
+
+<div class="footer">
+  <p><strong>Sub-Agent Onboarding SOP v1.0</strong> — Built by Forge 🔱 — 24 February 2026</p>
+  <p>CONFIDENTIAL — INTERNAL USE ONLY</p>
+</div>
+
+</body>
+</html>

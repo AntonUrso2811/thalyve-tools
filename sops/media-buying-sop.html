@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Buying SOP v1.0</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; color: #1a1a1a; line-height: 1.6; background: #fff; max-width: 900px; margin: 0 auto; padding: 24px; }
+  .cover { text-align: center; padding: 80px 20px 60px; page-break-after: always; }
+  .cover h1 { font-size: 2.6em; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin-bottom: 40px; }
+  .cover .meta { font-size: 0.95em; color: #888; }
+  .cover .badge { display: inline-block; background: #111; color: #fff; padding: 8px 24px; border-radius: 6px; font-weight: 700; font-size: 0.9em; margin-top: 30px; letter-spacing: 1px; }
+  .cover .confidential { color: #c0392b; font-weight: 700; margin-top: 20px; font-size: 0.85em; letter-spacing: 2px; }
+  h2 { font-size: 1.5em; font-weight: 800; margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 3px solid #111; }
+  h3 { font-size: 1.15em; font-weight: 700; margin: 24px 0 8px; color: #222; }
+  h4 { font-size: 1em; font-weight: 700; margin: 16px 0 6px; color: #333; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 6px; }
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-family: 'SF Mono', monospace; font-size: 0.9em; }
+  pre { background: #f8f9fa; color: #1a1a1a; padding: 16px 20px; border-radius: 8px; margin: 12px 0; font-family: 'SF Mono', monospace; font-size: 0.88em; line-height: 1.5; white-space: pre-wrap; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.9em; }
+  th { background: #111; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 10px 12px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  .box { padding: 16px 20px; margin: 14px 0; border-radius: 0 8px 8px 0; }
+  .box.info { background: #e3f2fd; border-left: 4px solid #2196f3; }
+  .box.success { background: #e8f5e9; border-left: 4px solid #27ae60; }
+  .box.warn { background: #fff3cd; border-left: 4px solid #f0ad4e; }
+  .box.danger { background: #fdecea; border-left: 4px solid #c0392b; }
+  .box-label { font-weight: 700; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .formula { background: #f0f0f0; border-radius: 6px; padding: 14px 18px; margin: 12px 0; font-family: 'SF Mono', monospace; font-size: 0.95em; text-align: center; }
+  .color-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .color-dot.red { background: #e74c3c; }
+  .color-dot.yellow { background: #f1c40f; }
+  .color-dot.green { background: #27ae60; }
+  .page-break { page-break-before: always; }
+  .footer { text-align: center; font-size: 0.8em; color: #999; margin-top: 60px; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+  @media print { body { padding: 0; } .box { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Media Buying SOP</h1>
+  <div class="subtitle">Facebook & TikTok Ad Testing, Scaling, and Optimization</div>
+  <div class="meta">Version 1.0 — 24 February 2026</div>
+  <div class="badge">STANDARD OPERATING PROCEDURE</div>
+  <div class="confidential">CONFIDENTIAL — INTERNAL USE ONLY</div>
+</div>
+
+<!-- TOC -->
+<div class="page-break"></div>
+<h2>Contents</h2>
+<ol style="font-size: 1.05em; line-height: 2.2;">
+  <li>Core Principles</li>
+  <li>Key Metrics & Formulas</li>
+  <li>Campaign Structure</li>
+  <li>Testing Phase — Finding Winners</li>
+  <li>Kill Criteria — When to Cut</li>
+  <li>Scaling Phase — Growing Winners</li>
+  <li>Creative Testing Framework</li>
+  <li>Daily Optimization Routine</li>
+  <li>Daily Decision Brief Format</li>
+  <li>Budget Management</li>
+  <li>Ad Performance Analysis Template</li>
+  <li>Common Mistakes to Avoid</li>
+</ol>
+
+<!-- SECTION 1 -->
+<div class="page-break"></div>
+<h2>1. Core Principles</h2>
+
+<div class="box info">
+  <div class="box-label">The Truth About Media Buying</div>
+  Media buying is not creative. It's <strong>math.</strong> Every decision is based on data. You don't "feel" your way to profitability — you calculate it.
+</div>
+
+<h3>The Rules</h3>
+<ol>
+  <li><strong>Let the data decide.</strong> Not your emotions, not your gut, not how much you like the product.</li>
+  <li><strong>Test fast, kill faster.</strong> Most ads fail. That's expected. The goal is to find winners quickly and cut losers early.</li>
+  <li><strong>Spend to learn.</strong> Testing budget is tuition, not profit. You're buying data.</li>
+  <li><strong>Protect the B/E ROAS.</strong> If you can't break even, nothing else matters.</li>
+  <li><strong>Scale what works, don't fix what doesn't.</strong> Double down on winners. Don't throw money at trying to save losers.</li>
+  <li><strong>Creative is king.</strong> The best targeting in the world can't save a bad ad. Great creative does the heavy lifting.</li>
+</ol>
+
+<!-- SECTION 2 -->
+<h2>2. Key Metrics & Formulas</h2>
+
+<table>
+  <tr><th>Metric</th><th>What It Means</th><th>Formula</th><th>Target</th></tr>
+  <tr>
+    <td><strong>CPA</strong></td>
+    <td>Cost Per Acquisition — how much you pay per sale</td>
+    <td>Ad Spend ÷ Purchases</td>
+    <td>Below selling price minus COGs</td>
+  </tr>
+  <tr>
+    <td><strong>ROAS</strong></td>
+    <td>Return On Ad Spend — revenue per $1 spent</td>
+    <td>Revenue ÷ Ad Spend</td>
+    <td>Above B/E ROAS (≥ 1.5)</td>
+  </tr>
+  <tr>
+    <td><strong>B/E ROAS</strong></td>
+    <td>Break-Even ROAS — minimum to not lose money</td>
+    <td>Selling Price ÷ (Selling Price − COGs)</td>
+    <td>≤ 1.5 (ideal)</td>
+  </tr>
+  <tr>
+    <td><strong>CTR</strong></td>
+    <td>Click-Through Rate — % who click your ad</td>
+    <td>Clicks ÷ Impressions × 100</td>
+    <td>≥ 1.5% (link CTR)</td>
+  </tr>
+  <tr>
+    <td><strong>CPC</strong></td>
+    <td>Cost Per Click</td>
+    <td>Ad Spend ÷ Clicks</td>
+    <td>Varies by niche ($0.50-2.00 typical)</td>
+  </tr>
+  <tr>
+    <td><strong>CPM</strong></td>
+    <td>Cost Per 1,000 Impressions</td>
+    <td>Ad Spend ÷ Impressions × 1000</td>
+    <td>Varies ($10-30 typical)</td>
+  </tr>
+  <tr>
+    <td><strong>CVR</strong></td>
+    <td>Conversion Rate — % of visitors who buy</td>
+    <td>Purchases ÷ Link Clicks × 100</td>
+    <td>≥ 2% (good), ≥ 3% (great)</td>
+  </tr>
+  <tr>
+    <td><strong>AOV</strong></td>
+    <td>Average Order Value</td>
+    <td>Total Revenue ÷ Total Orders</td>
+    <td>Above selling price (upsells working)</td>
+  </tr>
+</table>
+
+<div class="formula">
+  <strong>Profit Formula:</strong> Revenue − Ad Spend − COGs − Processing Fees = Profit<br><br>
+  <strong>True CPA Target:</strong> Selling Price − COGs − Desired Profit = Max CPA
+</div>
+
+<!-- SECTION 3 -->
+<div class="page-break"></div>
+<h2>3. Campaign Structure</h2>
+
+<h3>Facebook Ads — Testing Structure</h3>
+<pre>
+Campaign (CBO or ABO)
+├── Ad Set 1 — Broad (no interest targeting)
+│   ├── Ad 1 — Creative A (video)
+│   ├── Ad 2 — Creative B (image)
+│   └── Ad 3 — Creative C (video - different angle)
+│
+├── Ad Set 2 — Interest Stack 1
+│   ├── Ad 1 — Creative A
+│   ├── Ad 2 — Creative B
+│   └── Ad 3 — Creative C
+│
+└── Ad Set 3 — Interest Stack 2
+    ├── Ad 1 — Creative A
+    ├── Ad 2 — Creative B
+    └── Ad 3 — Creative C
+</pre>
+
+<h3>Key Settings for Testing</h3>
+<table>
+  <tr><th>Setting</th><th>Recommendation</th><th>Why</th></tr>
+  <tr><td>Objective</td><td>Sales (Purchase conversion)</td><td>Optimize for what matters — actual sales</td></tr>
+  <tr><td>Budget Type</td><td>ABO (Ad Set Budget) for testing</td><td>More control over individual ad set spend</td></tr>
+  <tr><td>Daily Budget per Ad Set</td><td>$20-30/day</td><td>Enough data to evaluate in 3-5 days</td></tr>
+  <tr><td>Placement</td><td>Automatic (let Meta optimize)</td><td>Meta's algorithm is better at this than manual selection</td></tr>
+  <tr><td>Attribution</td><td>7-day click, 1-day view</td><td>Standard ecom attribution window</td></tr>
+  <tr><td>Age</td><td>18-65+ (broad) or based on avatar</td><td>Let the algorithm find your buyer</td></tr>
+  <tr><td>Gender</td><td>All (unless product is clearly gender-specific)</td><td>Don't restrict until data says to</td></tr>
+  <tr><td>Country</td><td>US primary, then test UK/AU/CA</td><td>Largest market, most buyers, most data</td></tr>
+</table>
+
+<h3>TikTok Ads — Testing Structure</h3>
+<pre>
+Campaign (Minimum ROAS or Lowest Cost)
+├── Ad Group 1 — Broad
+│   ├── Ad 1 — UGC-style video
+│   ├── Ad 2 — Problem/solution video
+│   └── Ad 3 — Testimonial-style
+│
+└── Ad Group 2 — Interest-based
+    ├── Ad 1 — UGC-style video
+    ├── Ad 2 — Problem/solution video
+    └── Ad 3 — Testimonial-style
+</pre>
+
+<div class="box info">
+  <div class="box-label">TikTok Note</div>
+  TikTok is video-first. Image ads don't work here. All creatives must be vertical video (9:16), native-feeling, and NOT polished/corporate. Think phone-recorded, authentic, UGC-style.
+</div>
+
+<!-- SECTION 4 -->
+<div class="page-break"></div>
+<h2>4. Testing Phase — Finding Winners</h2>
+
+<h3>The Testing Process</h3>
+<table>
+  <tr><th>Day</th><th>Action</th><th>What to Look For</th></tr>
+  <tr><td><strong>Day 0</strong></td><td>Launch campaign with 3 ad sets × 3 creatives</td><td>Ensure everything is approved and running</td></tr>
+  <tr><td><strong>Day 1</strong></td><td>Monitor — DO NOT TOUCH</td><td>Let the algorithm learn. Don't panic.</td></tr>
+  <tr><td><strong>Day 2</strong></td><td>First data check</td><td>CTR, CPC, add-to-carts. Kill anything with 0 ATCs and $20+ spend.</td></tr>
+  <tr><td><strong>Day 3</strong></td><td>Full evaluation</td><td>Apply kill criteria (Section 5). Cut losers.</td></tr>
+  <tr><td><strong>Day 4-5</strong></td><td>Let survivors run</td><td>Accumulate purchase data. Need 3+ purchases to evaluate properly.</td></tr>
+  <tr><td><strong>Day 5-7</strong></td><td>Decision time</td><td>Either we have a winner (profitable ROAS) or we kill everything and test next product.</td></tr>
+</table>
+
+<div class="box warn">
+  <div class="box-label">Critical Rule</div>
+  <strong>Do NOT keep spending on a losing product hoping it will turn around.</strong> If after $100-150 in ad spend there are zero purchases or ROAS is below B/E — kill it, move to the next product. This is not failure. This is data.
+</div>
+
+<h3>What Makes a "Winner"?</h3>
+<table>
+  <tr><th>Signal</th><th>Strong Winner</th><th>Potential Winner</th><th>Loser</th></tr>
+  <tr><td>ROAS (after 5+ days)</td><td><span class="color-dot green"></span> &gt; 2.0×</td><td><span class="color-dot yellow"></span> 1.5-2.0× (at B/E)</td><td><span class="color-dot red"></span> &lt; 1.5×</td></tr>
+  <tr><td>CPA</td><td><span class="color-dot green"></span> Below target</td><td><span class="color-dot yellow"></span> At or near target</td><td><span class="color-dot red"></span> 2× target or more</td></tr>
+  <tr><td>CTR (link)</td><td><span class="color-dot green"></span> &gt; 2%</td><td><span class="color-dot yellow"></span> 1-2%</td><td><span class="color-dot red"></span> &lt; 1%</td></tr>
+  <tr><td>CVR</td><td><span class="color-dot green"></span> &gt; 3%</td><td><span class="color-dot yellow"></span> 1.5-3%</td><td><span class="color-dot red"></span> &lt; 1.5%</td></tr>
+  <tr><td>Add-to-Cart rate</td><td><span class="color-dot green"></span> &gt; 5%</td><td><span class="color-dot yellow"></span> 3-5%</td><td><span class="color-dot red"></span> &lt; 3%</td></tr>
+</table>
+
+<!-- SECTION 5 -->
+<div class="page-break"></div>
+<h2>5. Kill Criteria — When to Cut</h2>
+
+<div class="box danger">
+  <div class="box-label">Kill Rules — Non-Negotiable</div>
+  <table>
+    <tr><th>Condition</th><th>Action</th></tr>
+    <tr><td>Ad set spent $20+ with 0 add-to-carts</td><td>🔴 KILL ad set</td></tr>
+    <tr><td>Ad set spent $40+ with 0 purchases</td><td>🔴 KILL ad set</td></tr>
+    <tr><td>CPA is 2× target after 3+ purchases</td><td>🔴 KILL ad set</td></tr>
+    <tr><td>CTR below 0.8% after 1,000+ impressions</td><td>🔴 KILL creative (replace with new)</td></tr>
+    <tr><td>ROAS below 1.0× after $100 spend</td><td>🔴 KILL ad set</td></tr>
+    <tr><td>All ad sets killed across campaign</td><td>🔴 KILL product — move to next</td></tr>
+    <tr><td>Product spent $150+ total with 0 purchases</td><td>🔴 KILL product — move to next</td></tr>
+  </table>
+</div>
+
+<div class="box success">
+  <div class="box-label">Keep Rules</div>
+  <table>
+    <tr><th>Condition</th><th>Action</th></tr>
+    <tr><td>ROAS above B/E after 5+ purchases</td><td>🟢 KEEP — move to scaling phase</td></tr>
+    <tr><td>CPA at or below target consistently</td><td>🟢 KEEP — increase budget 20%</td></tr>
+    <tr><td>CTR above 2% with good CPA</td><td>🟢 KEEP — strong creative, scale it</td></tr>
+    <tr><td>Consistent daily purchases</td><td>🟢 KEEP — this is a winner</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 6 -->
+<h2>6. Scaling Phase — Growing Winners</h2>
+
+<h3>Scaling Methods</h3>
+<table>
+  <tr><th>Method</th><th>How</th><th>When</th><th>Risk</th></tr>
+  <tr>
+    <td><strong>Vertical Scaling</strong></td>
+    <td>Increase budget on winning ad set by 20-30% every 2-3 days</td>
+    <td>ROAS stable for 3+ days</td>
+    <td>Low — gradual, algorithm adjusts</td>
+  </tr>
+  <tr>
+    <td><strong>Horizontal Scaling</strong></td>
+    <td>Duplicate winning ad set with different audiences</td>
+    <td>Winner proven at $50+/day</td>
+    <td>Medium — new audiences may not convert equally</td>
+  </tr>
+  <tr>
+    <td><strong>CBO Scaling</strong></td>
+    <td>Move winners into a CBO campaign with higher budget</td>
+    <td>3+ winning ad sets identified</td>
+    <td>Medium — Meta decides allocation</td>
+  </tr>
+  <tr>
+    <td><strong>New Creative Testing</strong></td>
+    <td>Test new angles/hooks on the winning product</td>
+    <td>Always running alongside scaling</td>
+    <td>Low — finding new creative winners extends product life</td>
+  </tr>
+  <tr>
+    <td><strong>New Market Testing</strong></td>
+    <td>Duplicate to UK, AU, CA, EU</td>
+    <td>US proven profitable for 7+ days</td>
+    <td>Medium — different markets, different CPAs</td>
+  </tr>
+</table>
+
+<div class="box warn">
+  <div class="box-label">Scaling Golden Rule</div>
+  <strong>Never increase budget by more than 30% at once.</strong> Large budget jumps reset Meta's learning phase and can kill a winning ad set. Patience scales. Impatience kills.
+</div>
+
+<!-- SECTION 7 -->
+<div class="page-break"></div>
+<h2>7. Creative Testing Framework</h2>
+
+<h3>Creative Types to Test</h3>
+<table>
+  <tr><th>Type</th><th>Description</th><th>Best For</th></tr>
+  <tr><td><strong>UGC (User Generated)</strong></td><td>Phone-recorded, authentic, person talking to camera</td><td>Trust, relatability, TikTok/Reels</td></tr>
+  <tr><td><strong>Problem/Solution</strong></td><td>Show the pain → introduce product → show the result</td><td>Pain-point products, health, convenience</td></tr>
+  <tr><td><strong>Demo/How-To</strong></td><td>Show the product being used, focus on the experience</td><td>Gadgets, tools, visual products</td></tr>
+  <tr><td><strong>Lifestyle</strong></td><td>Product in context — aspirational setting, desirable life</td><td>Fashion, beauty, home</td></tr>
+  <tr><td><strong>Comparison</strong></td><td>Before/after OR this product vs. old way</td><td>Products that replace something worse</td></tr>
+  <tr><td><strong>Social Proof</strong></td><td>Reviews, testimonials, "1000+ sold" messaging</td><td>Building trust for unknown brands</td></tr>
+  <tr><td><strong>Static Image</strong></td><td>Clean product photo with strong headline + offer</td><td>Facebook feed, retargeting, simple products</td></tr>
+</table>
+
+<h3>Hook Framework (First 3 Seconds)</h3>
+<p>The first 3 seconds decide everything. Test these hook types:</p>
+<table>
+  <tr><th>Hook Type</th><th>Example</th></tr>
+  <tr><td><strong>Question</strong></td><td>"Tired of [problem]?"</td></tr>
+  <tr><td><strong>Bold Claim</strong></td><td>"This replaced my entire [category]"</td></tr>
+  <tr><td><strong>Shock/Curiosity</strong></td><td>"I can't believe I used [old solution] for so long"</td></tr>
+  <tr><td><strong>Social Proof</strong></td><td>"100,000 people switched to this last month"</td></tr>
+  <tr><td><strong>Pain Point</strong></td><td>"If you struggle with [problem], watch this"</td></tr>
+  <tr><td><strong>Demonstration</strong></td><td>Show the product doing something impressive immediately</td></tr>
+</table>
+
+<h3>Creative Testing Process</h3>
+<ol>
+  <li>Launch 3 creatives per ad set (different types/hooks)</li>
+  <li>After 1,000+ impressions each — identify the CTR winner</li>
+  <li>Kill the lowest performer, replace with a new creative</li>
+  <li>Iterate: always have 1 proven creative + 1-2 tests running</li>
+  <li>When a creative fatigues (CTR drops 30%+) — replace it</li>
+</ol>
+
+<!-- SECTION 8 -->
+<div class="page-break"></div>
+<h2>8. Daily Optimization Routine</h2>
+
+<h3>Morning Check (10 min)</h3>
+<ol>
+  <li>Open Ads Manager → review last 24 hours</li>
+  <li>Check: spend, purchases, ROAS, CPA, CTR for each ad set</li>
+  <li>Apply kill criteria — turn off any ad sets that hit kill conditions</li>
+  <li>Note any winners hitting new highs</li>
+</ol>
+
+<h3>Midday Check (5 min)</h3>
+<ol>
+  <li>Quick glance at today's spend vs. purchases</li>
+  <li>If daily spend is burning through budget with no conversions → pause and investigate</li>
+</ol>
+
+<h3>Evening Review (10 min)</h3>
+<ol>
+  <li>Full day review — calculate daily ROAS, CPA, profit/loss</li>
+  <li>Log results in the Ad Performance Template</li>
+  <li>Plan tomorrow's actions (kill/scale/launch decisions)</li>
+</ol>
+
+<!-- SECTION 9 -->
+<h2>9. Daily Decision Brief Format</h2>
+
+<p>This is what Forge sends Anton each morning based on ad data:</p>
+
+<pre>
+📊 DAILY DECISION BRIEF — [Date]
+
+YESTERDAY'S RESULTS:
+• Total Spend: $XX.XX
+• Revenue: $XX.XX
+• ROAS: X.XX (target: X.XX)
+• Purchases: X
+• CPA: $XX.XX (target: $XX.XX)
+• Net P/L: +/- $XX.XX
+
+ACTIONS NEEDED:
+🔴 KILL: [Ad Set Name] — Reason: [e.g., $40 spent, 0 purchases]
+🟢 SCALE: [Ad Set Name] — Increase budget to $XX (was $XX)
+🧪 TEST: Launch new creative [description] in [Ad Set]
+⏸️ HOLD: [Ad Set Name] — Monitoring, needs 1 more day of data
+
+CREATIVE NOTES:
+• Best performer: [Creative Name] — CTR X.X%, CVR X.X%
+• Worst performer: [Creative Name] — replacing with [new creative type]
+
+WEEKLY TREND:
+• This week: $XXX spend → $XXX revenue → X.XX ROAS
+• Last week: $XXX spend → $XXX revenue → X.XX ROAS
+
+Anton's decision needed on:
+☐ [Any budget increases above $XX/day]
+☐ [Any new market launches]
+☐ [Anything flagged]
+</pre>
+
+<div class="box info">
+  <div class="box-label">How This Works</div>
+  You send me your ad manager data (screenshot or CSV export). I analyse it and send you this brief. You make the decisions marked with ☐. Everything else, I handle.
+</div>
+
+<!-- SECTION 10 -->
+<div class="page-break"></div>
+<h2>10. Budget Management</h2>
+
+<h3>Testing Budget Rules</h3>
+<table>
+  <tr><th>Rule</th><th>Amount</th><th>Why</th></tr>
+  <tr><td>Max spend per product test</td><td>$100-150</td><td>Enough data for 3-5 purchase decisions</td></tr>
+  <tr><td>Daily budget per ad set (testing)</td><td>$20-30</td><td>Enough to evaluate in 3-5 days</td></tr>
+  <tr><td>Kill threshold (no purchases)</td><td>$40 per ad set</td><td>If $40 can't get one sale, it won't at $200</td></tr>
+  <tr><td>Min purchases to evaluate</td><td>3+ per ad set</td><td>Need statistical significance</td></tr>
+</table>
+
+<h3>Scaling Budget Rules</h3>
+<table>
+  <tr><th>Rule</th><th>Detail</th></tr>
+  <tr><td>Budget increase cap</td><td>Max 20-30% increase per 2-3 days</td></tr>
+  <tr><td>Daily spend cap (early scaling)</td><td>Start at 2× test budget, scale from there</td></tr>
+  <tr><td>Profit reinvestment</td><td>Reinvest 50-70% of profits back into ads during scaling phase</td></tr>
+  <tr><td>Emergency stop</td><td>If daily ROAS drops below 1.0× for 2 consecutive days → pause everything, reassess</td></tr>
+</table>
+
+<!-- SECTION 11 -->
+<h2>11. Ad Performance Analysis Template</h2>
+
+<p>Log this data daily for every active campaign:</p>
+
+<table>
+  <tr><th>Field</th><th>Where to Get It</th></tr>
+  <tr><td>Date</td><td>—</td></tr>
+  <tr><td>Campaign Name</td><td>Ads Manager</td></tr>
+  <tr><td>Ad Set Name</td><td>Ads Manager</td></tr>
+  <tr><td>Ad/Creative Name</td><td>Ads Manager</td></tr>
+  <tr><td>Spend ($)</td><td>Ads Manager → Amount Spent</td></tr>
+  <tr><td>Impressions</td><td>Ads Manager → Impressions</td></tr>
+  <tr><td>Link Clicks</td><td>Ads Manager → Link Clicks</td></tr>
+  <tr><td>CTR (link)</td><td>Ads Manager → CTR (link click-through rate)</td></tr>
+  <tr><td>CPC ($)</td><td>Ads Manager → Cost per link click</td></tr>
+  <tr><td>Add to Carts</td><td>Ads Manager → Add to Cart</td></tr>
+  <tr><td>Purchases</td><td>Ads Manager → Purchases</td></tr>
+  <tr><td>Revenue ($)</td><td>Ads Manager → Purchase ROAS × Spend (or Shopify)</td></tr>
+  <tr><td>CPA ($)</td><td>Spend ÷ Purchases</td></tr>
+  <tr><td>ROAS</td><td>Revenue ÷ Spend</td></tr>
+  <tr><td>CVR (%)</td><td>Purchases ÷ Link Clicks × 100</td></tr>
+  <tr><td>Action</td><td>Kill / Scale / Hold / Test</td></tr>
+  <tr><td>Notes</td><td>Any observations, creative fatigue signs, etc.</td></tr>
+</table>
+
+<!-- SECTION 12 -->
+<div class="page-break"></div>
+<h2>12. Common Mistakes to Avoid</h2>
+
+<table>
+  <tr><th>Mistake</th><th>Why It's Bad</th><th>What to Do Instead</th></tr>
+  <tr><td>Changing things on Day 1</td><td>Algorithm needs 24-48 hrs to learn</td><td>Don't touch anything for 24 hours after launch</td></tr>
+  <tr><td>Testing too many things at once</td><td>Can't isolate what's working</td><td>Test one variable at a time (creative OR audience, not both)</td></tr>
+  <tr><td>Emotional attachment to a product</td><td>Keeps spending on losers</td><td>Follow kill criteria mechanically. No feelings.</td></tr>
+  <tr><td>Huge budget jumps</td><td>Resets learning phase, kills performance</td><td>Max 20-30% increase per 2-3 days</td></tr>
+  <tr><td>Ignoring creative fatigue</td><td>ROAS slowly declines as audience gets bored</td><td>Always have new creatives ready to rotate in</td></tr>
+  <tr><td>Only testing one creative</td><td>No way to know what works best</td><td>Always test 3+ creatives per ad set</td></tr>
+  <tr><td>Targeting too narrow</td><td>Tiny audience = high CPMs = expensive clicks</td><td>Start broad, let the algorithm optimize</td></tr>
+  <tr><td>No tracking setup</td><td>Can't attribute sales → flying blind</td><td>Pixel installed, CAPI configured, test events verified</td></tr>
+  <tr><td>Scaling a 1-day wonder</td><td>One good day doesn't mean a winner</td><td>Need 3+ days of consistent profitable ROAS before scaling</td></tr>
+  <tr><td>Ignoring the landing page</td><td>Great ad → bad page = no sales</td><td>Test the full funnel, not just the ad</td></tr>
+</table>
+
+<div class="box success">
+  <div class="box-label">The Media Buyer's Mindset</div>
+  You are a scientist running experiments. Each ad set is a hypothesis. Data confirms or denies it. You don't argue with data. You act on it. The best media buyers have no ego — only spreadsheets.
+</div>
+
+<div class="footer">
+  <p><strong>Media Buying SOP v1.0</strong> — Built by Forge 🔱 — 24 February 2026</p>
+  <p>CONFIDENTIAL — INTERNAL USE ONLY</p>
+</div>
+
+</body>
+</html>

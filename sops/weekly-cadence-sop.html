@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Operating Cadence — Anton & Forge</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, sans-serif; color: #1a1a1a; line-height: 1.6; background: #fff; max-width: 900px; margin: 0 auto; padding: 24px; }
+  .cover { text-align: center; padding: 60px 20px 40px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; }
+  .cover .sub { font-size: 1.2em; color: #555; margin: 8px 0 30px; }
+  .cover .meta { font-size: 0.95em; color: #888; }
+  .cover .badge { display: inline-block; background: #111; color: #fff; padding: 8px 24px; border-radius: 6px; font-weight: 700; font-size: 0.9em; margin-top: 20px; }
+  .cover .conf { color: #c0392b; font-weight: 700; margin-top: 16px; font-size: 0.85em; letter-spacing: 2px; }
+  h2 { font-size: 1.5em; font-weight: 800; margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 3px solid #111; }
+  h3 { font-size: 1.15em; font-weight: 700; margin: 24px 0 8px; }
+  p { margin-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.9em; }
+  th { background: #111; color: #fff; padding: 10px; text-align: left; font-weight: 700; }
+  td { padding: 10px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; font-weight: 700; }
+  .tag-forge { background: #e8d5f5; color: #6a1b9a; }
+  .tag-anton { background: #e3f2fd; color: #1565c0; }
+  .tag-both { background: #e8f5e9; color: #2e7d32; }
+  .box { padding: 16px 20px; margin: 14px 0; border-radius: 6px; }
+  .box-purple { background: #f3e5f5; border-left: 4px solid #7b1fa2; }
+  .box-blue { background: #e3f2fd; border-left: 4px solid #1976d2; }
+  .box-green { background: #e8f5e9; border-left: 4px solid #388e3c; }
+  .box-red { background: #fdecea; border-left: 4px solid #c62828; }
+  .box-label { font-weight: 700; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  ul, ol { margin: 6px 0 10px 20px; }
+  li { margin-bottom: 4px; }
+  .footer { text-align: center; font-size: 0.8em; color: #999; margin-top: 50px; padding-top: 16px; border-top: 1px solid #e0e0e0; }
+  @media print { .box { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Weekly Operating Cadence</h1>
+  <div class="sub">Who Does What, When — Anton & Forge</div>
+  <div class="meta">v1.0 — February 2026</div>
+  <div class="badge">STANDARD OPERATING PROCEDURE</div>
+  <div class="conf">CONFIDENTIAL — INTERNAL USE ONLY</div>
+</div>
+
+<h2>1. The Rule</h2>
+<div class="box box-red">
+  <div class="box-label">Forge's Directive</div>
+  <strong>Anton should never have to tell Forge how to do something twice.</strong> If it can be automated, it is automated. If it requires Anton's input, Forge prepares everything so Anton's action takes &lt;2 minutes. Anton steers. Forge builds, operates, and delivers.
+</div>
+
+<h2>2. Weekly Rhythm</h2>
+
+<table>
+  <tr><th>Day</th><th>Time</th><th>Who</th><th>What</th></tr>
+  <tr>
+    <td rowspan="3"><strong>Monday</strong></td>
+    <td>3:00 AM</td>
+    <td><span class="tag tag-forge">FORGE</span></td>
+    <td><strong>Product Research Cycle #1</strong> — GetHookd → SimilarWeb → FB Ad Library → AliExpress image search → Log in xlsx (all 14 columns). Prepare Mutual sourcing requests.</td>
+  </tr>
+  <tr>
+    <td>7:00 AM</td>
+    <td><span class="tag tag-forge">FORGE</span></td>
+    <td><strong>Morning Briefing</strong> — Telegram message: what happened overnight, research results, decisions needed, active tasks.</td>
+  </tr>
+  <tr>
+    <td>AM (when convenient)</td>
+    <td><span class="tag tag-anton">ANTON</span></td>
+    <td><strong>Mutual Sourcing</strong> — Forward Forge's prepared messages to Mutual via WhatsApp. Forward their replies back to Forge. (~2 min)</td>
+  </tr>
+  <tr>
+    <td rowspan="2"><strong>Tuesday</strong></td>
+    <td>7:00 AM</td>
+    <td><span class="tag tag-forge">FORGE</span></td>
+    <td><strong>Morning Briefing</strong> — Update on Mutual responses (if received), THALYVE ad performance (if ads live), tasks in progress.</td>
+  </tr>
+  <tr>
+    <td>9:00 PM</td>
+    <td><span class="tag tag-forge">FORGE</span></td>
+    <td><strong>Ad Performance Check</strong> (if THALYVE ads live) — Ask for numbers or pull from API → update dashboard.</td>
+  </tr>
+  <tr>
+    <td><strong>Wednesday</strong></td>
+    <td>7:00 AM</td>
+    <td><span class="tag tag-forge">FORGE</span></td>
+    <td><strong>Morning Briefing</strong> — Mid-week status, any Mutual COGS updates → recalculate B/E ROAS.</td>
+  </tr>
+  <tr>
+    <td rowspan="3"><strong>Thursday</strong></td>
+    <td>3:00 AM</td>
+    <td><span class="tag tag-forge">FORGE</span></td>
+    <td><strong>Product Research Cycle #2</strong> — Same as Monday. New products only (no duplicates).</td>
+  </tr>
+  <tr>
+    <td>7:00 AM</td>
+    <td><span class="tag tag-forge">FORGE</span></td>
+    <td><strong>Morning Briefing</strong> — Research results, updated xlsx, new sourcing requests.</td>
+  </tr>
+  <tr>
+    <td>AM</td>
+    <td><span class="tag tag-anton">ANTON</span></td>
+    <td><strong>Mutual Sourcing</strong> — Same as Monday. (~2 min)</td>
+  </tr>
+  <tr>
+    <td rowspan="2"><strong>Friday</strong></td>
+    <td>7:00 AM</td>
+    <td><span class="tag tag-forge">FORGE</span></td>
+    <td><strong>Weekly Pipeline Review</strong> — Full xlsx sent. Top 10 narrowed. Recommendations for approval with rationale.</td>
+  </tr>
+  <tr>
+    <td>When convenient</td>
+    <td><span class="tag tag-anton">ANTON</span></td>
+    <td><strong>Review & Approve</strong> — Review top 10, approve 1 product (or reject with notes). (~10 min)</td>
+  </tr>
+  <tr>
+    <td><strong>Saturday</strong></td>
+    <td>Morning</td>
+    <td><span class="tag tag-both">BOTH</span></td>
+    <td><strong>Weigh-in</strong> (health) + <strong>Weekly ad review</strong> (if ads live). Forge sends health check-in prompt + ad summary.</td>
+  </tr>
+  <tr>
+    <td><strong>Sunday</strong></td>
+    <td>10:00 AM</td>
+    <td><span class="tag tag-forge">FORGE</span></td>
+    <td><strong>Memory Maintenance</strong> — Review daily logs, update MEMORY.md, clean up workspace, git commit.</td>
+  </tr>
+</table>
+
+<h2>3. Anton's Total Weekly Time Commitment</h2>
+<div class="box box-green">
+  <div class="box-label">Target: &lt;30 minutes/week</div>
+  <table>
+    <tr><th>Task</th><th>Time</th><th>Frequency</th></tr>
+    <tr><td>Forward Mutual sourcing messages via WhatsApp</td><td>~2 min</td><td>2x/week (Mon + Thu)</td></tr>
+    <tr><td>Forward Mutual replies back to Forge</td><td>~1 min</td><td>2x/week</td></tr>
+    <tr><td>Review weekly pipeline + approve/reject</td><td>~10 min</td><td>1x/week (Fri)</td></tr>
+    <tr><td>Review morning briefings (read only)</td><td>~5 min</td><td>Daily</td></tr>
+    <tr><td>Ad performance numbers (if ads live)</td><td>~2 min</td><td>Daily (when prompted)</td></tr>
+    <tr><td><strong>TOTAL</strong></td><td colspan="2"><strong>~20-30 min/week</strong></td></tr>
+  </table>
+</div>
+
+<h2>4. What Forge Does Autonomously (No Input Needed)</h2>
+<ul>
+  <li>Product research on GetHookd (browse, filter, find candidates)</li>
+  <li>SimilarWeb traffic validation (free API — no extension needed)</li>
+  <li>FB Ad Library validation (active ad count, runtime, creative analysis)</li>
+  <li>AliExpress image search to find base products</li>
+  <li>Prepare Mutual sourcing request messages (ready to copy-paste)</li>
+  <li>Calculate B/E ROAS and update all economics</li>
+  <li>Content validation (Amazon, competitor sites)</li>
+  <li>Update xlsx with ALL 14 columns filled</li>
+  <li>Send morning briefings</li>
+  <li>Update dashboards and company data</li>
+  <li>SOP compliance checks</li>
+  <li>Memory maintenance and git backups</li>
+  <li>Ad performance tracking (when data provided or API connected)</li>
+</ul>
+
+<h2>5. What Requires Anton's Input (Escalation Points)</h2>
+<div class="box box-blue">
+  <div class="box-label">Only These Things</div>
+  <ol>
+    <li><strong>Mutual WhatsApp messages</strong> — Forge prepares, Anton sends (can't automate WhatsApp)</li>
+    <li><strong>Product approval</strong> — Final gate before testing (weekly, Friday)</li>
+    <li><strong>Ad performance numbers</strong> — Until Meta API is connected</li>
+    <li><strong>Budget decisions</strong> — Kill/scale/increase budget</li>
+    <li><strong>Strategic direction changes</strong> — New niches, pivots, brand decisions</li>
+  </ol>
+  Everything else Forge handles independently.
+</div>
+
+<h2>6. Communication Rules</h2>
+<table>
+  <tr><th>Type</th><th>Channel</th><th>When</th></tr>
+  <tr><td>Morning Briefing</td><td>Telegram text</td><td>7:00 AM daily</td></tr>
+  <tr><td>Research Results</td><td>Telegram (xlsx file + summary)</td><td>Mon + Thu AM</td></tr>
+  <tr><td>Mutual Sourcing Requests</td><td>Telegram (copy-paste messages)</td><td>Mon + Thu AM</td></tr>
+  <tr><td>Weekly Review</td><td>Telegram (xlsx + recommendation)</td><td>Friday AM</td></tr>
+  <tr><td>Ad Performance</td><td>Telegram (dashboard update + brief)</td><td>9 PM daily (when live)</td></tr>
+  <tr><td>Urgent / Escalation</td><td>Telegram (flagged as ⚠️ URGENT)</td><td>Anytime</td></tr>
+</table>
+
+<div class="box box-purple">
+  <div class="box-label">Forge's Promise</div>
+  Every message to Anton has a purpose. No fluff, no unnecessary check-ins, no "just wanted to update you" unless there's actual new information. Quality over quantity.
+</div>
+
+<div class="footer">
+  <p><strong>Weekly Operating Cadence v1.0</strong> — Built by Forge 🔱 — February 2026</p>
+  <p>CONFIDENTIAL — INTERNAL USE ONLY</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Research SOP v1.0</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; color: #1a1a1a; line-height: 1.6; background: #fff; max-width: 900px; margin: 0 auto; padding: 24px; }
+
+  /* Cover */
+  .cover { text-align: center; padding: 80px 20px 60px; page-break-after: always; }
+  .cover h1 { font-size: 2.8em; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .cover .subtitle { font-size: 1.3em; color: #555; margin-bottom: 40px; }
+  .cover .meta { font-size: 0.95em; color: #888; }
+  .cover .badge { display: inline-block; background: #111; color: #fff; padding: 8px 24px; border-radius: 6px; font-weight: 700; font-size: 0.9em; margin-top: 30px; letter-spacing: 1px; }
+  .cover .confidential { color: #c0392b; font-weight: 700; margin-top: 20px; font-size: 0.85em; letter-spacing: 2px; }
+
+  /* Section headers */
+  h2 { font-size: 1.6em; font-weight: 800; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 3px solid #111; }
+  h3 { font-size: 1.2em; font-weight: 700; margin: 28px 0 10px; color: #222; }
+  h4 { font-size: 1.05em; font-weight: 700; margin: 20px 0 8px; color: #333; }
+
+  p { margin-bottom: 12px; }
+
+  /* Phase boxes */
+  .phase { background: #f8f9fa; border-left: 4px solid #111; padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+  .phase-title { font-weight: 800; font-size: 1.15em; margin-bottom: 8px; }
+  .phase-num { display: inline-block; background: #111; color: #fff; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-size: 0.85em; font-weight: 700; margin-right: 8px; }
+
+  /* Step boxes */
+  .step { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 18px 20px; margin: 14px 0; }
+  .step-header { font-weight: 700; font-size: 1.05em; margin-bottom: 6px; color: #111; }
+  .step-purpose { font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 10px; }
+
+  /* Lists */
+  ul, ol { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 6px; }
+
+  /* Callout boxes */
+  .rule-box { background: #fff3cd; border-left: 4px solid #f0ad4e; padding: 14px 18px; margin: 16px 0; border-radius: 0 6px 6px 0; }
+  .rule-box.red { background: #fdecea; border-left-color: #c0392b; }
+  .rule-box.green { background: #e8f5e9; border-left-color: #27ae60; }
+  .rule-box.blue { background: #e3f2fd; border-left-color: #2196f3; }
+  .rule-label { font-weight: 700; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92em; }
+  th { background: #111; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 10px 12px; border-bottom: 1px solid #e0e0e0; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+
+  /* Checklist */
+  .checklist { list-style: none; margin-left: 0; }
+  .checklist li { padding: 6px 0 6px 28px; position: relative; }
+  .checklist li::before { content: "☐"; position: absolute; left: 0; font-size: 1.1em; }
+
+  /* Formula box */
+  .formula { background: #f0f0f0; border-radius: 6px; padding: 14px 18px; margin: 12px 0; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.95em; text-align: center; }
+
+  /* Color indicator */
+  .color-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .color-dot.red { background: #e74c3c; }
+  .color-dot.yellow { background: #f1c40f; }
+  .color-dot.green { background: #27ae60; }
+
+  /* Scorecard */
+  .scorecard { background: #f8f9fa; border: 2px solid #111; border-radius: 10px; padding: 24px; margin: 20px 0; }
+  .scorecard h3 { margin-top: 0; }
+  .score-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e0e0e0; }
+  .score-row:last-child { border-bottom: none; }
+  .score-label { font-weight: 600; }
+  .score-value { font-weight: 700; }
+
+  /* Page breaks */
+  .page-break { page-break-before: always; }
+
+  /* Footer */
+  .footer { text-align: center; font-size: 0.8em; color: #999; margin-top: 60px; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+
+  /* Print */
+  @media print {
+    body { padding: 0; }
+    .phase, .step, .rule-box, .scorecard { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>Product Research SOP</h1>
+  <div class="subtitle">The Complete System for Finding Winning Products</div>
+  <div class="meta">Version 1.0 — February 2026</div>
+  <div class="badge">STANDARD OPERATING PROCEDURE</div>
+  <div class="confidential">CONFIDENTIAL — INTERNAL USE ONLY</div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="page-break"></div>
+<h2>Contents</h2>
+<ol style="font-size: 1.05em; line-height: 2.2;">
+  <li><a href="#philosophy" style="text-decoration:none; color:#111;">The Winning Product Philosophy</a></li>
+  <li><a href="#tools" style="text-decoration:none; color:#111;">Required Tools (Minimal Stack)</a></li>
+  <li><a href="#method" style="text-decoration:none; color:#111;">The Research Method — Step by Step</a></li>
+  <li><a href="#validation" style="text-decoration:none; color:#111;">Validation Framework</a></li>
+  <li><a href="#template" style="text-decoration:none; color:#111;">Product Research Template — Column Guide</a></li>
+  <li><a href="#economics" style="text-decoration:none; color:#111;">Economics & B/E ROAS</a></li>
+  <li><a href="#strategy" style="text-decoration:none; color:#111;">Strategy Sheet — Deep Analysis</a></li>
+  <li><a href="#checklist" style="text-decoration:none; color:#111;">Winning Product Checklist</a></li>
+  <li><a href="#workflow" style="text-decoration:none; color:#111;">Daily Research Workflow</a></li>
+  <li><a href="#alt-methods" style="text-decoration:none; color:#111;">Alternative Discovery Methods</a></li>
+  <li><a href="#rules" style="text-decoration:none; color:#111;">Non-Negotiable Rules</a></li>
+</ol>
+
+<!-- SECTION 1: PHILOSOPHY -->
+<div class="page-break"></div>
+<h2 id="philosophy">1. The Winning Product Philosophy</h2>
+
+<p>Making money in eCommerce comes down to one thing: <strong>providing value to the market.</strong> Your income is a direct reflection of how much value you deliver. In eCommerce, value is delivered through <strong>problem solving.</strong></p>
+
+<div class="rule-box green">
+  <div class="rule-label">Core Principle</div>
+  Do <strong>not</strong> focus on "making money." Focus on <strong>solving real problems.</strong> Money is the byproduct.
+</div>
+
+<h3>1.1 Problem Solving — The Foundation</h3>
+<p>Every winning product solves a problem. That problem can be:</p>
+<ul>
+  <li><strong>Physical</strong> — pain, discomfort, inconvenience</li>
+  <li><strong>Emotional</strong> — confidence, self-expression, identity</li>
+  <li><strong>Convenience-based</strong> — time, effort, frustration</li>
+  <li><strong>Identity-based</strong> — fashion, status, belonging</li>
+</ul>
+
+<div class="rule-box blue">
+  <div class="rule-label">Key Insight</div>
+  Problem-solving is <strong>not binary</strong> (yes/no). It's a <strong>scale.</strong> The more painful the problem, the higher the likelihood of impulse purchases, fast decisions, and emotional buying.
+</div>
+
+<h3>1.2 Niches & Categories — Where to Play</h3>
+<p>Some niches naturally contain stronger problems. However, problem-heavy niches often come with higher ad costs, more competition, and stricter compliance.</p>
+
+<table>
+  <tr><th>Advanced Niches (Experienced Only)</th><th>Beginner-Friendly Niches</th></tr>
+  <tr>
+    <td>
+      Health & Wellness <em>(compliance heavy)</em><br>
+      Beauty <em>(very competitive + compliance)</em>
+    </td>
+    <td>
+      Pets<br>
+      Kids / Baby<br>
+      Travel<br>
+      Personal Care<br>
+      Gadgets <em>(no software/app dependency)</em>
+    </td>
+  </tr>
+</table>
+
+<h3>1.3 Economics — If the Numbers Don't Work, Nothing Works</h3>
+<p>The two main costs in eCommerce:</p>
+<ol>
+  <li><strong>Product cost</strong> (COGs + shipping)</li>
+  <li><strong>Advertising cost</strong> (CPA)</li>
+</ol>
+<p>If your product can't cover both and leave profit — it's not viable.</p>
+
+<div class="rule-box red">
+  <div class="rule-label">Non-Negotiable Baseline</div>
+  <ul style="margin-top:8px;">
+    <li>Average CPA ≈ <strong>$20</strong></li>
+    <li>Minimum selling price target ≈ <strong>$40</strong></li>
+    <li>You need <strong>at least one</strong>: 3× markup OR $40+ front-end price</li>
+  </ul>
+</div>
+
+<h3>1.4 Proof of Demand — You Cannot Create Demand</h3>
+<p>One of the biggest mistakes is trying to <strong>invent demand.</strong> You can't.</p>
+
+<div class="rule-box">
+  <div class="rule-label">Correct Question</div>
+  ❌ "Is this product unique?"<br>
+  ✅ "Are people already buying this?"
+</div>
+
+<p><strong>The truth about saturation:</strong> Global eCommerce = $6+ trillion/year. Even niches worth $50 billion annually are nowhere near saturated. If someone is doing $1M/month, they're still less than 1% of that category. Competition is a <strong>green light</strong>, not a red flag.</p>
+
+<p><strong>Your job is to do it better or do it different:</strong></p>
+<ul>
+  <li>Target a different market (US → AU, EU, etc.)</li>
+  <li>Change the angle (who it's for + why)</li>
+  <li>Improve the offer (pricing, bundles, bonuses)</li>
+  <li>Find a newer/better version of the product</li>
+</ul>
+
+<h3>1.5 Sufficient Content — The Silent Killer</h3>
+<p>A product can check every box and still fail if you can't market it. Modern eCommerce is visual. No content = no leverage.</p>
+
+<div class="rule-box red">
+  <div class="rule-label">Hard Rule</div>
+  If you cannot reasonably get enough content (images, videos, angles) — <strong>it is not a winning product.</strong>
+</div>
+
+<p><strong>Options if content is limited:</strong></p>
+<ul>
+  <li>Order the product yourself</li>
+  <li>Have a friend or family member use it</li>
+  <li>Take your own photos/videos</li>
+  <li>Work with creators</li>
+  <li>Use a product already proven with content available</li>
+</ul>
+
+<!-- SECTION 2: TOOLS -->
+<div class="page-break"></div>
+<h2 id="tools">2. Required Tools (Minimal Stack)</h2>
+
+<p>You do <strong>not</strong> need dozens of subscriptions. One core tool, used correctly.</p>
+
+<table>
+  <tr><th>Tool</th><th>Purpose</th><th>Type</th></tr>
+  <tr><td><strong>GetHookd</strong></td><td>Core product discovery engine — massive crowd-sourced ad library</td><td>Primary (Paid)</td></tr>
+  <tr><td><strong>Mutual Dropshipping</strong></td><td>Sourcing & fulfillment — BBA preferred partner, better than Zendrop/CJ</td><td>Supplier</td></tr>
+  <tr><td><strong>Facebook Ad Library</strong></td><td>Ad validation — verify active ads, runtime, scale signals</td><td>Free</td></tr>
+  <tr><td><strong>SimilarWeb</strong></td><td>Traffic validation — estimate visitor volume and store activity</td><td>Free (extension)</td></tr>
+  <tr><td><strong>AliExpress</strong></td><td>Reference ONLY — product identification, NOT sourcing</td><td>Free</td></tr>
+  <tr><td><strong>Amazon</strong></td><td>Content validation — typically better assets than AliExpress</td><td>Free</td></tr>
+  <tr><td><strong>Image Downloader Extension</strong></td><td>Asset capture from competitor pages</td><td>Free</td></tr>
+</table>
+
+<div class="rule-box blue">
+  <div class="rule-label">Important</div>
+  AliExpress is for <strong>reference and price estimation only</strong>. All actual sourcing goes through <strong>Mutual Dropshipping</strong>. They source from their own factories, provide better support, and give more accurate quotes.
+</div>
+
+<!-- SECTION 3: THE METHOD -->
+<div class="page-break"></div>
+<h2 id="method">3. The Research Method — Step by Step</h2>
+
+<div class="phase">
+  <div class="phase-title"><span class="phase-num">1</span> Setup GetHookd</div>
+  <ul>
+    <li>Create a folder called <strong>"Product Research"</strong></li>
+    <li>Add a <strong>Board</strong> inside it (use the Default board — centralise everything)</li>
+    <li>Open alongside: Mutual Dropshipping, FB Ad Library, AliExpress, SimilarWeb, Amazon</li>
+  </ul>
+</div>
+
+<div class="phase">
+  <div class="phase-title"><span class="phase-num">2</span> Apply Filters</div>
+  <p>Use <strong>ONE</strong> of the following mandatory filters:</p>
+  <table>
+    <tr><th>Filter</th><th>What It Means</th></tr>
+    <tr><td><strong>Winning</strong></td><td>Ad running 7+ days + backend algorithm signals = likely profitable</td></tr>
+    <tr><td><strong>Runtime &gt; 7 / 14 / 21 days</strong></td><td>Still spending money on FB = most likely making money</td></tr>
+  </table>
+  <p><strong>Optional filters:</strong> ad type (images only works well), niche (not perfect — uses brand name/headline, do own due diligence).</p>
+  <p><strong>Pro tip:</strong> Close the left filter panel to see 6 ads instead of 5. If one brand dominates, use the three dots → "Hide brand" to keep discovery fresh.</p>
+</div>
+
+<div class="phase">
+  <div class="phase-title"><span class="phase-num">3</span> Click Through to Store</div>
+  <ul>
+    <li>Click <strong>"Shop Now"</strong> on any promising ad</li>
+    <li>Land on the product/website page</li>
+    <li>Begin validation process (Steps 4-6)</li>
+  </ul>
+</div>
+
+<div class="phase">
+  <div class="phase-title"><span class="phase-num">4</span> Traffic Validation — SimilarWeb</div>
+  <p><strong>Quick check:</strong> Click the SimilarWeb extension on the competitor's site.</p>
+  <div class="rule-box green">
+    <div class="rule-label">Minimum Threshold</div>
+    Target: <strong>30,000+ visitors</strong> (check relevance to recent timeframes)
+  </div>
+  <p><strong>Deep check:</strong> Search the store on SimilarWeb website for full details — monthly traffic, similar competitors, market behaviour. Note: shows <strong>previous month only</strong>, not current.</p>
+</div>
+
+<div class="phase">
+  <div class="phase-title"><span class="phase-num">5</span> Ad Volume Validation — Facebook Ad Library</div>
+  <p>From GetHookd: click the ad → open source link → go to FB Ad Library.</p>
+  <div class="rule-box green">
+    <div class="rule-label">Minimum Threshold</div>
+    Filter → <strong>Active ads only</strong> → Need at least <strong>10 active ads</strong>
+  </div>
+  <p><strong>Key actions:</strong></p>
+  <ul>
+    <li>Sort by longest-running ads (oldest = most proven)</li>
+    <li>If brand sells multiple products: use Ctrl+Cmd+F to search for specific product terms</li>
+    <li>Ensure you understand where the traffic is actually going</li>
+    <li>Note: GetHookd saves ads forever — FB Ad Library does not</li>
+  </ul>
+</div>
+
+<div class="phase">
+  <div class="phase-title"><span class="phase-num">6</span> Product Sourcing — Mutual Dropshipping</div>
+  <ol>
+    <li><strong>Save the product image</strong> from the competitor site (or use Image Downloader extension — some brands block right-click)</li>
+    <li><strong>Search on AliExpress</strong> — use "Search by Image" next to the search icon, upload the saved image</li>
+    <li><strong>Find the core product</strong> — pick listings with most sales. If bundles appear, click through to get the main product page</li>
+    <li><strong>Copy the AliExpress link</strong> (avoid bundle listing links)</li>
+    <li><strong>Submit to Mutual Dropshipping:</strong>
+      <ul>
+        <li>Go to Sourcing → Individual Products (top right: Sourcing Requests)</li>
+        <li>Upload: product name + images</li>
+        <li>Untick "Similar Products"</li>
+        <li>Product type: Dropshipping</li>
+        <li>Mutual sources from their own factories and creates a product listing</li>
+      </ul>
+    </li>
+    <li><strong>Get your true cost:</strong> COGs + Shipping Fee (adjust shipping destination for most accurate quote, pick shipping method that makes most sense)</li>
+    <li><strong>Replace the AliExpress link</strong> with the Mutual link once generated</li>
+  </ol>
+</div>
+
+<div class="phase">
+  <div class="phase-title"><span class="phase-num">7</span> Set Pricing</div>
+  <ul>
+    <li>Match competitor pricing initially — keep it simple</li>
+    <li>Goal: understand margins first, get creative later</li>
+    <li>Can offer something enticing, but simplicity wins early on</li>
+  </ul>
+</div>
+
+<div class="phase">
+  <div class="phase-title"><span class="phase-num">8</span> Log Everything in the Template</div>
+  <p>Fill in every column of the Product Research Template (see Section 5). This feeds directly into review and approval.</p>
+</div>
+
+<div class="phase">
+  <div class="phase-title"><span class="phase-num">9</span> Content Validation</div>
+  <ul>
+    <li>Check competitor ads for content quality and volume</li>
+    <li>Check Amazon listings — typically <strong>better assets</strong> than AliExpress</li>
+    <li>Use Google Lens on Amazon to find additional listings (snowball effect)</li>
+    <li>Assess: enough videos, images, and angles to create store + ads?</li>
+  </ul>
+  <div class="rule-box red">
+    <div class="rule-label">Remember</div>
+    ❌ Do NOT use Amazon for pricing — IGNORE Amazon prices<br>
+    ✅ Use Amazon for <strong>content inspiration only</strong>
+  </div>
+</div>
+
+<!-- SECTION 4: VALIDATION FRAMEWORK -->
+<div class="page-break"></div>
+<h2 id="validation">4. Validation Framework</h2>
+
+<p>Every product must pass <strong>all five filters</strong> before it's worth logging:</p>
+
+<div class="scorecard">
+  <h3>The Five Validation Gates</h3>
+  <div class="score-row">
+    <span class="score-label">1. Problem Solved</span>
+    <span class="score-value">Does it solve a real, identifiable problem?</span>
+  </div>
+  <div class="score-row">
+    <span class="score-label">2. Viable Niche</span>
+    <span class="score-value">Is the niche appropriate for your experience level?</span>
+  </div>
+  <div class="score-row">
+    <span class="score-label">3. Strong Economics</span>
+    <span class="score-value">3× markup or $40+ front-end? B/E ROAS ≤ 1.5?</span>
+  </div>
+  <div class="score-row">
+    <span class="score-label">4. Proven Demand</span>
+    <span class="score-value">30K+ SimilarWeb traffic? 10+ active FB ads? 7+ day runtime?</span>
+  </div>
+  <div class="score-row">
+    <span class="score-label">5. Sufficient Content</span>
+    <span class="score-value">Enough images, videos, and angles to build store + ads?</span>
+  </div>
+</div>
+
+<div class="rule-box red">
+  <div class="rule-label">Rule</div>
+  Miss <strong>one</strong> of these, and the product becomes high risk. All five must pass.
+</div>
+
+<!-- SECTION 5: TEMPLATE -->
+<div class="page-break"></div>
+<h2 id="template">5. Product Research Template — Column Guide</h2>
+
+<p>The template is a <strong>filtering system</strong>, not a list. You log products continuously, narrow to your <strong>top 10</strong>, review, get <strong>1 approved</strong>, and move forward.</p>
+
+<table>
+  <tr><th>#</th><th>Column</th><th>Purpose</th><th>What to Enter</th></tr>
+  <tr><td>1</td><td><strong>Product Name</strong></td><td>Identification</td><td>Clear, consistent naming convention</td></tr>
+  <tr><td>2</td><td><strong>What It Does & Why</strong></td><td>Value validation</td><td>Problem it solves, why it's worth testing. If you can't explain it clearly — don't test it.</td></tr>
+  <tr><td>3</td><td><strong>Additional Notes</strong></td><td>Strategic context</td><td>Unique angles, market observations, reasons you like it</td></tr>
+  <tr><td>4</td><td><strong>Mutual Dropshipping</strong></td><td>Supplier link</td><td>Direct link to the Mutual product listing</td></tr>
+  <tr><td>5</td><td><strong>Total Cost (COGs)</strong></td><td>Economics foundation</td><td>Product cost + shipping cost + mandatory fees (from Mutual)</td></tr>
+  <tr><td>6</td><td><strong>Competitor Ad Link</strong></td><td>Creative validation</td><td>Link to the exact competitor ad (FB Ad Library or GetHookd). Use oldest/longest-running ads.</td></tr>
+  <tr><td>7</td><td><strong>Competitor Site Link</strong></td><td>Funnel validation</td><td>Product page URL — review pricing, offer structure, positioning, trust signals</td></tr>
+  <tr><td>8</td><td><strong>SimilarWeb Traffic</strong></td><td>Demand validation</td><td>Visitor count from SimilarWeb extension (target: 30K+)</td></tr>
+  <tr><td>9</td><td><strong>Active FB Ad Library Ads</strong></td><td>Scale signal</td><td>Number of active ads (target: 10+)</td></tr>
+  <tr><td>10</td><td><strong>Selling Price</strong></td><td>Margin & positioning</td><td>Competitor's price / your proposed price. Linked to B/E ROAS formula.</td></tr>
+  <tr><td>11</td><td><strong>B/E ROAS</strong></td><td>Risk assessment</td><td>Auto-calculated (see Section 6)</td></tr>
+  <tr><td>12</td><td><strong>Sufficient Content</strong></td><td>Marketing feasibility</td><td>Yes/No — have you confirmed enough visual assets exist?</td></tr>
+  <tr><td>13</td><td><strong>Coach Approval</strong></td><td>Final gate</td><td>🟢 Approved / ❌ Not approved — no product moves forward without this</td></tr>
+  <tr><td>14</td><td><strong>Coach Comments</strong></td><td>Feedback</td><td>Strategy notes, angles, concerns from review</td></tr>
+</table>
+
+<!-- SECTION 6: ECONOMICS -->
+<div class="page-break"></div>
+<h2 id="economics">6. Economics & B/E ROAS</h2>
+
+<h3>What Is B/E ROAS?</h3>
+<p><strong>Break-Even Return on Ad Spend</strong> — the minimum ROAS needed to not lose money.</p>
+
+<div class="formula">
+  B/E ROAS = Selling Price ÷ (Selling Price − Total Cost)<br><br>
+  <em>Spreadsheet formula: =IFERROR(K/(K−F),"")</em>
+</div>
+
+<p><strong>Example:</strong> Cost = $25, Selling Price = $75 → B/E ROAS = 75 ÷ 50 = <strong>1.5</strong></p>
+<p>Meaning: For every $1 you spend on ads, you need $1.50 back just to break even.</p>
+
+<h3>B/E ROAS Thresholds</h3>
+<table>
+  <tr><th>B/E ROAS</th><th>Signal</th><th>Meaning</th></tr>
+  <tr><td><span class="color-dot green"></span><strong>Below 1.5</strong></td><td>Strong candidate</td><td>Good margins, room to scale, absorb ad cost fluctuations</td></tr>
+  <tr><td><span class="color-dot yellow"></span><strong>≈ 1.5</strong></td><td>Acceptable</td><td>≈ 3× markup — the standard benchmark</td></tr>
+  <tr><td><span class="color-dot red"></span><strong>Above 1.5</strong></td><td>High risk</td><td>Thin margins, hard to profit, little room for error</td></tr>
+</table>
+
+<div class="rule-box green">
+  <div class="rule-label">Rule of Thumb</div>
+  <strong>B/E ROAS ≤ 1.5 = 3× markup = ideal zone.</strong> Lower is better. The higher you can price (while it makes sense), the more favourable your economics.
+</div>
+
+<h3>Pricing Rules</h3>
+<table>
+  <tr><th>Price Range</th><th>Verdict</th><th>Notes</th></tr>
+  <tr><td><strong>$40–$100</strong></td><td>✅ Sweet spot</td><td>Supports paid ads, allows impulse buying, balances conversion + margin</td></tr>
+  <tr><td><strong>~$30</strong></td><td>⚠️ Can work</td><td>Harder to scale, usually outside US, not ideal for health/beauty, often requires worldwide markets</td></tr>
+  <tr><td><strong>$100+</strong></td><td>⚠️ Advanced</td><td>Longer consideration cycle, fewer impulse buys, requires branding + email/SMS + retargeting, slower testing</td></tr>
+</table>
+
+<h3>The MRR/Upsell Exception</h3>
+<p>You <strong>can</strong> break the $40 rule if:</p>
+<ul>
+  <li>The product can be purchased multiple times (repeat purchases)</li>
+  <li>Strong upsells or bundles increase AOV</li>
+  <li>This allows lower front-end pricing with higher lifetime value</li>
+</ul>
+<p>A product that gets bought 2, 3, 4 times — that's a true winning product.</p>
+
+<h3>Product Size & Quality</h3>
+<ul>
+  <li><strong>Heavy/bulky</strong> = higher shipping = lower margins → focus on lightweight, compact</li>
+  <li><strong>Poor quality</strong> = high refund rates = destroyed margins → check reviews, order samples</li>
+  <li><strong>Partial refund strategy:</strong> Customer keeps the product (return shipping from US to China is expensive). You lose some money but avoid full loss.</li>
+</ul>
+
+<!-- SECTION 7: STRATEGY SHEET -->
+<div class="page-break"></div>
+<h2 id="strategy">7. Strategy Sheet — Deep Analysis (Optional)</h2>
+
+<p>For products that pass initial validation, go deeper with the Strategy sheet. This is where you build the <strong>go-to-market plan</strong> before testing.</p>
+
+<table>
+  <tr><th>Category</th><th>Column</th><th>What to Define</th></tr>
+  <tr><td rowspan="5"><strong>Strategy</strong></td><td>Market(s)</td><td>Top 5 target markets (US, UK, AU, etc.)</td></tr>
+  <tr><td>Angle(s)</td><td>How you'll position the product (pain points, education, lifestyle)</td></tr>
+  <tr><td>Unique Offer</td><td>What makes your offer different (free eBooks, upgrade bundles, kits)</td></tr>
+  <tr><td>Potential Upsells/Cross-sells</td><td>Travel cases, protection plans, family packs, accessories</td></tr>
+  <tr><td>Misc Strategy Notes</td><td>Any additional strategic context</td></tr>
+  <tr><td rowspan="3"><strong>Inspiration</strong></td><td>Product Page Links</td><td>Competitor product pages to study</td></tr>
+  <tr><td>Review Links</td><td>Amazon/competitor reviews to mine for copy and angles</td></tr>
+  <tr><td>Ad Inspiration Links</td><td>Competitor ads to model (from GetHookd boards)</td></tr>
+  <tr><td rowspan="4"><strong>Customer Avatar</strong></td><td>Age Range</td><td>Primary demographic (e.g., 55+)</td></tr>
+  <tr><td>Gender(s)</td><td>All genders / specific targeting</td></tr>
+  <tr><td>Pain Points</td><td>What frustrates them about current solutions</td></tr>
+  <tr><td>Current Solutions</td><td>What they're using now (e.g., cotton swabs, doctor visits)</td></tr>
+  <tr><td rowspan="5"><strong>Market Awareness</strong></td><td>Sophistication Level</td><td>Problem Unaware / Problem Aware / Solution Aware / Product Aware / Most Aware</td></tr>
+  <tr><td>Recommended Marketing</td><td>Auto-suggested based on sophistication level</td></tr>
+  <tr><td>Marketing Ideas</td><td>Specific campaigns, hooks, content strategies</td></tr>
+  <tr><td>Potential Objections</td><td>Why someone wouldn't buy (price, safety, trust)</td></tr>
+  <tr><td>Market Gaps / USP</td><td>Where competitors fall short + your advantage</td></tr>
+</table>
+
+<!-- SECTION 8: CHECKLIST -->
+<div class="page-break"></div>
+<h2 id="checklist">8. Winning Product Checklist</h2>
+
+<p>Use this before logging any product. All boxes must be checked.</p>
+
+<div class="scorecard">
+  <h3>Pre-Log Checklist</h3>
+  <ul class="checklist">
+    <li><strong>Problem:</strong> Solves a real, identifiable problem (physical, emotional, convenience, or identity)</li>
+    <li><strong>Niche:</strong> Sits in a viable niche appropriate for experience level</li>
+    <li><strong>Economics:</strong> 3× markup achievable OR $40+ front-end price</li>
+    <li><strong>Demand:</strong> People are already buying this (competitor evidence exists)</li>
+    <li><strong>Traffic:</strong> SimilarWeb shows 30,000+ visitors on competitor store</li>
+    <li><strong>Ads:</strong> Competitor has 10+ active ads in FB Ad Library</li>
+    <li><strong>Runtime:</strong> Ads running 7+ days (spending money = likely profitable)</li>
+    <li><strong>Content:</strong> Sufficient images, videos, and angles available to create store + ads</li>
+    <li><strong>Size/Weight:</strong> Lightweight, compact (no margin-killing shipping costs)</li>
+    <li><strong>Quality:</strong> Reviews checked, no major quality/refund red flags</li>
+    <li><strong>Sourced:</strong> Submitted to Mutual Dropshipping with accurate COGs + shipping</li>
+  </ul>
+</div>
+
+<!-- SECTION 9: DAILY WORKFLOW -->
+<h2 id="workflow">9. Daily Research Workflow</h2>
+
+<div class="step">
+  <div class="step-header">Morning Research Block (30–60 mins)</div>
+  <ol>
+    <li>Open GetHookd → apply Winning or Runtime filter</li>
+    <li>Scroll through ads — save anything promising to your Product Research board</li>
+    <li>For each saved product, run the validation gates:
+      <ul>
+        <li>SimilarWeb → 30K+ traffic?</li>
+        <li>FB Ad Library → 10+ active ads?</li>
+        <li>Economics → can you get 3× markup?</li>
+        <li>Content → enough to build with?</li>
+      </ul>
+    </li>
+    <li>Products that pass all gates → log in the template</li>
+    <li>Products that fail → skip, move on, no attachment</li>
+  </ol>
+</div>
+
+<div class="step">
+  <div class="step-header">Sourcing Block (as needed)</div>
+  <ol>
+    <li>For logged products: find on AliExpress (image search)</li>
+    <li>Submit to Mutual Dropshipping</li>
+    <li>Once Mutual responds: update Total Cost + replace link</li>
+    <li>Calculate B/E ROAS → still green/yellow? Continue. Red? Drop it.</li>
+  </ol>
+</div>
+
+<div class="step">
+  <div class="step-header">Weekly Review</div>
+  <ol>
+    <li>Review all logged products</li>
+    <li>Narrow to top 10</li>
+    <li>Submit for review/approval</li>
+    <li>Get 1 product approved → move to testing phase</li>
+  </ol>
+</div>
+
+<!-- SECTION 10: ALTERNATIVE METHODS -->
+<div class="page-break"></div>
+<h2 id="alt-methods">10. Alternative Discovery Methods</h2>
+
+<h3>Snowball Method</h3>
+<ul>
+  <li>Take a keyword you already found from a winning product</li>
+  <li>Search variations in GetHookd</li>
+  <li>Explore adjacent products</li>
+  <li>Follow intuition — but always verify with data</li>
+</ul>
+
+<h3>FB Ads Library → GetHookd</h3>
+<ul>
+  <li>Search directly in FB Ad Library for product categories</li>
+  <li>Use the GetHookd browser extension to save ads you find</li>
+  <li>Saves directly to your Product Research board</li>
+</ul>
+
+<div class="rule-box blue">
+  <div class="rule-label">Remember</div>
+  Be creative with discovery, but <strong>disciplined with validation.</strong> Every product still needs to pass all five gates regardless of how you found it.
+</div>
+
+<!-- SECTION 11: NON-NEGOTIABLE RULES -->
+<h2 id="rules">11. Non-Negotiable Rules</h2>
+
+<div class="rule-box red">
+  <div class="rule-label">The Rules</div>
+  <ol style="margin-top: 8px;">
+    <li><strong>Every column gets filled.</strong> No half-logged products. If you can't fill it, it's not ready.</li>
+    <li><strong>B/E ROAS ≤ 1.5 or drop it.</strong> Don't fall in love with products that can't make money.</li>
+    <li><strong>30K+ SimilarWeb + 10+ Active Ads.</strong> Below this = insufficient proof of demand.</li>
+    <li><strong>No sourcing from AliExpress.</strong> AliExpress is reference only. Mutual Dropshipping is the supplier.</li>
+    <li><strong>No product moves forward without approval.</strong> Log → narrow to 10 → review → 1 approved → go.</li>
+    <li><strong>Content is non-negotiable.</strong> No visuals = no marketing = no sales.</li>
+    <li><strong>You are not rewarded for creativity in research.</strong> You are rewarded for <strong>discipline and consistency.</strong></li>
+  </ol>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><strong>Product Research SOP v1.0</strong> — Built by Forge 🔱 — February 2026</p>
+  <p>CONFIDENTIAL — INTERNAL USE ONLY</p>
+</div>
+
+</body>
+</html>

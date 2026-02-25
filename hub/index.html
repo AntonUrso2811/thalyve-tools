@@ -7,150 +7,157 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#05060a;--card:#0f1018;--border:#1a1b28;--text:#eeeef2;--sub:#7c7c96;--accent:#7c5cfc;--accent2:#9b7dff;--green:#0fd68c;--amber:#ffb020;--blue:#4d9eff;--red:#ff4d6a}
+:root{--bg:#05060a;--card:#0f1018;--card2:#12131d;--border:#1a1b28;--border2:#252638;--text:#eeeef2;--sub:#7c7c96;--dim:#4a4a62;--accent:#7c5cfc;--accent2:#9b7dff;--accent3:#c0afff;--green:#0fd68c;--green-bg:rgba(15,214,140,.08);--amber:#ffb020;--amber-bg:rgba(255,176,32,.08);--blue:#4d9eff;--red:#ff4d6a}
 body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
-.app{max-width:900px;margin:0 auto;padding:20px 16px 40px}
-.header{text-align:center;padding:30px 0 20px;border-bottom:1px solid var(--border);margin-bottom:24px}
-h1{font-size:24px;font-weight:800;letter-spacing:2px}
-h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.app{max-width:960px;margin:0 auto;padding:20px 16px 40px}
+.header{text-align:center;padding:30px 0 24px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.brand-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--accent),#5c3cdc);border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 16px rgba(124,92,252,.25);margin-bottom:12px}
+h1{font-size:24px;font-weight:800;letter-spacing:1px}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .sub{color:var(--sub);font-size:12px;margin-top:4px}
-.section{margin-bottom:24px}
-.section h2{font-size:14px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
-.item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .15s;cursor:pointer;text-decoration:none;color:var(--text);display:block}
-.item:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 20px rgba(124,92,252,.1)}
-.item-title{font-size:13px;font-weight:700;margin-bottom:4px}
-.item-meta{font-size:10px;color:var(--sub);display:flex;gap:12px}
+.nav{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.nav a{font-size:11px;color:var(--accent2);text-decoration:none;padding:5px 14px;border:1px solid var(--border);border-radius:20px;transition:all .15s}
+.nav a:hover{border-color:var(--accent);background:rgba(124,92,252,.08)}
+.section{margin-bottom:28px}
+.section h2{font-size:13px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:12px;display:flex;align-items:center;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+a.item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .15s;cursor:pointer;text-decoration:none;color:var(--text);display:block}
+a.item:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 20px rgba(124,92,252,.1)}
+.item-title{font-size:13px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.item-meta{font-size:10px;color:var(--sub);display:flex;gap:12px;margin-top:2px}
 .item-desc{font-size:11px;color:var(--sub);margin-top:6px;line-height:1.4}
-.badge{display:inline-block;font-size:9px;padding:2px 8px;border-radius:10px;font-weight:700;margin-left:6px}
+.badge{display:inline-block;font-size:9px;padding:2px 8px;border-radius:10px;font-weight:700}
 .b-live{background:rgba(15,214,140,.12);color:var(--green);border:1px solid rgba(15,214,140,.2)}
 .b-draft{background:rgba(255,176,32,.1);color:var(--amber);border:1px solid rgba(255,176,32,.2)}
 .b-new{background:rgba(124,92,252,.1);color:var(--accent2);border:1px solid rgba(124,92,252,.2)}
-.footer{text-align:center;padding:20px;font-size:9px;color:#333;letter-spacing:.3px}
-.search{width:100%;padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;outline:none;margin-bottom:20px}
-.search:focus{border-color:var(--accent)}
-.search::placeholder{color:var(--sub)}
+.footer{text-align:center;padding:24px;font-size:9px;color:var(--dim);letter-spacing:.3px}
+.search{width:100%;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;outline:none;margin-bottom:24px;transition:border-color .15s}
+.search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,252,.08)}
+.search::placeholder{color:var(--dim)}
+.count{font-size:10px;color:var(--dim);font-weight:400;margin-left:auto}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="header">
-    <h1>🔱 <em>THALYVE™</em> SOP Hub</h1>
-    <p class="sub">Company Drive — All SOPs, Tools & Documents</p>
+    <div class="brand-icon">🔱</div>
+    <h1><em>THALYVE™</em> SOP Hub</h1>
+    <p class="sub">Company Drive — All SOPs, Tools & Documents in One Place</p>
+    <div class="nav">
+      <a href="../">🏠 Home</a>
+      <a href="../tracker/">🔍 Tracker</a>
+      <a href="../dashboard/">📊 Dashboard</a>
+    </div>
   </div>
 
-  <input type="text" class="search" placeholder="🔍 Search SOPs, tools, documents..." oninput="filterItems(this.value)">
+  <input type="text" class="search" placeholder="🔍 Search everything..." oninput="filterItems(this.value)">
 
   <div class="section" id="s-tools">
-    <h2>🛠 Tools</h2>
+    <h2>🛠 Live Tools <span class="count">2 tools</span></h2>
     <div class="grid">
-      <a href="../tracker/" class="item" data-search="product research tracker">
+      <a href="../tracker/" class="item" data-search="product research tracker pipeline scored">
         <div class="item-title">🔍 Product Research Tracker <span class="badge b-live">v4.0</span></div>
         <div class="item-meta"><span>Updated: 25 Feb 2026</span><span>Owner: Forge</span></div>
-        <div class="item-desc">SOP-compliant pipeline. Scored, ranked, competitor tracking, creative library.</div>
+        <div class="item-desc">SOP-compliant pipeline. Scored, ranked, competitor tracking, creative library, revenue estimates.</div>
       </a>
-      <a href="../dashboard/" class="item" data-search="command centre dashboard kpi">
+      <a href="../dashboard/" class="item" data-search="command centre dashboard kpi roadmap task log p&l">
         <div class="item-title">📊 Command Centre <span class="badge b-live">v3.0</span></div>
         <div class="item-meta"><span>Updated: 25 Feb 2026</span><span>Owner: Forge</span></div>
-        <div class="item-desc">Company P&L, brand performance, KPI targets, roadmap, task log.</div>
+        <div class="item-desc">Company P&L, brand performance, KPI targets, roadmap, task log, expense tracking.</div>
       </a>
     </div>
   </div>
 
   <div class="section" id="s-sops">
-    <h2>📋 SOPs</h2>
+    <h2>📋 Standard Operating Procedures <span class="count">8 SOPs</span></h2>
     <div class="grid">
-      <div class="item" data-search="product research sop">
+      <a href="../sops/product-research-sop.html" class="item" data-search="product research sop gethookd similarweb scoring validation">
         <div class="item-title">Product Research SOP <span class="badge b-live">v1.0</span></div>
         <div class="item-meta"><span>Created: 24 Feb 2026</span><span>Owner: Forge</span></div>
         <div class="item-desc">11-section research methodology. GetHookd → SimilarWeb → Scoring → Validation.</div>
-      </div>
-      <div class="item" data-search="media buying sop ads">
+      </a>
+      <a href="../sops/media-buying-sop.html" class="item" data-search="media buying sop ads meta facebook testing creative">
         <div class="item-title">Media Buying SOP <span class="badge b-live">v1.0</span></div>
         <div class="item-meta"><span>Created: 24 Feb 2026</span><span>Owner: Forge</span></div>
         <div class="item-desc">Meta ad testing framework. $100/day budget, creative pipeline, scaling rules.</div>
-      </div>
-      <div class="item" data-search="customer service sop support">
+      </a>
+      <a href="../sops/customer-service-sop.html" class="item" data-search="customer service sop support refund escalation">
         <div class="item-title">Customer Service SOP <span class="badge b-live">v1.0</span></div>
         <div class="item-meta"><span>Created: 24 Feb 2026</span><span>Owner: Forge</span></div>
         <div class="item-desc">Response templates, escalation matrix, refund policy.</div>
-      </div>
-      <div class="item" data-search="file organization versioning">
+      </a>
+      <a href="../sops/file-organization-sop.html" class="item" data-search="file organization versioning naming google drive folders">
         <div class="item-title">File Organization SOP <span class="badge b-live">v1.2</span></div>
         <div class="item-meta"><span>Updated: 24 Feb 2026</span><span>Owner: Forge</span></div>
-        <div class="item-desc">Google Drive structure, naming conventions, versioning protocol.</div>
-      </div>
-      <div class="item" data-search="sub-agent onboarding hiring">
+        <div class="item-desc">Google Drive structure, naming conventions, versioning protocol, document registry.</div>
+      </a>
+      <a href="../sops/sub-agent-onboarding-sop.html" class="item" data-search="sub-agent onboarding hiring ai team deploy">
         <div class="item-title">Sub-Agent Onboarding SOP <span class="badge b-live">v1.0</span></div>
         <div class="item-meta"><span>Created: 24 Feb 2026</span><span>Owner: Forge</span></div>
-        <div class="item-desc">How to hire, brief, and deploy AI sub-agents.</div>
-      </div>
-      <div class="item" data-search="context transfer memory backup">
+        <div class="item-desc">How to hire, brief, and deploy AI sub-agents. Triggers, roles, accountability.</div>
+      </a>
+      <a href="../sops/context-transfer-sop.html" class="item" data-search="context transfer memory backup session handoff continuity">
         <div class="item-title">Context Transfer SOP <span class="badge b-live">v1.0</span></div>
         <div class="item-meta"><span>Created: 24 Feb 2026</span><span>Owner: Forge</span></div>
         <div class="item-desc">Memory backup, session handoff, continuity protocol.</div>
-      </div>
-      <div class="item" data-search="weekly cadence schedule">
+      </a>
+      <a href="../sops/weekly-cadence-sop.html" class="item" data-search="weekly cadence schedule monday thursday research briefing review">
         <div class="item-title">Weekly Cadence SOP <span class="badge b-live">v1.0</span></div>
         <div class="item-meta"><span>Created: 24 Feb 2026</span><span>Owner: Forge</span></div>
         <div class="item-desc">Who does what when. Mon+Thu research, daily briefings, Friday review.</div>
-      </div>
-      <div class="item" data-search="credential security password keychain">
-        <div class="item-title">Credential Security SOP <span class="badge b-new">v1.0</span></div>
+      </a>
+      <a href="../sops/company-culture-qc-framework.html" class="item" data-search="credential security password keychain qc quality control">
+        <div class="item-title">QC & Culture Framework <span class="badge b-new">v1.0</span></div>
         <div class="item-meta"><span>Created: 25 Feb 2026</span><span>Owner: Forge</span></div>
-        <div class="item-desc">macOS Keychain storage, credential registry, no plaintext rule.</div>
-      </div>
+        <div class="item-desc">Quality control checklist, company culture standards, delivery protocol.</div>
+      </a>
     </div>
   </div>
 
   <div class="section" id="s-guides">
-    <h2>📖 Guides & Frameworks</h2>
+    <h2>📖 Guides & Frameworks <span class="count">3 docs</span></h2>
     <div class="grid">
-      <div class="item" data-search="openclaw guide setup">
+      <a href="../guides/openclaw-guide.html" class="item" data-search="openclaw guide setup api subscription auth">
         <div class="item-title">OpenClaw Guide <span class="badge b-live">v1.1</span></div>
         <div class="item-meta"><span>Updated: 24 Feb 2026</span><span>Owner: Forge</span></div>
         <div class="item-desc">Setup, subscription auth, ToS compliance, API management.</div>
-      </div>
-      <div class="item" data-search="security policy">
+      </a>
+      <a href="../guides/security-policy.html" class="item" data-search="security policy browser api prompt injection gdpr">
         <div class="item-title">Security Policy <span class="badge b-live">v1.2</span></div>
         <div class="item-meta"><span>Updated: 24 Feb 2026</span><span>Owner: Forge</span></div>
-        <div class="item-desc">Browser security, API security, prompt injection defence, GDPR.</div>
-      </div>
-      <div class="item" data-search="company foundation framework">
-        <div class="item-title">Company Foundation <span class="badge b-draft">v2.0</span></div>
-        <div class="item-meta"><span>Updated: 24 Feb 2026</span><span>Owner: Forge</span></div>
-        <div class="item-desc">Business ops framework, entity structure, growth strategy.</div>
-      </div>
-      <div class="item" data-search="master checklist roadmap">
+        <div class="item-desc">Browser security, API security, prompt injection defence, GDPR compliance.</div>
+      </a>
+      <a href="../sops/master-checklist.html" class="item" data-search="master checklist roadmap setup milestones phases">
         <div class="item-title">Master Checklist & Roadmap <span class="badge b-live">v1.0</span></div>
         <div class="item-meta"><span>Created: 24 Feb 2026</span><span>Owner: Forge</span></div>
         <div class="item-desc">Complete setup checklist, phase roadmap, milestone tracking.</div>
-      </div>
+      </a>
     </div>
   </div>
 
   <div class="section" id="s-products">
-    <h2>🏷 Product Files</h2>
+    <h2>🏷 Product Files <span class="count">1 product</span></h2>
     <div class="grid">
-      <div class="item" data-search="thalyve stretch mark stick product brief">
-        <div class="item-title">THALYVE™ Product Brief <span class="badge b-live">Active</span></div>
-        <div class="item-meta"><span>Created: 24 Feb 2026</span><span>COGS: $8.44</span></div>
-        <div class="item-desc">Evolved Stretch Mark Stick. 3 bundles ($39.99/$69.99/$89.99). thalyve.com</div>
-      </div>
+      <a href="../tracker/" class="item" data-search="thalyve stretch mark stick product brief cogs">
+        <div class="item-title">THALYVE™ Stretch Mark Stick <span class="badge b-live">Active</span></div>
+        <div class="item-meta"><span>COGS: $8.44</span><span>Live on thalyve.com</span></div>
+        <div class="item-desc">3 bundles ($39.99 / $69.99 / $89.99). View in tracker for full details.</div>
+      </a>
     </div>
   </div>
 
-  <div class="footer">🔱 THALYVE™ SOP Hub v1.0 — Maintained by Forge — Updated automatically on every push</div>
+  <div class="footer">🔱 THALYVE™ SOP Hub v1.0 — Maintained by Forge — All links verified ✅ — <span id="total">0</span> documents</div>
 </div>
 
 <script>
 function filterItems(q){
   q=q.toLowerCase();
-  document.querySelectorAll('.item').forEach(el=>{
+  document.querySelectorAll('a.item').forEach(el=>{
     const search=(el.getAttribute('data-search')||'')+' '+(el.textContent||'');
     el.style.display=search.toLowerCase().includes(q)?'':'none';
   });
 }
+document.getElementById('total').textContent=document.querySelectorAll('a.item').length;
 </script>
 </body>
 </html>

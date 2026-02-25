@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Context Transfer & Memory Backup SOP v1.0</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; color: #1a1a1a; line-height: 1.6; background: #fff; max-width: 900px; margin: 0 auto; padding: 24px; }
+  .cover { text-align: center; padding: 80px 20px 60px; page-break-after: always; }
+  .cover h1 { font-size: 2.4em; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+  .cover .subtitle { font-size: 1.2em; color: #555; margin-bottom: 40px; }
+  .cover .meta { font-size: 0.95em; color: #888; }
+  .cover .badge { display: inline-block; background: #111; color: #fff; padding: 8px 24px; border-radius: 6px; font-weight: 700; font-size: 0.9em; margin-top: 30px; letter-spacing: 1px; }
+  .cover .confidential { color: #c0392b; font-weight: 700; margin-top: 20px; font-size: 0.85em; letter-spacing: 2px; }
+  h2 { font-size: 1.5em; font-weight: 800; margin: 36px 0 14px; padding-bottom: 6px; border-bottom: 3px solid #111; }
+  h3 { font-size: 1.15em; font-weight: 700; margin: 24px 0 8px; color: #222; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 8px 0 12px 20px; }
+  li { margin-bottom: 6px; }
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-family: 'SF Mono', monospace; font-size: 0.9em; }
+  pre { background: #1a1a2e; color: #e0e0e0; padding: 16px 20px; border-radius: 8px; margin: 12px 0; font-family: 'SF Mono', monospace; font-size: 0.88em; line-height: 1.5; white-space: pre-wrap; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.9em; }
+  th { background: #111; color: #fff; padding: 10px 12px; text-align: left; font-weight: 700; }
+  td { padding: 10px 12px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  .box { padding: 16px 20px; margin: 14px 0; border-radius: 0 8px 8px 0; }
+  .box.info { background: #e3f2fd; border-left: 4px solid #2196f3; }
+  .box.success { background: #e8f5e9; border-left: 4px solid #27ae60; }
+  .box.warn { background: #fff3cd; border-left: 4px solid #f0ad4e; }
+  .box-label { font-weight: 700; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .step-box { background: #f8f9fa; border-left: 4px solid #111; padding: 18px 22px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .step-num { display: inline-block; background: #111; color: #fff; width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-size: 0.85em; font-weight: 700; margin-right: 8px; }
+  .step-title { font-weight: 700; font-size: 1.05em; }
+  .page-break { page-break-before: always; }
+  .footer { text-align: center; font-size: 0.8em; color: #999; margin-top: 60px; padding-top: 20px; border-top: 1px solid #e0e0e0; }
+  @media print { body { padding: 0; } .step-box, .box { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Context Transfer &<br>Memory Backup SOP</h1>
+  <div class="subtitle">How to Never Lose Context — Backups, Transfers, and Disaster Recovery</div>
+  <div class="meta">Version 1.0 — 24 February 2026</div>
+  <div class="badge">STANDARD OPERATING PROCEDURE</div>
+  <div class="confidential">CONFIDENTIAL — INTERNAL USE ONLY</div>
+</div>
+
+<!-- SECTION 1: AUTOMATED BACKUPS -->
+<h2>1. Automated Backup System (Active)</h2>
+
+<p>The workspace is backed up automatically. Here's what's in place:</p>
+
+<table>
+  <tr><th>Method</th><th>Frequency</th><th>What It Backs Up</th><th>Status</th></tr>
+  <tr>
+    <td><strong>Git Auto-Commit</strong></td>
+    <td>Every 6 hours</td>
+    <td>Entire workspace — all SOPs, memory files, configs, documents</td>
+    <td>✅ Active (LaunchAgent)</td>
+  </tr>
+  <tr>
+    <td><strong>Session Git Commit</strong></td>
+    <td>After significant work</td>
+    <td>Same — triggered manually by Forge after deliverables</td>
+    <td>✅ Active</td>
+  </tr>
+</table>
+
+<h3>What's Backed Up</h3>
+<pre>
+~/.openclaw/workspace/
+├── MEMORY.md              ← Long-term memory (curated)
+├── SOUL.md                ← Agent personality & values
+├── IDENTITY.md            ← Agent identity (name, role)
+├── USER.md                ← Info about Anton
+├── OPERATING-MODEL.md     ← How Forge operates
+├── memory/                ← Daily session logs (2026-02-22.md, etc.)
+├── business/              ← All SOPs, frameworks, templates
+├── health/                ← Meal plan, health profile
+├── guides/                ← OpenClaw guide, etc.
+├── sops/                  ← SOP template
+└── scripts/               ← Automation scripts
+</pre>
+
+<div class="box success">
+  <div class="box-label">Recovery</div>
+  If anything gets corrupted or lost, run <code>git log</code> to see all snapshots and <code>git checkout [commit]</code> to restore any previous state. Every version of every file is preserved.
+</div>
+
+<!-- SECTION 2: CONTEXT TRANSFER -->
+<div class="page-break"></div>
+<h2>2. Context Transfer — Switching Models or Rebuilding</h2>
+
+<p>If you ever need to switch AI providers, change models, rebuild the agent, or move to a new machine — here's exactly how to transfer full context.</p>
+
+<h3>Why This Works</h3>
+<p>Forge's entire "brain" lives in files, not in conversation history. This means:</p>
+<ul>
+  <li>Any AI model can be briefed from these files in one session</li>
+  <li>No critical knowledge lives only in chat — everything is written down</li>
+  <li>The workspace IS the agent. Transfer the workspace = transfer the agent.</li>
+</ul>
+
+<h3>The Context Files (Priority Order)</h3>
+<table>
+  <tr><th>#</th><th>File</th><th>What It Contains</th><th>Must Read</th></tr>
+  <tr><td>1</td><td><code>SOUL.md</code></td><td>Personality, values, behavioural rules</td><td>✅ First</td></tr>
+  <tr><td>2</td><td><code>IDENTITY.md</code></td><td>Name (Forge), role, emoji, vibe</td><td>✅</td></tr>
+  <tr><td>3</td><td><code>USER.md</code></td><td>Anton's info, preferences, timezone</td><td>✅</td></tr>
+  <tr><td>4</td><td><code>MEMORY.md</code></td><td>Long-term curated memory — decisions, lessons, key facts</td><td>✅</td></tr>
+  <tr><td>5</td><td><code>OPERATING-MODEL.md</code></td><td>How Forge operates day-to-day</td><td>✅</td></tr>
+  <tr><td>6</td><td><code>AGENTS.md</code></td><td>Workspace rules and conventions</td><td>✅</td></tr>
+  <tr><td>7</td><td><code>memory/YYYY-MM-DD.md</code></td><td>Recent daily logs (last 7 days)</td><td>✅ Recent</td></tr>
+  <tr><td>8</td><td><code>business/FOUNDATION.md</code></td><td>Company values, mission, Five-Filter Test</td><td>✅</td></tr>
+  <tr><td>9</td><td>All SOPs in <code>business/sops/</code></td><td>Every standard operating procedure</td><td>As needed</td></tr>
+  <tr><td>10</td><td><code>health/PROFILE.md</code></td><td>Anton's health baseline</td><td>As needed</td></tr>
+</table>
+
+<!-- SECTION 3: TRANSFER PROCEDURES -->
+<h2>3. Transfer Procedures</h2>
+
+<h3>Scenario A: Switching API Key (Same Provider)</h3>
+<div class="step-box">
+  <span class="step-num">1</span><span class="step-title">Zero downtime — context stays intact</span>
+  <pre># Just swap the key
+openclaw config set env.ANTHROPIC_API_KEY "sk-ant-NEW-KEY"
+openclaw gateway restart</pre>
+  <p>No context transfer needed. The workspace and all memory files are untouched.</p>
+</div>
+
+<h3>Scenario B: Switching to Subscription Auth</h3>
+<div class="step-box">
+  <span class="step-num">1</span><span class="step-title">Same as above — just change auth method</span>
+  <pre># Switch to setup-token
+openclaw models auth paste-token --provider anthropic
+openclaw gateway restart</pre>
+  <p>No context transfer needed. Same model, different billing.</p>
+</div>
+
+<h3>Scenario C: Switching AI Provider (e.g., Anthropic → OpenAI)</h3>
+<div class="step-box">
+  <span class="step-num">1</span><span class="step-title">Change the model in config</span>
+  <pre>openclaw config set env.OPENAI_API_KEY "sk-YOUR-KEY"
+openclaw config set agents.defaults.model.primary "openai/gpt-4o"
+openclaw gateway restart</pre>
+</div>
+<div class="step-box">
+  <span class="step-num">2</span><span class="step-title">New model reads workspace files automatically</span>
+  <p>OpenClaw injects workspace files (AGENTS.md, SOUL.md, USER.md, etc.) into every session. The new model reads them on first message and picks up full context.</p>
+</div>
+<div class="step-box">
+  <span class="step-num">3</span><span class="step-title">Send a test message</span>
+  <p>Message the bot on Telegram: "What's my name, what's your name, and what are we building?" If it answers correctly, transfer is complete.</p>
+</div>
+
+<div class="box info">
+  <div class="box-label">Key Insight</div>
+  Because all context lives in files (not conversation history), switching providers is seamless. The new model reads the same files and immediately has full context. No manual briefing needed.
+</div>
+
+<h3>Scenario D: Moving to a New Machine (VPS Migration)</h3>
+<div class="step-box">
+  <span class="step-num">1</span><span class="step-title">On the OLD machine — export workspace</span>
+  <pre># Commit latest changes
+cd ~/.openclaw/workspace
+git add -A && git commit -m "Pre-migration backup"
+
+# Create archive
+tar -czf ~/forge-workspace-backup.tar.gz -C ~/.openclaw workspace/</pre>
+</div>
+<div class="step-box">
+  <span class="step-num">2</span><span class="step-title">On the NEW machine — install OpenClaw</span>
+  <pre>curl -fsSL https://openclaw.ai/install.sh | bash
+openclaw onboard</pre>
+</div>
+<div class="step-box">
+  <span class="step-num">3</span><span class="step-title">Restore workspace</span>
+  <pre># Copy archive to new machine (scp, USB, whatever)
+tar -xzf forge-workspace-backup.tar.gz -C ~/.openclaw/</pre>
+</div>
+<div class="step-box">
+  <span class="step-num">4</span><span class="step-title">Start gateway and test</span>
+  <pre>openclaw gateway start
+# Test on Telegram: "What's my name and what are we working on?"</pre>
+</div>
+
+<h3>Scenario E: Total Rebuild (Nuclear — Agent From Scratch)</h3>
+<div class="step-box">
+  <span class="step-num">1</span><span class="step-title">Fresh install + restore files</span>
+  <p>Follow Scenario D steps. If the workspace backup is available, that's all you need. The new agent reads the files and becomes Forge.</p>
+</div>
+<div class="step-box">
+  <span class="step-num">2</span><span class="step-title">If NO backup exists (worst case)</span>
+  <p>The SOPs on your Google Drive are your secondary backup. Send them to the new agent one by one. Key files to recreate first:</p>
+  <ol>
+    <li>SOUL.md (personality)</li>
+    <li>IDENTITY.md (name, role)</li>
+    <li>USER.md (your info)</li>
+    <li>MEMORY.md (rebuild from what you remember + daily logs if available)</li>
+    <li>Company Foundation + all SOPs from Google Drive</li>
+  </ol>
+</div>
+
+<div class="box warn">
+  <div class="box-label">This Is Why Google Drive Matters</div>
+  Your Google Drive is the <strong>secondary backup</strong> of everything. If the Mac dies, the VPS crashes, and git is lost — the PDFs on your Drive contain all the knowledge. You can rebuild from them.
+</div>
+
+<!-- SECTION 4: BACKUP SCHEDULE -->
+<div class="page-break"></div>
+<h2>4. Backup Schedule</h2>
+
+<table>
+  <tr><th>What</th><th>How</th><th>Frequency</th><th>Who</th></tr>
+  <tr><td>Git auto-commit</td><td>LaunchAgent runs backup script</td><td>Every 6 hours</td><td>Automated</td></tr>
+  <tr><td>Manual git commit</td><td>Forge commits after major work</td><td>After every deliverable</td><td>Forge</td></tr>
+  <tr><td>Google Drive sync</td><td>Anton saves PDFs sent via Telegram</td><td>When documents are delivered</td><td>Anton</td></tr>
+  <tr><td>MEMORY.md review</td><td>Forge reviews daily logs → updates long-term memory</td><td>Every few days</td><td>Forge</td></tr>
+  <tr><td>Full workspace export</td><td>tar archive of entire workspace</td><td>Monthly (or before any migration)</td><td>Forge</td></tr>
+</table>
+
+<div class="box success">
+  <div class="box-label">Three Copies Rule</div>
+  Critical data exists in <strong>three places</strong>: (1) Live workspace on Mac, (2) Git history (local), (3) Google Drive (PDFs). If any one fails, the other two can rebuild everything.
+</div>
+
+<div class="footer">
+  <p><strong>Context Transfer & Memory Backup SOP v1.0</strong> — Built by Forge 🔱 — 24 February 2026</p>
+  <p>CONFIDENTIAL — INTERNAL USE ONLY</p>
+</div>
+
+</body>
+</html>
