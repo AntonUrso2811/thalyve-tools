@@ -283,5 +283,30 @@
       "notes": "Phase 3 hire (Week 4-6). Trigger: when ad creative pipeline needs scaling."
     }
   ],
+  "dailyCriticalTasks": {
+    "date": "2026-02-25",
+    "members": {
+      "anton": {
+        "name": "Anton",
+        "tasks": [
+          { "task": "Review Forge's morning briefing", "done": true },
+          { "task": "Approve/reject 1 product for testing pipeline", "done": false },
+          { "task": "Send 1 Mutual sourcing message", "done": false },
+          { "task": "Review ad performance (when ads live)", "done": false },
+          { "task": "Make 1 strategic decision", "done": true }
+        ]
+      },
+      "forge": {
+        "name": "Forge 🔱",
+        "tasks": [
+          { "task": "Research 2 new products (SOP-compliant)", "done": false },
+          { "task": "Update tracker + push to GitHub Pages", "done": true },
+          { "task": "Send daily needle mover briefing", "done": true },
+          { "task": "Maintain/improve 1 system or SOP", "done": true },
+          { "task": "Check & report KPI progress", "done": true }
+        ]
+      }
+    }
+  },
   "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 \u2014 MUST downgrade. Target: \u00a310k net/month. All expenses wiped clean for v3.0 fresh start."
 }

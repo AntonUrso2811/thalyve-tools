@@ -79,6 +79,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
     <div class="tab" onclick="nav('brand',this)">🏷 THALYVE™</div>
     <div class="tab" onclick="nav('expenses',this)">💰 Company Expenses</div>
     <div class="tab" onclick="nav('log',this)">📅 Daily Log</div>
+    <div class="tab" onclick="nav('tasks',this)">🎯 5 Critical Tasks</div>
     <div class="tab" onclick="nav('team',this)">👥 Team</div>
     <div class="tab" onclick="nav('kpi',this)">🎯 KPI Targets</div>
     <div class="tab" onclick="nav('roadmap',this)">🗺 Roadmap</div>
@@ -220,6 +221,23 @@ tr:hover td{background:rgba(139,92,246,.03)}
         <thead><tr><th>Date</th><th>Brand</th><th>Product</th><th>Orders</th><th>Revenue</th><th>Ad Spend</th><th>COGS</th><th>Profit</th><th>ROAS</th><th></th></tr></thead>
         <tbody id="d-table"><tr><td colspan="10" class="empty">No entries</td></tr></tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- ===== 5 CRITICAL TASKS ===== -->
+  <div class="page" id="p-tasks">
+    <div class="hl hl-p" style="margin-bottom:16px">
+      <h3 style="font-size:14px;margin-bottom:4px">🎯 5 Critical Tasks — Daily Tracker</h3>
+      <p style="font-size:11px;color:var(--muted)">Every team member has 5 daily tasks that move the needle. Track completion here.</p>
+      <p style="font-size:10px;color:var(--accent)" id="ct-date">—</p>
+    </div>
+    <div id="ct-members"></div>
+    <div class="card" style="margin-top:12px;text-align:center">
+      <div class="sl">OVERALL COMPLETION</div>
+      <div class="sv" id="ct-overall" style="font-size:36px">0%</div>
+      <div style="height:12px;background:var(--bg);border-radius:6px;overflow:hidden;margin-top:8px">
+        <div id="ct-bar" style="height:100%;border-radius:6px;transition:width .4s;background:linear-gradient(90deg,var(--accent),var(--green))"></div>
+      </div>
     </div>
   </div>
 
@@ -514,7 +532,10 @@ async function loadFromJSON(){
     document.getElementById('s-margin').value=D.company.targetNetMargin;
     document.getElementById('lastSync').textContent='Synced '+ new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
     _jsonData=j;
-    renderTeam(j);renderKPI(j);renderRoadmap(j);renderTaskLog(j);
+    // Merge localStorage task completions
+    const savedTasks=JSON.parse(localStorage.getItem('ae2_criticalTasks')||'null');
+    if(savedTasks&&savedTasks.date===j.dailyCriticalTasks?.date){j.dailyCriticalTasks=savedTasks;}
+    renderCriticalTasks(j);renderTeam(j);renderKPI(j);renderRoadmap(j);renderTaskLog(j);
     render();toast('Synced from Forge');
   }catch(e){}
 }
@@ -537,6 +558,51 @@ function dl(n,c,t){const b=new Blob([c],{type:t});const a=document.createElement
 function toast(m,e){const t=document.getElementById('toast');t.textContent=m;t.style.background=e?'var(--red)':'var(--green)';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
 // ===== KPI / ROADMAP / TASKLOG RENDER =====
+function renderCriticalTasks(data){
+  if(!data||!data.dailyCriticalTasks)return;
+  const ct=data.dailyCriticalTasks;
+  document.getElementById('ct-date').textContent='Date: '+ct.date;
+  const container=document.getElementById('ct-members');
+  let totalTasks=0,totalDone=0;
+  container.innerHTML=Object.keys(ct.members).map(key=>{
+    const m=ct.members[key];
+    const done=m.tasks.filter(t=>t.done).length;
+    totalTasks+=m.tasks.length;totalDone+=done;
+    const pct=Math.round(done/m.tasks.length*100);
+    const color=pct>=100?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
+    const rows=m.tasks.map((t,i)=>{
+      const icon=t.done?'✅':'⬜';
+      return`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer" onclick="toggleTask('${key}',${i})">
+        <span style="font-size:16px">${icon}</span>
+        <span style="flex:1;font-size:12px;${t.done?'text-decoration:line-through;color:var(--muted)':'font-weight:500'}">${t.task}</span>
+      </div>`;
+    }).join('');
+    return`<div class="card" style="margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <h2 style="margin:0;font-size:14px">${m.name}</h2>
+        <span style="font-size:13px;font-weight:800;color:${color}">${done}/5 (${pct}%)</span>
+      </div>
+      <div style="height:6px;background:var(--bg);border-radius:3px;overflow:hidden;margin-bottom:10px">
+        <div style="height:100%;width:${pct}%;background:${color};border-radius:3px;transition:width .3s"></div>
+      </div>
+      ${rows}
+    </div>`;
+  }).join('');
+  const overallPct=totalTasks>0?Math.round(totalDone/totalTasks*100):0;
+  const oColor=overallPct>=100?'green':overallPct>=60?'amber':'red';
+  document.getElementById('ct-overall').textContent=overallPct+'%';
+  document.getElementById('ct-overall').className='sv '+oColor;
+  document.getElementById('ct-bar').style.width=overallPct+'%';
+}
+function toggleTask(member,idx){
+  if(!_jsonData||!_jsonData.dailyCriticalTasks)return;
+  const t=_jsonData.dailyCriticalTasks.members[member].tasks[idx];
+  t.done=!t.done;
+  renderCriticalTasks(_jsonData);
+  // Save to localStorage
+  localStorage.setItem('ae2_criticalTasks',JSON.stringify(_jsonData.dailyCriticalTasks));
+}
+
 function renderTeam(data){
   if(!data||!data.team)return;
   const team=data.team;
