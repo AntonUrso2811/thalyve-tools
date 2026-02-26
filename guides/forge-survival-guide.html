@@ -81,6 +81,7 @@ tr:hover td{background:var(--card)}
   <a href="#backups"><span>💾</span> Your 3-Layer Backup System</a>
   <a href="#vps"><span>🌍</span> VPS Setup — Travel Without Worrying</a>
   <a href="#telegram"><span>💬</span> Reconnecting Telegram Safely</a>
+  <a href="#advanced-diag"><span>🔬</span> Advanced Diagnostics — Every Failure Scenario</a>
   <a href="#emergency"><span>🆘</span> Full Emergency Recovery (Nuclear Option)</a>
   <a href="#restart"><span>🔄</span> Starting Again From Absolute Zero</a>
   <a href="#telegram-diag"><span>🔍</span> Telegram Diagnostics — Delays, Lapses, No Response</a>
@@ -343,6 +344,444 @@ openclaw channels add telegram
 
 # Restart gateway
 openclaw gateway restart</code></pre>
+</section>
+
+<!-- ADVANCED DIAGNOSTICS -->
+<section id="advanced-diag">
+<h2>🔬 Advanced Diagnostics — Every Possible Failure Scenario</h2>
+<p>This section covers <strong>every known failure mode</strong> — not just the obvious ones. For each scenario: what you see, what the logs say, how to fix it, and how to prevent it.</p>
+
+<!-- SCENARIO 1: Gateway Crash Loop -->
+<h3>🔴 Scenario 1: Gateway Crash Loop</h3>
+<span class="tag tag-hard">HARD</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>Gateway starts and immediately stops. Running <code>openclaw gateway start</code> repeatedly fails. Forge is completely unreachable.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code>Gateway start blocked: set gateway.mode=local
+Error: Cannot start gateway — mode not configured
+Process exited with code 1</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Open the OpenClaw config
+nano ~/.openclaw/openclaw.json
+
+# Find the "gateway" section and add "mode": "local"
+# It should look like:
+# {
+#   "gateway": {
+#     "mode": "local",
+#     "port": 18789
+#   }
+# }
+
+# Save (Ctrl+X → Y → Enter), then:
+openclaw gateway start</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>After any OpenClaw update or reinstall, check that <code>openclaw.json</code> still has <code>"mode": "local"</code> in the gateway config. Back up your config before updating.</p></div>
+
+<!-- SCENARIO 2: Config Corruption -->
+<h3>🔴 Scenario 2: Config Corruption After Reinstall</h3>
+<span class="tag tag-hard">HARD</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>After reinstalling OpenClaw, nothing works. Agent not found, channels missing, gateway won't start. It's like a fresh install with no memory of your setup.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code>Error: No agent configuration found
+Error: openclaw.json: unexpected end of input
+Error: ENOENT: no such file or directory, open '~/.openclaw/openclaw.json'
+Config validation failed: missing required field "gateway"</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Option A: Restore from backup
+cp ~/.openclaw-backup-20260226/openclaw.json ~/.openclaw/openclaw.json
+cp -r ~/.openclaw-backup-20260226/agents ~/.openclaw/agents/
+openclaw gateway restart
+
+# Option B: Manually recreate minimum config
+cat > ~/.openclaw/openclaw.json << 'EOF'
+{
+  "gateway": {
+    "mode": "local",
+    "port": 18789
+  }
+}
+EOF
+
+# Then re-add your agent and channels
+openclaw agents add main
+openclaw channels add telegram
+openclaw gateway start</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p><strong>ALWAYS</strong> run <code>cp -r ~/.openclaw ~/.openclaw-backup-$(date +%Y%m%d)</code> before reinstalling. This is The #1 Rule.</p></div>
+
+<!-- SCENARIO 3: Port Already In Use -->
+<h3>🟡 Scenario 3: Port Already In Use</h3>
+<span class="tag tag-medium">MEDIUM</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>Gateway won't start. Error message about the port. Sometimes happens after a crash where the old process didn't clean up.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code>Error: Port 18789 is already in use
+Error: listen EADDRINUSE: address already in use :::18789
+gateway already running (pid 12345)</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Try the clean way first
+openclaw gateway stop
+sleep 5
+openclaw gateway start
+
+# If that fails — find and kill the zombie process
+lsof -i :18789
+# Note the PID from the output, then:
+kill -9 &lt;PID&gt;
+
+# Or kill via launchctl (macOS)
+launchctl bootout gui/$(id -u)/ai.openclaw.gateway
+
+# Now start fresh
+openclaw gateway start</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>Always use <code>openclaw gateway stop</code> before <code>openclaw gateway start</code>. Don't force-quit Terminal while the gateway is running.</p></div>
+
+<!-- SCENARIO 4: Gateway Timeout on Startup -->
+<h3>🟡 Scenario 4: Gateway Timeout on Startup</h3>
+<span class="tag tag-medium">MEDIUM</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>You run <code>openclaw gateway start</code> and it hangs for 60 seconds, then fails. The gateway process starts but never becomes "healthy".</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code>Timed out after 60s waiting for gateway port 18789 to become healthy
+Gateway health check failed: connection refused
+Error: Gateway startup timeout — check logs for details</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Check the full logs to see WHY it failed to start
+openclaw logs --follow
+
+# Common causes:
+# 1. Config issue → fix openclaw.json (see Scenario 1 & 2)
+# 2. Missing auth → re-run: openclaw agents add main
+# 3. Port conflict → see Scenario 3
+# 4. Corrupted state → stop, clear, restart:
+openclaw gateway stop
+sleep 5
+openclaw gateway start</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>Keep your config clean. After any change to <code>openclaw.json</code>, validate it's proper JSON before restarting. Use <code>cat ~/.openclaw/openclaw.json | python3 -m json.tool</code> to check.</p></div>
+
+<!-- SCENARIO 5: OAuth Token Expiry -->
+<h3>🔴 Scenario 5: OAuth Token Expiry (OAT Token)</h3>
+<span class="tag tag-hard">HARD</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>Forge suddenly stops responding. Was working fine, now every message fails. The webchat may show an error about authentication.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code>401 Unauthorized
+{"type":"error","error":{"type":"authentication_error","message":"invalid x-api-key"}}
+Error: Authentication failed — token expired or revoked
+OAT token validation failed</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Option A: Re-run the auth setup
+openclaw auth setup-token
+
+# Option B: Get a new token from claude.ai
+# 1. Go to claude.ai in your browser
+# 2. Log in
+# 3. Open DevTools (Cmd+Option+I) → Application → Cookies
+# 4. Find the session token
+# 5. Or just re-run: openclaw agents add main
+
+# After fixing auth:
+openclaw gateway restart</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>Use API keys from <a href="https://console.anthropic.com/settings/keys" style="color:var(--accent2)">console.anthropic.com</a> instead of OAT tokens — they don't expire unless you revoke them. OAT tokens from claude.ai sessions expire periodically.</p></div>
+
+<!-- SCENARIO 6: Session Stuck on Wrong Channel -->
+<h3>🟡 Scenario 6: Session Stuck on Wrong Channel</h3>
+<span class="tag tag-easy">EASY</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>You message Forge on Telegram but replies appear in the webchat browser tab instead. Or vice versa. Forge is "alive" but talking to the wrong place.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code>Session routed to channel: webchat (expected: telegram)
+Active session: webchat:127.0.0.1
+Message delivered to webchat client</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Step 1: Close ALL browser tabs showing http://127.0.0.1:18789
+# (This is the #1 cause)
+
+# Step 2: Restart the gateway to clear session routing
+openclaw gateway restart
+
+# Step 3: Wait 60 seconds, then message on Telegram</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>Don't leave the webchat tab open when you want to use Telegram. The webchat creates an active session that takes priority. Close it when done debugging.</p></div>
+
+<!-- SCENARIO 7: LaunchAgent Not Loaded -->
+<h3>🟡 Scenario 7: LaunchAgent Not Loaded</h3>
+<span class="tag tag-medium">MEDIUM</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>After restarting the Mac, Forge doesn't come back automatically. You have to manually run <code>openclaw gateway start</code> every time the Mac reboots.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<p>No logs — the gateway simply doesn't start. Running <code>openclaw gateway status</code> shows "not running".</p>
+<pre><code>$ openclaw gateway status
+Gateway: not running
+$ launchctl list | grep openclaw
+# (no output = not loaded)</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Load the LaunchAgent (makes it auto-start on boot)
+launchctl load ~/Library/LaunchAgents/ai.openclaw.gateway.plist
+
+# Verify it's loaded
+launchctl list | grep openclaw
+
+# If the plist file doesn't exist, re-enable auto-start:
+openclaw gateway enable
+
+# Start the gateway now
+openclaw gateway start</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>After any OpenClaw reinstall, re-run <code>launchctl load</code> or <code>openclaw gateway enable</code>. The LaunchAgent plist can get removed during updates.</p></div>
+
+<!-- SCENARIO 8: Multiple Gateway Instances -->
+<h3>🔴 Scenario 8: Multiple Gateway Instances</h3>
+<span class="tag tag-hard">HARD</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>Forge gives inconsistent responses, messages appear duplicated, or the gateway behaves erratically. Port conflicts appear randomly.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code>Error: Port 18789 is already in use
+Warning: Multiple gateway processes detected
+EADDRINUSE: address already in use
+PID mismatch: expected 12345, found 67890</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Stop the gateway cleanly
+openclaw gateway stop
+
+# Kill ALL node processes related to OpenClaw
+pkill -f "openclaw"
+# Or more targeted:
+ps aux | grep openclaw | grep -v grep
+# Kill each PID:
+kill -9 &lt;PID1&gt; &lt;PID2&gt;
+
+# Also remove via launchctl if needed
+launchctl bootout gui/$(id -u)/ai.openclaw.gateway
+
+# Verify nothing is running
+lsof -i :18789
+# Should show nothing
+
+# Start fresh — single instance
+openclaw gateway start</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>Never run <code>openclaw gateway start</code> twice without stopping first. If you're unsure, always run <code>openclaw gateway stop</code> before starting.</p></div>
+
+<!-- SCENARIO 9: Telegram Bot Not Receiving Messages -->
+<h3>🔴 Scenario 9: Telegram Bot Not Receiving Messages</h3>
+<span class="tag tag-medium">MEDIUM</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>The bot exists on Telegram, you can see it, but when you send messages nothing happens. No response, no typing indicator, nothing.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code>Telegram webhook: no incoming messages
+Error: 401 Unauthorized (bot token invalid)
+Error: getUpdates failed: bot was blocked by the user
+Channel "telegram" not found in configuration
+No Telegram channel configured</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Check 1: Is the gateway running?
+openclaw gateway status
+
+# Check 2: Is Telegram configured?
+openclaw channels status
+# If Telegram isn't listed:
+openclaw channels add telegram
+
+# Check 3: Is the bot token valid?
+# Test it directly:
+curl https://api.telegram.org/bot&lt;YOUR_BOT_TOKEN&gt;/getMe
+# If it returns an error, the token is invalid → get new one from @BotFather
+
+# Check 4: Restart everything
+openclaw gateway restart
+
+# Check 5: Look at live logs while sending a message
+openclaw logs --follow
+# Send a Telegram message and watch for activity</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>After any reinstall, verify Telegram is configured with <code>openclaw channels status</code>. Keep your bot token saved somewhere safe (password manager).</p></div>
+
+<!-- SCENARIO 10: Forge Seems Confused / No Memory -->
+<h3>🟢 Scenario 10: Forge Responds But Seems Confused / No Memory</h3>
+<span class="tag tag-easy">EASY</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>Forge responds but doesn't remember who you are, doesn't know about THALYVE, asks basic questions, or acts like a generic chatbot. Feels like talking to a stranger.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<p>Logs look normal — no errors. This is a <strong>content issue</strong>, not a technical one.</p>
+<pre><code># No errors in logs — messages are being sent and received normally
+# The issue is that memory files are missing or empty</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Check if memory files exist
+ls -la ~/.openclaw/workspace/MEMORY.md
+ls -la ~/.openclaw/workspace/SOUL.md
+ls -la ~/.openclaw/workspace/USER.md
+
+# If any are missing or empty, restore from GitHub:
+cd ~/.openclaw/workspace
+git pull origin main
+
+# Verify files are restored
+cat ~/.openclaw/workspace/MEMORY.md | head -5
+# Should show Forge's memories, not be empty
+
+# Start a new session so Forge re-reads the files
+openclaw gateway restart</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>This is <strong>normal on every new session start</strong>. Forge reads memory files fresh each time. As long as MEMORY.md, SOUL.md, and USER.md exist, he'll be himself. Keep GitHub backups running.</p></div>
+
+<!-- SCENARIO 11: Context Window Full -->
+<h3>🟡 Scenario 11: Context Window Full / Compaction Errors</h3>
+<span class="tag tag-easy">EASY</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>After a very long conversation, Forge starts giving weird responses, forgetting things from earlier in the same chat, or throwing errors about message length.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code>Error: context_length_exceeded — maximum context length is 200000 tokens
+Warning: Message compaction triggered — removing older messages
+Error: Compaction failed — message sequence invalid
+Token count: 195000/200000 — approaching limit</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Simply start a new session
+# On Telegram: send /new or just wait — Forge starts fresh sessions automatically
+# On webchat: refresh the page
+
+# If the gateway itself is stuck:
+openclaw gateway restart</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>Long conversations naturally fill up context. This isn't a bug — it's a limitation of all LLMs. For very long tasks, break them into multiple sessions. Forge saves important things to memory files so nothing is truly lost between sessions.</p></div>
+
+<!-- SCENARIO 12: DNS/Network Issues -->
+<h3>🟡 Scenario 12: DNS / Network Issues</h3>
+<span class="tag tag-easy">EASY</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>Forge stops responding on all channels. Webchat might load but Forge can't generate responses. Everything feels "stuck".</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code>Error: getaddrinfo ENOTFOUND api.anthropic.com
+Error: connect ETIMEDOUT 104.18.0.0:443
+FetchError: request to https://api.anthropic.com/v1/messages failed
+Error: Network request failed — ENETUNREACH
+DNS resolution failed for api.telegram.org</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Check if the Mac has internet
+ping -c 3 google.com
+
+# If ping fails:
+# 1. Check WiFi is connected (menu bar → WiFi icon)
+# 2. Restart WiFi: toggle it off/on in System Settings → Wi-Fi
+# 3. Restart the router (unplug, wait 30 sec, plug back in)
+# 4. Try a different DNS: System Settings → Wi-Fi → Details → DNS
+#    Add: 1.1.1.1 and 8.8.8.8
+
+# If ping works but Forge is still down:
+# Check if Anthropic API is reachable
+curl -s https://api.anthropic.com/v1/messages -o /dev/null -w "%{http_code}"
+# Should return 401 (auth error = server reachable) not 000 (unreachable)
+
+# Once internet is back:
+openclaw gateway restart</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>Keep the Mac on a stable WiFi connection. Consider a wired Ethernet connection for reliability. A VPS eliminates this entirely (see VPS section).</p></div>
+
+<!-- SCENARIO 13: Version Mismatch -->
+<h3>🟡 Scenario 13: OpenClaw Version Mismatch After Update</h3>
+<span class="tag tag-medium">MEDIUM</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>After running <code>npm install -g openclaw@latest</code>, things break. Commands behave differently, config format changed, or features are missing.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code>Error: Unknown configuration key "gateway.mode" — did you mean "server.mode"?
+Error: Config schema validation failed
+Warning: Deprecated config format detected
+Error: Plugin version mismatch — expected 3.x, got 2.x</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Check what version you're on
+openclaw --version
+
+# Try the built-in doctor
+openclaw doctor --fix
+
+# If that doesn't exist or doesn't help, restore config from backup:
+cp ~/.openclaw-backup-20260226/openclaw.json ~/.openclaw/openclaw.json
+openclaw gateway restart
+
+# If you need to rollback to a specific version:
+npm install -g openclaw@&lt;previous-version-number&gt;</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>Always back up before updating: <code>cp -r ~/.openclaw ~/.openclaw-backup-$(date +%Y%m%d)</code>. Check the OpenClaw changelog/Discord before updating to know if there are breaking changes.</p></div>
+
+<!-- SCENARIO 14: Cron Jobs Not Running -->
+<h3>🟡 Scenario 14: Cron Jobs Not Running</h3>
+<span class="tag tag-medium">MEDIUM</span>
+<div class="step"><div class="step-num">💥</div><h4>What it looks like</h4>
+<p>Scheduled tasks (like auto-backup every 6 hours, heartbeat checks, etc.) silently stop running. You notice when something that should have happened didn't.</p></div>
+<div class="step"><div class="step-num">📋</div><h4>What the logs say</h4>
+<pre><code># No cron-related log entries at all (because nothing is running)
+$ openclaw cron list
+No cron jobs configured.
+
+# Or if the gateway isn't running, crons don't execute:
+Cron trigger skipped: gateway not running</code></pre></div>
+<div class="step"><div class="step-num">🔧</div><h4>Step-by-step fix</h4>
+<pre><code># Check if any cron jobs exist
+openclaw cron list
+
+# If empty — they were wiped during reinstall
+# Re-add the essential ones:
+# (Check your memory files or SOS.md for what crons you had)
+
+# Make sure the gateway is running (crons need it)
+openclaw gateway status
+# If not running:
+openclaw gateway start
+
+# Verify crons are firing
+openclaw logs --follow
+# Wait for the next scheduled trigger</code></pre></div>
+<div class="step"><div class="step-num">🛡️</div><h4>How to prevent it</h4>
+<p>Document all your cron jobs in a file (e.g., MEMORY.md or a dedicated cron-backup file). After any reinstall, check <code>openclaw cron list</code> immediately and re-add if empty.</p></div>
+
+<!-- SCENARIO 15: How to Read the Logs -->
+<h3>📖 Scenario 15: How to Read the Logs — Error Message Reference</h3>
+<span class="tag tag-easy">REFERENCE</span>
+<p>When something goes wrong, the logs tell you <strong>exactly</strong> what happened. Here's how to read them and what every common error means.</p>
+
+<h4>How to access logs</h4>
+<pre><code># Watch logs in real-time (best for debugging)
+openclaw logs --follow
+
+# View recent logs
+openclaw logs
+
+# View logs from a specific time (if supported)
+openclaw logs --since "1 hour ago"</code></pre>
+
+<h4>Error Message Reference</h4>
+<table>
+<tr><th>Error String in Logs</th><th>What It Means</th><th>Fix</th></tr>
+<tr><td><code>Gateway start blocked: set gateway.mode=local</code></td><td>Config missing mode setting</td><td>Add <code>"mode": "local"</code> to gateway config → Scenario 1</td></tr>
+<tr><td><code>Port 18789 is already in use</code></td><td>Another process on that port</td><td>Kill the process → Scenario 3</td></tr>
+<tr><td><code>EADDRINUSE: address already in use</code></td><td>Same as above (Node.js version)</td><td>Kill the process → Scenario 3</td></tr>
+<tr><td><code>gateway already running (pid XXXX)</code></td><td>Gateway thinks it's already up</td><td><code>openclaw gateway stop</code> then start → Scenario 3</td></tr>
+<tr><td><code>Timed out after 60s waiting for gateway port 18789</code></td><td>Gateway started but never became healthy</td><td>Check config and auth → Scenario 4</td></tr>
+<tr><td><code>401 Unauthorized</code></td><td>API key or token is invalid/expired</td><td>Re-add API key → Scenario 5</td></tr>
+<tr><td><code>authentication_error</code></td><td>Auth token rejected by Anthropic</td><td>New token or API key → Scenario 5</td></tr>
+<tr><td><code>429 Too Many Requests</code></td><td>Rate limited — too many API calls</td><td>Wait 5-15 min, check spend limits</td></tr>
+<tr><td><code>rate_limit_error</code></td><td>Same as 429 — rate limited</td><td>Wait, then restart gateway</td></tr>
+<tr><td><code>context_length_exceeded</code></td><td>Conversation too long</td><td>Start new session → Scenario 11</td></tr>
+<tr><td><code>ENOTFOUND api.anthropic.com</code></td><td>DNS can't resolve — no internet</td><td>Check WiFi/network → Scenario 12</td></tr>
+<tr><td><code>ETIMEDOUT</code></td><td>Network timeout — slow/no connection</td><td>Check internet → Scenario 12</td></tr>
+<tr><td><code>ENETUNREACH</code></td><td>Network unreachable — no connection</td><td>Check WiFi → Scenario 12</td></tr>
+<tr><td><code>ENOENT: no such file or directory</code></td><td>Expected file is missing</td><td>Restore from backup → Scenario 2</td></tr>
+<tr><td><code>unexpected end of input</code></td><td>JSON file is corrupted/truncated</td><td>Restore config from backup → Scenario 2</td></tr>
+<tr><td><code>Config schema validation failed</code></td><td>Config format doesn't match version</td><td>Run <code>openclaw doctor --fix</code> → Scenario 13</td></tr>
+<tr><td><code>No agent configuration found</code></td><td>Agent was wiped during reinstall</td><td><code>openclaw agents add main</code> → Scenario 2</td></tr>
+<tr><td><code>Telegram webhook: no incoming</code></td><td>Bot token invalid or not configured</td><td>Re-add Telegram → Scenario 9</td></tr>
+<tr><td><code>bot was blocked by the user</code></td><td>You blocked your own bot on Telegram</td><td>Unblock the bot in Telegram</td></tr>
+</table>
+
+<div class="alert alert-green">
+<h3>💡 Pro Tip: Always Check Logs First</h3>
+<p>Before panicking or reinstalling, run <code>openclaw logs --follow</code> and reproduce the problem. The logs will tell you exactly which scenario above applies. <strong>Match the error string to this table → follow the fix.</strong> 90% of issues are solved in under 2 minutes.</p>
+</div>
 </section>
 
 <!-- EMERGENCY -->
