@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge Efficiency Bible — Maximise Every Token</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05060a;--card:#0f1018;--card2:#12131d;--border:#1a1b28;--border2:#252638;--text:#eeeef2;--sub:#7c7c96;--dim:#4a4a62;--accent:#7c5cfc;--accent2:#9b7dff;--accent3:#c0afff;--green:#0fd68c;--green-bg:rgba(15,214,140,.08);--amber:#ffb020;--amber-bg:rgba(255,176,32,.08);--red:#ff4d6a;--red-bg:rgba(255,77,106,.08);--blue:#4d9eff;--blue-bg:rgba(77,158,255,.08)}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+.app{max-width:800px;margin:0 auto;padding:20px 16px 60px}
+.header{text-align:center;padding:30px 0 24px;border-bottom:1px solid var(--border);margin-bottom:32px}
+.brand-icon{width:56px;height:56px;background:linear-gradient(135deg,var(--green),#059669);border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 16px rgba(15,214,140,.25);margin-bottom:12px}
+h1{font-size:22px;font-weight:800;letter-spacing:.5px}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--green),#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:var(--sub);font-size:12px;margin-top:6px;line-height:1.5}
+.nav{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.nav a{font-size:11px;color:var(--accent2);text-decoration:none;padding:5px 14px;border:1px solid var(--border);border-radius:20px;transition:all .15s}
+.nav a:hover{border-color:var(--accent);background:rgba(124,92,252,.08)}
+.toc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:32px}
+.toc h3{font-size:12px;color:var(--accent2);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.toc a{display:block;font-size:13px;color:var(--sub);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--border);transition:color .15s}
+.toc a:last-child{border:none}
+.toc a:hover{color:var(--accent2)}
+.toc a span{margin-right:8px}
+.alert{background:var(--red-bg);border:1px solid rgba(255,77,106,.25);border-radius:12px;padding:20px;margin-bottom:24px}
+.alert-green{background:var(--green-bg);border-color:rgba(15,214,140,.25)}
+.alert-amber{background:var(--amber-bg);border-color:rgba(255,176,32,.25)}
+.alert-blue{background:var(--blue-bg);border-color:rgba(77,158,255,.25)}
+.alert h3{font-size:14px;font-weight:800;margin-bottom:8px}
+.alert p,.alert li{font-size:13px;line-height:1.6;color:var(--sub)}
+.alert strong{color:var(--text)}
+section{margin-bottom:40px}
+section h2{font-size:16px;font-weight:800;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+section h3{font-size:14px;font-weight:700;margin:20px 0 10px;color:var(--accent2)}
+p{font-size:13px;line-height:1.7;color:var(--sub);margin-bottom:12px}
+strong{color:var(--text)}
+ul,ol{margin:8px 0 16px 20px}
+li{font-size:13px;line-height:1.7;color:var(--sub);margin-bottom:4px}
+code{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:12px;color:var(--green);font-family:'SF Mono',Consolas,monospace}
+pre{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin:12px 0 16px;overflow-x:auto}
+pre code{border:none;padding:0;display:block;line-height:1.8;font-size:12px}
+table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:12px}
+th{background:var(--card);color:var(--accent2);text-align:left;padding:10px 12px;border:1px solid var(--border);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:10px}
+td{padding:10px 12px;border:1px solid var(--border);color:var(--sub)}
+tr:hover td{background:var(--card)}
+.step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:12px 0;position:relative;padding-left:56px}
+.step-num{position:absolute;left:16px;top:18px;width:28px;height:28px;background:linear-gradient(135deg,var(--accent),#5c3cdc);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:white}
+.step h4{font-size:13px;font-weight:700;margin-bottom:6px}
+.step p{margin-bottom:4px}
+.tag{display:inline-block;font-size:9px;padding:3px 10px;border-radius:10px;font-weight:700;margin-right:4px}
+.tag-opus{background:rgba(124,92,252,.12);color:var(--accent2);border:1px solid rgba(124,92,252,.25)}
+.tag-sonnet{background:var(--green-bg);color:var(--green);border:1px solid rgba(15,214,140,.2)}
+.tag-free{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(77,158,255,.2)}
+.cost-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:12px 0;text-align:center}
+.cost-card .amount{font-size:28px;font-weight:800;background:linear-gradient(135deg,var(--green),#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cost-card .label{font-size:11px;color:var(--sub);margin-top:4px}
+.footer{text-align:center;padding:24px;font-size:9px;color:var(--dim);letter-spacing:.3px;border-top:1px solid var(--border);margin-top:40px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="header">
+  <div class="brand-icon">⚡</div>
+  <h1>The <em>Efficiency Bible</em></h1>
+  <p class="sub">Maximise every token. Right model, right task, zero waste.<br>Models, costs, cron jobs, subscriptions, terminal commands — everything.</p>
+  <div class="nav">
+    <a href="../">🏠 Home</a>
+    <a href="../hub/">📁 SOP Hub</a>
+    <a href="forge-survival-guide.html">🚨 Survival Guide</a>
+  </div>
+</div>
+
+<div class="toc">
+  <h3>📑 What's In This Guide</h3>
+  <a href="#models"><span>🧠</span> Models Explained — Opus vs Sonnet vs Others</a>
+  <a href="#costs"><span>💰</span> Token Costs & Weekly Budget Planning</a>
+  <a href="#efficiency"><span>⚡</span> Efficiency Rules — How to Save 60%+ on Tokens</a>
+  <a href="#tasks"><span>📋</span> Which Model for Which Task</a>
+  <a href="#subscription"><span>🔑</span> Claude Subscription vs API — Best Way to Connect</a>
+  <a href="#cron"><span>⏰</span> Cron Jobs — Optimised Automation</a>
+  <a href="#telegram-deep"><span>💬</span> Ultimate Telegram Guide — Setup, Fixes, Everything</a>
+  <a href="#backups"><span>💾</span> Pre-Change Backup Checklist</a>
+  <a href="#terminal"><span>💻</span> Every Terminal Command You'll Ever Need</a>
+</div>
+
+<!-- MODELS -->
+<section id="models">
+<h2>🧠 Models Explained</h2>
+
+<h3>The Two Models You Have</h3>
+<table>
+<tr><th></th><th><span class="tag tag-opus">OPUS 4.6</span> The Big Brain</th><th><span class="tag tag-sonnet">SONNET 4.6</span> The Fast Brain</th></tr>
+<tr><td><strong>Intelligence</strong></td><td>🟢🟢🟢🟢🟢 Maximum</td><td>🟢🟢🟢🟢⚪ Very High</td></tr>
+<tr><td><strong>Speed</strong></td><td>🟡🟡🟡⚪⚪ Slower (10-30s)</td><td>🟢🟢🟢🟢🟢 Fast (3-8s)</td></tr>
+<tr><td><strong>Cost per 1M input tokens</strong></td><td>$15.00</td><td>$3.00</td></tr>
+<tr><td><strong>Cost per 1M output tokens</strong></td><td>$75.00</td><td>$15.00</td></tr>
+<tr><td><strong>Context window</strong></td><td>200K tokens</td><td>200K tokens</td></tr>
+<tr><td><strong>Opus is 5× more expensive</strong></td><td colspan="2">Same task on Opus costs 5× what Sonnet costs</td></tr>
+</table>
+
+<h3>What Does "Tokens" Mean in Real Terms?</h3>
+<table>
+<tr><th>Action</th><th>~Tokens Used</th><th>Opus Cost</th><th>Sonnet Cost</th></tr>
+<tr><td>Simple question + answer</td><td>~2,000</td><td>~$0.03</td><td>~$0.006</td></tr>
+<tr><td>Voice note transcription + reply</td><td>~3,000</td><td>~$0.05</td><td>~$0.01</td></tr>
+<tr><td>Build a new HTML tool</td><td>~15,000</td><td>~$0.25</td><td>~$0.05</td></tr>
+<tr><td>Product research cycle (5 products)</td><td>~30,000</td><td>~$0.50</td><td>~$0.10</td></tr>
+<tr><td>Full SOP document</td><td>~20,000</td><td>~$0.35</td><td>~$0.07</td></tr>
+<tr><td>Long conversation (1 hour)</td><td>~50,000</td><td>~$1.00</td><td>~$0.20</td></tr>
+<tr><td>Heavy build session (like Feb 24)</td><td>~200,000</td><td>~$4.00</td><td>~$0.80</td></tr>
+</table>
+
+<div class="alert alert-green">
+<h3>💡 Reality Check</h3>
+<p>A full day of heavy work with Forge on Opus costs <strong>~$5-15</strong>. A normal day with a few conversations costs <strong>~$2-5</strong>. That's less than a coffee. The value massively outweighs the cost — don't be cheap with tokens when it matters.</p>
+</div>
+
+<h3>What's "Context Window" and Why It Matters</h3>
+<p>Every conversation has a <strong>context window</strong> — the amount of text Forge can "see" at once (200K tokens ≈ ~150,000 words). As conversations get longer, context fills up. When it hits the limit, OpenClaw runs <strong>compaction</strong> — it summarises the conversation to free up space.</p>
+<p><strong>Compaction = token burn.</strong> Every compaction costs tokens because Forge has to re-read and summarise everything. Long conversations = more compactions = more cost.</p>
+<p><strong>Efficiency tip:</strong> For new topics, start a fresh conversation rather than continuing a 3-hour-old one. Fresh context = less waste.</p>
+</section>
+
+<!-- COSTS -->
+<section id="costs">
+<h2>💰 Token Costs & Weekly Budget Planning</h2>
+
+<h3>Your Weekly Token Budget (Recommended)</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:16px 0">
+<div class="cost-card"><div class="amount">$20</div><div class="label">LIGHT WEEK<br>Research + chat only</div></div>
+<div class="cost-card"><div class="amount">$40</div><div class="label">NORMAL WEEK<br>Research + builds + SOPs</div></div>
+<div class="cost-card"><div class="amount">$80</div><div class="label">HEAVY WEEK<br>Multiple tools + full builds</div></div>
+</div>
+
+<h3>What $40/week Gets You (Normal Week on Opus)</h3>
+<ul>
+<li>✅ Daily briefings (7x)</li>
+<li>✅ 2 product research cycles (10 products scored)</li>
+<li>✅ 1-2 new HTML tools or SOP documents</li>
+<li>✅ 10-15 conversations/tasks</li>
+<li>✅ Cron job automation running</li>
+<li>✅ Memory maintenance</li>
+</ul>
+
+<h3>How to Check Your Spend</h3>
+<pre><code># Quick check from terminal
+openclaw status
+
+# Detailed usage — go to browser:
+# https://console.anthropic.com/settings/usage</code></pre>
+
+<h3>Set Spend Limits (Safety Net)</h3>
+<p>Go to <a href="https://console.anthropic.com/settings/limits" style="color:var(--accent2)">console.anthropic.com/settings/limits</a> and set:</p>
+<table>
+<tr><th>Limit</th><th>Recommended Setting</th><th>Why</th></tr>
+<tr><td>Monthly limit</td><td>$200-300</td><td>Prevents runaway costs. Adjust up if needed.</td></tr>
+<tr><td>Daily limit</td><td>$30-50</td><td>Catches if something goes wrong (infinite loops etc)</td></tr>
+</table>
+<p>⚠️ If you hit these limits, Forge goes silent. It's not broken — just out of budget. Raise the limit and restart.</p>
+</section>
+
+<!-- EFFICIENCY -->
+<section id="efficiency">
+<h2>⚡ Efficiency Rules — Save 60%+ on Tokens</h2>
+
+<div class="alert alert-green">
+<h3>The #1 Rule: Use Sonnet for routine tasks, Opus for complex ones</h3>
+<p>Sonnet handles 90% of daily tasks identically to Opus — but costs <strong>5× less</strong>. The difference is only noticeable on complex reasoning, long multi-step analysis, and subtle judgment calls.</p>
+</div>
+
+<h3>10 Rules for Maximum Efficiency</h3>
+
+<table>
+<tr><th>#</th><th>Rule</th><th>Savings</th></tr>
+<tr><td>1</td><td><strong>Text > Voice for simple tasks.</strong> Voice notes add ~10-15s transcription + extra tokens. Use text for quick questions.</td><td>~30%</td></tr>
+<tr><td>2</td><td><strong>Be specific in your requests.</strong> "Build X with Y" is cheaper than "build something cool" because Forge doesn't need to guess.</td><td>~20%</td></tr>
+<tr><td>3</td><td><strong>Batch related requests.</strong> Send one message with 5 things, not 5 separate messages. Each message costs context-loading tokens.</td><td>~40%</td></tr>
+<tr><td>4</td><td><strong>Start fresh sessions for new topics.</strong> Don't continue a 2-hour conversation about meal plans to ask about product research.</td><td>~25%</td></tr>
+<tr><td>5</td><td><strong>Don't repeat yourself.</strong> If Forge understood, move on. Rephrasing the same request burns tokens.</td><td>~15%</td></tr>
+<tr><td>6</td><td><strong>Keep heartbeat empty when not needed.</strong> Every heartbeat tick costs tokens. Only add tasks when there's something to check.</td><td>~50% idle</td></tr>
+<tr><td>7</td><td><strong>Use cron wisely.</strong> A cron job running every hour on Opus costs ~$2/day in context loading alone. Run them on Sonnet.</td><td>~80% cron</td></tr>
+<tr><td>8</td><td><strong>Review before requesting changes.</strong> Look at what Forge sent, then give ALL corrections in one message. Not one at a time.</td><td>~30%</td></tr>
+<tr><td>9</td><td><strong>Don't ask Forge to show you files.</strong> Check GitHub directly: github.com/AntonUrso2811/forge-workspace</td><td>~100% per ask</td></tr>
+<tr><td>10</td><td><strong>Let Forge work autonomously.</strong> "Build X, deliver when done" is cheaper than checking in 5 times during the build.</td><td>~25%</td></tr>
+</table>
+
+<h3>The Biggest Token Burners (What Killed Your Budget on Feb 24-25)</h3>
+<table>
+<tr><th>What Happened</th><th>Why It Was Expensive</th><th>How to Avoid</th></tr>
+<tr><td>Meal plan revisions (v1→v5)</td><td>12+ back-and-forth edits, each re-reading the full HTML file</td><td>Give all corrections in ONE message</td></tr>
+<tr><td>Tool redesigns (Tracker v1→v4)</td><td>Rebuilding entire HTML files 4 times</td><td>Show the reference/example FIRST, build once</td></tr>
+<tr><td>Webchat routing issue</td><td>Forge kept replying but you couldn't see it — double token burn</td><td>Close webchat tabs, fixed now</td></tr>
+<tr><td>Long unbroken conversations</td><td>Context window filled → compaction → re-reading everything</td><td>Start fresh sessions for new topics</td></tr>
+<tr><td>Debugging browser/GetHookd</td><td>Many browser interactions, retries, timeouts</td><td>Pre-install tools, verify access before heavy use</td></tr>
+</table>
+</section>
+
+<!-- TASK ROUTING -->
+<section id="tasks">
+<h2>📋 Which Model for Which Task</h2>
+
+<h3>Use <span class="tag tag-opus">OPUS</span> for:</h3>
+<ul>
+<li>🧠 <strong>Complex strategy</strong> — business decisions, market analysis, competitive intelligence</li>
+<li>📊 <strong>Data analysis</strong> — interpreting research results, identifying patterns, making recommendations</li>
+<li>📝 <strong>Long-form writing</strong> — SOPs, guides, frameworks, detailed documents</li>
+<li>🏗️ <strong>Complex tool builds</strong> — new HTML apps with multiple features, dashboards</li>
+<li>🔍 <strong>Deep product research</strong> — multi-step validation, cross-referencing sources</li>
+<li>💬 <strong>Live conversations</strong> — your main chat sessions where quality matters</li>
+<li>🔐 <strong>Security/QC reviews</strong> — anything where mistakes have consequences</li>
+</ul>
+
+<h3>Use <span class="tag tag-sonnet">SONNET</span> for:</h3>
+<ul>
+<li>⏰ <strong>Cron jobs</strong> — automated research, scheduled checks, daily briefings</li>
+<li>🔄 <strong>Routine updates</strong> — updating tracker data, pushing to GitHub, file maintenance</li>
+<li>📋 <strong>Simple formatting</strong> — converting files, reformatting docs, simple edits</li>
+<li>🤖 <strong>Sub-agent tasks</strong> — specialist workers doing narrow, defined tasks</li>
+<li>💬 <strong>Quick Q&A</strong> — simple questions that don't need deep reasoning</li>
+<li>🔍 <strong>Web searches</strong> — finding information, fetching pages</li>
+<li>📤 <strong>Git operations</strong> — committing, pushing, pulling, backups</li>
+</ul>
+
+<h3>How to Set Model Per Task</h3>
+<pre><code># Your main chat (stays on Opus - don't change)
+# This is configured in: openclaw agents list
+
+# For cron jobs - specify Sonnet:
+openclaw cron add --model sonnet "Research pipeline" \
+  --schedule "0 3 * * 1,4" \
+  --task "Run product research cycle per SOP"
+
+# For sub-agents - Forge can spawn them on Sonnet:
+# Just tell Forge: "Use Sonnet for this sub-agent"</code></pre>
+
+<div class="alert alert-blue">
+<h3>💡 The 80/20 Rule</h3>
+<p>Run your <strong>main conversation on Opus</strong> (where you interact directly — quality matters here). Run <strong>everything automated on Sonnet</strong> (cron, sub-agents, background tasks — 5× cheaper, quality is still excellent).</p>
+<p>This alone saves <strong>60-70%</strong> of your weekly token spend without any quality loss on the things that matter to you.</p>
+</div>
+</section>
+
+<!-- SUBSCRIPTION -->
+<section id="subscription">
+<h2>🔑 Claude Subscription vs API — Best Way to Connect</h2>
+
+<h3>The Two Ways to Pay for Claude</h3>
+<table>
+<tr><th></th><th>API (Pay-Per-Token) ← You Have This</th><th>Claude Max/Pro Subscription</th></tr>
+<tr><td><strong>How it works</strong></td><td>Pay per token used. No limits except spend caps.</td><td>Monthly fee ($20-100), includes usage allowance.</td></tr>
+<tr><td><strong>Cost</strong></td><td>Variable — $5-80/week depending on usage</td><td>$20/mo (Pro) or $100/mo (Max)</td></tr>
+<tr><td><strong>Best for</strong></td><td>Heavy/variable usage, full control</td><td>Predictable budget, lighter usage</td></tr>
+<tr><td><strong>Works with OpenClaw?</strong></td><td>✅ Yes — native support</td><td>⚠️ Possible via setup-token method</td></tr>
+<tr><td><strong>Rate limits</strong></td><td>Based on your tier (spend-based)</td><td>Based on plan (usage caps)</td></tr>
+</table>
+
+<h3>Option 1: API Key (Current Setup — Recommended)</h3>
+<p>This is what you're using now. It's the most reliable, best supported, and gives you full control.</p>
+
+<div class="step"><div class="step-num">✅</div><h4>How to get/refresh your API key</h4>
+<ol>
+<li>Go to <a href="https://console.anthropic.com/settings/keys" style="color:var(--accent2)">console.anthropic.com/settings/keys</a></li>
+<li>Click <strong>Create Key</strong> → name it (e.g. "forge-main")</li>
+<li>Copy the key immediately (you only see it once)</li>
+<li>Add to OpenClaw:
+<pre><code>openclaw agents add main
+# Paste the key when prompted
+openclaw gateway restart</code></pre></li>
+</ol></div>
+
+<h3>Option 2: Claude Max/Pro Subscription Token</h3>
+<p>If you want a flat monthly fee instead of pay-per-token, you can use a Claude subscription with OpenClaw via the <strong>setup-token method</strong>.</p>
+
+<div class="alert alert-amber">
+<h3>⚠️ Honest Assessment</h3>
+<p><strong>Stick with API.</strong> Here's why:</p>
+<ul>
+<li>API is officially supported by OpenClaw — zero sync issues</li>
+<li>Subscription tokens can expire/change without warning</li>
+<li>Claude Max ($100/mo) has usage caps that may not cover heavy build days</li>
+<li>API lets you set your own limits and monitor exact spend</li>
+<li>If you spend &lt;$200/mo on API, it's cheaper than Max anyway</li>
+</ul>
+<p>The only reason to switch: if you consistently spend $200+/month AND want predictable billing.</p>
+</div>
+
+<h3>If You DO Want Subscription (Setup-Token Method)</h3>
+<div class="step"><div class="step-num">1</div><h4>Subscribe to Claude Max/Pro</h4>
+<p>Go to <a href="https://claude.ai/settings/billing" style="color:var(--accent2)">claude.ai/settings/billing</a> → choose a plan.</p></div>
+
+<div class="step"><div class="step-num">2</div><h4>Get the setup token</h4>
+<p>In the OpenClaw docs, look for "subscription auth" or "setup-token". The process involves:</p>
+<ol>
+<li>Running <code>openclaw auth setup-token</code></li>
+<li>Logging into claude.ai in the browser that opens</li>
+<li>OpenClaw captures the session token</li>
+</ol>
+<p>⚠️ This token can expire. If it does, Forge goes silent until you re-auth.</p></div>
+
+<div class="step"><div class="step-num">3</div><h4>Configure OpenClaw to use it</h4>
+<pre><code># The setup-token command handles this automatically
+# It writes to ~/.openclaw/agents/main/agent/auth-profiles.json
+openclaw gateway restart</code></pre></div>
+
+<h3>Avoiding Sync Issues (Either Method)</h3>
+<table>
+<tr><th>Issue</th><th>Cause</th><th>Fix</th></tr>
+<tr><td>Forge goes silent</td><td>API key expired or spend limit hit</td><td>Check <a href="https://console.anthropic.com" style="color:var(--accent2)">console</a>, regenerate key if needed</td></tr>
+<tr><td>401 errors in logs</td><td>Invalid or expired auth token</td><td>Re-add API key: <code>openclaw agents add main</code></td></tr>
+<tr><td>Subscription token expired</td><td>Claude session timed out</td><td>Re-run <code>openclaw auth setup-token</code></td></tr>
+<tr><td>Wrong model loading</td><td>Config mismatch</td><td>Check: <code>openclaw agents list</code></td></tr>
+<tr><td>Rate limit after key change</td><td>New keys start at lowest tier</td><td>Wait for tier to increase with spend</td></tr>
+</table>
+
+<h3>Rate Limit Tiers (API)</h3>
+<p>Anthropic increases your rate limits as you spend more:</p>
+<table>
+<tr><th>Tier</th><th>Spend Required</th><th>Requests/min</th></tr>
+<tr><td>Tier 1 (new)</td><td>$0+</td><td>50 RPM</td></tr>
+<tr><td>Tier 2</td><td>$40+ spent</td><td>1,000 RPM</td></tr>
+<tr><td>Tier 3</td><td>$200+ spent</td><td>2,000 RPM</td></tr>
+<tr><td>Tier 4</td><td>$1,000+ spent</td><td>4,000 RPM</td></tr>
+</table>
+<p>You're probably Tier 1-2. Rate limits increase automatically as you spend. No action needed — just keep using it.</p>
+</section>
+
+<!-- CRON -->
+<section id="cron">
+<h2>⏰ Cron Jobs — Optimised Automation</h2>
+
+<h3>Current Status</h3>
+<div class="alert alert-amber">
+<h3>No cron jobs are running right now</h3>
+<p>This is <strong>intentional</strong>. We turned them off during the recovery to save tokens. The heartbeat file is also empty — zero idle token burn.</p>
+</div>
+
+<h3>Recommended Cron Setup (Optimised)</h3>
+<p>Here's what to enable and when, all running on <strong>Sonnet</strong> to save 80% vs Opus:</p>
+
+<table>
+<tr><th>Job</th><th>Schedule</th><th>Model</th><th>Est. Cost/Week</th><th>Enable When</th></tr>
+<tr><td>🔍 Product Research</td><td>Mon & Thu 3AM</td><td><span class="tag tag-sonnet">SONNET</span></td><td>~$0.40</td><td>When ready to research</td></tr>
+<tr><td>📊 Morning Briefing</td><td>Daily 7AM</td><td><span class="tag tag-sonnet">SONNET</span></td><td>~$0.30</td><td>When ads are running</td></tr>
+<tr><td>📈 Ad Performance</td><td>Daily 9PM</td><td><span class="tag tag-sonnet">SONNET</span></td><td>~$0.30</td><td>When ads are running</td></tr>
+<tr><td>🧠 Memory Maintenance</td><td>Sunday 2AM</td><td><span class="tag tag-sonnet">SONNET</span></td><td>~$0.05</td><td>Now (cheap, important)</td></tr>
+<tr><td>💾 Git Backup Check</td><td>Every 6h (LaunchAgent)</td><td><span class="tag tag-free">FREE</span></td><td>$0.00</td><td>Already running ✅</td></tr>
+</table>
+
+<h3>Total automated cost: ~$1.05/week on Sonnet</h3>
+<p>Same jobs on Opus would cost ~$5.25/week. That's an 80% saving with zero quality difference for automated tasks.</p>
+
+<h3>How to Set Up Cron Jobs</h3>
+<pre><code># Add a cron job
+openclaw cron add \
+  --task "Run product research per SOP. Research 3-5 health/wellness products. Save to pipeline." \
+  --schedule "0 3 * * 1,4" \
+  --model sonnet \
+  --label "product-research"
+
+# List all cron jobs
+openclaw cron list
+
+# Remove a cron job
+openclaw cron remove product-research
+
+# Cron schedule format: minute hour day month weekday
+# 0 3 * * 1,4 = 3:00 AM on Monday and Thursday
+# 0 7 * * * = 7:00 AM every day
+# 0 21 * * * = 9:00 PM every day
+# 0 2 * * 0 = 2:00 AM every Sunday</code></pre>
+
+<h3>Heartbeat vs Cron — When to Use Which</h3>
+<table>
+<tr><th></th><th>Heartbeat (HEARTBEAT.md)</th><th>Cron Job</th></tr>
+<tr><td><strong>Cost</strong></td><td>Uses main session tokens (Opus)</td><td>Own session (can use Sonnet)</td></tr>
+<tr><td><strong>Best for</strong></td><td>Quick checks that piggyback on main session</td><td>Standalone tasks that run independently</td></tr>
+<tr><td><strong>Timing</strong></td><td>Every ~60min (approximate)</td><td>Exact schedule (9:00 AM sharp)</td></tr>
+<tr><td><strong>Risk</strong></td><td>Burns Opus tokens even when idle</td><td>Minimal — isolated session</td></tr>
+</table>
+
+<div class="alert alert-green">
+<h3>💡 Recommendation: Keep heartbeat EMPTY</h3>
+<p>Don't put tasks in HEARTBEAT.md — every heartbeat tick costs Opus tokens. Use cron jobs on Sonnet instead. The heartbeat file should stay empty (or comments only) unless you specifically need something checked within the main conversation context.</p>
+</div>
+</section>
+
+<!-- TELEGRAM DEEP -->
+<section id="telegram-deep">
+<h2>💬 Ultimate Telegram Guide</h2>
+
+<h3>Initial Setup (From Scratch)</h3>
+<div class="step"><div class="step-num">1</div><h4>Create a Telegram Bot</h4>
+<ol>
+<li>Open Telegram → search <strong>@BotFather</strong></li>
+<li>Send <code>/newbot</code></li>
+<li>Choose a name (e.g. "Ops Control")</li>
+<li>Choose a username (must end in "bot", e.g. "opscontrol_bot")</li>
+<li>BotFather gives you a <strong>token</strong> — copy it (looks like <code>123456:ABC-DEF...</code>)</li>
+</ol></div>
+
+<div class="step"><div class="step-num">2</div><h4>Connect to OpenClaw</h4>
+<pre><code>openclaw channels add telegram
+# Paste the bot token when prompted
+openclaw gateway restart</code></pre></div>
+
+<div class="step"><div class="step-num">3</div><h4>Start chatting</h4>
+<p>Open your bot in Telegram → send <code>/start</code> → Forge should respond. If he asks for pairing, run the command shown in his message on the Mac terminal.</p></div>
+
+<h3>Every Telegram Problem & Fix</h3>
+<table>
+<tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr>
+<tr><td>No response at all</td><td>Gateway not running</td><td><code>openclaw gateway restart</code></td></tr>
+<tr><td>No response (webchat works)</td><td>Webchat tab stealing session</td><td>Close webchat tab → restart gateway</td></tr>
+<tr><td>Responds very slowly</td><td>Rate limit or large context</td><td>Wait 5-15 min, or start new session</td></tr>
+<tr><td>"Access not configured"</td><td>Pairing not approved</td><td>Run the pairing command shown in the message</td></tr>
+<tr><td>Bot token invalid</td><td>Token revoked or expired</td><td>Get new token from @BotFather → re-add channel</td></tr>
+<tr><td>Voice notes not transcribed</td><td>whisper-cli not installed</td><td>Install: <code>brew install whisper-cli</code> (or equivalent)</td></tr>
+<tr><td>Double responses</td><td>Multiple gateway instances</td><td><code>openclaw gateway stop</code> → wait → <code>openclaw gateway start</code></td></tr>
+<tr><td>Responds in wrong channel</td><td>Session routing confused</td><td>Close all webchat tabs → restart gateway</td></tr>
+</table>
+
+<h3>Pre-Fix Backup Checklist</h3>
+<p><strong>Before touching ANYTHING related to Telegram, run this:</strong></p>
+<pre><code># Save current state
+cd ~/.openclaw/workspace && git add -A && git commit -m "Pre-fix backup" && git push origin main
+
+# Full backup
+cp -r ~/.openclaw ~/.openclaw-backup-prefix</code></pre>
+
+<h3>How to Get Your Bot Token (If Lost)</h3>
+<ol>
+<li>Open Telegram → @BotFather</li>
+<li>Send <code>/mybots</code></li>
+<li>Select your bot</li>
+<li>Tap <strong>API Token</strong> → shows your current token</li>
+<li>If you need a new one: <strong>Revoke current token</strong> → get new one</li>
+</ol>
+
+<h3>How to Move Bot to a New Machine</h3>
+<ol>
+<li>Stop gateway on old machine: <code>openclaw gateway stop</code></li>
+<li>On new machine: <code>openclaw channels add telegram</code> → paste same bot token</li>
+<li>Start gateway on new machine: <code>openclaw gateway start</code></li>
+<li>⚠️ Only ONE machine can run the same bot token at a time</li>
+</ol>
+</section>
+
+<!-- BACKUPS -->
+<section id="backups">
+<h2>💾 Pre-Change Backup Checklist</h2>
+
+<div class="alert">
+<h3>🛡️ Run This Before ANY System Change</h3>
+<p>Before updating OpenClaw, changing API keys, modifying config, reconnecting Telegram, or doing ANYTHING that could break things:</p>
+</div>
+
+<pre><code># 1. Save workspace to GitHub
+cd ~/.openclaw/workspace && git add -A && git commit -m "Pre-change backup $(date +%Y%m%d-%H%M)" && git push origin main
+
+# 2. Full system backup
+cp -r ~/.openclaw ~/.openclaw-backup-$(date +%Y%m%d-%H%M)
+
+# 3. Note what you're about to change
+echo "About to: [describe change]" >> ~/.openclaw/workspace/memory/changes.log
+
+# 4. Now proceed with your change
+
+# 5. After change — test immediately
+openclaw gateway status
+# Send a test message to Forge</code></pre>
+
+<h3>If Something Goes Wrong After a Change</h3>
+<pre><code># Restore from backup
+cp -r ~/.openclaw-backup-YYYYMMDD-HHMM/* ~/.openclaw/
+
+# Or restore just the workspace from GitHub
+cd ~/.openclaw/workspace && git reset --hard origin/main
+
+# Restart
+openclaw gateway restart</code></pre>
+</section>
+
+<!-- TERMINAL -->
+<section id="terminal">
+<h2>💻 Every Terminal Command You'll Ever Need</h2>
+
+<h3>🟢 Daily Commands (Use These)</h3>
+<table>
+<tr><th>What</th><th>Command</th></tr>
+<tr><td>Check everything is running</td><td><code>openclaw status</code></td></tr>
+<tr><td>Restart Forge</td><td><code>openclaw gateway restart</code></td></tr>
+<tr><td>See live logs (for debugging)</td><td><code>openclaw logs --follow</code></td></tr>
+<tr><td>Back up workspace now</td><td><code>cd ~/.openclaw/workspace && git add -A && git commit -m "backup" && git push</code></td></tr>
+</table>
+
+<h3>🟡 Weekly Commands (Occasional Use)</h3>
+<table>
+<tr><th>What</th><th>Command</th></tr>
+<tr><td>Check which model is running</td><td><code>openclaw agents list</code></td></tr>
+<tr><td>Check channel status</td><td><code>openclaw channels status</code></td></tr>
+<tr><td>Full system backup</td><td><code>cp -r ~/.openclaw ~/.openclaw-backup-$(date +%Y%m%d)</code></td></tr>
+<tr><td>Update OpenClaw</td><td><code>npm install -g openclaw@latest && openclaw gateway restart</code></td></tr>
+<tr><td>Security audit</td><td><code>openclaw security audit</code></td></tr>
+<tr><td>List cron jobs</td><td><code>openclaw cron list</code></td></tr>
+</table>
+
+<h3>🔴 Emergency Commands (Rare)</h3>
+<table>
+<tr><th>What</th><th>Command</th></tr>
+<tr><td>Stop gateway</td><td><code>openclaw gateway stop</code></td></tr>
+<tr><td>Start gateway</td><td><code>openclaw gateway start</code></td></tr>
+<tr><td>Change API key</td><td><code>openclaw agents add main</code></td></tr>
+<tr><td>Add Telegram</td><td><code>openclaw channels add telegram</code></td></tr>
+<tr><td>Restore workspace from GitHub</td><td><code>cd ~/.openclaw/workspace && git pull origin main</code></td></tr>
+<tr><td>Full restore from backup</td><td><code>cp -r ~/.openclaw-backup-emergency/* ~/.openclaw/</code></td></tr>
+<tr><td>View config file</td><td><code>cat ~/.openclaw/openclaw.json</code></td></tr>
+<tr><td>Edit config file</td><td><code>nano ~/.openclaw/openclaw.json</code></td></tr>
+<tr><td>View auth config</td><td><code>cat ~/.openclaw/agents/main/agent/auth-profiles.json</code></td></tr>
+<tr><td>Check gateway process</td><td><code>openclaw gateway status</code></td></tr>
+<tr><td>Deep status check</td><td><code>openclaw status --deep</code></td></tr>
+<tr><td>Kill stuck gateway</td><td><code>launchctl bootout gui/$(id -u)/ai.openclaw.gateway</code></td></tr>
+<tr><td>Reload gateway service</td><td><code>launchctl load ~/Library/LaunchAgents/ai.openclaw.gateway.plist</code></td></tr>
+</table>
+
+<h3>📂 File Access Commands</h3>
+<table>
+<tr><th>What</th><th>Command</th></tr>
+<tr><td>View Forge's memory</td><td><code>cat ~/.openclaw/workspace/MEMORY.md</code></td></tr>
+<tr><td>View your profile</td><td><code>cat ~/.openclaw/workspace/USER.md</code></td></tr>
+<tr><td>View Forge's identity</td><td><code>cat ~/.openclaw/workspace/IDENTITY.md</code></td></tr>
+<tr><td>View Forge's personality</td><td><code>cat ~/.openclaw/workspace/SOUL.md</code></td></tr>
+<tr><td>View SOS guide</td><td><code>cat ~/.openclaw/workspace/SOS.md</code></td></tr>
+<tr><td>List daily logs</td><td><code>ls ~/.openclaw/workspace/memory/</code></td></tr>
+<tr><td>View today's log</td><td><code>cat ~/.openclaw/workspace/memory/$(date +%Y-%m-%d).md</code></td></tr>
+<tr><td>View heartbeat config</td><td><code>cat ~/.openclaw/workspace/HEARTBEAT.md</code></td></tr>
+<tr><td>View all workspace files</td><td><code>ls -la ~/.openclaw/workspace/</code></td></tr>
+<tr><td>View OpenClaw config</td><td><code>cat ~/.openclaw/openclaw.json</code></td></tr>
+<tr><td>View git backup status</td><td><code>cd ~/.openclaw/workspace && git log --oneline -5</code></td></tr>
+<tr><td>Check backup agent</td><td><code>launchctl list | grep forge</code></td></tr>
+</table>
+
+<h3>🌐 Key URLs (Bookmark These)</h3>
+<table>
+<tr><th>What</th><th>URL</th></tr>
+<tr><td>Webchat (local)</td><td><a href="http://127.0.0.1:18789" style="color:var(--accent2)">127.0.0.1:18789</a></td></tr>
+<tr><td>Anthropic Console</td><td><a href="https://console.anthropic.com" style="color:var(--accent2)">console.anthropic.com</a></td></tr>
+<tr><td>API Keys</td><td><a href="https://console.anthropic.com/settings/keys" style="color:var(--accent2)">console.anthropic.com/settings/keys</a></td></tr>
+<tr><td>Usage / Spend</td><td><a href="https://console.anthropic.com/settings/usage" style="color:var(--accent2)">console.anthropic.com/settings/usage</a></td></tr>
+<tr><td>Spend Limits</td><td><a href="https://console.anthropic.com/settings/limits" style="color:var(--accent2)">console.anthropic.com/settings/limits</a></td></tr>
+<tr><td>GitHub Workspace</td><td><a href="https://github.com/AntonUrso2811/forge-workspace" style="color:var(--accent2)">github.com/AntonUrso2811/forge-workspace</a></td></tr>
+<tr><td>GitHub Tools</td><td><a href="https://github.com/AntonUrso2811/thalyve-tools" style="color:var(--accent2)">github.com/AntonUrso2811/thalyve-tools</a></td></tr>
+<tr><td>All Tools</td><td><a href="https://antonurso2811.github.io/thalyve-tools/" style="color:var(--accent2)">antonurso2811.github.io/thalyve-tools/</a></td></tr>
+<tr><td>OpenClaw Docs</td><td><a href="https://docs.openclaw.ai" style="color:var(--accent2)">docs.openclaw.ai</a></td></tr>
+<tr><td>OpenClaw Discord</td><td><a href="https://discord.com/invite/clawd" style="color:var(--accent2)">discord.com/invite/clawd</a></td></tr>
+<tr><td>Telegram @BotFather</td><td><a href="https://t.me/BotFather" style="color:var(--accent2)">t.me/BotFather</a></td></tr>
+</table>
+</section>
+
+<div class="footer">🔱 Forge Efficiency Bible v1.0 — Written by Forge — Last updated: 26 Feb 2026<br>Run smart, not expensive. Every token counts.</div>
+
+</div>
+</body>
+</html>
