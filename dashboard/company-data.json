@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-02-25T09:30:00Z",
+    "lastUpdated": "2026-02-26T02:17:00Z",
     "updatedBy": "Forge",
     "version": "3.1"
   },
@@ -221,14 +221,126 @@
     }
   },
   "taskLog": [
-    {"task":"Morning briefing sent","owner":"Forge","status":"done","started":"2026-02-25T07:15:00Z","finished":"2026-02-25T07:16:00Z"},
-    {"task":"Tracker v4.1 — hover tooltips, timeline, Forge verdict","owner":"Forge","status":"done","started":"2026-02-25T09:00:00Z","finished":"2026-02-25T09:35:00Z"},
-    {"task":"Command Centre v3.1 — Health tab, personal team split","owner":"Forge","status":"done","started":"2026-02-25T09:35:00Z","finished":"2026-02-25T09:55:00Z"},
-    {"task":"Ad launch timeline logged (warmup $5/day → $100/day Fri)","owner":"Forge","status":"done","started":"2026-02-25T09:55:00Z","finished":"2026-02-25T09:58:00Z"},
-    {"task":"Push updates to GitHub Pages","owner":"Forge","status":"in-progress","started":"2026-02-25T09:40:00Z","finished":null},
-    {"task":"Security audit — both devices","owner":"Forge","status":"planned","started":null,"finished":null},
-    {"task":"THALYVE warmup campaign — impressions only $5/day","owner":"Anton","status":"done","started":"2026-02-25T09:00:00Z","finished":"2026-02-25T09:00:00Z"},
-    {"task":"Keychain permissions approved on Mac","owner":"Anton","status":"done","started":"2026-02-25T09:50:00Z","finished":"2026-02-25T09:50:00Z"}
+    {
+      "status": "\u2705",
+      "task": "CRITICAL-TASKS.md \u2014 daily operating system",
+      "owner": "Forge",
+      "started": "02:15",
+      "finished": "02:15",
+      "duration": "2m"
+    },
+    {
+      "status": "\u2705",
+      "task": "Morning briefing cron (7AM daily, Sonnet)",
+      "owner": "Forge",
+      "started": "02:12",
+      "finished": "02:12",
+      "duration": "1m"
+    },
+    {
+      "status": "\u2705",
+      "task": "Telegram connected + pairing approved",
+      "owner": "Forge",
+      "started": "02:08",
+      "finished": "02:10",
+      "duration": "2m"
+    },
+    {
+      "status": "\u2705",
+      "task": "Advanced Diagnostics \u2014 15 failure scenarios",
+      "owner": "Sub-agent",
+      "started": "02:04",
+      "finished": "02:05",
+      "duration": "2m"
+    },
+    {
+      "status": "\u2705",
+      "task": "Feb 25 incident corrected in memory (crash loop not cooldown)",
+      "owner": "Forge",
+      "started": "02:02",
+      "finished": "02:05",
+      "duration": "3m"
+    },
+    {
+      "status": "\u2705",
+      "task": "Ad Performance Tracker v1.0 built",
+      "owner": "Forge",
+      "started": "01:54",
+      "finished": "01:57",
+      "duration": "3m"
+    },
+    {
+      "status": "\u2705",
+      "task": "Security audit \u2014 all green + monthly cron added",
+      "owner": "Forge",
+      "started": "01:49",
+      "finished": "01:51",
+      "duration": "2m"
+    },
+    {
+      "status": "\u2705",
+      "task": "Cron jobs optimised (Sonnet for auto, Opus for live)",
+      "owner": "Forge",
+      "started": "01:41",
+      "finished": "01:45",
+      "duration": "4m"
+    },
+    {
+      "status": "\u2705",
+      "task": "Efficiency Bible built (HTML)",
+      "owner": "Forge",
+      "started": "01:33",
+      "finished": "01:38",
+      "duration": "5m"
+    },
+    {
+      "status": "\u2705",
+      "task": "Survival Guide v1.1 \u2014 Telegram, API, restart sections",
+      "owner": "Forge",
+      "started": "01:24",
+      "finished": "01:27",
+      "duration": "3m"
+    },
+    {
+      "status": "\u2705",
+      "task": "Full chat export analysis \u2014 MEMORY.md rebuilt",
+      "owner": "Forge",
+      "started": "01:13",
+      "finished": "01:17",
+      "duration": "4m"
+    },
+    {
+      "status": "\u2705",
+      "task": "SOS.md emergency guide created",
+      "owner": "Forge",
+      "started": "01:10",
+      "finished": "01:11",
+      "duration": "1m"
+    },
+    {
+      "status": "\u2705",
+      "task": "System health check + backups verified",
+      "owner": "Forge",
+      "started": "01:02",
+      "finished": "01:06",
+      "duration": "4m"
+    },
+    {
+      "status": "\u2705",
+      "task": "Workspace restored from GitHub",
+      "owner": "Forge",
+      "started": "00:49",
+      "finished": "00:55",
+      "duration": "6m"
+    },
+    {
+      "status": "\ud83d\udfe2",
+      "task": "Overnight \u2014 product research (3AM), morning briefing (7AM)",
+      "owner": "Forge (cron)",
+      "started": "02:17",
+      "finished": "\u2014",
+      "duration": "\u2014"
+    }
   ],
   "team": [
     {
@@ -293,7 +405,7 @@
     },
     {
       "id": "coach",
-      "name": "—",
+      "name": "\u2014",
       "role": "Health & Wellness Coach",
       "type": "human",
       "domain": "personal",
@@ -304,7 +416,7 @@
     },
     {
       "id": "physio",
-      "name": "—",
+      "name": "\u2014",
       "role": "Physiotherapist",
       "type": "human",
       "domain": "personal",
@@ -315,7 +427,7 @@
     },
     {
       "id": "gp",
-      "name": "—",
+      "name": "\u2014",
       "role": "GP / Doctor",
       "type": "human",
       "domain": "personal",
@@ -326,29 +438,51 @@
     }
   ],
   "dailyCriticalTasks": {
-    "date": "2026-02-25",
-    "members": {
-      "anton": {
-        "name": "Anton",
-        "tasks": [
-          { "task": "Review Forge's morning briefing", "done": true },
-          { "task": "Approve/reject 1 product for testing pipeline", "done": false },
-          { "task": "Send 1 Mutual sourcing message", "done": false },
-          { "task": "Review ad performance (when ads live)", "done": false },
-          { "task": "Make 1 strategic decision", "done": true }
-        ]
+    "date": "2026-02-26",
+    "anton": [
+      {
+        "task": "Review morning briefing (Telegram)",
+        "done": false
       },
-      "forge": {
-        "name": "Forge 🔱",
-        "tasks": [
-          { "task": "Research 2 new products (SOP-compliant)", "done": false },
-          { "task": "Update tracker + push to GitHub Pages", "done": true },
-          { "task": "Send daily needle mover briefing", "done": true },
-          { "task": "Maintain/improve 1 system or SOP", "done": true },
-          { "task": "Check & report KPI progress", "done": true }
-        ]
+      {
+        "task": "Approve/reject product recommendations",
+        "done": false
+      },
+      {
+        "task": "Send Mutual Express message (when product selected)",
+        "done": false
+      },
+      {
+        "task": "Review ad brief + decide kill/scale/hold",
+        "done": false
+      },
+      {
+        "task": "One strategic decision (Forge flags what)",
+        "done": false
       }
-    }
+    ],
+    "forge": [
+      {
+        "task": "Product research pipeline (Mon & Thu 3AM cron)",
+        "done": true
+      },
+      {
+        "task": "Update tools/tracker on GitHub Pages",
+        "done": true
+      },
+      {
+        "task": "Memory maintenance + backup verification",
+        "done": true
+      },
+      {
+        "task": "System health check (gateway, channels, cron)",
+        "done": true
+      },
+      {
+        "task": "Prep morning briefing + flag decisions",
+        "done": true
+      }
+    ]
   },
   "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 \u2014 MUST downgrade. Target: \u00a310k net/month. All expenses wiped clean for v3.0 fresh start."
 }
