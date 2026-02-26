@@ -304,6 +304,16 @@ tr:hover td{background:rgba(139,92,246,.03)}
       </div>
     </div>
 
+    <!-- Metric Key -->
+    <div style="padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:16px;font-size:10px;color:var(--muted)">
+      <span>📦 <strong style="color:var(--text)">Orders</strong> = units sold</span>
+      <span>💰 <strong style="color:var(--green)">Revenue</strong> = orders × price</span>
+      <span>📢 <strong style="color:var(--red)">Ad Spend</strong> = Meta ads cost</span>
+      <span>🏭 <strong style="color:var(--amber)">COGS</strong> = supplier cost per unit × orders</span>
+      <span>📊 <strong style="color:var(--blue)">Profit</strong> = revenue − ad spend − COGS</span>
+      <span>🎯 <strong style="color:var(--purple)">ROAS</strong> = revenue ÷ ad spend (2x+ = strong)</span>
+    </div>
+
     <!-- Mini Chart -->
     <div class="card" style="margin-bottom:16px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
@@ -341,7 +351,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
           <span style="font-size:10px;color:var(--muted)" id="dl-count">0 entries</span>
         </div>
         <table>
-          <thead><tr><th>Date</th><th>Brand</th><th>Product</th><th>Orders</th><th>Revenue</th><th>Ad Spend</th><th>COGS</th><th>Profit</th><th>ROAS</th><th></th></tr></thead>
+          <thead><tr><th title="Date the data was recorded">Date</th><th title="Which brand this entry belongs to">Brand</th><th title="Specific product sold">Product</th><th title="Number of units sold that day">Orders</th><th title="Total money received from sales (orders × price)">Revenue</th><th title="Money spent on Meta ads that day">Ad Spend</th><th title="Cost of goods sold — what you paid the supplier per unit × orders">COGS</th><th title="Revenue minus Ad Spend minus COGS = your actual take-home">Profit</th><th title="Return on Ad Spend — Revenue ÷ Ad Spend. Above 2x = strong, 1x = break-even">ROAS</th><th></th></tr></thead>
           <tbody id="d-table"><tr><td colspan="10" class="empty">No entries yet — log your first day or wait for automation 🚀</td></tr></tbody>
         </table>
       </div>
