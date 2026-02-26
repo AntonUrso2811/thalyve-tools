@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-02-26T02:17:00Z",
+    "lastUpdated": "2026-02-26T10:40:00Z",
     "updatedBy": "Forge",
     "version": "3.1"
   },
@@ -11,13 +11,13 @@
     "taxRate": 19,
     "targetNetMargin": 20,
     "targetMonthlyNet": 10000,
-    "notes": "UK Ltd for now. Future plan: Hong Kong entity (0% tax). Corp tax 19% for small profits (<\u00a350K), 25% for >\u00a3250K. Target: \u00a310k net/month."
+    "notes": "UK Ltd for now. Future plan: Hong Kong entity (0% tax). Corp tax 19% for small profits (<£50K), 25% for >£250K. Target: £10k net/month."
   },
   "companyExpenses": [],
   "brands": [
     {
       "id": "thalyve",
-      "name": "THALYVE\u2122",
+      "name": "THALYVE™",
       "status": "active",
       "products": [
         {
@@ -62,16 +62,16 @@
   "taxes": {
     "entity": "UK Ltd",
     "estimatedRate": 19,
-    "notes": "UK Corp Tax: 19% small profits (<\u00a350K), 25% (>\u00a3250K). Future: HK entity restructure for 0% rate.",
+    "notes": "UK Corp Tax: 19% small profits (<£50K), 25% (>£250K). Future: HK entity restructure for 0% rate.",
     "provisioned": []
   },
   "shopify": {
-    "plan": "Advanced (Promo \u00a31/mo)",
+    "plan": "Advanced (Promo £1/mo)",
     "promoExpiry": "2026-03-12",
-    "normalPrice": "\u00a3344/mo",
+    "normalPrice": "£344/mo",
     "cardRates": {
-      "online": "1.5% + \u00a30.25",
-      "inPerson": "1.5% + \u00a30.00"
+      "online": "1.5% + £0.25",
+      "inPerson": "1.5% + £0.00"
     },
     "staffAccounts": 15,
     "action": "Downgrade before March 12 to suitable plan"
@@ -86,7 +86,7 @@
           {
             "metric": "Products Researched",
             "target": 10,
-            "current": 6,
+            "current": 11,
             "unit": "products"
           },
           {
@@ -128,13 +128,13 @@
           {
             "metric": "SOPs Created/Updated",
             "target": 3,
-            "current": 0,
+            "current": 3,
             "unit": "SOPs"
           },
           {
             "metric": "Tools Shipped",
             "target": 2,
-            "current": 2,
+            "current": 4,
             "unit": "tools"
           },
           {
@@ -152,17 +152,17 @@
       "weekOf": "2026-02-24",
       "priorities": [
         {
-          "task": "Deploy GitHub Pages \u2014 tools accessible on phone",
+          "task": "Deploy GitHub Pages — tools accessible on phone",
           "status": "done",
           "owner": "Forge"
         },
         {
-          "task": "Upgrade Tracker v4.0 \u2014 competitors, creatives, traffic context",
+          "task": "Upgrade Tracker v4.0 — competitors, creatives, traffic context",
           "status": "in-progress",
           "owner": "Forge"
         },
         {
-          "task": "Upgrade Command Centre v3.0 \u2014 KPIs, roadmap, task log",
+          "task": "Upgrade Command Centre v3.0 — KPIs, roadmap, task log",
           "status": "in-progress",
           "owner": "Forge"
         },
@@ -183,7 +183,7 @@
           "owner": "Forge"
         },
         {
-          "task": "Shopify plan review \u2014 downgrade before Mar 12",
+          "task": "Shopify plan review — downgrade before Mar 12",
           "status": "planned",
           "owner": "Anton"
         }
@@ -193,7 +193,7 @@
       "weekOf": "2026-03-03",
       "priorities": [
         {
-          "task": "Full research batch \u2014 10 products validated",
+          "task": "Full research batch — 10 products validated",
           "status": "planned",
           "owner": "Forge"
         },
@@ -208,7 +208,7 @@
           "owner": "Forge"
         },
         {
-          "task": "Ad creative research \u2014 GetHookd swipe library",
+          "task": "Ad creative research — GetHookd swipe library",
           "status": "planned",
           "owner": "Forge"
         },
@@ -222,15 +222,79 @@
   },
   "taskLog": [
     {
-      "status": "\u2705",
-      "task": "CRITICAL-TASKS.md \u2014 daily operating system",
+      "status": "✅",
+      "task": "Product research cron — 5 products scored, 3 dropship-ready",
+      "owner": "Forge (Sonnet)",
+      "started": "03:00",
+      "finished": "03:07",
+      "duration": "7m"
+    },
+    {
+      "status": "✅",
+      "task": "Master Strategy v1.0 — infrastructure + £10K roadmap",
+      "owner": "Forge (Opus)",
+      "started": "08:45",
+      "finished": "09:00",
+      "duration": "15m"
+    },
+    {
+      "status": "✅",
+      "task": "Media Buying SOP v1.0 rebuilt",
+      "owner": "Forge (Opus)",
+      "started": "08:30",
+      "finished": "08:40",
+      "duration": "10m"
+    },
+    {
+      "status": "✅",
+      "task": "Whisper voice model re-downloaded",
+      "owner": "Forge (Opus)",
+      "started": "08:46",
+      "finished": "08:50",
+      "duration": "4m"
+    },
+    {
+      "status": "✅",
+      "task": "Daily critical tasks cron (6AM, Sonnet)",
+      "owner": "Forge (Opus)",
+      "started": "10:03",
+      "finished": "10:03",
+      "duration": "1m"
+    },
+    {
+      "status": "✅",
+      "task": "MBB playbook — framework extraction",
+      "owner": "Forge (Opus)",
+      "started": "10:07",
+      "finished": "10:15",
+      "duration": "8m"
+    },
+    {
+      "status": "✅",
+      "task": "Mac sleep disabled — lid-close gateway running",
+      "owner": "Anton",
+      "started": "10:03",
+      "finished": "10:03",
+      "duration": "1m"
+    },
+    {
+      "status": "🟢",
+      "task": "Full system sync + portal build",
+      "owner": "Forge (Opus)",
+      "started": "10:40",
+      "finished": "—",
+      "duration": "—"
+    },
+    {
+      "status": "✅",
+      "task": "CRITICAL-TASKS.md — daily operating system",
       "owner": "Forge",
       "started": "02:15",
       "finished": "02:15",
       "duration": "2m"
     },
     {
-      "status": "\u2705",
+      "status": "✅",
       "task": "Morning briefing cron (7AM daily, Sonnet)",
       "owner": "Forge",
       "started": "02:12",
@@ -238,7 +302,7 @@
       "duration": "1m"
     },
     {
-      "status": "\u2705",
+      "status": "✅",
       "task": "Telegram connected + pairing approved",
       "owner": "Forge",
       "started": "02:08",
@@ -246,15 +310,15 @@
       "duration": "2m"
     },
     {
-      "status": "\u2705",
-      "task": "Advanced Diagnostics \u2014 15 failure scenarios",
+      "status": "✅",
+      "task": "Advanced Diagnostics — 15 failure scenarios",
       "owner": "Sub-agent",
       "started": "02:04",
       "finished": "02:05",
       "duration": "2m"
     },
     {
-      "status": "\u2705",
+      "status": "✅",
       "task": "Feb 25 incident corrected in memory (crash loop not cooldown)",
       "owner": "Forge",
       "started": "02:02",
@@ -262,7 +326,7 @@
       "duration": "3m"
     },
     {
-      "status": "\u2705",
+      "status": "✅",
       "task": "Ad Performance Tracker v1.0 built",
       "owner": "Forge",
       "started": "01:54",
@@ -270,15 +334,15 @@
       "duration": "3m"
     },
     {
-      "status": "\u2705",
-      "task": "Security audit \u2014 all green + monthly cron added",
+      "status": "✅",
+      "task": "Security audit — all green + monthly cron added",
       "owner": "Forge",
       "started": "01:49",
       "finished": "01:51",
       "duration": "2m"
     },
     {
-      "status": "\u2705",
+      "status": "✅",
       "task": "Cron jobs optimised (Sonnet for auto, Opus for live)",
       "owner": "Forge",
       "started": "01:41",
@@ -286,7 +350,7 @@
       "duration": "4m"
     },
     {
-      "status": "\u2705",
+      "status": "✅",
       "task": "Efficiency Bible built (HTML)",
       "owner": "Forge",
       "started": "01:33",
@@ -294,23 +358,23 @@
       "duration": "5m"
     },
     {
-      "status": "\u2705",
-      "task": "Survival Guide v1.1 \u2014 Telegram, API, restart sections",
+      "status": "✅",
+      "task": "Survival Guide v1.1 — Telegram, API, restart sections",
       "owner": "Forge",
       "started": "01:24",
       "finished": "01:27",
       "duration": "3m"
     },
     {
-      "status": "\u2705",
-      "task": "Full chat export analysis \u2014 MEMORY.md rebuilt",
+      "status": "✅",
+      "task": "Full chat export analysis — MEMORY.md rebuilt",
       "owner": "Forge",
       "started": "01:13",
       "finished": "01:17",
       "duration": "4m"
     },
     {
-      "status": "\u2705",
+      "status": "✅",
       "task": "SOS.md emergency guide created",
       "owner": "Forge",
       "started": "01:10",
@@ -318,7 +382,7 @@
       "duration": "1m"
     },
     {
-      "status": "\u2705",
+      "status": "✅",
       "task": "System health check + backups verified",
       "owner": "Forge",
       "started": "01:02",
@@ -326,7 +390,7 @@
       "duration": "4m"
     },
     {
-      "status": "\u2705",
+      "status": "✅",
       "task": "Workspace restored from GitHub",
       "owner": "Forge",
       "started": "00:49",
@@ -334,12 +398,12 @@
       "duration": "6m"
     },
     {
-      "status": "\ud83d\udfe2",
-      "task": "Overnight \u2014 product research (3AM), morning briefing (7AM)",
+      "status": "🟢",
+      "task": "Overnight — product research (3AM), morning briefing (7AM)",
       "owner": "Forge (cron)",
       "started": "02:17",
-      "finished": "\u2014",
-      "duration": "\u2014"
+      "finished": "—",
+      "duration": "—"
     }
   ],
   "team": [
@@ -355,8 +419,8 @@
     },
     {
       "id": "forge",
-      "name": "Forge \ud83d\udd31",
-      "role": "Master Agent \u2014 COO",
+      "name": "Forge 🔱",
+      "role": "Master Agent — COO",
       "type": "ai-agent",
       "status": "active",
       "since": "2026-02-22",
@@ -405,7 +469,7 @@
     },
     {
       "id": "coach",
-      "name": "\u2014",
+      "name": "—",
       "role": "Health & Wellness Coach",
       "type": "human",
       "domain": "personal",
@@ -416,7 +480,7 @@
     },
     {
       "id": "physio",
-      "name": "\u2014",
+      "name": "—",
       "role": "Physiotherapist",
       "type": "human",
       "domain": "personal",
@@ -427,7 +491,7 @@
     },
     {
       "id": "gp",
-      "name": "\u2014",
+      "name": "—",
       "role": "GP / Doctor",
       "type": "human",
       "domain": "personal",
@@ -484,5 +548,5 @@
       }
     ]
   },
-  "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 \u2014 MUST downgrade. Target: \u00a310k net/month. All expenses wiped clean for v3.0 fresh start."
+  "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 — MUST downgrade. Target: £10k net/month. All expenses wiped clean for v3.0 fresh start."
 }
