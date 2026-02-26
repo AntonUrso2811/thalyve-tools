@@ -360,19 +360,81 @@ tr:hover td{background:rgba(139,92,246,.03)}
 
   <!-- ===== 5 CRITICAL TASKS ===== -->
   <div class="page" id="p-tasks">
-    <div class="hl hl-p" style="margin-bottom:16px">
-      <h3 style="font-size:14px;margin-bottom:4px">🎯 5 Critical Tasks — Daily Tracker</h3>
-      <p style="font-size:11px;color:var(--muted)">Every team member has 5 daily tasks that move the needle. Track completion here.</p>
-      <p style="font-size:10px;color:var(--accent)" id="ct-date">—</p>
-    </div>
-    <div id="ct-members"></div>
-    <div class="card" style="margin-top:12px;text-align:center">
-      <div class="sl">OVERALL COMPLETION</div>
-      <div class="sv" id="ct-overall" style="font-size:36px">0%</div>
-      <div style="height:12px;background:var(--bg);border-radius:6px;overflow:hidden;margin-top:8px">
-        <div id="ct-bar" style="height:100%;border-radius:6px;transition:width .4s;background:linear-gradient(90deg,var(--accent),var(--green))"></div>
+    <!-- Header -->
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+      <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#ef4444,#f97316);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🎯</div>
+      <div style="flex:1">
+        <h2 style="margin:0;font-size:18px">Critical Tasks</h2>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">5 daily tasks per member that move the needle. Auto-generated 6AM.</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:10px;color:var(--muted)">Today</div>
+        <div style="font-size:14px;font-weight:700;color:var(--accent)" id="ct-date">—</div>
       </div>
     </div>
+
+    <!-- Overall Progress Ring + Stats -->
+    <div class="grid" style="grid-template-columns:200px 1fr 1fr;gap:12px;margin-bottom:16px">
+      <!-- Progress Ring -->
+      <div class="card" style="text-align:center;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+        <div style="position:relative;width:100px;height:100px">
+          <svg width="100" height="100" style="transform:rotate(-90deg)">
+            <circle cx="50" cy="50" r="42" fill="none" stroke="var(--bg)" stroke-width="8"/>
+            <circle id="ct-ring" cx="50" cy="50" r="42" fill="none" stroke="var(--green)" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="264" stroke-linecap="round" style="transition:stroke-dashoffset .6s"/>
+          </svg>
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:24px;font-weight:800" id="ct-overall">0%</div>
+        </div>
+        <div style="font-size:10px;color:var(--muted);margin-top:8px">Overall Today</div>
+      </div>
+
+      <!-- ROI Tracker -->
+      <div class="card" style="background:linear-gradient(135deg,rgba(76,175,80,0.05),rgba(59,130,246,0.05))">
+        <h2 style="font-size:12px;margin-bottom:10px">💰 ROI Tracker <span style="font-size:9px;color:var(--muted);font-weight:400" id="roi-since">since —</span></h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="padding:8px;background:var(--bg);border-radius:8px;text-align:center">
+            <div style="font-size:18px;font-weight:800;color:var(--green)" id="roi-equiv">$0</div>
+            <div style="font-size:8px;text-transform:uppercase;color:var(--muted);margin-top:2px">Human Equiv. Cost Saved</div>
+          </div>
+          <div style="padding:8px;background:var(--bg);border-radius:8px;text-align:center">
+            <div style="font-size:18px;font-weight:800;color:var(--purple)" id="roi-hours">0h</div>
+            <div style="font-size:8px;text-transform:uppercase;color:var(--muted);margin-top:2px">Forge Hours Worked</div>
+          </div>
+          <div style="padding:8px;background:var(--bg);border-radius:8px;text-align:center">
+            <div style="font-size:18px;font-weight:800;color:var(--amber)" id="roi-hequiv">0h</div>
+            <div style="font-size:8px;text-transform:uppercase;color:var(--muted);margin-top:2px">Human Equiv. Hours</div>
+          </div>
+          <div style="padding:8px;background:var(--bg);border-radius:8px;text-align:center">
+            <div style="font-size:18px;font-weight:800;color:var(--blue)" id="roi-tasks">0</div>
+            <div style="font-size:8px;text-transform:uppercase;color:var(--muted);margin-top:2px">Tasks Completed</div>
+          </div>
+        </div>
+        <div style="margin-top:8px;font-size:9px;color:var(--muted);text-align:center" id="roi-note">Based on $25/hr human VA equivalent</div>
+      </div>
+
+      <!-- Completion Analytics -->
+      <div class="card">
+        <h2 style="font-size:12px;margin-bottom:10px">📊 Completion History</h2>
+        <div id="ct-history"><div class="empty" style="font-size:11px">Loading...</div></div>
+      </div>
+    </div>
+
+    <!-- Time Split Bar -->
+    <div style="padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-size:10px;font-weight:700;color:var(--muted)">TIME SPLIT TODAY</span>
+        <span style="font-size:10px;color:var(--muted)" id="ct-split-label">—</span>
+      </div>
+      <div style="display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--bg)">
+        <div id="ct-split-anton" style="height:100%;background:var(--amber);transition:width .4s" title="Anton's input time"></div>
+        <div id="ct-split-forge" style="height:100%;background:var(--green);transition:width .4s" title="Forge's work time"></div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:4px;font-size:9px;color:var(--muted)">
+        <span>🟡 Anton's input</span><span>🟢 Forge's output</span><span>⬛ Human equivalent saved</span>
+      </div>
+    </div>
+
+    <!-- Task Lists -->
+    <div id="ct-members"></div>
   </div>
 
   <!-- ===== TEAM ===== -->
@@ -837,9 +899,21 @@ function toast(m,e){const t=document.getElementById('toast');t.textContent=m;t.s
 function renderCriticalTasks(data){
   if(!data||!data.dailyCriticalTasks)return;
   const ct=data.dailyCriticalTasks;
-  document.getElementById('ct-date').textContent='Date: '+ct.date;
+  const dateEl=document.getElementById('ct-date');
+  if(dateEl){const d=new Date(ct.date+'T12:00:00');dateEl.textContent=d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});}
   const container=document.getElementById('ct-members');
   let totalTasks=0,totalDone=0;
+
+  // Merge localStorage completions
+  const saved=JSON.parse(localStorage.getItem('ae2_criticalTasks')||'null');
+  if(saved&&saved.date===ct.date&&saved.members){
+    Object.keys(saved.members).forEach(k=>{
+      if(ct.members[k]&&saved.members[k]){
+        saved.members[k].tasks.forEach((st,i)=>{if(ct.members[k].tasks[i])ct.members[k].tasks[i].done=st.done;});
+      }
+    });
+  }
+
   container.innerHTML=Object.keys(ct.members).map(key=>{
     const m=ct.members[key];
     const done=m.tasks.filter(t=>t.done).length;
@@ -847,28 +921,81 @@ function renderCriticalTasks(data){
     const pct=Math.round(done/m.tasks.length*100);
     const color=pct>=100?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
     const rows=m.tasks.map((t,i)=>{
-      const icon=t.done?'✅':'⬜';
-      return`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer" onclick="toggleTask('${key}',${i})">
-        <span style="font-size:16px">${icon}</span>
+      const pri=t.task.startsWith('🔴')?'border-left:3px solid var(--red);':t.task.startsWith('🟡')?'border-left:3px solid var(--amber);':'border-left:3px solid var(--green);';
+      return`<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;margin-bottom:4px;background:${t.done?'rgba(76,175,80,0.04)':'var(--bg)'};border-radius:8px;${pri}cursor:pointer;transition:all .2s" onclick="toggleTask('${key}',${i})">
+        <span style="font-size:18px;flex-shrink:0">${t.done?'✅':'⬜'}</span>
         <span style="flex:1;font-size:12px;${t.done?'text-decoration:line-through;color:var(--muted)':'font-weight:500'}">${t.task}</span>
+        ${t.done?'<span style="font-size:9px;color:var(--green);font-weight:600">DONE</span>':''}
       </div>`;
     }).join('');
     return`<div class="card" style="margin-bottom:12px">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
         <h2 style="margin:0;font-size:14px">${m.name}</h2>
-        <span style="font-size:13px;font-weight:800;color:${color}">${done}/5 (${pct}%)</span>
-      </div>
-      <div style="height:6px;background:var(--bg);border-radius:3px;overflow:hidden;margin-bottom:10px">
-        <div style="height:100%;width:${pct}%;background:${color};border-radius:3px;transition:width .3s"></div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:12px;font-weight:800;color:${color}">${done}/${m.tasks.length}</span>
+          <div style="width:60px;height:6px;background:var(--bg);border-radius:3px;overflow:hidden">
+            <div style="height:100%;width:${pct}%;background:${color};border-radius:3px;transition:width .3s"></div>
+          </div>
+        </div>
       </div>
       ${rows}
     </div>`;
   }).join('');
+
+  // Overall progress ring
   const overallPct=totalTasks>0?Math.round(totalDone/totalTasks*100):0;
-  const oColor=overallPct>=100?'green':overallPct>=60?'amber':'red';
-  document.getElementById('ct-overall').textContent=overallPct+'%';
-  document.getElementById('ct-overall').className='sv '+oColor;
-  document.getElementById('ct-bar').style.width=overallPct+'%';
+  const ring=document.getElementById('ct-ring');
+  if(ring){
+    const circ=2*Math.PI*42;
+    ring.style.strokeDasharray=circ;
+    ring.style.strokeDashoffset=circ-(circ*overallPct/100);
+    ring.style.stroke=overallPct>=100?'var(--green)':overallPct>=60?'var(--amber)':'var(--red)';
+  }
+  const oEl=document.getElementById('ct-overall');
+  if(oEl)oEl.textContent=overallPct+'%';
+
+  // ROI Tracker
+  if(data.productivity){
+    const p=data.productivity.totals;
+    const el=id=>document.getElementById(id);
+    if(el('roi-equiv'))el('roi-equiv').textContent='$'+p.humanCostEquiv.toLocaleString();
+    if(el('roi-hours'))el('roi-hours').textContent=p.forgeHours+'h';
+    if(el('roi-hequiv'))el('roi-hequiv').textContent=p.humanEquivHours+'h';
+    if(el('roi-tasks'))el('roi-tasks').textContent=p.tasksCompleted;
+    if(el('roi-since'))el('roi-since').textContent='since '+new Date(data.productivity.since+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+    if(el('roi-note'))el('roi-note').textContent='Based on $'+p.hourlyRate+'/hr VA rate · '+p.humanEquivHours+'h would cost $'+p.humanCostEquiv;
+
+    // Time split bar (today)
+    const today=data.productivity.days[data.productivity.days.length-1];
+    if(today){
+      const total=today.antonHours+today.forgeHours;
+      if(el('ct-split-anton'))el('ct-split-anton').style.width=(today.antonHours/total*100)+'%';
+      if(el('ct-split-forge'))el('ct-split-forge').style.width=(today.forgeHours/total*100)+'%';
+      if(el('ct-split-label'))el('ct-split-label').textContent='Anton '+today.antonHours+'h input → Forge '+today.forgeHours+'h output → '+today.humanEquivHours+'h human equiv.';
+    }
+  }
+
+  // Completion history chart
+  if(data.taskHistory){
+    const hist=document.getElementById('ct-history');
+    if(hist){
+      hist.innerHTML=data.taskHistory.map(d=>{
+        const aTotal=d.anton.total,aDone=d.anton.done,fTotal=d.forge.total,fDone=d.forge.done;
+        const allDone=aDone+fDone,allTotal=aTotal+fTotal;
+        const pct=Math.round(allDone/allTotal*100);
+        const dt=new Date(d.date+'T12:00:00').toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+        const color=pct>=100?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
+        return`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <div style="width:70px;font-size:10px;color:var(--muted);flex-shrink:0">${dt}</div>
+          <div style="flex:1;height:14px;background:var(--bg);border-radius:4px;overflow:hidden;position:relative">
+            <div style="height:100%;width:${pct}%;background:${color};border-radius:4px;transition:width .3s"></div>
+            <span style="position:absolute;right:6px;top:1px;font-size:9px;font-weight:700">${allDone}/${allTotal}</span>
+          </div>
+          <div style="width:35px;text-align:right;font-size:11px;font-weight:800;color:${color}">${pct}%</div>
+        </div>`;
+      }).join('');
+    }
+  }
 }
 function toggleTask(member,idx){
   if(!_jsonData||!_jsonData.dailyCriticalTasks)return;
