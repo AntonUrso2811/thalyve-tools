@@ -1099,6 +1099,104 @@ openclaw agents add main
 </table>
 </section>
 
+<section id="quick-fixes">
+<h2>🆘 Quick Fix Cheat Sheet — Copy & Paste</h2>
+
+<div class="alert">
+<h3>🔴 Forge Not Responding on Telegram</h3>
+<p><strong>Step 1:</strong> Close ANY webchat tabs in your browser (this hijacks routing)</p>
+<p><strong>Step 2:</strong> Open Terminal and paste:</p>
+<pre><code>openclaw gateway restart</code></pre>
+<p><strong>Step 3:</strong> Wait 30 seconds, send a message on Telegram</p>
+<p><strong>Step 4:</strong> If still nothing, type in Telegram: <code>/restart</code></p>
+<p><strong>Still nothing?</strong> Check <a href="https://console.anthropic.com" style="color:var(--red)">console.anthropic.com</a> — usage cap may be hit</p>
+</div>
+
+<div class="alert">
+<h3>🔴 "Provider in cooldown" / Infinite Loop (GitHub #13909)</h3>
+<p>This is what happened Feb 25. A 403 auth error gets misclassified as rate limit → everything locks up.</p>
+<p><strong>60-second fix — paste these one at a time in Terminal:</strong></p>
+<pre><code># Step 1: Stop the gateway
+openclaw gateway stop
+
+# Step 2: Edit the auth file — remove cooldown
+nano ~/.openclaw/auth-profiles.json
+# Find "cooldownUntil" → DELETE that entire line
+# Find "errorCount" → change to 0
+# Find "failureCounts" → change to {}
+# Save: Ctrl+O, Enter, Ctrl+X
+
+# Step 3: Restart
+openclaw gateway start</code></pre>
+<p>If nano is scary, you can also run: <code>openclaw doctor --fix</code></p>
+</div>
+
+<div class="alert">
+<h3>🔴 "Gateway start blocked: set gateway.mode" Error</h3>
+<p>The config file lost the gateway mode setting. This causes a crash loop.</p>
+<pre><code># Open config
+nano ~/.openclaw/openclaw.json
+
+# Find the "gateway" section, make sure it has:
+# "mode": "local"
+# If "mode" is missing, add it inside the gateway block
+
+# Save and restart
+openclaw gateway restart</code></pre>
+</div>
+
+<div class="alert alert-amber">
+<h3>🟡 Forge Shows "Typing" But Never Responds</h3>
+<p>Session is too long / response timing out. This happens after very long conversations.</p>
+<p><strong>Fix:</strong> Type <code>/restart</code> in Telegram. This resets the session. All memory is in files — nothing is lost.</p>
+<p>If /restart doesn't work:</p>
+<pre><code>openclaw gateway restart</code></pre>
+</div>
+
+<div class="alert alert-amber">
+<h3>🟡 Responses Going to Webchat Instead of Telegram</h3>
+<p>A browser tab with the OpenClaw webchat is hijacking message routing.</p>
+<p><strong>Fix:</strong> Close ALL browser tabs that have <code>127.0.0.1:18789</code> open. Then send a Telegram message.</p>
+<p>This is already permanently mitigated (dmScope = per-channel-peer) but close webchat tabs as a habit.</p>
+</div>
+
+<div class="alert alert-green">
+<h3>🟢 Forge Lost Memory / Doesn't Remember Things</h3>
+<p>Session was compacted or restarted. Memory FILES are fine — Forge just needs to reload them.</p>
+<p><strong>Fix:</strong> Say: <em>"Read MEMORY.md and today's daily log"</em> — Forge will reload all context.</p>
+<p>Or more specifically: <em>"Read SOUL.md, USER.md, MEMORY.md, and memory/2026-02-26.md"</em></p>
+</div>
+
+<div class="alert alert-green">
+<h3>🟢 How to Completely Rebuild Forge (Nuclear Option)</h3>
+<p>Only use this if EVERYTHING is broken and nothing else works.</p>
+<pre><code># Step 1: Uninstall
+npm uninstall -g openclaw
+
+# Step 2: Reinstall
+npm install -g openclaw
+
+# Step 3: Re-onboard
+openclaw onboard
+
+# Step 4: Restore workspace from GitHub
+cd ~/.openclaw
+git clone https://github.com/AntonUrso2811/forge-workspace.git workspace
+
+# Step 5: Restart
+openclaw gateway start</code></pre>
+<p><strong>Total time: ~15 minutes.</strong> All memory, SOPs, tools restored from GitHub backup.</p>
+</div>
+
+<h3>Incident Log</h3>
+<table>
+<tr><th>Date</th><th>Issue</th><th>Root Cause</th><th>Fix</th><th>Prevention</th></tr>
+<tr><td>Feb 25</td><td>Gateway crash loop, workspace wiped</td><td>OAuth 403 → cooldown loop + config corruption</td><td>Reinstall + rebuild from Telegram export</td><td>gateway.mode locked, auto-backups to GitHub</td></tr>
+<tr><td>Feb 25</td><td>Telegram not receiving replies</td><td>Webchat tab hijacking delivery routing</td><td>Close webchat tabs</td><td>dmScope = per-channel-peer set permanently</td></tr>
+<tr><td>Feb 26</td><td>Forge showing "typing" but no response</td><td>Session too long (20+ voice notes, 55% context)</td><td>/restart in Telegram</td><td>Keep sessions focused, use /restart when sluggish</td></tr>
+</table>
+</section>
+
 <div class="alert alert-green" style="margin-top:40px;text-align:center">
   <h3>💡 Remember</h3>
   <p style="font-size:15px"><strong>Forge's brain lives on GitHub.</strong> As long as <a href="https://github.com/AntonUrso2811/forge-workspace" style="color:var(--green)">github.com/AntonUrso2811/forge-workspace</a> exists, Forge can never truly die. Any machine, anywhere in the world, can bring him back in 15 minutes.</p>
