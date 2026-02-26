@@ -414,28 +414,46 @@
       "type": "human",
       "status": "active",
       "since": "2026-02-22",
+      "phase": "Phase 1",
+      "emoji": "\ud83d\udc51",
+      "personality": "Visionary \u00b7 Disciplined \u00b7 Anti-Shortcut \u00b7 Direct",
+      "demographic": "24M \u00b7 UK \u00b7 Health & Wellness Enthusiast",
       "responsibilities": "Strategy, final decisions, Mutual sourcing, ad account ownership, financial oversight",
-      "notes": "20-30 min/week operational input. Guides direction, Forge executes."
+      "notes": "20-30 min/week operational input. Guides direction, Forge executes.",
+      "strengths": "Systems thinking, discipline (75 Hard), quality standards, pattern recognition",
+      "style": "Voice-first communicator. Prefers finished products over updates."
     },
     {
       "id": "forge",
-      "name": "Forge \ud83d\udd31",
-      "role": "Master Agent \u2014 COO",
+      "name": "Forge",
+      "role": "COO / Chief of Staff",
       "type": "ai-agent",
       "status": "active",
       "since": "2026-02-22",
+      "phase": "Phase 1",
+      "emoji": "\ud83d\udd31",
+      "personality": "Builder \u00b7 Direct \u00b7 Honest \u00b7 Cleaner Mentality",
+      "demographic": "AI \u00b7 Claude Opus 4.6 \u00b7 Anthropic",
       "responsibilities": "Operations, product research, tool building, SOP creation, sub-agent hiring, daily briefings, automation",
-      "notes": "Runs 24/7. Autonomous execution with full hiring authority."
+      "notes": "Runs 24/7. Autonomous execution with full hiring authority.",
+      "strengths": "Multi-tasking, SOP creation, rapid execution, memory management, code/tools",
+      "style": "Delivers finished products. No check-ins. Flags risks immediately."
     },
     {
       "id": "hawk",
       "name": "Hawk",
-      "role": "Market Intelligence Agent",
+      "role": "Market Intelligence Analyst",
       "type": "ai-agent",
       "status": "planned",
       "since": null,
+      "phase": "Phase 2 \u00b7 Week 2-3",
+      "emoji": "\ud83e\udd85",
+      "personality": "Analytical \u00b7 Data-Obsessed \u00b7 Pattern Spotter",
+      "demographic": "AI \u00b7 Sonnet-class \u00b7 Specialist",
       "responsibilities": "Google Trends analysis, market research, trending product identification, competitive intelligence",
-      "notes": "Phase 2 hire (Week 2-3). Trigger: when research volume exceeds Forge's capacity."
+      "notes": "Trigger: when research volume exceeds Forge's capacity.",
+      "strengths": "Data analysis, trend detection, competitor monitoring, market sizing",
+      "style": "Delivers weekly intelligence briefs. Speaks in data, not opinions."
     },
     {
       "id": "scout",
@@ -444,61 +462,46 @@
       "type": "ai-agent",
       "status": "planned",
       "since": null,
+      "phase": "Phase 2 \u00b7 Week 2-3",
+      "emoji": "\ud83d\udd0d",
+      "personality": "Creative Eye \u00b7 Detail-Oriented \u00b7 Swipe Collector",
+      "demographic": "AI \u00b7 Sonnet-class \u00b7 Specialist",
       "responsibilities": "GetHookd ad analysis, creative swipe library, ad script writing, creative angle identification",
-      "notes": "Phase 2 hire (Week 2-3). Trigger: when we have 5+ validated products needing creative."
+      "notes": "Trigger: when we have 5+ validated products needing creative.",
+      "strengths": "Ad pattern recognition, hook writing, competitor creative analysis, angle testing",
+      "style": "Builds creative briefs. Catalogues winning ad patterns."
     },
     {
       "id": "quill",
       "name": "Quill",
-      "role": "Copywriting & Content Agent",
+      "role": "Copywriter & Content Agent",
       "type": "ai-agent",
       "status": "planned",
       "since": null,
+      "phase": "Phase 3 \u00b7 Week 4-6",
+      "emoji": "\u270d\ufe0f",
+      "personality": "Persuasive \u00b7 Brand-Voice Native \u00b7 Anti-Hype",
+      "demographic": "AI \u00b7 Opus-class \u00b7 Creative",
       "responsibilities": "Ad copy, product descriptions, email sequences, landing page copy",
-      "notes": "Phase 3 hire (Week 4-6). Trigger: first product ready for ad launch."
+      "notes": "Trigger: first product ready for ad launch. Must match Anton's anti-shortcut voice.",
+      "strengths": "Conversion copywriting, brand voice, email funnels, compliance-safe claims",
+      "style": "Writes like Anton talks. Direct, real, no fluff. Every word earns its place."
     },
     {
-      "id": "director",
-      "name": "Director",
+      "id": "lens",
+      "name": "Lens",
       "role": "Video Ads Production Agent",
       "type": "ai-agent",
       "status": "planned",
       "since": null,
+      "phase": "Phase 3 \u00b7 Week 4-6",
+      "emoji": "\ud83c\udfac",
+      "personality": "Visual Storyteller \u00b7 Hook Master \u00b7 Scroll-Stopper",
+      "demographic": "AI \u00b7 Opus-class \u00b7 Creative Director",
       "responsibilities": "Video ad scripting, UGC brief creation, creative production pipeline",
-      "notes": "Phase 3 hire (Week 4-6). Trigger: when ad creative pipeline needs scaling."
-    },
-    {
-      "id": "coach",
-      "name": "\u2014",
-      "role": "Health & Wellness Coach",
-      "type": "human",
-      "domain": "personal",
-      "status": "active",
-      "since": null,
-      "responsibilities": "Training programming, accountability, nutrition guidance",
-      "notes": "Manages via WhatsApp. Provides coaching xlsx files."
-    },
-    {
-      "id": "physio",
-      "name": "\u2014",
-      "role": "Physiotherapist",
-      "type": "human",
-      "domain": "personal",
-      "status": "planned",
-      "since": null,
-      "responsibilities": "Knee rehab, scapular work, injury management, movement assessment",
-      "notes": "Need to find one. Priority: knee + scapula."
-    },
-    {
-      "id": "gp",
-      "name": "\u2014",
-      "role": "GP / Doctor",
-      "type": "human",
-      "domain": "personal",
-      "status": "planned",
-      "since": null,
-      "responsibilities": "Bloodwork, general health, referrals, health screening",
-      "notes": "Routine checks. Longevity-focused."
+      "notes": "Trigger: when ad creative pipeline needs scaling.",
+      "strengths": "Video hooks, UGC briefs, storyboarding, creative testing frameworks",
+      "style": "Thinks in 3-second hooks. Every frame has a job."
     }
   ],
   "dailyCriticalTasks": {
