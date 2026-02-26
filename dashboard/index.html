@@ -623,7 +623,7 @@ async function loadFromJSON(){
     _jsonData=j;
     // Merge localStorage task completions
     const savedTasks=JSON.parse(localStorage.getItem('ae2_criticalTasks')||'null');
-    if(savedTasks&&savedTasks.date===j.dailyCriticalTasks?.date){j.dailyCriticalTasks=savedTasks;}
+    if(savedTasks&&savedTasks.date===j.dailyCriticalTasks?.date&&savedTasks.members){j.dailyCriticalTasks=savedTasks;}
     renderCriticalTasks(j);renderTeam(j);renderKPI(j);renderRoadmap(j);renderTaskLog(j);
     render();toast('Synced from Forge');
   }catch(e){}

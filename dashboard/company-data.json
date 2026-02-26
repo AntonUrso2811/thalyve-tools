@@ -503,101 +503,78 @@
   ],
   "dailyCriticalTasks": {
     "date": "2026-02-26",
-    "lastUpdated": "11:25 AM GMT",
-    "anton": [
-      {
-        "task": "🔴 Verify Posture Corrector on GetHookd — confirm 10+ active brand ads running 7+ days",
-        "done": false,
-        "time": "10 min",
-        "why": "Validates our #1 product pick (9.5/10 score). Cannot move forward without this."
+    "members": {
+      "anton": {
+        "name": "👑 Anton (CEO)",
+        "tasks": [
+          {
+            "task": "🔴 Verify Posture Corrector on GetHookd — confirm 10+ active brand ads running 7+ days",
+            "done": false
+          },
+          {
+            "task": "🔴 Message Mutual Express — COGS quotes for Posture Corrector, LED Face Mask, TENS Device",
+            "done": false
+          },
+          {
+            "task": "🟡 Check FB Ad Library — count active ads for top 3 products",
+            "done": false
+          },
+          {
+            "task": "🟡 Review compliance fixes for stretch mark stick ads before Friday launch",
+            "done": false
+          },
+          {
+            "task": "🟢 Pin the Command Hub message in Telegram",
+            "done": false
+          }
+        ]
       },
-      {
-        "task": "🔴 Message Mutual Express — COGS quotes for Posture Corrector, LED Face Mask, TENS Device",
-        "done": false,
-        "time": "10 min",
-        "why": "No COGS = no margin calc = no launch. This unlocks pricing decisions."
-      },
-      {
-        "task": "🟡 Check FB Ad Library — count active ads for top 3 products",
-        "done": false,
-        "time": "10 min",
-        "why": "Confirms competitor spend and validates market demand."
-      },
-      {
-        "task": "🟡 Review compliance fixes for stretch mark stick ads before Friday launch",
-        "done": false,
-        "time": "15 min",
-        "why": "Ad Rail flagged HIGH rejection risk. Ads will get banned without rework."
-      },
-      {
-        "task": "🟢 Pin the Command Hub message in Telegram",
-        "done": false,
-        "time": "30 sec",
-        "why": "Never lose your links again. One pinned message = everything accessible."
+      "forge": {
+        "name": "🔱 Forge (COO)",
+        "tasks": [
+          {
+            "task": "✅ Product research cron — 5 products scored, 3 dropship-ready",
+            "done": true
+          },
+          {
+            "task": "✅ Master Strategy v1.0 — bulletproof infra + £10K roadmap",
+            "done": true
+          },
+          {
+            "task": "✅ Media Buying SOP v1.0 rebuilt + pushed to SOP Hub",
+            "done": true
+          },
+          {
+            "task": "✅ Survival Guide — quick fix cheat sheet + incident log",
+            "done": true
+          },
+          {
+            "task": "✅ Command Centre v3.2 — Backup & Recovery tab + downloadable files",
+            "done": true
+          },
+          {
+            "task": "✅ Absorbed 9 files — Meta infrastructure, Company Foundation, Compliance review",
+            "done": true
+          },
+          {
+            "task": "✅ Daily critical tasks cron created (6AM daily, auto-delivered to Telegram)",
+            "done": true
+          },
+          {
+            "task": "✅ Mark Builds Brands playbook — framework extraction from Drive",
+            "done": true
+          },
+          {
+            "task": "✅ All repos synced + pushed to GitHub (forge-workspace + thalyve-tools)",
+            "done": true
+          },
+          {
+            "task": "🟢 Rewrite stretch mark stick ad copy (compliance-safe)",
+            "done": false
+          }
+        ]
       }
-    ],
-    "forge": [
-      {
-        "task": "✅ Product research cron — 5 products scored, 3 dropship-ready",
-        "done": true,
-        "time": "7 min",
-        "model": "Sonnet"
-      },
-      {
-        "task": "✅ Master Strategy v1.0 — bulletproof infra + £10K roadmap",
-        "done": true,
-        "time": "15 min",
-        "model": "Opus"
-      },
-      {
-        "task": "✅ Media Buying SOP v1.0 rebuilt + pushed to SOP Hub",
-        "done": true,
-        "time": "10 min",
-        "model": "Opus"
-      },
-      {
-        "task": "✅ Survival Guide — quick fix cheat sheet + incident log",
-        "done": true,
-        "time": "8 min",
-        "model": "Opus"
-      },
-      {
-        "task": "✅ Command Centre v3.2 — Backup & Recovery tab + downloadable files",
-        "done": true,
-        "time": "12 min",
-        "model": "Opus"
-      },
-      {
-        "task": "✅ Absorbed 9 files — Meta infrastructure, Company Foundation, Compliance review",
-        "done": true,
-        "time": "5 min",
-        "model": "Opus"
-      },
-      {
-        "task": "✅ Daily critical tasks cron created (6AM daily, auto-delivered to Telegram)",
-        "done": true,
-        "time": "1 min",
-        "model": "Opus"
-      },
-      {
-        "task": "✅ Mark Builds Brands playbook — framework extraction from Drive",
-        "done": true,
-        "time": "8 min",
-        "model": "Opus"
-      },
-      {
-        "task": "✅ All repos synced + pushed to GitHub (forge-workspace + thalyve-tools)",
-        "done": true,
-        "time": "2 min",
-        "model": "Opus"
-      },
-      {
-        "task": "🟢 Rewrite stretch mark stick ad copy (compliance-safe)",
-        "done": false,
-        "time": "Next",
-        "model": "Opus"
-      }
-    ]
+    }
   },
   "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 — MUST downgrade. Target: £10k net/month. All expenses wiped clean for v3.0 fresh start."
 }
