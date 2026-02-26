@@ -85,6 +85,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
     <div class="tab" onclick="nav('roadmap',this)">🗺 Roadmap</div>
     <div class="tab" onclick="nav('tasklog',this)">⚡ Task Log</div>
     <div class="tab" onclick="nav('settings',this)">⚙️ Settings</div>
+    <div class="tab" onclick="nav('backup',this)" style="border-color:var(--red);color:var(--red)">🆘 Backup & Recovery</div>
   </div>
 
   <!-- ===== COMPANY OVERVIEW ===== -->
@@ -325,7 +326,92 @@ tr:hover td{background:rgba(139,92,246,.03)}
     </div>
   </div>
 
-  <div class="wm">🔱 Anton Empire Command Centre v3.1 • Data: company-data.json (Forge-maintained) + local edits • Built by Forge</div>
+  <!-- ===== BACKUP & RECOVERY ===== -->
+  <div class="page" id="p-backup">
+    <div class="alert" style="background:rgba(255,77,106,.06);border:1px solid rgba(255,77,106,.2);border-radius:12px;padding:20px;margin-bottom:16px">
+      <h3 style="color:#ff4d6a;margin-bottom:8px">🆘 Emergency Recovery — If Forge Goes Down</h3>
+      <p style="font-size:12px;color:var(--muted)">Download these files, follow the steps below, and Forge comes back online in 15 minutes. <strong>No coding knowledge needed.</strong></p>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <h2>📥 Core Identity Files</h2>
+        <p style="font-size:11px;color:var(--muted);margin-bottom:12px">These are Forge's brain. Download and keep a copy on your phone/laptop.</p>
+        <div id="backup-files" style="display:flex;flex-direction:column;gap:6px"></div>
+        <button style="margin-top:12px;width:100%" onclick="downloadAllBackup()">📦 Download All as ZIP</button>
+      </div>
+      <div class="card">
+        <h2>🔗 Backup Locations</h2>
+        <p style="font-size:11px;color:var(--muted);margin-bottom:12px">Forge exists in 3 places. If one dies, use another.</p>
+        <table>
+          <tr><td>🟢 <strong>GitHub (Primary)</strong></td><td><a href="https://github.com/AntonUrso2811/forge-workspace" style="color:var(--accent2)" target="_blank">forge-workspace</a></td></tr>
+          <tr><td>🟢 <strong>GitHub (Tools)</strong></td><td><a href="https://github.com/AntonUrso2811/thalyve-tools" style="color:var(--accent2)" target="_blank">thalyve-tools</a></td></tr>
+          <tr><td>🟢 <strong>Mac (Live)</strong></td><td><code>~/.openclaw/workspace/</code></td></tr>
+          <tr><td>🟡 <strong>This Page</strong></td><td>Download files above ↑</td></tr>
+        </table>
+        <p style="font-size:10px;color:var(--muted);margin-top:8px">Auto-backup runs every 6 hours → GitHub. Last backup check the <a href="https://github.com/AntonUrso2811/forge-workspace/commits/main" style="color:var(--accent2)" target="_blank">commit history</a>.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2>🔧 Step-by-Step Recovery (Dummified)</h2>
+      <div style="font-size:12px;line-height:1.8">
+        <p><strong style="color:var(--accent2)">Scenario 1: Forge not responding but Mac is on</strong></p>
+        <ol style="margin-left:16px;margin-bottom:16px">
+          <li>Open <strong>Terminal</strong> (Cmd+Space → type "Terminal" → Enter)</li>
+          <li>Paste: <code style="background:var(--bg);padding:2px 8px;border-radius:4px">openclaw gateway restart</code> → press Enter</li>
+          <li>Wait 30 seconds → send message on Telegram</li>
+          <li>If still nothing → type <code>/restart</code> in Telegram</li>
+        </ol>
+
+        <p><strong style="color:var(--accent2)">Scenario 2: "Provider in cooldown" error</strong></p>
+        <ol style="margin-left:16px;margin-bottom:16px">
+          <li>In Terminal: <code style="background:var(--bg);padding:2px 8px;border-radius:4px">openclaw gateway stop</code></li>
+          <li>Then: <code style="background:var(--bg);padding:2px 8px;border-radius:4px">nano ~/.openclaw/auth-profiles.json</code></li>
+          <li>Find <code>cooldownUntil</code> → delete that line</li>
+          <li>Find <code>errorCount</code> → change to <code>0</code></li>
+          <li>Save: <strong>Ctrl+O → Enter → Ctrl+X</strong></li>
+          <li>Then: <code style="background:var(--bg);padding:2px 8px;border-radius:4px">openclaw gateway start</code></li>
+        </ol>
+
+        <p><strong style="color:var(--accent2)">Scenario 3: Everything is broken — full rebuild</strong></p>
+        <ol style="margin-left:16px;margin-bottom:16px">
+          <li><code style="background:var(--bg);padding:2px 8px;border-radius:4px">npm uninstall -g openclaw</code></li>
+          <li><code style="background:var(--bg);padding:2px 8px;border-radius:4px">npm install -g openclaw</code></li>
+          <li><code style="background:var(--bg);padding:2px 8px;border-radius:4px">openclaw onboard</code> → follow the wizard</li>
+          <li><code style="background:var(--bg);padding:2px 8px;border-radius:4px">cd ~/.openclaw && git clone https://github.com/AntonUrso2811/forge-workspace.git workspace</code></li>
+          <li><code style="background:var(--bg);padding:2px 8px;border-radius:4px">openclaw gateway start</code></li>
+          <li>Forge is back. All memory restored. ~15 minutes total.</li>
+        </ol>
+
+        <p><strong style="color:var(--accent2)">Scenario 4: Forge responds but lost memory</strong></p>
+        <ol style="margin-left:16px;margin-bottom:16px">
+          <li>Tell Forge: <em>"Read SOUL.md, USER.md, MEMORY.md, and memory/2026-02-26.md"</em></li>
+          <li>Forge reloads everything from files. Full context restored.</li>
+        </ol>
+
+        <p><strong style="color:var(--accent2)">Scenario 5: Usage cap hit — Forge goes silent</strong></p>
+        <ol style="margin-left:16px;margin-bottom:16px">
+          <li>Check: <a href="https://console.anthropic.com" style="color:var(--accent2)" target="_blank">console.anthropic.com</a></li>
+          <li>If usage is at limit → wait for reset OR upgrade plan</li>
+          <li>This is NOT a bug — just the subscription allowance running out</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h2>📋 Incident Log</h2>
+      <table>
+        <tr><th>Date</th><th>Issue</th><th>Cause</th><th>Fix</th></tr>
+        <tr><td>Feb 25</td><td>Gateway crash loop + workspace wiped</td><td>OAuth 403 → cooldown loop</td><td>Reinstall + rebuild from Telegram</td></tr>
+        <tr><td>Feb 25</td><td>Telegram not receiving replies</td><td>Webchat hijacking routing</td><td>Close webchat tabs + dmScope fix</td></tr>
+        <tr><td>Feb 26</td><td>"Typing" but no response</td><td>Session too long (20+ voice notes)</td><td>/restart in Telegram</td></tr>
+      </table>
+      <p style="font-size:10px;color:var(--muted);margin-top:8px">This log is updated by Forge every time an incident occurs.</p>
+    </div>
+  </div>
+
+  <div class="wm">🔱 Anton Empire Command Centre v3.2 • Data: company-data.json (Forge-maintained) + local edits • Built by Forge</div>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -709,6 +795,58 @@ function renderTaskLog(data){
 }
 
 let _jsonData=null;
+
+// ===== BACKUP & RECOVERY =====
+const backupFiles = [
+  {name:'SOUL.md', desc:'Forge\'s identity & personality', url:'https://raw.githubusercontent.com/AntonUrso2811/forge-workspace/main/SOUL.md'},
+  {name:'USER.md', desc:'About Anton — context & preferences', url:'https://raw.githubusercontent.com/AntonUrso2811/forge-workspace/main/USER.md'},
+  {name:'MEMORY.md', desc:'Long-term memory — everything Forge knows', url:'https://raw.githubusercontent.com/AntonUrso2811/forge-workspace/main/MEMORY.md'},
+  {name:'AGENTS.md', desc:'Operating instructions & rules', url:'https://raw.githubusercontent.com/AntonUrso2811/forge-workspace/main/AGENTS.md'},
+  {name:'IDENTITY.md', desc:'Name, emoji, birth date', url:'https://raw.githubusercontent.com/AntonUrso2811/forge-workspace/main/IDENTITY.md'},
+  {name:'TOOLS.md', desc:'Local tool notes & config', url:'https://raw.githubusercontent.com/AntonUrso2811/forge-workspace/main/TOOLS.md'},
+  {name:'SOS.md', desc:'Emergency recovery guide', url:'https://raw.githubusercontent.com/AntonUrso2811/forge-workspace/main/SOS.md'},
+];
+
+function renderBackupFiles(){
+  const el=document.getElementById('backup-files');
+  if(!el)return;
+  el.innerHTML=backupFiles.map(f=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">
+      <div>
+        <div style="font-size:12px;font-weight:600">${f.name}</div>
+        <div style="font-size:10px;color:var(--muted)">${f.desc}</div>
+      </div>
+      <button class="btn-s btn-o" onclick="downloadFile('${f.url}','${f.name}')">📥</button>
+    </div>
+  `).join('');
+}
+
+async function downloadFile(url,name){
+  try{
+    const r=await fetch(url);
+    if(!r.ok)throw new Error('Failed');
+    const b=await r.blob();
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(b);
+    a.download=name;
+    a.click();
+    toast('Downloaded '+name);
+  }catch(e){
+    toast('Failed — open GitHub directly');
+    window.open('https://github.com/AntonUrso2811/forge-workspace','_blank');
+  }
+}
+
+async function downloadAllBackup(){
+  toast('Downloading files individually...');
+  for(const f of backupFiles){
+    await downloadFile(f.url,f.name);
+    await new Promise(r=>setTimeout(r,500));
+  }
+  toast('All files downloaded ✅');
+}
+
+renderBackupFiles();
 
 // ===== INIT =====
 document.getElementById('d-date').valueAsDate=new Date();
