@@ -255,6 +255,13 @@ tr:hover td{background:rgba(139,92,246,.03)}
       <div class="card" style="text-align:center"><div class="sl">Active Members</div><div class="sv green" id="tm-active">0</div></div>
       <div class="card" style="text-align:center"><div class="sl">Planned Hires</div><div class="sv amber" id="tm-planned">0</div></div>
     </div>
+
+    <!-- ORG TREE DIAGRAM -->
+    <div class="card" style="margin-bottom:16px;overflow-x:auto">
+      <h2>🌳 Organisation Tree</h2>
+      <div id="org-tree" style="display:flex;flex-direction:column;align-items:center;gap:0;padding:20px 0;min-width:600px"></div>
+    </div>
+
     <div class="card">
       <h2>🏢 Team</h2>
       <table>
@@ -700,6 +707,49 @@ function renderTeam(data){
   const planned=biz.filter(t=>t.status==='planned');
   document.getElementById('tm-active').textContent=active.length;
   document.getElementById('tm-planned').textContent=planned.length;
+
+  // --- Org Tree Diagram ---
+  const tree=document.getElementById('org-tree');
+  if(tree){
+    const nodeStyle=(t,big)=>{
+      const isActive=t.status==='active';
+      const border=isActive?'var(--green)':'var(--amber)';
+      const bg=isActive?'rgba(76,175,80,0.08)':'rgba(255,193,7,0.08)';
+      const icon=t.type==='human'?'👤':'🤖';
+      const w=big?'180px':'140px';
+      const fs=big?'13px':'11px';
+      return`<div style="display:inline-flex;flex-direction:column;align-items:center;padding:${big?'14px 18px':'10px 14px'};border:2px solid ${border};border-radius:12px;background:${bg};min-width:${w};position:relative">
+        <div style="font-size:${big?'22px':'16px'};margin-bottom:4px">${icon}</div>
+        <div style="font-weight:700;font-size:${fs};color:var(--text)">${t.name}</div>
+        <div style="font-size:${big?'10px':'9px'};color:var(--muted);text-align:center">${t.role}</div>
+        <div style="margin-top:4px;font-size:9px;padding:2px 8px;border-radius:10px;background:${isActive?'var(--green)':'var(--amber)'};color:#000;font-weight:600">${isActive?'ACTIVE':'PLANNED'}</div>
+      </div>`;
+    };
+    const line=`<div style="width:2px;height:20px;background:var(--border);margin:0 auto"></div>`;
+    const hLine=`<div style="height:2px;background:var(--border);flex:1"></div>`;
+
+    // CEO at top
+    const ceo=biz.find(t=>t.id==='anton')||biz[0];
+    const coo=biz.find(t=>t.id==='forge')||biz[1];
+    const reports=biz.filter(t=>t.id!=='anton'&&t.id!=='forge');
+
+    let html=nodeStyle(ceo,true);
+    html+=line;
+    html+=nodeStyle(coo,true);
+    if(reports.length){
+      html+=line;
+      // horizontal connector
+      html+=`<div style="display:flex;align-items:flex-start;justify-content:center;width:100%;position:relative">`;
+      html+=`<div style="position:absolute;top:0;left:50%;transform:translateX(-50%);height:2px;background:var(--border);width:${Math.min(reports.length*160,800)}px"></div>`;
+      html+=`</div>`;
+      html+=`<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:2px">`;
+      reports.forEach(t=>{
+        html+=`<div style="display:flex;flex-direction:column;align-items:center">${line}${nodeStyle(t,false)}</div>`;
+      });
+      html+=`</div>`;
+    }
+    tree.innerHTML=html;
+  }
   const tb=document.getElementById('tm-table');
   tb.innerHTML=biz.map(t=>{
     const icon=t.status==='active'?'🟢':t.status==='planned'?'🟡':'🔴';
