@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auth Infrastructure SOP — Bulletproof API System</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Inter',sans-serif;background:#fff;color:#1a1a1a;line-height:1.7;max-width:900px;margin:0 auto;padding:24px}
+h1{font-size:2em;font-weight:800;margin-bottom:4px}
+.subtitle{color:#666;margin-bottom:30px}
+h2{font-size:1.4em;font-weight:800;margin:36px 0 12px;padding-bottom:6px;border-bottom:3px solid #111}
+h3{font-size:1.1em;font-weight:700;margin:20px 0 8px;color:#222}
+p{margin-bottom:10px}
+ul,ol{margin:8px 0 12px 20px}
+li{margin-bottom:5px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9em}
+th{background:#111;color:#fff;padding:10px;text-align:left}
+td{padding:10px;border-bottom:1px solid #e0e0e0;vertical-align:top}
+tr:nth-child(even) td{background:#f8f9fa}
+code{background:#f0f0f0;padding:2px 6px;border-radius:4px;font-size:.9em}
+pre{background:#f5f5f5;padding:12px;border-radius:8px;overflow-x:auto;font-size:.85em;margin:10px 0}
+.box{padding:14px 18px;margin:12px 0;border-radius:0 8px 8px 0}
+.box.red{background:#fdecea;border-left:4px solid #c0392b}
+.box.green{background:#e8f5e9;border-left:4px solid #27ae60}
+.box.blue{background:#e3f2fd;border-left:4px solid #2196f3}
+.box.amber{background:#fff3cd;border-left:4px solid #f0ad4e}
+.nav{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.nav a{font-size:12px;color:#7c5cfc;text-decoration:none;padding:5px 14px;border:1px solid #ddd;border-radius:20px}
+.footer{text-align:center;font-size:.8em;color:#999;margin-top:40px;padding-top:20px;border-top:1px solid #e0e0e0}
+</style>
+</head>
+<body>
+
+<div class="nav">
+<a href="../">🏠 Home</a>
+<a href="../hub/">📁 SOP Hub</a>
+<a href="../dashboard/">📊 Dashboard</a>
+</div>
+
+<h1>🔐 Auth Infrastructure SOP</h1>
+<p class="subtitle">Bulletproof API & Access System — Never Lose Forge Again<br>Version 1.0 — 26 Feb 2026</p>
+
+<div class="box blue">
+<strong>Think of this like your Meta 3-BM structure, but for AI access.</strong> Multiple layers of redundancy so if one thing breaks, the system keeps running. No single point of failure.
+</div>
+
+<h2>The 3-Layer Auth Model</h2>
+
+<table>
+<tr><th>Layer</th><th>What</th><th>Purpose</th><th>Status</th></tr>
+<tr><td>🏢 <strong>Layer 1: Primary</strong></td><td>Anthropic Subscription Token (OAT)</td><td>Powers Opus + Sonnet. Your main auth. Flat monthly fee.</td><td>✅ Active</td></tr>
+<tr><td>🏦 <strong>Layer 2: Failover</strong></td><td>Sonnet auto-fallback (same token)</td><td>If Opus cap is hit, Sonnet catches it automatically.</td><td>✅ Configured</td></tr>
+<tr><td>🏪 <strong>Layer 3: Emergency</strong></td><td>Second Anthropic subscription OR OpenRouter</td><td>Completely separate provider. If token 1 dies, token 2 catches.</td><td>⏳ Ready to deploy</td></tr>
+</table>
+
+<div class="box green">
+<strong>How it works:</strong> OpenClaw tries Layer 1 first. If it fails → Layer 2 (Sonnet). If that fails → Layer 3 (separate token). You never see an error. Forge just keeps responding.
+</div>
+
+<h2>Current Setup — What You Have</h2>
+
+<table>
+<tr><th>Component</th><th>Details</th><th>Location</th><th>Expires</th></tr>
+<tr><td><strong>Anthropic Token</strong></td><td>Subscription OAT token</td><td>~/.openclaw/auth-profiles.json</td><td>With subscription</td></tr>
+<tr><td><strong>Primary Model</strong></td><td>Claude Opus 4.6</td><td>openclaw.json</td><td>N/A</td></tr>
+<tr><td><strong>Fallback Model</strong></td><td>Claude Sonnet 4.6</td><td>openclaw.json</td><td>N/A</td></tr>
+<tr><td><strong>GitHub PAT</strong></td><td>"forge-deploy" token</td><td>macOS Keychain</td><td><strong>27 Mar 2026 ⚠️</strong></td></tr>
+<tr><td><strong>Telegram Bot Token</strong></td><td>Ops Control bot</td><td>openclaw.json</td><td>Never (unless revoked)</td></tr>
+<tr><td><strong>Gateway</strong></td><td>Local Mac (192.168.0.190)</td><td>LaunchAgent service</td><td>N/A</td></tr>
+</table>
+
+<h2>If Things Break — The Recovery Chain</h2>
+
+<h3>🔴 Scenario 1: Anthropic Token Expires / Cap Hit</h3>
+<p><strong>Symptoms:</strong> Forge goes silent. No error message. Just stops responding.</p>
+<p><strong>Check:</strong> Go to <a href="https://console.anthropic.com">console.anthropic.com</a> → check usage.</p>
+<p><strong>Fix options:</strong></p>
+<ol>
+<li><strong>Wait for cap reset</strong> (resets monthly with subscription)</li>
+<li><strong>Upgrade plan</strong> if hitting cap consistently</li>
+<li><strong>Switch to Layer 3</strong> (second token) — see "Adding a Backup Token" below</li>
+</ol>
+
+<h3>🔴 Scenario 2: Provider Cooldown Loop (GitHub #13909)</h3>
+<p><strong>Symptoms:</strong> Gateway keeps restarting. Errors about "provider in cooldown".</p>
+<pre><code># Step 1: Stop gateway
+openclaw gateway stop
+
+# Step 2: Edit auth file
+nano ~/.openclaw/auth-profiles.json
+
+# Remove "cooldownUntil" line
+# Set "errorCount" to 0
+# Set "failureCounts" to {}
+# Save: Ctrl+O → Enter → Ctrl+X
+
+# Step 3: Restart
+openclaw gateway start</code></pre>
+
+<h3>🔴 Scenario 3: GitHub PAT Expired (Backups Stop)</h3>
+<p><strong>Symptoms:</strong> Auto-backup pushes fail silently. No error on Telegram.</p>
+<p><strong>Check:</strong> Open Terminal → <code>cd ~/.openclaw/workspace && git push 2>&1</code></p>
+<p><strong>Fix:</strong></p>
+<ol>
+<li>Go to <a href="https://github.com/settings/tokens">github.com/settings/tokens</a></li>
+<li>Generate new token (Fine-grained → forge-workspace + thalyve-tools repos → Contents read/write)</li>
+<li>Update in Terminal: <code>git remote set-url origin https://YOUR_NEW_TOKEN@github.com/AntonUrso2811/forge-workspace.git</code></li>
+</ol>
+<p><strong>Current PAT expires: 27 March 2026</strong> — Cron will warn 7 days before.</p>
+
+<h3>🔴 Scenario 4: Telegram Bot Not Responding</h3>
+<p><strong>Symptoms:</strong> Messages sent but no reply. No "typing" indicator.</p>
+<ol>
+<li>Check gateway: <code>openclaw gateway status</code></li>
+<li>If stopped: <code>openclaw gateway start</code></li>
+<li>If running but no response: <code>openclaw gateway restart</code></li>
+<li>If still nothing: type <code>/restart</code> in Telegram</li>
+<li>Nuclear: <code>openclaw channels remove telegram && openclaw channels add telegram</code></li>
+</ol>
+
+<h3>🟡 Scenario 5: Can't Access MacBook (Location / Remote)</h3>
+<p><strong>Symptoms:</strong> You're away from home. Mac is at home. Can't SSH in.</p>
+<p><strong>Current state:</strong> No remote access configured. Mac is local only.</p>
+<p><strong>Options:</strong></p>
+<table>
+<tr><th>Option</th><th>Effort</th><th>Cost</th><th>Reliability</th></tr>
+<tr><td><strong>VPS Migration (Best)</strong></td><td>30 min setup</td><td>£5-10/month</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>Tailscale VPN</td><td>10 min setup</td><td>Free</td><td>⭐⭐⭐⭐ (needs Mac on)</td></tr>
+<tr><td>SSH tunnel (ngrok)</td><td>15 min setup</td><td>Free</td><td>⭐⭐⭐ (fragile)</td></tr>
+</table>
+<p><strong>Recommendation:</strong> VPS as primary + Mac as backup. This eliminates the "can't reach Mac" problem entirely. Say the word and I'll set it up.</p>
+
+<h3>🟡 Scenario 6: Webchat Hijacks Telegram</h3>
+<p><strong>Symptoms:</strong> Responses go to browser instead of Telegram.</p>
+<p><strong>Fix:</strong> Close all browser tabs with <code>127.0.0.1:18789</code>. Already mitigated with <code>dmScope: per-channel-peer</code>.</p>
+
+<h2>Adding a Backup Token (Layer 3)</h2>
+
+<div class="box amber">
+<strong>Only do this when things are stable. Never during an active issue.</strong>
+</div>
+
+<h3>Option A: Second Anthropic Subscription</h3>
+<pre><code># 1. Get a second subscription at console.anthropic.com
+# 2. Copy the new OAT token
+# 3. Add as fallback:
+openclaw agents add main
+# Select "Add fallback auth"
+# Paste the new token
+# 4. Restart:
+openclaw gateway restart
+# 5. Test: send a message on Telegram</code></pre>
+
+<h3>Option B: OpenRouter (Pay-Per-Use Emergency)</h3>
+<pre><code># 1. Create account at openrouter.ai
+# 2. Add $10 credit
+# 3. Get API key
+# 4. Add as fallback provider in openclaw.json
+# 5. Restart gateway</code></pre>
+
+<p><strong>Anton's decision:</strong> Keep it Anthropic-only for now. Layer 3 is ready to deploy when needed.</p>
+
+<h2>Credential Rotation Schedule</h2>
+
+<table>
+<tr><th>Credential</th><th>Rotation</th><th>Next Due</th><th>Who</th></tr>
+<tr><td>Anthropic Token</td><td>With subscription renewal</td><td>Automatic</td><td>Anton</td></tr>
+<tr><td>GitHub PAT</td><td>Every 90 days (or on expiry)</td><td><strong>27 Mar 2026</strong></td><td>Forge (reminds Anton)</td></tr>
+<tr><td>Telegram Bot Token</td><td>Only if compromised</td><td>N/A</td><td>Anton via @BotFather</td></tr>
+<tr><td>GetHookd Login</td><td>Password rotation every 90 days</td><td>May 2026</td><td>Anton</td></tr>
+</table>
+
+<h2>The Full Bulletproof Picture</h2>
+
+<div class="box green">
+<strong>Your AI infrastructure mirrors your Meta infrastructure:</strong><br><br>
+<strong>Meta:</strong> BM1 (expendable) + BM2 (pixel/data, protected) + BM3 (pages/brand, protected)<br>
+<strong>AI:</strong> Gateway (expendable, rebuildable) + Workspace (GitHub, protected) + Auth (subscription, protected)<br><br>
+If the gateway crashes → rebuild in 15 min (workspace from GitHub).<br>
+If the token expires → fallback catches it (Layer 2/3).<br>
+If the Mac dies → VPS takes over (when configured).<br>
+If GitHub goes down → Mac has live copy.<br><br>
+<strong>No single point of failure.</strong>
+</div>
+
+<div class="footer">
+🔱 Anton Empire — Auth Infrastructure SOP v1.0 — Built by Forge — 26 Feb 2026
+</div>
+
+</body>
+</html>
