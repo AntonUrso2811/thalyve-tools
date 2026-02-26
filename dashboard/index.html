@@ -472,16 +472,125 @@ tr:hover td{background:rgba(139,92,246,.03)}
 
   <!-- ===== ROADMAP ===== -->
   <div class="page" id="p-roadmap">
+    <!-- Header -->
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+      <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#8b5cf6,#6366f1);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🗺️</div>
+      <div style="flex:1">
+        <h2 style="margin:0;font-size:18px">Roadmap to £10K/month</h2>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">4-phase plan · Infrastructure → Testing → Scaling → Empire</div>
+      </div>
+      <div id="rm-phase-badge" style="padding:6px 14px;border-radius:8px;background:rgba(76,175,80,0.1);border:1px solid rgba(76,175,80,0.2)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted)">Current Phase</div>
+        <div style="font-size:13px;font-weight:700;color:var(--green)">Phase 1 · Foundation</div>
+      </div>
+    </div>
+
+    <!-- Milestone Timeline -->
+    <div class="card" style="margin-bottom:16px;overflow-x:auto">
+      <div style="display:flex;align-items:center;gap:0;min-width:700px;padding:10px 0">
+        <div style="flex:1;text-align:center">
+          <div style="font-size:20px">🏗️</div>
+          <div style="font-size:10px;font-weight:700;margin-top:4px;color:var(--green)">Phase 1</div>
+          <div style="font-size:8px;color:var(--muted)">Foundation</div>
+          <div style="font-size:8px;color:var(--green);font-weight:600">Week 1 · NOW</div>
+        </div>
+        <div style="flex:2;height:4px;background:linear-gradient(90deg,var(--green),var(--amber));border-radius:2px;position:relative">
+          <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:8px;color:var(--muted);white-space:nowrap">First Sale →</div>
+        </div>
+        <div style="flex:1;text-align:center">
+          <div style="font-size:20px">🧪</div>
+          <div style="font-size:10px;font-weight:700;margin-top:4px;color:var(--amber)">Phase 2</div>
+          <div style="font-size:8px;color:var(--muted)">Product Testing</div>
+          <div style="font-size:8px;color:var(--muted)">Week 2-4</div>
+        </div>
+        <div style="flex:2;height:4px;background:linear-gradient(90deg,var(--amber),var(--purple));border-radius:2px;position:relative">
+          <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:8px;color:var(--muted);white-space:nowrap">£1K Month →</div>
+        </div>
+        <div style="flex:1;text-align:center">
+          <div style="font-size:20px">🚀</div>
+          <div style="font-size:10px;font-weight:700;margin-top:4px;color:var(--purple)">Phase 3</div>
+          <div style="font-size:8px;color:var(--muted)">Scale Winners</div>
+          <div style="font-size:8px;color:var(--muted)">Week 5-8</div>
+        </div>
+        <div style="flex:2;height:4px;background:linear-gradient(90deg,var(--purple),var(--blue));border-radius:2px;position:relative">
+          <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:8px;color:var(--muted);white-space:nowrap">£5K Month →</div>
+        </div>
+        <div style="flex:1;text-align:center">
+          <div style="font-size:20px">👑</div>
+          <div style="font-size:10px;font-weight:700;margin-top:4px;color:var(--blue)">Phase 4</div>
+          <div style="font-size:8px;color:var(--muted)">Empire</div>
+          <div style="font-size:8px;color:var(--muted)">Month 3+</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Milestones -->
+    <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">
+      <div style="padding:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:center;border-top:3px solid var(--green)">
+        <div style="font-size:16px">💷</div>
+        <div style="font-size:11px;font-weight:700;margin-top:4px">First Sale</div>
+        <div style="font-size:9px;color:var(--muted)">Target: Week 2</div>
+        <div style="font-size:9px;color:var(--amber);font-weight:600;margin-top:2px">PENDING</div>
+      </div>
+      <div style="padding:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:center;border-top:3px solid var(--amber)">
+        <div style="font-size:16px">📈</div>
+        <div style="font-size:11px;font-weight:700;margin-top:4px">£1K Month</div>
+        <div style="font-size:9px;color:var(--muted)">Target: Week 4-6</div>
+        <div style="font-size:9px;color:var(--muted);font-weight:600;margin-top:2px">—</div>
+      </div>
+      <div style="padding:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:center;border-top:3px solid var(--purple)">
+        <div style="font-size:16px">🔥</div>
+        <div style="font-size:11px;font-weight:700;margin-top:4px">£5K Month</div>
+        <div style="font-size:9px;color:var(--muted)">Target: Month 2-3</div>
+        <div style="font-size:9px;color:var(--muted);font-weight:600;margin-top:2px">—</div>
+      </div>
+      <div style="padding:10px;background:var(--card);border:1px solid var(--border);border-radius:10px;text-align:center;border-top:3px solid var(--blue)">
+        <div style="font-size:16px">👑</div>
+        <div style="font-size:11px;font-weight:700;margin-top:4px">£10K Month</div>
+        <div style="font-size:9px;color:var(--muted)">Target: Month 3-4</div>
+        <div style="font-size:9px;color:var(--muted);font-weight:600;margin-top:2px">—</div>
+      </div>
+    </div>
+
+    <!-- This Week / Next Week -->
     <div class="grid g2">
       <div class="card">
-        <h2>📌 This Week</h2>
-        <p style="font-size:10px;color:var(--muted);margin-bottom:10px" id="rm-thisweek">—</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <h2 style="margin:0;font-size:13px">📌 This Week</h2>
+          <div style="display:flex;align-items:center;gap:6px"><span style="font-size:10px;color:var(--muted)" id="rm-thisweek">—</span><span style="font-size:11px;font-weight:700" id="rm-this-pct"></span></div>
+        </div>
+        <div id="rm-this-bar" style="height:4px;background:var(--bg);border-radius:2px;overflow:hidden;margin-bottom:10px"><div id="rm-this-fill" style="height:100%;border-radius:2px;transition:width .3s"></div></div>
         <div id="rm-this"></div>
       </div>
       <div class="card">
-        <h2>🔮 Next Week</h2>
-        <p style="font-size:10px;color:var(--muted);margin-bottom:10px" id="rm-nextweek">—</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <h2 style="margin:0;font-size:13px">🔮 Next Week</h2>
+          <span style="font-size:10px;color:var(--muted)" id="rm-nextweek">—</span>
+        </div>
         <div id="rm-next"></div>
+      </div>
+    </div>
+
+    <!-- Key Deadlines -->
+    <div class="card" style="margin-top:12px;background:linear-gradient(135deg,rgba(239,68,68,0.04),rgba(249,115,22,0.04))">
+      <h2 style="font-size:13px;margin-bottom:10px">⏰ Key Deadlines</h2>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px;border-left:3px solid var(--red)">
+          <div><span style="font-size:11px;font-weight:700">Ad Testing Launch</span><span style="font-size:10px;color:var(--muted);margin-left:8px">$100/day on Meta</span></div>
+          <span style="font-size:11px;font-weight:700;color:var(--red)">Feb 28</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px;border-left:3px solid var(--amber)">
+          <div><span style="font-size:11px;font-weight:700">Shopify Downgrade</span><span style="font-size:10px;color:var(--muted);margin-left:8px">Before promo expires</span></div>
+          <span style="font-size:11px;font-weight:700;color:var(--amber)">Mar 12</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px;border-left:3px solid var(--amber)">
+          <div><span style="font-size:11px;font-weight:700">GitHub PAT Rotation</span><span style="font-size:10px;color:var(--muted);margin-left:8px">forge-deploy token</span></div>
+          <span style="font-size:11px;font-weight:700;color:var(--amber)">Mar 27</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px;border-left:3px solid var(--purple)">
+          <div><span style="font-size:11px;font-weight:700">First Winner Decision</span><span style="font-size:10px;color:var(--muted);margin-left:8px">Scale or kill after 5-7 days data</span></div>
+          <span style="font-size:11px;font-weight:700;color:var(--purple)">~Mar 7</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1127,28 +1236,33 @@ function renderKPI(data){
 function renderRoadmap(data){
   if(!data||!data.roadmap)return;
   const rm=data.roadmap;
+  const ownerIcon=(o)=>o==='Forge'||o==='forge'?'🔱':o==='Anton'||o==='anton'?'👑':o.includes('Forge')?'🔱👑':'📋';
+  const taskCard=(p,showStatus=true)=>{
+    const icon=p.status==='done'?'✅':p.status==='in-progress'?'🔄':p.status==='blocked'?'🚫':'⬜';
+    const bg=p.status==='done'?'rgba(76,175,80,0.04)':p.status==='blocked'?'rgba(239,68,68,0.04)':'var(--bg)';
+    const border=p.status==='done'?'var(--green)':p.status==='in-progress'?'var(--amber)':p.status==='blocked'?'var(--red)':'var(--border)';
+    const statusColor=p.status==='done'?'var(--green)':p.status==='in-progress'?'var(--amber)':p.status==='blocked'?'var(--red)':'var(--muted)';
+    return`<div style="display:flex;align-items:center;gap:10px;padding:8px 12px;margin-bottom:4px;background:${bg};border-radius:8px;border-left:3px solid ${border}">
+      <span style="font-size:14px;flex-shrink:0">${icon}</span>
+      <div style="flex:1"><span style="font-size:11px;font-weight:500;${p.status==='done'?'text-decoration:line-through;color:var(--muted)':''}">${p.task}</span>${p.blocker?`<br><span style="font-size:9px;color:var(--red)">⚠️ ${p.blocker}</span>`:''}</div>
+      ${showStatus?`<span style="font-size:9px;color:${statusColor};font-weight:700;text-transform:uppercase;white-space:nowrap">${p.status.replace('-',' ')}</span>`:''}
+      <span style="font-size:12px;flex-shrink:0" title="${p.owner||''}">${ownerIcon(p.owner||'')}</span>
+    </div>`;
+  };
   if(rm.thisWeek){
     document.getElementById('rm-thisweek').textContent='Week of '+rm.thisWeek.weekOf;
-    document.getElementById('rm-this').innerHTML=rm.thisWeek.priorities.map(p=>{
-      const icon=p.status==='done'?'✅':p.status==='in-progress'?'🔄':p.status==='blocked'?'🚫':'📋';
-      const color=p.status==='done'?'var(--green)':p.status==='in-progress'?'var(--amber)':p.status==='blocked'?'var(--red)':'var(--muted)';
-      return`<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border)">
-        <span style="font-size:14px">${icon}</span>
-        <div style="flex:1"><span style="font-size:12px;font-weight:500">${p.task}</span>${p.blocker?`<br><span style="font-size:9px;color:var(--red)">⚠️ ${p.blocker}</span>`:''}</div>
-        <span style="font-size:10px;color:${color};font-weight:600;text-transform:uppercase">${p.status}</span>
-        <span style="font-size:9px;color:var(--muted)">${p.owner}</span>
-      </div>`;
-    }).join('');
+    const tasks=rm.thisWeek.priorities;
+    const done=tasks.filter(t=>t.status==='done').length;
+    const pct=Math.round(done/tasks.length*100);
+    const pctEl=document.getElementById('rm-this-pct');
+    if(pctEl){pctEl.textContent=done+'/'+tasks.length+' ('+pct+'%)';pctEl.style.color=pct>=100?'var(--green)':pct>=50?'var(--amber)':'var(--red)';}
+    const fill=document.getElementById('rm-this-fill');
+    if(fill){fill.style.width=pct+'%';fill.style.background=pct>=100?'var(--green)':pct>=50?'var(--amber)':'var(--red)';}
+    document.getElementById('rm-this').innerHTML=tasks.map(p=>taskCard(p)).join('');
   }
   if(rm.nextWeek){
     document.getElementById('rm-nextweek').textContent='Week of '+rm.nextWeek.weekOf;
-    document.getElementById('rm-next').innerHTML=rm.nextWeek.priorities.map(p=>{
-      return`<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border)">
-        <span style="font-size:14px">📋</span>
-        <div style="flex:1"><span style="font-size:12px;font-weight:500">${p.task}</span></div>
-        <span style="font-size:9px;color:var(--muted)">${p.owner}</span>
-      </div>`;
-    }).join('');
+    document.getElementById('rm-next').innerHTML=rm.nextWeek.priorities.map(p=>taskCard(p,false)).join('');
   }
 }
 
