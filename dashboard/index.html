@@ -135,41 +135,101 @@ tr:hover td{background:rgba(139,92,246,.03)}
 
   <!-- ===== BRAND PAGE ===== -->
   <div class="page" id="p-brand">
-    <div class="brand-header"><h2>🏷 THALYVE™</h2><span class="brand-badge">ACTIVE</span></div>
-
-    <div class="grid g6">
-      <div class="card"><div class="sl">Brand Revenue</div><div class="sv green" id="b-rev">$0</div><div class="ss" id="b-orders">0 orders</div></div>
-      <div class="card"><div class="sl">Ad Spend</div><div class="sv red" id="b-ads">$0</div><div class="ss" id="b-daily">$100/day budget</div></div>
-      <div class="card"><div class="sl">COGS</div><div class="sv amber" id="b-cogs">$0</div></div>
-      <div class="card"><div class="sl">Brand Profit</div><div class="sv" id="b-profit">$0</div><div class="ss" id="b-margin">—</div></div>
-      <div class="card"><div class="sl">ROAS</div><div class="sv purple" id="b-roas">0.00x</div><div class="ss" id="b-roast">—</div></div>
-      <div class="card"><div class="sl">CPA</div><div class="sv amber" id="b-cpa">$0</div><div class="ss" id="b-cpat">—</div></div>
-    </div>
-
-    <!-- Product breakdown -->
-    <div class="card">
-      <h2>📦 Product Breakdown</h2>
-      <table>
-        <thead><tr><th>Product</th><th>Price</th><th>COGS</th><th>Margin</th><th>Max CPA</th><th>Orders</th><th>Revenue</th></tr></thead>
-        <tbody id="b-prods"></tbody>
-      </table>
-    </div>
-
-    <!-- Media Buying -->
-    <div class="hl hl-r" style="margin-top:12px">
-      <h3 style="font-size:13px;margin-bottom:8px">📡 Media Buying</h3>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;text-align:center">
-        <div><div style="font-size:18px;font-weight:700" class="blue">Meta</div><div class="sl">Platform</div></div>
-        <div><div style="font-size:18px;font-weight:700">Ad Rail</div><div class="sl">Agency</div></div>
-        <div><div style="font-size:18px;font-weight:700" class="amber">$100/day</div><div class="sl">Test Budget</div></div>
-        <div><div style="font-size:18px;font-weight:700" class="green" id="b-adleft">$1,000</div><div class="sl">Account Balance</div></div>
+    <!-- Brand Header -->
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+      <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">🏷</div>
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px"><h2 style="margin:0;font-size:20px">THALYVE™</h2><span class="brand-badge">ACTIVE</span></div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">Health & Wellness · Anti-Shortcut · Foundations First</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:11px;color:var(--muted)">Ad Launch</div>
+        <div style="font-size:13px;font-weight:700;color:var(--amber)" id="b-launch-status">Feb 28</div>
       </div>
     </div>
 
-    <!-- Brand daily chart -->
-    <div class="card" style="margin-top:12px">
-      <h2>📈 Daily Performance</h2>
-      <div id="b-chart"><div class="empty">No data yet</div></div>
+    <!-- Hero KPIs — 3 big cards -->
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px">
+      <div class="card" style="text-align:center;border-top:3px solid var(--green);padding:16px">
+        <div class="sl" style="margin-bottom:6px">Revenue</div>
+        <div style="font-size:28px;font-weight:800;color:var(--green)" id="b-rev">$0.00</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px" id="b-orders">0 orders</div>
+      </div>
+      <div class="card" style="text-align:center;border-top:3px solid var(--red);padding:16px">
+        <div class="sl" style="margin-bottom:6px">Ad Spend</div>
+        <div style="font-size:28px;font-weight:800;color:var(--red)" id="b-ads">$0.00</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px" id="b-daily">$100/day budget</div>
+      </div>
+      <div class="card" style="text-align:center;border-top:3px solid var(--blue);padding:16px">
+        <div class="sl" style="margin-bottom:6px">Net Profit</div>
+        <div style="font-size:28px;font-weight:800" id="b-profit">$0.00</div>
+        <div style="font-size:11px;margin-top:4px" id="b-margin">—</div>
+      </div>
+    </div>
+
+    <!-- Secondary KPIs — compact row -->
+    <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">
+      <div class="card" style="text-align:center;padding:10px">
+        <div style="font-size:10px;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px">COGS</div>
+        <div style="font-size:18px;font-weight:700;color:var(--amber);margin-top:2px" id="b-cogs">$0</div>
+      </div>
+      <div class="card" style="text-align:center;padding:10px">
+        <div style="font-size:10px;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px">ROAS</div>
+        <div style="font-size:18px;font-weight:700;color:var(--purple);margin-top:2px" id="b-roas">0.00x</div>
+        <div style="font-size:9px;margin-top:1px" id="b-roast">—</div>
+      </div>
+      <div class="card" style="text-align:center;padding:10px">
+        <div style="font-size:10px;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px">CPA</div>
+        <div style="font-size:18px;font-weight:700;color:var(--amber);margin-top:2px" id="b-cpa">$0</div>
+        <div style="font-size:9px;margin-top:1px" id="b-cpat">—</div>
+      </div>
+      <div class="card" style="text-align:center;padding:10px">
+        <div style="font-size:10px;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px">Balance</div>
+        <div style="font-size:18px;font-weight:700;color:var(--green);margin-top:2px" id="b-adleft">$1,000</div>
+      </div>
+    </div>
+
+    <!-- Two-column: Products + Media Buying -->
+    <div class="grid" style="grid-template-columns:1fr 300px;gap:12px;margin-bottom:12px">
+      <!-- Product Breakdown -->
+      <div class="card">
+        <h2 style="font-size:13px;margin-bottom:10px">📦 Products</h2>
+        <div id="b-prods-cards"></div>
+        <table style="display:none"><tbody id="b-prods"></tbody></table>
+      </div>
+
+      <!-- Media Buying Sidebar -->
+      <div class="card" style="background:linear-gradient(135deg,rgba(59,130,246,0.06),rgba(124,58,237,0.06))">
+        <h2 style="font-size:13px;margin-bottom:12px">📡 Media Buying</h2>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px">
+            <span style="font-size:11px;color:var(--muted)">Platform</span>
+            <span style="font-size:13px;font-weight:700;color:var(--blue)">Meta Ads</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px">
+            <span style="font-size:11px;color:var(--muted)">Agency</span>
+            <span style="font-size:13px;font-weight:700">Ad Rail <span style="font-size:9px;color:var(--muted)">(3%)</span></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px">
+            <span style="font-size:11px;color:var(--muted)">Test Budget</span>
+            <span style="font-size:13px;font-weight:700;color:var(--amber)">$100/day</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px">
+            <span style="font-size:11px;color:var(--muted)">Structure</span>
+            <span style="font-size:11px;font-weight:600">3 BMs · 1 Pixel</span>
+          </div>
+          <div style="margin-top:4px;padding:8px;border-radius:8px;background:rgba(76,175,80,0.08);border:1px solid rgba(76,175,80,0.2);text-align:center">
+            <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px">Warmup Status</div>
+            <div style="font-size:12px;font-weight:700;color:var(--amber);margin-top:2px" id="b-warmup">In Progress · $5/day</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Daily Performance Chart -->
+    <div class="card">
+      <h2 style="font-size:13px;margin-bottom:8px">📈 Daily Performance</h2>
+      <div id="b-chart"><div class="empty" style="padding:24px;font-size:12px;color:var(--muted)">📊 Data will populate once ads go live (Feb 28)</div></div>
     </div>
   </div>
 
@@ -558,13 +618,34 @@ function render(){
     document.getElementById('b-cpat').textContent=bcpa>0?(bcpa<20?'🟢 Strong':bcpa<30?'🟡 Watch':'🔴 High'):'—';
     document.getElementById('b-adleft').textContent=f(1000-ta);
 
-    // Product table
+    // Product cards
     const bpt=document.getElementById('b-prods');
+    const bpc=document.getElementById('b-prods-cards');
     bpt.innerHTML=tb.products.map(p=>{
       const fee=p.price*p.txnFee/100;const m=p.price-p.cogs-p.shipping-fee;const pct=p.price>0?(m/p.price*100):0;
       const pd=td.filter(d=>d.productId===p.id);const po=pd.reduce((s,d)=>s+d.orders,0);const pr=pd.reduce((s,d)=>s+d.revenue,0);
       return`<tr><td>${p.name}<br><span style="color:var(--muted);font-size:9px">${p.sku}</span></td><td>${c}${p.price}</td><td>${c}${p.cogs}</td><td class="${pct>=0?'green':'red'}">${pct.toFixed(1)}%</td><td class="amber">${f(m)}</td><td>${po}</td><td class="green">${f(pr)}</td></tr>`;
     }).join('');
+    if(bpc){
+      bpc.innerHTML=tb.products.map(p=>{
+        const fee=p.price*p.txnFee/100;const m=p.price-p.cogs-p.shipping-fee;const pct=p.price>0?(m/p.price*100):0;
+        const pd=td.filter(d=>d.productId===p.id);const po=pd.reduce((s,d)=>s+d.orders,0);const pr=pd.reduce((s,d)=>s+d.revenue,0);
+        const marginColor=pct>=70?'var(--green)':pct>=50?'var(--amber)':'var(--red)';
+        return`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--bg);border-radius:8px;margin-bottom:6px">
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:700">${p.name}</div>
+            <div style="font-size:9px;color:var(--muted)">${p.sku}</div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;text-align:center">
+            <div><div style="font-size:12px;font-weight:700">${c}${p.price}</div><div style="font-size:8px;color:var(--muted)">PRICE</div></div>
+            <div><div style="font-size:12px;font-weight:700">${c}${p.cogs}</div><div style="font-size:8px;color:var(--muted)">COGS</div></div>
+            <div><div style="font-size:12px;font-weight:700;color:${marginColor}">${pct.toFixed(0)}%</div><div style="font-size:8px;color:var(--muted)">MARGIN</div></div>
+            <div><div style="font-size:12px;font-weight:700;color:var(--amber)">${f(m)}</div><div style="font-size:8px;color:var(--muted)">MAX CPA</div></div>
+            <div><div style="font-size:12px;font-weight:700">${po}</div><div style="font-size:8px;color:var(--muted)">ORDERS</div></div>
+          </div>
+        </div>`;
+      }).join('');
+    }
 
     // Brand chart
     const bc2=document.getElementById('b-chart');
