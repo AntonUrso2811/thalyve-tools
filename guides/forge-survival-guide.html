@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge Survival Guide — Never Lose Your AI Again</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05060a;--card:#0f1018;--card2:#12131d;--border:#1a1b28;--border2:#252638;--text:#eeeef2;--sub:#7c7c96;--dim:#4a4a62;--accent:#7c5cfc;--accent2:#9b7dff;--accent3:#c0afff;--green:#0fd68c;--green-bg:rgba(15,214,140,.08);--amber:#ffb020;--amber-bg:rgba(255,176,32,.08);--red:#ff4d6a;--red-bg:rgba(255,77,106,.08)}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+.app{max-width:800px;margin:0 auto;padding:20px 16px 60px}
+.header{text-align:center;padding:30px 0 24px;border-bottom:1px solid var(--border);margin-bottom:32px}
+.brand-icon{width:56px;height:56px;background:linear-gradient(135deg,var(--red),#dc2626);border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 16px rgba(255,77,106,.25);margin-bottom:12px}
+h1{font-size:22px;font-weight:800;letter-spacing:.5px}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:var(--sub);font-size:12px;margin-top:6px;line-height:1.5}
+.nav{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.nav a{font-size:11px;color:var(--accent2);text-decoration:none;padding:5px 14px;border:1px solid var(--border);border-radius:20px;transition:all .15s}
+.nav a:hover{border-color:var(--accent);background:rgba(124,92,252,.08)}
+.toc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:32px}
+.toc h3{font-size:12px;color:var(--accent2);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.toc a{display:block;font-size:13px;color:var(--sub);text-decoration:none;padding:6px 0;border-bottom:1px solid var(--border);transition:color .15s}
+.toc a:last-child{border:none}
+.toc a:hover{color:var(--accent2)}
+.toc a span{margin-right:8px}
+
+.alert{background:var(--red-bg);border:1px solid rgba(255,77,106,.25);border-radius:12px;padding:20px;margin-bottom:24px}
+.alert-green{background:var(--green-bg);border-color:rgba(15,214,140,.25)}
+.alert-amber{background:var(--amber-bg);border-color:rgba(255,176,32,.25)}
+.alert h3{font-size:14px;font-weight:800;margin-bottom:8px}
+.alert p,.alert li{font-size:13px;line-height:1.6;color:var(--sub)}
+.alert strong{color:var(--text)}
+
+section{margin-bottom:40px}
+section h2{font-size:16px;font-weight:800;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+section h3{font-size:14px;font-weight:700;margin:20px 0 10px;color:var(--accent2)}
+p{font-size:13px;line-height:1.7;color:var(--sub);margin-bottom:12px}
+strong{color:var(--text)}
+ul,ol{margin:8px 0 16px 20px}
+li{font-size:13px;line-height:1.7;color:var(--sub);margin-bottom:4px}
+code{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:2px 8px;font-size:12px;color:var(--green);font-family:'SF Mono',Consolas,monospace}
+pre{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin:12px 0 16px;overflow-x:auto}
+pre code{border:none;padding:0;display:block;line-height:1.8;font-size:12px}
+table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:12px}
+th{background:var(--card);color:var(--accent2);text-align:left;padding:10px 12px;border:1px solid var(--border);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:10px}
+td{padding:10px 12px;border:1px solid var(--border);color:var(--sub)}
+tr:hover td{background:var(--card)}
+.step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:12px 0;position:relative;padding-left:56px}
+.step-num{position:absolute;left:16px;top:18px;width:28px;height:28px;background:linear-gradient(135deg,var(--accent),#5c3cdc);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:white}
+.step h4{font-size:13px;font-weight:700;margin-bottom:6px}
+.step p{margin-bottom:4px}
+.tag{display:inline-block;font-size:9px;padding:3px 10px;border-radius:10px;font-weight:700;margin-right:4px}
+.tag-easy{background:var(--green-bg);color:var(--green);border:1px solid rgba(15,214,140,.2)}
+.tag-medium{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(255,176,32,.2)}
+.tag-hard{background:var(--red-bg);color:var(--red);border:1px solid rgba(255,77,106,.2)}
+.footer{text-align:center;padding:24px;font-size:9px;color:var(--dim);letter-spacing:.3px;border-top:1px solid var(--border);margin-top:40px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="header">
+  <div class="brand-icon">🚨</div>
+  <h1>The <em>Forge Survival Guide</em></h1>
+  <p class="sub">Everything you need to fix problems, access files, and never lose Forge again.<br>Written for Anton. No tech jargon. Copy-paste commands.</p>
+  <div class="nav">
+    <a href="../">🏠 Home</a>
+    <a href="../hub/">📁 SOP Hub</a>
+    <a href="../dashboard/">📊 Dashboard</a>
+  </div>
+</div>
+
+<div class="toc">
+  <h3>📑 What's In This Guide</h3>
+  <a href="#rule1"><span>⛔</span> The #1 Rule (Read This First)</a>
+  <a href="#quick"><span>⚡</span> Quick Fix Cheat Sheet</a>
+  <a href="#scenarios"><span>🔧</span> Every Problem & How to Fix It</a>
+  <a href="#files"><span>📂</span> Where All Your Files Live</a>
+  <a href="#access"><span>📱</span> How to Access Everything From Your Phone</a>
+  <a href="#backups"><span>💾</span> Your 3-Layer Backup System</a>
+  <a href="#vps"><span>🌍</span> VPS Setup — Travel Without Worrying</a>
+  <a href="#telegram"><span>💬</span> Reconnecting Telegram Safely</a>
+  <a href="#emergency"><span>🆘</span> Full Emergency Recovery (Nuclear Option)</a>
+</div>
+
+<!-- RULE 1 -->
+<section id="rule1">
+<div class="alert">
+  <h3>⛔ THE #1 RULE — READ THIS BEFORE DOING ANYTHING</h3>
+  <p><strong style="color:var(--red);font-size:16px;">NEVER reinstall OpenClaw without backing up first.</strong></p>
+  <p>On Feb 25, 2026, a rate limit caused Forge to stop responding on Telegram. The rate limit was <strong>harmless</strong> — it would have fixed itself in 10 minutes. But during troubleshooting, OpenClaw was reinstalled, which <strong>wiped the entire workspace</strong> — all memory, all files, everything.</p>
+  <p><strong>The rate limit didn't kill Forge. The reinstall did.</strong></p>
+  <p>Now we have backups on GitHub, so even a reinstall is recoverable. But the point stands: <strong>don't reinstall. Just restart.</strong></p>
+</div>
+</section>
+
+<!-- QUICK FIX -->
+<section id="quick">
+<h2>⚡ Quick Fix Cheat Sheet</h2>
+<p>90% of problems are fixed with <strong>one command</strong>. Open Terminal on the Mac and type:</p>
+<pre><code>openclaw gateway restart</code></pre>
+<p>Wait 60 seconds. Try messaging Forge again. That's it.</p>
+
+<table>
+<tr><th>Problem</th><th>Fix</th><th>Time</th></tr>
+<tr><td>Forge not responding</td><td><code>openclaw gateway restart</code></td><td>60 sec</td></tr>
+<tr><td>Rate limit / cooldown</td><td>Wait 5-15 min, then restart gateway</td><td>15 min</td></tr>
+<tr><td>Telegram broken but webchat works</td><td>Close webchat tab + restart gateway</td><td>2 min</td></tr>
+<tr><td>Forge lost memory</td><td><code>cd ~/.openclaw/workspace && git pull</code></td><td>30 sec</td></tr>
+<tr><td>Everything broken</td><td>Back up first, then see Emergency section</td><td>30 min</td></tr>
+</table>
+</section>
+
+<!-- SCENARIOS -->
+<section id="scenarios">
+<h2>🔧 Every Problem & How to Fix It</h2>
+
+<h3>🔴 Problem 1: Forge stops responding on Telegram</h3>
+<div class="step"><div class="step-num">1</div><h4>Check if Forge is alive</h4><p>Open Safari on the Mac → go to <strong>http://127.0.0.1:18789</strong></p><p>If the webchat loads and Forge responds → he's alive, it's just a Telegram routing issue.</p></div>
+<div class="step"><div class="step-num">2</div><h4>Restart the gateway</h4><pre><code>openclaw gateway restart</code></pre><p>Wait 60 seconds. Message Forge on Telegram.</p></div>
+<div class="step"><div class="step-num">3</div><h4>Close any webchat tabs</h4><p>If you have <strong>http://127.0.0.1:18789</strong> open in a browser, <strong>close that tab</strong>. The webchat can hijack Telegram routing. This happened to us on Feb 25.</p></div>
+<div class="step"><div class="step-num">4</div><h4>If still broken — stop and start</h4><pre><code>openclaw gateway stop
+# Wait 10 seconds
+openclaw gateway start</code></pre></div>
+<div class="step"><div class="step-num">5</div><h4>Check the logs</h4><pre><code>openclaw logs --follow</code></pre><p>Look for error messages. Screenshot them and send to <a href="https://discord.com/invite/clawd" style="color:var(--accent2)">OpenClaw Discord</a>.</p></div>
+
+<h3>🟡 Problem 2: Rate limit / API cooldown</h3>
+<p><strong>What it looks like:</strong> Forge responds slowly, gives errors, or goes silent.</p>
+<div class="alert alert-amber">
+  <h3>What to do:</h3>
+  <ol>
+    <li><strong>WAIT.</strong> Rate limits reset automatically (5-15 minutes)</li>
+    <li>Check your Anthropic dashboard: <a href="https://console.anthropic.com" style="color:var(--amber)">console.anthropic.com</a> → Usage</li>
+    <li>If you've hit a <strong>spend limit</strong>, increase it in the dashboard under Settings → Limits</li>
+    <li>After waiting: <code>openclaw gateway restart</code></li>
+  </ol>
+  <p><br><strong>What NOT to do:</strong> ❌ Don't reinstall. ❌ Don't delete files. ❌ Don't panic. Just wait.</p>
+</div>
+
+<h3>🟡 Problem 3: Forge seems "dumb" or lost memory</h3>
+<p>This is <strong>normal</strong> after a fresh session start. Forge reads memory files at the beginning of each conversation. If the files are there, memory is there.</p>
+<pre><code># Check if memory files exist
+cat ~/.openclaw/workspace/MEMORY.md | head -5
+
+# If missing, restore from GitHub
+cd ~/.openclaw/workspace && git pull origin main</code></pre>
+
+<h3>🟡 Problem 4: Forge is on the wrong model / running slow</h3>
+<pre><code># Check current model
+openclaw agents list
+
+# Check status
+openclaw status</code></pre>
+<p>If it shows Sonnet instead of Opus, that's the auto-fallback working. Opus will come back when rate limits clear.</p>
+</section>
+
+<!-- FILES -->
+<section id="files">
+<h2>📂 Where All Your Files Live</h2>
+
+<h3>On the Mac</h3>
+<table>
+<tr><th>What</th><th>Location</th><th>Terminal Command</th></tr>
+<tr><td>🧠 Forge's Memory</td><td>~/.openclaw/workspace/MEMORY.md</td><td><code>cat ~/.openclaw/workspace/MEMORY.md</code></td></tr>
+<tr><td>👤 Your Profile</td><td>~/.openclaw/workspace/USER.md</td><td><code>cat ~/.openclaw/workspace/USER.md</code></td></tr>
+<tr><td>🔱 Forge's Identity</td><td>~/.openclaw/workspace/IDENTITY.md</td><td><code>cat ~/.openclaw/workspace/IDENTITY.md</code></td></tr>
+<tr><td>💫 Forge's Personality</td><td>~/.openclaw/workspace/SOUL.md</td><td><code>cat ~/.openclaw/workspace/SOUL.md</code></td></tr>
+<tr><td>📝 Daily Logs</td><td>~/.openclaw/workspace/memory/</td><td><code>ls ~/.openclaw/workspace/memory/</code></td></tr>
+<tr><td>🚨 Emergency Guide</td><td>~/.openclaw/workspace/SOS.md</td><td><code>cat ~/.openclaw/workspace/SOS.md</code></td></tr>
+<tr><td>⚙️ OpenClaw Config</td><td>~/.openclaw/openclaw.json</td><td><code>cat ~/.openclaw/openclaw.json</code></td></tr>
+<tr><td>🔑 Agent Config</td><td>~/.openclaw/agents/main/</td><td>Don't touch unless rebuilding</td></tr>
+<tr><td>💾 Full Backup</td><td>~/.openclaw-backup-20260226/</td><td><code>ls ~/.openclaw-backup-20260226/</code></td></tr>
+</table>
+
+<h3>On GitHub (accessible from anywhere)</h3>
+<table>
+<tr><th>What</th><th>URL</th></tr>
+<tr><td>🧠 Forge's Memory</td><td><a href="https://github.com/AntonUrso2811/forge-workspace/blob/main/MEMORY.md" style="color:var(--accent2)">github.com/AntonUrso2811/forge-workspace/blob/main/MEMORY.md</a></td></tr>
+<tr><td>🚨 Emergency Guide</td><td><a href="https://github.com/AntonUrso2811/forge-workspace/blob/main/SOS.md" style="color:var(--accent2)">github.com/AntonUrso2811/forge-workspace/blob/main/SOS.md</a></td></tr>
+<tr><td>📁 All Workspace Files</td><td><a href="https://github.com/AntonUrso2811/forge-workspace" style="color:var(--accent2)">github.com/AntonUrso2811/forge-workspace</a></td></tr>
+</table>
+
+<h3>On GitHub Pages (interactive tools — works on phone)</h3>
+<table>
+<tr><th>Tool</th><th>URL</th></tr>
+<tr><td>🏠 Landing Page</td><td><a href="https://antonurso2811.github.io/thalyve-tools/" style="color:var(--accent2)">antonurso2811.github.io/thalyve-tools/</a></td></tr>
+<tr><td>📁 SOP Hub</td><td><a href="https://antonurso2811.github.io/thalyve-tools/hub/" style="color:var(--accent2)">antonurso2811.github.io/thalyve-tools/hub/</a></td></tr>
+<tr><td>🔍 Product Tracker</td><td><a href="https://antonurso2811.github.io/thalyve-tools/tracker/" style="color:var(--accent2)">antonurso2811.github.io/thalyve-tools/tracker/</a></td></tr>
+<tr><td>📊 Command Centre</td><td><a href="https://antonurso2811.github.io/thalyve-tools/dashboard/" style="color:var(--accent2)">antonurso2811.github.io/thalyve-tools/dashboard/</a></td></tr>
+<tr><td>👥 Org Chart</td><td><a href="https://antonurso2811.github.io/thalyve-tools/org/" style="color:var(--accent2)">antonurso2811.github.io/thalyve-tools/org/</a></td></tr>
+<tr><td>💪 Personal Hub</td><td><a href="https://antonurso2811.github.io/thalyve-tools/personal/" style="color:var(--accent2)">antonurso2811.github.io/thalyve-tools/personal/</a></td></tr>
+<tr><td>🔥 Execution OS</td><td><a href="https://antonurso2811.github.io/thalyve-tools/personal/execution/" style="color:var(--accent2)">antonurso2811.github.io/thalyve-tools/personal/execution/</a></td></tr>
+<tr><td>🧠 Memory Vault</td><td><a href="https://antonurso2811.github.io/thalyve-tools/memory/" style="color:var(--accent2)">antonurso2811.github.io/thalyve-tools/memory/</a></td></tr>
+</table>
+
+<div class="alert alert-green">
+  <h3>💡 Pro Tip: Bookmark These on Your Phone</h3>
+  <p>Open each link in Safari → tap Share → "Add to Home Screen". They'll appear as app icons. Access everything instantly, anywhere in the world.</p>
+</div>
+</section>
+
+<!-- ACCESS -->
+<section id="access">
+<h2>📱 How to Access Everything From Your Phone</h2>
+
+<h3>Method 1: GitHub Pages (Best — works anywhere)</h3>
+<p>All your tools are live at <strong>antonurso2811.github.io/thalyve-tools/</strong>. Open any link above on your phone. No login needed. Works worldwide.</p>
+
+<h3>Method 2: GitHub (for raw files like MEMORY.md)</h3>
+<p>Go to <strong>github.com/AntonUrso2811/forge-workspace</strong> and tap any file to read it. You can even edit files directly on GitHub from your phone — changes will sync back to the Mac on the next git pull.</p>
+
+<h3>Method 3: Telegram (for talking to Forge)</h3>
+<p>Just message Forge on Telegram. He reads all his memory files at the start of each session. If you need something, just ask.</p>
+
+<h3>Method 4: Terminal on the Mac (for commands)</h3>
+<p>Open Terminal → type the commands shown in this guide. Copy-paste ready.</p>
+</section>
+
+<!-- BACKUPS -->
+<section id="backups">
+<h2>💾 Your 3-Layer Backup System</h2>
+
+<table>
+<tr><th>Layer</th><th>What</th><th>Where</th><th>How Often</th></tr>
+<tr><td><span class="tag tag-easy">AUTO</span></td><td>Git backup to GitHub</td><td>github.com/AntonUrso2811/forge-workspace</td><td>Every 6 hours</td></tr>
+<tr><td><span class="tag tag-easy">AUTO</span></td><td>Git history</td><td>~/.openclaw/workspace/.git/</td><td>Every commit</td></tr>
+<tr><td><span class="tag tag-medium">MANUAL</span></td><td>Full OpenClaw backup</td><td>~/.openclaw-backup-YYYYMMDD/</td><td>Run before any changes</td></tr>
+</table>
+
+<h3>How to create a manual backup (10 seconds)</h3>
+<pre><code># Back up workspace to GitHub RIGHT NOW
+cd ~/.openclaw/workspace && git add -A && git commit -m "Manual backup" && git push origin main
+
+# Full system backup (everything including agent config)
+cp -r ~/.openclaw ~/.openclaw-backup-$(date +%Y%m%d)</code></pre>
+
+<h3>How to restore from GitHub</h3>
+<pre><code>cd ~/.openclaw/workspace
+git pull origin main</code></pre>
+<p>That's it. All files restored in seconds.</p>
+</section>
+
+<!-- VPS -->
+<section id="vps">
+<h2>🌍 VPS Setup — Travel Without Worrying</h2>
+<p>Right now, Forge runs on the Mac at home. If you close the lid, turn it off, or leave it behind — Forge goes offline. A VPS fixes this permanently.</p>
+
+<h3>What is a VPS?</h3>
+<p>A Virtual Private Server — a computer in the cloud that's always on, always connected. Think of it as a Mac that never sleeps, never loses WiFi, and runs 24/7 from a data centre.</p>
+
+<h3>Recommended Providers</h3>
+<table>
+<tr><th>Provider</th><th>Cost</th><th>Best For</th><th>Link</th></tr>
+<tr><td>Hetzner</td><td>~€4/month</td><td>Best value, EU servers</td><td><a href="https://hetzner.com/cloud" style="color:var(--accent2)">hetzner.com/cloud</a></td></tr>
+<tr><td>DigitalOcean</td><td>~$6/month</td><td>Easy setup, good docs</td><td><a href="https://digitalocean.com" style="color:var(--accent2)">digitalocean.com</a></td></tr>
+<tr><td>Vultr</td><td>~$6/month</td><td>Many locations</td><td><a href="https://vultr.com" style="color:var(--accent2)">vultr.com</a></td></tr>
+<tr><td>Oracle Cloud</td><td>FREE tier</td><td>Free forever (limited)</td><td><a href="https://cloud.oracle.com/free" style="color:var(--accent2)">cloud.oracle.com/free</a></td></tr>
+</table>
+
+<h3>VPS Setup — Step by Step</h3>
+<div class="step"><div class="step-num">1</div><h4>Create a VPS</h4><p>Pick a provider above. Choose <strong>Ubuntu 24.04</strong>, minimum <strong>2GB RAM</strong>, <strong>1 vCPU</strong>. Location: <strong>London</strong> (closest to you).</p></div>
+<div class="step"><div class="step-num">2</div><h4>SSH into the VPS</h4><pre><code># You'll get an IP address and password from the provider
+ssh root@YOUR_VPS_IP</code></pre></div>
+<div class="step"><div class="step-num">3</div><h4>Install Node.js + OpenClaw</h4><pre><code># Install Node.js
+curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+apt-get install -y nodejs
+
+# Install OpenClaw
+npm install -g openclaw
+
+# Set up OpenClaw
+openclaw init</code></pre></div>
+<div class="step"><div class="step-num">4</div><h4>Restore Forge's workspace from GitHub</h4><pre><code>cd ~/.openclaw/workspace
+git init
+git remote add origin https://github.com/AntonUrso2811/forge-workspace.git
+git fetch origin
+git reset --hard origin/main</code></pre></div>
+<div class="step"><div class="step-num">5</div><h4>Set up your Anthropic API key</h4><pre><code>openclaw agents add main
+# Follow the prompts — enter your API key from console.anthropic.com</code></pre></div>
+<div class="step"><div class="step-num">6</div><h4>Connect Telegram</h4><pre><code>openclaw channels add telegram
+# Follow the prompts — enter your Telegram bot token</code></pre></div>
+<div class="step"><div class="step-num">7</div><h4>Start the gateway</h4><pre><code>openclaw gateway start</code></pre><p>Forge is now running on the VPS. 24/7, anywhere in the world. Close your laptop, go travelling, it keeps running.</p></div>
+
+<h3>When to move to VPS</h3>
+<div class="alert alert-amber">
+  <h3>My recommendation:</h3>
+  <p><strong>Not yet.</strong> Your Mac setup is fine for now. Move to a VPS when:</p>
+  <ul>
+    <li>You're about to travel and need Forge online while you're away</li>
+    <li>You're tired of keeping the Mac open and connected</li>
+    <li>You want true 24/7 reliability</li>
+  </ul>
+  <p>When you're ready, tell Forge and he'll do the migration for you. All files are on GitHub — the move takes ~15 minutes.</p>
+</div>
+
+<h3>What about the Mac after VPS?</h3>
+<p>You can either:</p>
+<ul>
+<li><strong>Keep both running</strong> — Mac as development, VPS as production (advanced)</li>
+<li><strong>Switch fully to VPS</strong> — shut down OpenClaw on the Mac, use it as a normal laptop</li>
+<li><strong>Use Mac as backup</strong> — if VPS goes down, start gateway on Mac as emergency fallback</li>
+</ul>
+</section>
+
+<!-- TELEGRAM -->
+<section id="telegram">
+<h2>💬 Reconnecting Telegram Safely</h2>
+<p>If you're worried about reconnecting Telegram after the issues on Feb 25, here's what you need to know:</p>
+
+<div class="alert alert-green">
+  <h3>✅ It's safe to reconnect.</h3>
+  <p>The Telegram issues were caused by session routing (webchat hijacking the session), NOT by Telegram itself. Here's what's different now:</p>
+  <ul>
+    <li>✅ Workspace is backed up to GitHub (wasn't before)</li>
+    <li>✅ Full system backup exists on the Mac</li>
+    <li>✅ SOS guide exists for every scenario</li>
+    <li>✅ Auto-backup runs every 6 hours</li>
+    <li>✅ Even if everything breaks, one <code>git clone</code> restores Forge</li>
+  </ul>
+</div>
+
+<h3>If Telegram stops working again:</h3>
+<ol>
+  <li><strong>Don't panic.</strong> Your data is safe on GitHub.</li>
+  <li>Close any webchat browser tabs</li>
+  <li>Run <code>openclaw gateway restart</code></li>
+  <li>Wait 60 seconds and try again</li>
+  <li>If still broken, use webchat (http://127.0.0.1:18789) as fallback while troubleshooting</li>
+</ol>
+
+<h3>To set up Telegram fresh (if needed):</h3>
+<pre><code># Check if Telegram is already configured
+openclaw channels status
+
+# If not configured, add it
+openclaw channels add telegram
+# Enter your bot token when prompted
+
+# Restart gateway
+openclaw gateway restart</code></pre>
+</section>
+
+<!-- EMERGENCY -->
+<section id="emergency">
+<h2>🆘 Full Emergency Recovery (Nuclear Option)</h2>
+<p>Only use this if <strong>everything</strong> is broken and nothing else works.</p>
+
+<div class="alert">
+  <h3>⚠️ STEP 0: BACK UP FIRST</h3>
+  <p>Before doing ANYTHING destructive, run this:</p>
+  <pre><code>cp -r ~/.openclaw ~/.openclaw-backup-emergency</code></pre>
+  <p>This takes 5 seconds and saves everything. <strong>DO IT.</strong></p>
+</div>
+
+<h3>Full Rebuild Steps</h3>
+<div class="step"><div class="step-num">1</div><h4>Back up (if you haven't)</h4><pre><code>cp -r ~/.openclaw ~/.openclaw-backup-emergency</code></pre></div>
+<div class="step"><div class="step-num">2</div><h4>Reinstall OpenClaw</h4><pre><code>npm install -g openclaw</code></pre></div>
+<div class="step"><div class="step-num">3</div><h4>Restore workspace from GitHub</h4><pre><code>cd ~/.openclaw/workspace
+git init
+git remote add origin https://github.com/AntonUrso2811/forge-workspace.git
+git fetch origin
+git reset --hard origin/main</code></pre></div>
+<div class="step"><div class="step-num">4</div><h4>Restore agent config from backup</h4><pre><code>cp -r ~/.openclaw-backup-emergency/agents ~/.openclaw/agents/</code></pre></div>
+<div class="step"><div class="step-num">5</div><h4>Start everything</h4><pre><code>openclaw gateway start</code></pre></div>
+<div class="step"><div class="step-num">6</div><h4>Test</h4><p>Open webchat: <strong>http://127.0.0.1:18789</strong> — say hello. If Forge responds, you're back.</p></div>
+
+<h3>If you don't have the backup (worst case)</h3>
+<pre><code># Reinstall OpenClaw
+npm install -g openclaw
+
+# Initialize fresh
+openclaw init
+
+# Set up API key
+openclaw agents add main
+
+# Restore workspace from GitHub
+cd ~/.openclaw/workspace
+git init
+git remote add origin https://github.com/AntonUrso2811/forge-workspace.git
+git fetch origin
+git reset --hard origin/main
+
+# Set up Telegram
+openclaw channels add telegram
+
+# Start
+openclaw gateway start</code></pre>
+<p>Forge will be back with <strong>all his memories</strong> because they're on GitHub. The only thing you'll need to re-enter is your API key and Telegram bot token.</p>
+</section>
+
+<div class="alert alert-green" style="margin-top:40px;text-align:center">
+  <h3>💡 Remember</h3>
+  <p style="font-size:15px"><strong>Forge's brain lives on GitHub.</strong> As long as <a href="https://github.com/AntonUrso2811/forge-workspace" style="color:var(--green)">github.com/AntonUrso2811/forge-workspace</a> exists, Forge can never truly die. Any machine, anywhere in the world, can bring him back in 15 minutes.</p>
+</div>
+
+<div class="footer">🔱 Forge Survival Guide v1.0 — Written by Forge, tested by pain — Last updated: 26 Feb 2026<br>Auto-updated by Forge whenever new scenarios arise</div>
+
+</div>
+</body>
+</html>
