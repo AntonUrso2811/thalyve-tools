@@ -267,24 +267,84 @@ tr:hover td{background:rgba(139,92,246,.03)}
 
   <!-- ===== DAILY LOG ===== -->
   <div class="page" id="p-log">
-    <div class="card" style="margin-bottom:12px">
-      <h2>📊 Log Daily Numbers</h2>
-      <div class="fg">
-        <div class="fg-item"><label>Date</label><input type="date" id="d-date"></div>
-        <div class="fg-item"><label>Brand</label><select id="d-brand"></select></div>
-        <div class="fg-item"><label>Product</label><select id="d-prod"></select></div>
-        <div class="fg-item"><label>Orders</label><input type="number" id="d-orders" value="0" min="0"></div>
-        <div class="fg-item"><label>Revenue ($)</label><input type="number" id="d-rev" step="0.01" placeholder="Auto from orders"></div>
-        <div class="fg-item"><label>Ad Spend ($)</label><input type="number" id="d-ads" step="0.01" value="0"></div>
-        <div class="fg-item fw"><button onclick="addDaily()">+ Add Entry</button></div>
+    <!-- Header -->
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+      <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">📊</div>
+      <div style="flex:1">
+        <h2 style="margin:0;font-size:18px">Daily P&L Log</h2>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">Revenue · Ad Spend · Orders · Profit — tracked daily per product</div>
+      </div>
+      <div style="padding:6px 12px;border-radius:8px;background:rgba(76,175,80,0.08);border:1px solid rgba(76,175,80,0.2)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted)">Automation</div>
+        <div style="font-size:11px;font-weight:700;color:var(--amber)">Manual → Auto when ads live</div>
       </div>
     </div>
-    <div class="card">
-      <h2>📅 All Entries</h2>
-      <table>
-        <thead><tr><th>Date</th><th>Brand</th><th>Product</th><th>Orders</th><th>Revenue</th><th>Ad Spend</th><th>COGS</th><th>Profit</th><th>ROAS</th><th></th></tr></thead>
-        <tbody id="d-table"><tr><td colspan="10" class="empty">No entries</td></tr></tbody>
-      </table>
+
+    <!-- Summary Cards -->
+    <div class="grid" style="grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px">
+      <div class="card" style="text-align:center;padding:12px;border-top:3px solid var(--green)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px">Total Revenue</div>
+        <div style="font-size:20px;font-weight:800;color:var(--green);margin-top:4px" id="dl-rev">$0</div>
+      </div>
+      <div class="card" style="text-align:center;padding:12px;border-top:3px solid var(--red)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px">Total Ad Spend</div>
+        <div style="font-size:20px;font-weight:800;color:var(--red);margin-top:4px" id="dl-ads">$0</div>
+      </div>
+      <div class="card" style="text-align:center;padding:12px;border-top:3px solid var(--blue)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px">Net Profit</div>
+        <div style="font-size:20px;font-weight:800;margin-top:4px" id="dl-profit">$0</div>
+      </div>
+      <div class="card" style="text-align:center;padding:12px;border-top:3px solid var(--purple)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px">Avg ROAS</div>
+        <div style="font-size:20px;font-weight:800;color:var(--purple);margin-top:4px" id="dl-roas">0.00x</div>
+      </div>
+      <div class="card" style="text-align:center;padding:12px;border-top:3px solid var(--amber)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:0.5px">Total Orders</div>
+        <div style="font-size:20px;font-weight:800;color:var(--amber);margin-top:4px" id="dl-orders">0</div>
+      </div>
+    </div>
+
+    <!-- Mini Chart -->
+    <div class="card" style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <h2 style="font-size:13px;margin:0">📈 7-Day Trend</h2>
+        <span style="font-size:10px;color:var(--muted)" id="dl-period">—</span>
+      </div>
+      <div id="dl-chart"><div class="empty" style="padding:20px;font-size:12px;color:var(--muted)">Chart populates with first entry</div></div>
+    </div>
+
+    <!-- Two column: Log form + Entries -->
+    <div class="grid" style="grid-template-columns:320px 1fr;gap:12px">
+      <!-- Log Form -->
+      <div class="card" style="background:linear-gradient(135deg,rgba(59,130,246,0.04),rgba(124,58,237,0.04))">
+        <h2 style="font-size:13px;margin-bottom:12px">➕ Log Entry</h2>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div><label style="font-size:10px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px">Date</label><input type="date" id="d-date" style="width:100%"></div>
+          <div><label style="font-size:10px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px">Brand</label><select id="d-brand" style="width:100%"></select></div>
+          <div><label style="font-size:10px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px">Product</label><select id="d-prod" style="width:100%"></select></div>
+          <div class="grid g2">
+            <div><label style="font-size:10px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px">Orders</label><input type="number" id="d-orders" value="0" min="0" style="width:100%"></div>
+            <div><label style="font-size:10px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px">Ad Spend ($)</label><input type="number" id="d-ads" step="0.01" value="0" style="width:100%"></div>
+          </div>
+          <div><label style="font-size:10px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px">Revenue ($)</label><input type="number" id="d-rev" step="0.01" placeholder="Auto-calculated from orders" style="width:100%"></div>
+          <button onclick="addDaily()" style="margin-top:4px;width:100%;padding:10px;font-weight:700">+ Add Entry</button>
+        </div>
+        <div style="margin-top:12px;padding:8px;background:var(--bg);border-radius:8px;font-size:10px;color:var(--muted)">
+          💡 <strong>Coming soon:</strong> Forge will auto-log daily numbers from ad platform data. Zero manual input needed.
+        </div>
+      </div>
+
+      <!-- Entries Table -->
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <h2 style="font-size:13px;margin:0">📅 All Entries</h2>
+          <span style="font-size:10px;color:var(--muted)" id="dl-count">0 entries</span>
+        </div>
+        <table>
+          <thead><tr><th>Date</th><th>Brand</th><th>Product</th><th>Orders</th><th>Revenue</th><th>Ad Spend</th><th>COGS</th><th>Profit</th><th>ROAS</th><th></th></tr></thead>
+          <tbody id="d-table"><tr><td colspan="10" class="empty">No entries yet — log your first day or wait for automation 🚀</td></tr></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -666,10 +726,39 @@ function render(){
   document.getElementById('e-once').textContent=f(once);
   document.getElementById('e-burn').textContent=f(totalOpex);
 
-  // ===== DAILY TABLE =====
+  // ===== DAILY TABLE + SUMMARY =====
   const dt2=document.getElementById('d-table');
-  if(!D.daily.length){dt2.innerHTML='<tr><td colspan="10" class="empty">No entries</td></tr>';}
-  else{dt2.innerHTML=D.daily.map(e=>{const p=e.revenue-e.adSpend-e.cogs;const r=e.adSpend>0?(e.revenue/e.adSpend).toFixed(2):'—';return`<tr><td>${e.date}</td><td>${e.brandName}</td><td>${e.productName}</td><td>${e.orders}</td><td class="green">${f(e.revenue)}</td><td class="red">${f(e.adSpend)}</td><td>${f(e.cogs)}</td><td class="${p>=0?'green':'red'}">${f(p)}</td><td>${r}x</td><td><button class="btn-s btn-r" onclick="delDaily('${e.id}')">✕</button></td></tr>`;}).join('');}
+  if(!D.daily.length){dt2.innerHTML='<tr><td colspan="10" class="empty">No entries yet — log your first day or wait for automation 🚀</td></tr>';}
+  else{dt2.innerHTML=D.daily.sort((a,b)=>b.date.localeCompare(a.date)).map(e=>{const p=e.revenue-e.adSpend-e.cogs;const r=e.adSpend>0?(e.revenue/e.adSpend).toFixed(2):'—';return`<tr><td>${new Date(e.date+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</td><td>${e.brandName}</td><td>${e.productName}</td><td>${e.orders}</td><td class="green">${f(e.revenue)}</td><td class="red">${f(e.adSpend)}</td><td>${f(e.cogs)}</td><td class="${p>=0?'green':'red'}">${f(p)}</td><td>${r}x</td><td><button class="btn-s btn-r" onclick="delDaily('${e.id}')">✕</button></td></tr>`;}).join('');}
+  // Daily log summary cards
+  const dlRev=D.daily.reduce((s,d)=>s+d.revenue,0);
+  const dlAds=D.daily.reduce((s,d)=>s+d.adSpend,0);
+  const dlCogs=D.daily.reduce((s,d)=>s+d.cogs,0);
+  const dlOrd=D.daily.reduce((s,d)=>s+d.orders,0);
+  const dlProf=dlRev-dlAds-dlCogs;
+  const dlEl=id=>document.getElementById(id);
+  if(dlEl('dl-rev'))dlEl('dl-rev').textContent=f(dlRev);
+  if(dlEl('dl-ads'))dlEl('dl-ads').textContent=f(dlAds);
+  if(dlEl('dl-profit')){dlEl('dl-profit').textContent=f(dlProf);dlEl('dl-profit').style.color=dlProf>=0?'var(--green)':'var(--red)';}
+  if(dlEl('dl-roas'))dlEl('dl-roas').textContent=(dlAds>0?(dlRev/dlAds):0).toFixed(2)+'x';
+  if(dlEl('dl-orders'))dlEl('dl-orders').textContent=dlOrd;
+  if(dlEl('dl-count'))dlEl('dl-count').textContent=D.daily.length+' entries';
+  // Daily log mini chart
+  const dlChart=dlEl('dl-chart');
+  if(dlChart&&D.daily.length){
+    const dates=[...new Set(D.daily.map(d=>d.date))].sort().slice(-7);
+    if(dlEl('dl-period'))dlEl('dl-period').textContent=dates.length>1?new Date(dates[0]+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'})+' — '+new Date(dates[dates.length-1]+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'}):'';
+    const dd=dates.map(dt=>{const e=D.daily.filter(d=>d.date===dt);return{date:dt,rev:e.reduce((s,d)=>s+d.revenue,0),spend:e.reduce((s,d)=>s+d.adSpend,0),prof:e.reduce((s,d)=>s+(d.revenue-d.adSpend-d.cogs),0)};});
+    const mx=Math.max(...dd.map(d=>Math.max(d.rev,d.spend)),1);
+    dlChart.innerHTML=dd.map(d=>{const l=new Date(d.date+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});return`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+      <div style="width:50px;font-size:10px;color:var(--muted);text-align:right;flex-shrink:0">${l}</div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:2px">
+        <div style="height:12px;background:var(--bg);border-radius:3px;overflow:hidden"><div style="height:100%;width:${(d.rev/mx*100).toFixed(1)}%;background:linear-gradient(90deg,var(--green),var(--teal));border-radius:3px;display:flex;align-items:center;padding-left:4px;font-size:8px;font-weight:700;color:#fff">${d.rev>0?f(d.rev):''}</div></div>
+        <div style="height:8px;background:var(--bg);border-radius:3px;overflow:hidden"><div style="height:100%;width:${(d.spend/mx*100).toFixed(1)}%;background:linear-gradient(90deg,var(--red),#ef4444);border-radius:3px"></div></div>
+      </div>
+      <div style="width:55px;text-align:right;font-size:10px;font-weight:700;flex-shrink:0" class="${d.prof>=0?'green':'red'}">${d.prof>=0?'+':''}${f(d.prof)}</div>
+    </div>`;}).join('')+'<div style="display:flex;gap:12px;justify-content:center;margin-top:8px;font-size:9px;color:var(--muted)"><span>🟢 Revenue</span><span>🔴 Ad Spend</span><span>± Net Profit</span></div>';
+  }
 
   // Dropdowns
   const bs=document.getElementById('d-brand');
