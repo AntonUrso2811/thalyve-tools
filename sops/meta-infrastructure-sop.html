@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meta Infrastructure SOP — Anton Empire</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Inter',sans-serif;background:#fff;color:#1a1a1a;line-height:1.7;max-width:900px;margin:0 auto;padding:24px}
+h1{font-size:2em;font-weight:800;margin-bottom:4px}
+.subtitle{color:#666;margin-bottom:30px}
+h2{font-size:1.4em;font-weight:800;margin:36px 0 12px;padding-bottom:6px;border-bottom:3px solid #111}
+h3{font-size:1.1em;font-weight:700;margin:20px 0 8px;color:#222}
+p{margin-bottom:10px}
+ul,ol{margin:8px 0 12px 20px}
+li{margin-bottom:5px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9em}
+th{background:#111;color:#fff;padding:10px;text-align:left}
+td{padding:10px;border-bottom:1px solid #e0e0e0;vertical-align:top}
+tr:nth-child(even) td{background:#f8f9fa}
+code{background:#f0f0f0;padding:2px 6px;border-radius:4px;font-size:.9em}
+.box{padding:14px 18px;margin:12px 0;border-radius:0 8px 8px 0}
+.box.red{background:#fdecea;border-left:4px solid #c0392b}
+.box.green{background:#e8f5e9;border-left:4px solid #27ae60}
+.box.blue{background:#e3f2fd;border-left:4px solid #2196f3}
+.box.amber{background:#fff3cd;border-left:4px solid #f0ad4e}
+.nav{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.nav a{font-size:12px;color:#7c5cfc;text-decoration:none;padding:5px 14px;border:1px solid #ddd;border-radius:20px}
+.nav a:hover{border-color:#7c5cfc;background:rgba(124,92,252,.05)}
+.footer{text-align:center;font-size:.8em;color:#999;margin-top:40px;padding-top:20px;border-top:1px solid #e0e0e0}
+</style>
+</head>
+<body>
+
+<div class="nav">
+<a href="../">🏠 Home</a>
+<a href="../hub/">📁 SOP Hub</a>
+<a href="../dashboard/">📊 Dashboard</a>
+</div>
+
+<h1>🏗 Meta Infrastructure SOP</h1>
+<p class="subtitle">3-BM Structure • 10 Profiles • Risk Isolation • Complete Setup Guide<br>Source: Ad Rail / Rob • Compiled: 26 Feb 2026</p>
+
+<div class="box blue">
+<strong>What this is:</strong> Your entire Meta (Facebook) advertising infrastructure. 3 Business Managers, 10 profiles, pixel chain, page chain, and compliance rules. If BM1 gets banned, your pixel and pages are SAFE. Rebuild and keep going.
+</div>
+
+<h2>The 3-Building Model</h2>
+
+<table>
+<tr><th>Building</th><th>BM</th><th>Purpose</th><th>Profiles</th><th>Key Rule</th></tr>
+<tr><td>🏢 <strong>The Office</strong></td><td>BM1 — Operations<br><code>365131313137753</code></td><td>Runs all ads. Borrows pixel + pages.</td><td>P1-P6 (2 admin, 4 media buyer)</td><td><strong>EXPENDABLE.</strong> If banned, rebuild it.</td></tr>
+<tr><td>🏦 <strong>The Vault</strong></td><td>BM2 — Pixel<br><code>962092315560787</code></td><td>Owns the pixel. All tracking data.</td><td>P7-P8 (2 admin)</td><td><strong>PROTECT AT ALL COSTS.</strong> Never run ads here.</td></tr>
+<tr><td>🏪 <strong>The Showroom</strong></td><td>BM3 — Pages<br><code>415434907589323</code></td><td>Owns Facebook pages. Brand identity.</td><td>P9-P10 (2 admin)</td><td><strong>PROTECT.</strong> Never run ads here.</td></tr>
+</table>
+
+<div class="box green">
+<strong>If BM1 gets restricted →</strong> Pixel safe in BM2 ✅ Pages safe in BM3 ✅ → Get new BM1 → Re-share pixel + pages → Back running ads. Zero data lost.
+</div>
+
+<h2>Profile Directory</h2>
+
+<table>
+<tr><th>Profile</th><th>BM</th><th>Role</th><th>What They Do</th><th>When to Log In</th></tr>
+<tr><td><strong>P1</strong></td><td>BM1</td><td>Admin 1</td><td>Accept invitations, manage settings, permissions</td><td>When Rob shares something new</td></tr>
+<tr><td><strong>P2</strong></td><td>BM1</td><td>Admin 2 (Backup)</td><td>Same as P1. Backup if P1 restricted.</td><td>If P1 goes down</td></tr>
+<tr><td><strong>P3 ⭐</strong></td><td>BM1</td><td>Media Buyer 1 — DAILY DRIVER</td><td>Creates campaigns, sets budgets, uploads creative, monitors daily</td><td><strong>EVERY DAY</strong></td></tr>
+<tr><td><strong>P4</strong></td><td>BM1</td><td>Media Buyer 2 (Backup)</td><td>Same as P3. First backup.</td><td>If P3 restricted</td></tr>
+<tr><td><strong>P5</strong></td><td>BM1</td><td>Media Buyer 3 (Backup)</td><td>Same as P3. Third layer.</td><td>If P3+P4 down, or for scaling</td></tr>
+<tr><td><strong>P6</strong></td><td>BM1</td><td>Media Buyer 4 (Backup)</td><td>Same as P3. Fourth layer.</td><td>Last resort / heavy scaling</td></tr>
+<tr><td><strong>P7</strong></td><td>BM2</td><td>Pixel Guard</td><td>Weekly pixel health check (Events Manager → green dots = good)</td><td>Once a week, 5 min</td></tr>
+<tr><td><strong>P8</strong></td><td>BM2</td><td>Pixel Guard (Backup)</td><td>Same as P7. Backup.</td><td>If P7 restricted</td></tr>
+<tr><td><strong>P9</strong></td><td>BM3</td><td>Page Guard</td><td>Check pages are active and not restricted</td><td>❌ PENDING APPEAL</td></tr>
+<tr><td><strong>P10</strong></td><td>BM3</td><td>Page Guard (SOLO)</td><td>Only active BM3 admin. Extra important.</td><td>Weekly + be careful</td></tr>
+</table>
+
+<div class="box red">
+<strong>⚠️ P9 is pending appeal.</strong> BM3 has only P10. This is a vulnerability. Follow up with ACCSPALACE. Until P9 is back, be extra careful with P10 — no unnecessary logins.
+</div>
+
+<h2>The Connection Chain</h2>
+
+<p><strong>How everything flows:</strong></p>
+<ol>
+<li><strong>ACCSPALACE</strong> creates the pixel inside BM2 (The Vault)</li>
+<li>Pixel is <strong>shared from BM2 → BM1</strong> (Admin P1 or P2 accepts)</li>
+<li>Pixel is <strong>connected to the Ad Account</strong> inside BM1 (this was the missing step)</li>
+<li>Media Buyers (P3-P6) can now <strong>see and use the pixel</strong> automatically</li>
+<li>P3 goes to <strong>Shopify → Facebook & Instagram → selects the pixel</strong> for tracking</li>
+<li><strong>Pages</strong> follow the same chain: BM3 → shared to BM1 → connected to ad account → P3 selects when creating ads</li>
+</ol>
+
+<div class="box amber">
+<strong>The missing link (what was broken before):</strong> The pixel was shared to BM1 but NOT connected to the ad account. Fix: Datasets & Pixels → select pixel → Connect Assets → select ad account. One click.
+</div>
+
+<h2>Your First Ad — The Flow</h2>
+
+<ol>
+<li>Open AdsPower → Launch <strong>P3</strong> (daily driver)</li>
+<li>Connect pixel to Shopify (first time only) — Shopify admin → Settings → Apps → Facebook & Instagram → select shared pixel</li>
+<li>Go to <strong>business.facebook.com</strong> → Ad Account → Create Campaign</li>
+<li><strong>Campaign Setup:</strong> Objective: Sales | Budget: £10-30/day | Advantage+ Placements</li>
+<li><strong>Select:</strong> Pixel (from BM2 via chain) + Page (from BM3 via chain)</li>
+<li><strong>Add creative</strong> → Upload image/video, write copy, add Shopify URL, CTA: Shop Now</li>
+<li><strong>Publish → Don't touch for 48 hours</strong></li>
+</ol>
+
+<h2>Ad Compliance Rules</h2>
+
+<div class="box red">
+<strong>HIGH RISK — Things Meta flags aggressively in skin/body categories:</strong>
+<ul style="margin-top:8px">
+<li>❌ Personal attribute targeting: "If you're struggling with stretch marks..."</li>
+<li>❌ Before/after narratives or imagery</li>
+<li>❌ Transformation percentages: "faded 40-50%"</li>
+<li>❌ Time-bound claims: "In 2 months..."</li>
+<li>❌ Confidence/self-esteem tied to appearance change</li>
+<li>❌ Testimonial-style first-person transformation stories</li>
+<li>❌ Money-back guarantee combined with performance narrative</li>
+</ul>
+</div>
+
+<div class="box green">
+<strong>SAFE — What you CAN say:</strong>
+<ul style="margin-top:8px">
+<li>✅ Product FORMAT comparisons (oil vs cream vs stick)</li>
+<li>✅ Ingredient mentions without outcome claims</li>
+<li>✅ Convenience and routine messaging</li>
+<li>✅ "Risk-free guarantee" (not tied to results)</li>
+<li>✅ Education about product delivery systems</li>
+</ul>
+</div>
+
+<h2>Weekly Maintenance Checklist</h2>
+
+<table>
+<tr><th>Task</th><th>Who</th><th>Frequency</th><th>Time</th></tr>
+<tr><td>Monitor ad performance (ROAS, CPA, spend)</td><td>P3</td><td>Daily</td><td>10 min</td></tr>
+<tr><td>Check pixel health (Events Manager → green dots)</td><td>P7 or P8</td><td>Weekly</td><td>5 min</td></tr>
+<tr><td>Check pages are active</td><td>P10 (P9 pending)</td><td>Weekly</td><td>5 min</td></tr>
+<tr><td>Check BM1 for new invitations from Rob</td><td>P1 or P2</td><td>As needed</td><td>2 min</td></tr>
+</table>
+
+<h2>If Things Go Wrong</h2>
+
+<table>
+<tr><th>Scenario</th><th>Impact</th><th>Fix</th></tr>
+<tr><td>P3 gets restricted</td><td>LOW — switch to P4 immediately</td><td>Log into P4, continue running ads</td></tr>
+<tr><td>BM1 gets banned</td><td>MEDIUM — ads stop, but data safe</td><td>Get new BM1 from ACCSPALACE, re-share pixel + pages, new ad account from Rob</td></tr>
+<tr><td>BM2 gets banned</td><td>CRITICAL — pixel data lost</td><td>This should NEVER happen. BM2 never runs ads. If it does, start new pixel (loses training data)</td></tr>
+<tr><td>Ad rejected</td><td>LOW — edit and resubmit</td><td>Check compliance rules above, remove flagged language, resubmit</td></tr>
+<tr><td>Account trust degradation</td><td>HIGH — all ads get manual review</td><td>Pause all ads. Fix compliance. Wait 48h. Relaunch clean.</td></tr>
+</table>
+
+<div class="footer">
+🔱 Anton Empire — Meta Infrastructure SOP v1.0 — Source: Ad Rail — Compiled by Forge — 26 Feb 2026
+</div>
+
+</body>
+</html>
