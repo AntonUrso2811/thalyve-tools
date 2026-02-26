@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anton Empire — Master Strategy</title>
+<style>
+@page{size:A4;margin:20mm 18mm}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;color:#1a1a1a;line-height:1.7;background:#fff;max-width:900px;margin:0 auto;padding:24px}
+.cover{text-align:center;padding:80px 20px 60px;page-break-after:always}
+.cover h1{font-size:2.6em;font-weight:800;letter-spacing:-1px;margin-bottom:8px}
+.cover .subtitle{font-size:1.2em;color:#555;margin-bottom:40px}
+.cover .meta{font-size:.95em;color:#888}
+.cover .badge{display:inline-block;background:#111;color:#fff;padding:8px 24px;border-radius:6px;font-weight:700;font-size:.9em;margin-top:30px;letter-spacing:1px}
+h2{font-size:1.5em;font-weight:800;margin:40px 0 14px;padding-bottom:6px;border-bottom:3px solid #111}
+h3{font-size:1.15em;font-weight:700;margin:24px 0 8px;color:#222}
+h4{font-size:1em;font-weight:700;margin:16px 0 6px;color:#333}
+p{margin-bottom:12px}
+ul,ol{margin:8px 0 12px 20px}
+li{margin-bottom:6px}
+strong{color:#111}
+code{background:#f0f0f0;padding:2px 6px;border-radius:4px;font-family:'SF Mono',monospace;font-size:.9em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9em}
+th{background:#111;color:#fff;padding:10px 12px;text-align:left;font-weight:700}
+td{padding:10px 12px;border-bottom:1px solid #e0e0e0;vertical-align:top}
+tr:nth-child(even) td{background:#f8f9fa}
+.box{padding:16px 20px;margin:14px 0;border-radius:0 8px 8px 0}
+.box.info{background:#e3f2fd;border-left:4px solid #2196f3}
+.box.success{background:#e8f5e9;border-left:4px solid #27ae60}
+.box.warn{background:#fff3cd;border-left:4px solid #f0ad4e}
+.box.danger{background:#fdecea;border-left:4px solid #c0392b}
+.box-label{font-weight:700;font-size:.85em;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.page-break{page-break-before:always}
+.footer{text-align:center;font-size:.8em;color:#999;margin-top:60px;padding-top:20px;border-top:1px solid #e0e0e0}
+.phase{background:#f8f9fa;border:2px solid #e0e0e0;border-radius:12px;padding:20px 24px;margin:16px 0}
+.phase-header{font-size:1.1em;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.phase-timeline{font-size:.85em;color:#666;margin-bottom:12px;font-weight:600}
+.kpi{display:inline-block;background:#111;color:#fff;padding:4px 12px;border-radius:20px;font-size:.8em;font-weight:700;margin:2px 4px}
+.number{font-size:2em;font-weight:800;color:#111;line-height:1}
+.number-label{font-size:.8em;color:#666;font-weight:600}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:16px 0}
+.grid-3 .stat{text-align:center;padding:16px;background:#f8f9fa;border-radius:8px}
+@media(max-width:600px){.grid-3{grid-template-columns:1fr}}
+@media print{body{padding:0}.box,.phase{break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="cover">
+<h1>The Master Strategy</h1>
+<div class="subtitle">Bulletproof Infrastructure + Road to £10K/Month Net Profit</div>
+<div class="meta">Version 1.0 — 27 February 2026</div>
+<div class="badge">ANTON EMPIRE — INTERNAL</div>
+</div>
+
+<!-- ============================================ -->
+<!-- PART 1: BULLETPROOF OPENCLAW -->
+<!-- ============================================ -->
+
+<div class="page-break"></div>
+<h2>Part 1: Bulletproof OpenClaw — Never Worry Again</h2>
+
+<div class="box info">
+<div class="box-label">The Problem We're Solving</div>
+On Feb 25, a config corruption caused a crash loop. The workspace got wiped during troubleshooting. We recovered from Telegram chat history — but that should never happen again. Here's every layer of protection now in place, and what's still needed.
+</div>
+
+<h3>What's Already Bulletproofed ✅</h3>
+
+<table>
+<tr><th>Layer</th><th>Protection</th><th>Status</th></tr>
+<tr><td><strong>Workspace Backup</strong></td><td>Git auto-push to GitHub every 6 hours (LaunchAgent)</td><td>✅ Active</td></tr>
+<tr><td><strong>Remote Repo</strong></td><td>forge-workspace on GitHub — full history</td><td>✅ Active</td></tr>
+<tr><td><strong>Config Lock</strong></td><td><code>gateway.mode: "local"</code> set — prevents the crash loop bug</td><td>✅ Set</td></tr>
+<tr><td><strong>Session Routing</strong></td><td><code>dmScope: "per-channel-peer"</code> — webchat can't hijack Telegram</td><td>✅ Set</td></tr>
+<tr><td><strong>Emergency SOS Guide</strong></td><td>Step-by-step recovery for every failure scenario</td><td>✅ Built</td></tr>
+<tr><td><strong>Security Audit Cron</strong></td><td>Monthly automated check (1st of every month, 3AM)</td><td>✅ Active</td></tr>
+<tr><td><strong>Memory System</strong></td><td>MEMORY.md + daily logs — full continuity even after resets</td><td>✅ Active</td></tr>
+<tr><td><strong>GitHub Pages Tools</strong></td><td>All SOPs, dashboards, trackers live on separate repo</td><td>✅ Live</td></tr>
+</table>
+
+<h3>What Still Needs Doing 🔧</h3>
+
+<div class="phase">
+<div class="phase-header">🔴 Priority 1: VPS Migration (Travel-Proof)</div>
+<div class="phase-timeline">Timeline: Before any travel — ideally within 2 weeks</div>
+<p><strong>Problem:</strong> Everything runs on the Mac at home. If that Mac loses power, internet, or crashes while you're away — Forge goes dark. No recovery possible remotely.</p>
+<p><strong>Solution:</strong> Migrate OpenClaw to a VPS (Virtual Private Server). ~£5-10/month. The Mac becomes optional, not critical.</p>
+<ul>
+<li><strong>Recommended:</strong> Hetzner CAX11 (ARM, 4GB RAM) — €4.51/month (~£4). Or DigitalOcean $6/month.</li>
+<li>OpenClaw runs 24/7 regardless of your laptop/Mac status</li>
+<li>SSH access from anywhere — phone, laptop, hotel WiFi</li>
+<li>No dependency on home network, power, or hardware</li>
+</ul>
+<p><strong>Your action:</strong> Say the word and I'll spec the exact setup. Takes me ~30 min to build the migration script. You just need to create the VPS account and give me SSH access.</p>
+</div>
+
+<div class="phase">
+<div class="phase-header">🟡 Priority 2: Fix Security Warnings</div>
+<div class="phase-timeline">Timeline: This week (5 min fix)</div>
+<p>OpenClaw flagged 1 critical + 2 warnings:</p>
+<ul>
+<li><strong>CRITICAL:</strong> Telegram group commands have no sender allowlist — anyone in a group could invoke commands. Fix: set up pairing approval.</li>
+<li><strong>WARN:</strong> Reverse proxy headers not trusted (cosmetic if staying local)</li>
+<li><strong>WARN:</strong> Multi-user setup detected (cosmetic — we're single user)</li>
+</ul>
+<p><strong>Your action:</strong> None. I'll fix the critical one right after you read this.</p>
+</div>
+
+<div class="phase">
+<div class="phase-header">🟡 Priority 3: PAT Rotation</div>
+<div class="phase-timeline">Timeline: Before March 27, 2026</div>
+<p>The GitHub Personal Access Token ("forge-deploy") expires March 27. If it expires, auto-backups stop pushing to GitHub silently.</p>
+<p><strong>Your action:</strong> None now. Cron will warn you 7 days before. I'll handle the rotation — you just approve the new token on GitHub.</p>
+</div>
+
+<div class="phase">
+<div class="phase-header">🟢 Priority 4: Subscription Management</div>
+<div class="phase-timeline">Timeline: Ongoing awareness</div>
+<p>You're on Anthropic's Claude subscription (flat monthly fee with usage allowance). When the allowance runs out, Forge goes silent — no error message, just stops responding.</p>
+<ul>
+<li>Cron jobs run on <strong>Sonnet</strong> (cheaper model) to preserve Opus allowance for live conversations</li>
+<li>If Forge ever stops responding mid-conversation → check <a href="https://console.anthropic.com">console.anthropic.com</a> for usage</li>
+<li>Consider upgrading to the next tier if we're consistently hitting caps</li>
+</ul>
+<p><strong>Your action:</strong> Keep an eye on usage if I ever go quiet. That's the #1 cause.</p>
+</div>
+
+<div class="box success">
+<div class="box-label">The Bottom Line — What YOU Need to Focus On (Infrastructure)</div>
+<strong>Almost nothing.</strong> The system is 90% bulletproof already. The only real risk is the Mac going down while you're away. A VPS fixes that permanently for £5/month. Everything else — backups, security, token rotation, model routing — I handle automatically. Your job: approve the VPS when you're ready, and check Anthropic usage if I go silent.
+</div>
+
+<!-- ============================================ -->
+<!-- PART 2: ROAD TO £10K -->
+<!-- ============================================ -->
+
+<div class="page-break"></div>
+<h2>Part 2: The Road to £10K/Month Net Profit</h2>
+
+<div class="box info">
+<div class="box-label">Where We Are Today</div>
+Revenue: £0. Pre-launch. Infrastructure built, SOPs written, product research pipeline running, THALYVE stretch mark stick live on store, ad account warming up. Testing starts ~Feb 28.
+</div>
+
+<h3>The Math — What £10K Net Actually Requires</h3>
+
+<div class="grid-3">
+<div class="stat">
+<div class="number">£25K</div>
+<div class="number-label">Monthly Revenue Needed</div>
+</div>
+<div class="stat">
+<div class="number">40%</div>
+<div class="number-label">Target Net Margin</div>
+</div>
+<div class="stat">
+<div class="number">£833/day</div>
+<div class="number-label">Daily Revenue Target</div>
+</div>
+</div>
+
+<table>
+<tr><th>Line Item</th><th>% of Revenue</th><th>Monthly £</th></tr>
+<tr><td>Revenue</td><td>100%</td><td>£25,000</td></tr>
+<tr><td>COGS (product + shipping)</td><td>~25%</td><td>-£6,250</td></tr>
+<tr><td>Ad Spend (target 30% of rev)</td><td>~30%</td><td>-£7,500</td></tr>
+<tr><td>Platform fees (Shopify, payment processing)</td><td>~5%</td><td>-£1,250</td></tr>
+<tr><td><strong>Net Profit</strong></td><td><strong>~40%</strong></td><td><strong>£10,000</strong></td></tr>
+</table>
+
+<p><strong>Key insight:</strong> At a $40 AOV (£32) with 2.5x ROAS, you need ~780 orders/month (26/day). At $70 AOV (bundles), you need ~450 orders/month (15/day). <strong>Bundles and AOV are everything.</strong></p>
+
+<h3>The 4-Phase Roadmap</h3>
+
+<!-- PHASE 1 -->
+<div class="phase">
+<div class="phase-header">⚡ Phase 1: Find a Winner</div>
+<div class="phase-timeline">Week 1-4 (Now → End of March) | Budget: £2,000-3,000 in ad spend</div>
+
+<p><strong>This is the ONLY thing that matters right now.</strong> Nothing else — not branding, not hiring, not systems — matters until you have a product that sells profitably.</p>
+
+<h4>What You Do:</h4>
+<ul>
+<li>Test 3-5 products at £80/day ($100) each, 3-5 days per test</li>
+<li>Follow the Media Buying SOP kill/scale framework religiously</li>
+<li>Each product gets ONE shot with ONE creative angle first</li>
+<li>Kill fast (Day 3, no sales = dead), scale fast (Day 5, ROAS 2x+ = go)</li>
+</ul>
+
+<h4>What I Do:</h4>
+<ul>
+<li>Product research pipeline delivers 3-5 scored products every Mon + Thu</li>
+<li>I track every test in the Ad Performance Tracker</li>
+<li>Daily kill/scale recommendations in your morning briefing</li>
+<li>Competitor monitoring via Meta Ad Library + SimilarWeb</li>
+</ul>
+
+<h4>Product Pipeline (Current):</h4>
+<ol>
+<li>THALYVE Stretch Mark Stick — testing starts Feb 28</li>
+<li>Menstrual Pain Relief Patches — scored 9.0/10</li>
+<li>Dark Circle Eye Stick — scored 8.5/10</li>
+<li>QuietLab Anti-Snoring Device — 240 active FB ads, huge validation</li>
+<li>+ New products from Mon/Thu research runs</li>
+</ol>
+
+<div class="box warn">
+<div class="box-label">Reality Check</div>
+Most products fail. Expect 7-8 out of 10 to be killed. That's normal. The goal is to find 1-2 winners in 3-5 weeks of testing. Budget £2-3K for this phase — it's the cost of finding product-market fit.
+</div>
+
+<span class="kpi">Target: 1 product at 2x+ ROAS</span>
+<span class="kpi">Budget: £80-100/day per test</span>
+<span class="kpi">Timeline: 3-5 weeks</span>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase">
+<div class="phase-header">🔥 Phase 2: Scale the Winner</div>
+<div class="phase-timeline">Week 4-8 (April) | Target: £3K-5K/month revenue</div>
+
+<p>Once you have a product doing 2x+ ROAS at $100/day, it's time to pour fuel on the fire.</p>
+
+<h4>Scaling Playbook:</h4>
+<ol>
+<li><strong>Vertical scale:</strong> Increase budget 20-30% every 48 hours. $100 → $130 → $170 → $220 → $300/day over 2 weeks.</li>
+<li><strong>Creative multiplication:</strong> 3-5 new creatives per week. Different hooks, angles, formats. This is what keeps ROAS alive at scale.</li>
+<li><strong>Horizontal scale:</strong> New audiences — lookalikes, new interest stacks, new geos (UK → US → CA → AU).</li>
+<li><strong>AOV optimization:</strong> Upsells, bundles, post-purchase offers. Moving AOV from £32 to £50+ changes everything.</li>
+</ol>
+
+<h4>What You Focus On:</h4>
+<ul>
+<li><strong>Creatives.</strong> At this stage, creative is the #1 lever. UGC, before/after, testimonials. Source from Billo, Insense, or direct outreach.</li>
+<li><strong>Customer experience.</strong> Fast shipping, good unboxing, follow-up emails. Repeat customers = free revenue.</li>
+</ul>
+
+<h4>What I Handle:</h4>
+<ul>
+<li>Daily ad monitoring + kill/scale decisions</li>
+<li>Spin up <strong>Quill</strong> (copywriting sub-agent) for ad copy variations</li>
+<li>A/B test landing pages</li>
+<li>Track P&L in Command Centre</li>
+</ul>
+
+<span class="kpi">Target: £150-200/day revenue</span>
+<span class="kpi">Ad spend: £200-400/day</span>
+<span class="kpi">ROAS: 2.0x+</span>
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase">
+<div class="phase-header">📈 Phase 3: Multi-Product + Optimization</div>
+<div class="phase-timeline">Week 8-16 (May-June) | Target: £8K-15K/month revenue</div>
+
+<p>One winner proves the model. Two or three winners build the business.</p>
+
+<h4>The Play:</h4>
+<ol>
+<li><strong>Launch product #2 and #3</strong> — use the same testing framework, but now with a trained pixel and real data</li>
+<li><strong>Email/SMS flows</strong> — abandoned cart, post-purchase, winback. This is 20-30% of revenue for free (no ad spend)</li>
+<li><strong>Retargeting</strong> — warm audiences from product #1 convert at 3-5x the rate of cold traffic</li>
+<li><strong>Subscription/replenishment</strong> — consumable products = recurring revenue</li>
+</ol>
+
+<h4>Sub-Agent Hires:</h4>
+<ul>
+<li><strong>Hawk</strong> — Market intelligence (competitor tracking, trend alerts)</li>
+<li><strong>Scout</strong> — Dedicated product researcher (more volume, better scoring)</li>
+<li><strong>CS Agent</strong> — If enquiries hit 5+/day, auto-response agent handles tier 1</li>
+</ul>
+
+<h4>What You Focus On:</h4>
+<ul>
+<li><strong>Supplier relationships.</strong> Move from dropship to direct sourcing (Mutual Express). Cuts COGS 20-40%.</li>
+<li><strong>Brand building.</strong> Start transitioning from generic dropship to THALYVE branded packaging and inserts.</li>
+<li><strong>Creative pipeline.</strong> Batch UGC content monthly. 10-15 creatives per product per month.</li>
+</ul>
+
+<span class="kpi">Target: £300-500/day revenue</span>
+<span class="kpi">2-3 products running</span>
+<span class="kpi">Email contributing 20%+ of revenue</span>
+</div>
+
+<!-- PHASE 4 -->
+<div class="phase">
+<div class="phase-header">👑 Phase 4: £10K Net Months</div>
+<div class="phase-timeline">Month 4-6 (July-August) | Target: £25K/month revenue, £10K net</div>
+
+<p>This is where the empire math kicks in.</p>
+
+<h4>Revenue Mix at £25K/month:</h4>
+<table>
+<tr><th>Channel</th><th>Revenue</th><th>% of Total</th></tr>
+<tr><td>Facebook Ads (cold traffic)</td><td>£15,000</td><td>60%</td></tr>
+<tr><td>Email/SMS (owned audience)</td><td>£5,000</td><td>20%</td></tr>
+<tr><td>Retargeting (warm traffic)</td><td>£3,750</td><td>15%</td></tr>
+<tr><td>Organic/referral</td><td>£1,250</td><td>5%</td></tr>
+</table>
+
+<h4>What Makes This Sustainable:</h4>
+<ul>
+<li><strong>Branded products</strong> — higher margins (50-70% vs 30-40% dropship)</li>
+<li><strong>Email list</strong> — free revenue, no ad spend required</li>
+<li><strong>Multiple products</strong> — if one dies, others carry</li>
+<li><strong>Systems</strong> — everything SOP'd, AI-operated, minimal your time</li>
+</ul>
+
+<h4>Your Weekly Time Commitment at £10K/month:</h4>
+<table>
+<tr><th>Task</th><th>Time</th><th>Frequency</th></tr>
+<tr><td>Review morning briefing from Forge</td><td>10 min</td><td>Daily</td></tr>
+<tr><td>Approve/reject product recommendations</td><td>5 min</td><td>2x/week</td></tr>
+<tr><td>Review ad performance + kill/scale</td><td>15 min</td><td>Daily</td></tr>
+<tr><td>Creative direction (brief UGC creators)</td><td>30 min</td><td>Weekly</td></tr>
+<tr><td>Strategic decisions (pricing, products, brand)</td><td>30 min</td><td>Weekly</td></tr>
+<tr><td><strong>Total</strong></td><td colspan="2"><strong>~3-4 hours/week</strong></td></tr>
+</table>
+
+<span class="kpi">£25K revenue</span>
+<span class="kpi">£10K net profit</span>
+<span class="kpi">3-4 hrs/week your time</span>
+<span class="kpi">Fully AI-operated</span>
+</div>
+
+<!-- ============================================ -->
+<!-- WHAT YOU FOCUS ON -->
+<!-- ============================================ -->
+
+<div class="page-break"></div>
+<h2>Part 3: What YOU Focus On vs What Forge Handles</h2>
+
+<div class="box danger">
+<div class="box-label">The #1 Rule</div>
+<strong>You are the CEO. CEOs make decisions, not spreadsheets.</strong> Every hour you spend doing operator work is an hour not spent on the 3 things that actually move the needle: product selection, creative direction, and strategic decisions.
+</div>
+
+<h3>🎯 Your Focus (CEO Tasks Only)</h3>
+
+<table>
+<tr><th>#</th><th>Task</th><th>Why Only You Can Do It</th></tr>
+<tr><td>1</td><td><strong>Product decisions</strong> — approve/reject what to test</td><td>Your gut + market sense from 3 years of ecom</td></tr>
+<tr><td>2</td><td><strong>Creative direction</strong> — what angles, hooks, UGC briefs</td><td>You know the customer because you ARE the customer avatar</td></tr>
+<tr><td>3</td><td><strong>Kill/scale calls</strong> — final say on what lives and dies</td><td>Your money, your risk tolerance</td></tr>
+<tr><td>4</td><td><strong>Supplier negotiations</strong> — Mutual Express, sourcing</td><td>Human-to-human relationship, pricing leverage</td></tr>
+<tr><td>5</td><td><strong>Brand vision</strong> — what THALYVE stands for, long-term direction</td><td>This is your baby. No AI replaces founder vision.</td></tr>
+</table>
+
+<h3>🔱 What Forge Handles (Everything Else)</h3>
+
+<table>
+<tr><th>Area</th><th>What I Do</th><th>Automation Level</th></tr>
+<tr><td>Product Research</td><td>Source, score, validate 6-10 products/week</td><td>Fully automated (cron)</td></tr>
+<tr><td>Ad Monitoring</td><td>Daily metrics, kill/scale recommendations</td><td>Semi-auto (you approve)</td></tr>
+<tr><td>Reporting</td><td>Morning briefings, P&L tracking, dashboards</td><td>Fully automated</td></tr>
+<tr><td>Infrastructure</td><td>Backups, security, updates, token rotation</td><td>Fully automated</td></tr>
+<tr><td>SOPs</td><td>Create, update, maintain all documentation</td><td>Fully automated</td></tr>
+<tr><td>Customer Service</td><td>Tier 1 responses (when CS agent hired)</td><td>Fully automated</td></tr>
+<tr><td>Competitor Intel</td><td>Ad library monitoring, SimilarWeb checks</td><td>Semi-auto (cron + alerts)</td></tr>
+<tr><td>Memory</td><td>Context continuity, decision logging</td><td>Fully automated</td></tr>
+</table>
+
+<!-- ============================================ -->
+<!-- IMMEDIATE ACTION PLAN -->
+<!-- ============================================ -->
+
+<div class="page-break"></div>
+<h2>Part 4: Immediate Action Plan (Next 7 Days)</h2>
+
+<h3>Your Tasks (Anton)</h3>
+
+<table>
+<tr><th>#</th><th>Task</th><th>Time</th><th>Deadline</th></tr>
+<tr><td>1</td><td>Review stretch mark stick ad creatives + approve for launch</td><td>10 min</td><td>Feb 28</td></tr>
+<tr><td>2</td><td>Decide on product #2 from research pipeline (I'll send top 3)</td><td>5 min</td><td>Mar 1</td></tr>
+<tr><td>3</td><td>Message Mutual Express for sourcing quotes on top products</td><td>15 min</td><td>Mar 2</td></tr>
+<tr><td>4</td><td>Review first 3 days of ad data + approve scale/kill</td><td>10 min</td><td>Mar 3</td></tr>
+<tr><td>5</td><td><strong>Optional:</strong> Decide on VPS (say "set up VPS" and I'll handle it)</td><td>1 min</td><td>When ready</td></tr>
+</table>
+
+<h3>My Tasks (Forge)</h3>
+
+<table>
+<tr><th>#</th><th>Task</th><th>Status</th></tr>
+<tr><td>1</td><td>Fix Telegram group sender allowlist (security critical)</td><td>Today</td></tr>
+<tr><td>2</td><td>Prepare ad creatives brief for stretch mark stick launch</td><td>By Feb 28</td></tr>
+<tr><td>3</td><td>Run product research pipeline (Mon + Thu, automated)</td><td>Ongoing</td></tr>
+<tr><td>4</td><td>Set up ad performance tracking for Day 1 of testing</td><td>By Feb 28</td></tr>
+<tr><td>5</td><td>Morning briefings start when ads go live</td><td>Feb 28</td></tr>
+<tr><td>6</td><td>Push this strategy to GitHub Pages</td><td>Now ✅</td></tr>
+</table>
+
+<!-- ============================================ -->
+<!-- RISKS -->
+<!-- ============================================ -->
+
+<h2>Part 5: Risks & Mitigation</h2>
+
+<table>
+<tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr>
+<tr><td>No winning product in first batch</td><td>High (70%)</td><td>Medium</td><td>Budget for 8-10 tests. Pipeline delivers 6-10/week. It's a numbers game.</td></tr>
+<tr><td>Ad account ban/restriction</td><td>Medium</td><td>High</td><td>Agency account (Ad Rail) as buffer. Keep backup BM. Follow policies strictly.</td></tr>
+<tr><td>Anthropic usage cap hit</td><td>Medium</td><td>Low</td><td>Sonnet for cron, Opus for live only. Monitor via console. Upgrade tier if needed.</td></tr>
+<tr><td>Mac goes down while travelling</td><td>Low (if no travel)</td><td>High</td><td>VPS migration eliminates this entirely. £5/month insurance.</td></tr>
+<tr><td>Supplier issues (slow shipping, quality)</td><td>Medium</td><td>Medium</td><td>Order test units first. Multiple supplier quotes. Move to Mutual Express for scale.</td></tr>
+<tr><td>Shopify promo ending (Mar 12)</td><td>Certain</td><td>Low</td><td>Downgrade to Basic (£25/month) or evaluate if revenue justifies higher tier.</td></tr>
+<tr><td>GitHub PAT expiry (Mar 27)</td><td>Certain</td><td>Low</td><td>Automated cron warning 7 days before. I'll handle rotation.</td></tr>
+</table>
+
+<!-- ============================================ -->
+<!-- SUMMARY -->
+<!-- ============================================ -->
+
+<div class="page-break"></div>
+<h2>TL;DR — The Whole Strategy in 30 Seconds</h2>
+
+<div class="box success">
+<div class="box-label">Infrastructure</div>
+<strong>90% bulletproof already.</strong> Auto-backups, security audits, memory system, emergency recovery — all running. Only gap: VPS for travel resilience (£5/month, say the word). Everything else I handle silently.
+</div>
+
+<div class="box success">
+<div class="box-label">Business — The Path</div>
+<ol style="margin-top:8px">
+<li><strong>Weeks 1-4:</strong> Test 5-10 products at £80/day each. Find 1 winner at 2x ROAS. Budget: £2-3K.</li>
+<li><strong>Weeks 4-8:</strong> Scale winner to £200-400/day ad spend. Add creatives weekly. Hit £5K/month revenue.</li>
+<li><strong>Weeks 8-16:</strong> Launch products #2 and #3. Add email flows. Hit £15K/month revenue.</li>
+<li><strong>Month 4-6:</strong> Branded products, multi-channel, £25K revenue → <strong>£10K net profit.</strong></li>
+</ol>
+</div>
+
+<div class="box success">
+<div class="box-label">Your Focus</div>
+<strong>5 things only:</strong> Product decisions, creative direction, kill/scale calls, supplier relationships, brand vision. <strong>Everything else is automated.</strong> Target: 3-4 hours/week of your time once the machine is running.
+</div>
+
+<div class="footer">
+🔱 Anton Empire — Master Strategy v1.0 — Built by Forge — 27 February 2026<br>
+<em>"We don't hope our way to £10K. We build it."</em>
+</div>
+
+</body>
+</html>
