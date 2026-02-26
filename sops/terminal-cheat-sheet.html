@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminal Cheat Sheet — Dummified</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,sans-serif;background:#fff;color:#1a1a1a;line-height:1.7;max-width:800px;margin:0 auto;padding:24px}
+h1{font-size:2em;font-weight:800;margin-bottom:4px}
+.sub{color:#666;margin-bottom:30px}
+h2{font-size:1.3em;font-weight:800;margin:30px 0 10px;padding-bottom:4px;border-bottom:3px solid #111}
+.cmd{background:#1a1a2e;color:#22c55e;padding:14px 18px;border-radius:10px;font-family:'SF Mono',monospace;font-size:14px;margin:10px 0;position:relative;cursor:pointer}
+.cmd:hover{background:#22223a}
+.cmd::after{content:'📋 tap to copy';position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:#666;font-family:sans-serif}
+.cmd code{color:#22c55e}
+.label{font-size:12px;font-weight:700;margin-top:16px;margin-bottom:4px}
+.note{font-size:11px;color:#666;margin-top:4px;font-style:italic}
+.box{padding:14px;margin:12px 0;border-radius:8px}
+.box.red{background:#fdecea;border-left:4px solid #c0392b}
+.box.green{background:#e8f5e9;border-left:4px solid #27ae60}
+.box.blue{background:#e3f2fd;border-left:4px solid #2196f3}
+.nav{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.nav a{font-size:11px;color:#7c5cfc;text-decoration:none;padding:5px 14px;border:1px solid #ddd;border-radius:20px}
+.footer{text-align:center;font-size:.8em;color:#999;margin-top:40px;padding-top:20px;border-top:1px solid #e0e0e0}
+</style>
+</head>
+<body>
+<div class="nav">
+<a href="../">🏠 Home</a>
+<a href="../hub/">📁 SOP Hub</a>
+<a href="../dashboard/">📊 Dashboard</a>
+</div>
+
+<h1>💻 Terminal Cheat Sheet</h1>
+<p class="sub">Every command you'll ever need. Copy and paste. No coding required.<br>Open Terminal: Cmd+Space → type "Terminal" → Enter</p>
+
+<div class="box blue">
+<strong>How Terminal works:</strong> You type a command, press Enter, it does something. That's it. If you see a <code>$</code> or <code>%</code> at the start of a line, that's just the prompt — don't type that part.
+</div>
+
+<h2>🔱 Forge / OpenClaw Commands</h2>
+
+<div class="label">Check if Forge is running:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw gateway status</code></div>
+
+<div class="label">Start Forge:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw gateway start</code></div>
+
+<div class="label">Stop Forge:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw gateway stop</code></div>
+
+<div class="label">Restart Forge (fixes most issues):</div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw gateway restart</code></div>
+
+<div class="label">Check OpenClaw version + health:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw status</code></div>
+
+<div class="label">Auto-diagnose and fix issues:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw doctor --fix</code></div>
+
+<div class="label">List all cron jobs:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw cron list</code></div>
+
+<h2>🚨 Emergency Fixes</h2>
+
+<div class="label">Forge not responding — full reset:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw gateway restart</code></div>
+<div class="note">Wait 30 seconds, then message on Telegram</div>
+
+<div class="label">Provider cooldown loop — clear the error:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw gateway stop</code></div>
+<div class="cmd" onclick="copyCmd(this)"><code>nano ~/.openclaw/auth-profiles.json</code></div>
+<div class="note">Delete the "cooldownUntil" line, set "errorCount" to 0. Save: Ctrl+O → Enter → Ctrl+X</div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw gateway start</code></div>
+
+<div class="label">Nuclear — full reinstall (15 min):</div>
+<div class="cmd" onclick="copyCmd(this)"><code>npm uninstall -g openclaw</code></div>
+<div class="cmd" onclick="copyCmd(this)"><code>npm install -g openclaw</code></div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw onboard</code></div>
+<div class="cmd" onclick="copyCmd(this)"><code>cd ~/.openclaw && git clone https://github.com/AntonUrso2811/forge-workspace.git workspace</code></div>
+<div class="cmd" onclick="copyCmd(this)"><code>openclaw gateway start</code></div>
+
+<h2>💾 Backup & Git</h2>
+
+<div class="label">Check backup status:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>cd ~/.openclaw/workspace && git status</code></div>
+
+<div class="label">Force backup now:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>cd ~/.openclaw/workspace && git add -A && git commit -m "manual backup" && git push</code></div>
+
+<div class="label">Restore workspace from GitHub:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>cd ~/.openclaw && git clone https://github.com/AntonUrso2811/forge-workspace.git workspace</code></div>
+
+<h2>🖥 Mac System</h2>
+
+<div class="label">Keep Mac awake with lid closed (on power):</div>
+<div class="cmd" onclick="copyCmd(this)"><code>sudo pmset -c disablesleep 1</code></div>
+<div class="note">Requires your password. One-time setup.</div>
+
+<div class="label">Allow Mac to sleep again:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>sudo pmset -c disablesleep 0</code></div>
+
+<div class="label">Check if sleep is disabled:</div>
+<div class="cmd" onclick="copyCmd(this)"><code>pmset -g | grep disablesleep</code></div>
+
+<h2>🔑 Keyboard Shortcuts in Terminal</h2>
+
+<table style="width:100%;border-collapse:collapse;font-size:13px">
+<tr><td style="padding:8px;border-bottom:1px solid #eee"><strong>Ctrl+C</strong></td><td style="padding:8px;border-bottom:1px solid #eee">Cancel whatever is running</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee"><strong>Ctrl+L</strong></td><td style="padding:8px;border-bottom:1px solid #eee">Clear the screen</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee"><strong>Up Arrow</strong></td><td style="padding:8px;border-bottom:1px solid #eee">Repeat last command</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee"><strong>Cmd+V</strong></td><td style="padding:8px;border-bottom:1px solid #eee">Paste</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee"><strong>Ctrl+O</strong></td><td style="padding:8px;border-bottom:1px solid #eee">Save file (in nano editor)</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #eee"><strong>Ctrl+X</strong></td><td style="padding:8px;border-bottom:1px solid #eee">Exit nano editor</td></tr>
+</table>
+
+<div class="box red">
+<strong>⚠️ NEVER run these:</strong><br>
+<code>rm -rf</code> — permanently deletes files<br>
+<code>sudo rm</code> — permanently deletes system files<br>
+If unsure about a command, ask Forge first.
+</div>
+
+<div class="box green">
+<strong>Golden rule:</strong> If something goes wrong in Terminal, press <strong>Ctrl+C</strong> to cancel, then ask Forge what happened.
+</div>
+
+<div class="footer">🔱 Anton Empire — Terminal Cheat Sheet v1.0 — Built by Forge — 26 Feb 2026</div>
+
+<script>
+function copyCmd(el){
+  const t=el.querySelector('code').textContent;
+  navigator.clipboard.writeText(t).then(()=>{
+    el.style.background='#1a3a1a';
+    setTimeout(()=>el.style.background='',500);
+  });
+}
+</script>
+</body>
+</html>
