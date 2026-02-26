@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THALYVE™ Ad Performance Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05060a;--card:#0f1018;--card2:#12131d;--border:#1a1b28;--border2:#252638;--text:#eeeef2;--sub:#7c7c96;--dim:#4a4a62;--accent:#7c5cfc;--accent2:#9b7dff;--green:#0fd68c;--green-bg:rgba(15,214,140,.08);--amber:#ffb020;--amber-bg:rgba(255,176,32,.08);--red:#ff4d6a;--red-bg:rgba(255,77,106,.08);--blue:#4d9eff}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+.app{max-width:1100px;margin:0 auto;padding:20px 16px 60px}
+.header{text-align:center;padding:24px 0 20px;border-bottom:1px solid var(--border);margin-bottom:20px}
+.brand-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--accent),#5c3cdc);border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 16px rgba(124,92,252,.25);margin-bottom:10px}
+h1{font-size:22px;font-weight:800}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent2),#c0afff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{color:var(--sub);font-size:11px;margin-top:4px}
+.nav{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.nav a{font-size:11px;color:var(--accent2);text-decoration:none;padding:4px 12px;border:1px solid var(--border);border-radius:20px;transition:all .15s}
+.nav a:hover{border-color:var(--accent);background:rgba(124,92,252,.08)}
+
+/* KPI Cards */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:20px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+.kpi .val{font-size:22px;font-weight:800;margin:4px 0}
+.kpi .label{font-size:9px;color:var(--sub);text-transform:uppercase;letter-spacing:.8px}
+.kpi .delta{font-size:10px;margin-top:2px}
+.kpi.green .val{color:var(--green)}
+.kpi.red .val{color:var(--red)}
+.kpi.amber .val{color:var(--amber)}
+.kpi.blue .val{color:var(--blue)}
+
+/* Product Brief */
+.brief{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
+.brief h2{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.brief-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.brief-item{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px}
+.brief-item .label{font-size:9px;color:var(--sub);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.brief-item .value{font-size:13px;font-weight:600}
+.brief-item .detail{font-size:11px;color:var(--sub);margin-top:2px}
+
+/* Action Panel */
+.actions{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
+.actions h2{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.action-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--border);font-size:12px}
+.action-item:last-child{border:none}
+.action-badge{padding:3px 10px;border-radius:8px;font-size:9px;font-weight:700;min-width:50px;text-align:center}
+.badge-kill{background:var(--red-bg);color:var(--red);border:1px solid rgba(255,77,106,.2)}
+.badge-scale{background:var(--green-bg);color:var(--green);border:1px solid rgba(15,214,140,.2)}
+.badge-hold{background:var(--amber-bg);color:var(--amber);border:1px solid rgba(255,176,32,.2)}
+.badge-test{background:rgba(77,158,255,.1);color:var(--blue);border:1px solid rgba(77,158,255,.2)}
+
+/* Data Entry */
+.entry{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
+.entry h2{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.form-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:8px}
+.form-group{display:flex;flex-direction:column}
+.form-group label{font-size:9px;color:var(--sub);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.form-group input,.form-group select{background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-size:12px;font-family:'Inter',sans-serif;outline:none}
+.form-group input:focus,.form-group select:focus{border-color:var(--accent)}
+.btn{padding:8px 20px;border-radius:8px;border:none;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#5c3cdc);color:white}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(124,92,252,.3)}
+.btn-secondary{background:var(--card2);color:var(--text);border:1px solid var(--border)}
+.btn-danger{background:var(--red-bg);color:var(--red);border:1px solid rgba(255,77,106,.2)}
+
+/* Table */
+.table-wrap{overflow-x:auto;margin-top:12px}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:900px}
+th{background:var(--card2);color:var(--accent2);text-align:left;padding:8px 10px;border:1px solid var(--border);font-weight:700;text-transform:uppercase;letter-spacing:.5px;font-size:9px;position:sticky;top:0}
+td{padding:8px 10px;border:1px solid var(--border);color:var(--sub)}
+tr:hover td{background:rgba(124,92,252,.03)}
+.status-cell{font-weight:700;font-size:10px}
+.s-profit{color:var(--green)}
+.s-loss{color:var(--red)}
+.s-break{color:var(--amber)}
+
+/* Timeline */
+.timeline{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px}
+.timeline h2{font-size:14px;font-weight:700;color:var(--accent2);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.tl-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.tl-item:last-child{border:none}
+.tl-date{min-width:80px;font-size:11px;font-weight:600;color:var(--accent2)}
+.tl-content{font-size:12px;color:var(--sub)}
+.tl-content strong{color:var(--text)}
+
+.footer{text-align:center;padding:20px;font-size:9px;color:var(--dim);border-top:1px solid var(--border);margin-top:30px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="header">
+  <div class="brand-icon">📈</div>
+  <h1><em>THALYVE™</em> Ad Performance Tracker</h1>
+  <p class="sub">Media Buying Dashboard — Track, Analyse, Decide</p>
+  <div class="nav">
+    <a href="../">🏠 Home</a>
+    <a href="../dashboard/">📊 Command Centre</a>
+    <a href="../hub/">📁 SOPs</a>
+    <a href="../tracker/">🔍 Products</a>
+  </div>
+</div>
+
+<!-- KPI CARDS -->
+<div class="kpi-grid">
+  <div class="kpi" id="kpi-spend"><div class="label">Total Spend</div><div class="val" id="v-spend">$0.00</div><div class="delta" id="d-spend">—</div></div>
+  <div class="kpi" id="kpi-rev"><div class="label">Revenue</div><div class="val" id="v-rev">$0.00</div><div class="delta" id="d-rev">—</div></div>
+  <div class="kpi" id="kpi-roas"><div class="label">ROAS</div><div class="val" id="v-roas">—</div><div class="delta" id="d-roas">B/E: 1.31×</div></div>
+  <div class="kpi" id="kpi-cpa"><div class="label">CPA</div><div class="val" id="v-cpa">—</div><div class="delta" id="d-cpa">Target: $20.01</div></div>
+  <div class="kpi" id="kpi-purchases"><div class="label">Purchases</div><div class="val" id="v-purchases">0</div><div class="delta" id="d-purchases">—</div></div>
+  <div class="kpi" id="kpi-profit"><div class="label">Net Profit</div><div class="val" id="v-profit">$0.00</div><div class="delta" id="d-profit">—</div></div>
+  <div class="kpi" id="kpi-ctr"><div class="label">Avg CTR</div><div class="val" id="v-ctr">—</div><div class="delta" id="d-ctr">Target: ≥1.5%</div></div>
+  <div class="kpi" id="kpi-cvr"><div class="label">CVR</div><div class="val" id="v-cvr">—</div><div class="delta" id="d-cvr">Target: ≥2%</div></div>
+</div>
+
+<!-- PRODUCT BRIEF -->
+<div class="brief">
+  <h2>📋 Product Brief — THALYVE™ Evolved Stretch Mark Stick</h2>
+  <div class="brief-grid">
+    <div class="brief-item"><div class="label">Product</div><div class="value">Stretch Mark Stick</div><div class="detail">30-second mess-free application</div></div>
+    <div class="brief-item"><div class="label">COGS</div><div class="value">$8.44 / unit</div><div class="detail">Supplier: Mutual Express (TBC)</div></div>
+    <div class="brief-item"><div class="label">Pricing</div><div class="value">$39.99 / $69.99 / $89.99</div><div class="detail">1x / 2x / 3x bundles</div></div>
+    <div class="brief-item"><div class="label">Gross Margin</div><div class="value">69-75%</div><div class="detail">Excellent — room for aggressive CPA</div></div>
+    <div class="brief-item"><div class="label">B/E ROAS</div><div class="value">1.31× (blended)</div><div class="detail">Very forgiving — easy to profit</div></div>
+    <div class="brief-item"><div class="label">Max CPA</div><div class="value">$40.01 (break even)</div><div class="detail">Target: $20 for 50% margin</div></div>
+    <div class="brief-item"><div class="label">USP</div><div class="value">"It's not you, it's the format"</div><div class="detail">Stick vs greasy oils — convenience angle</div></div>
+    <div class="brief-item"><div class="label">Target Demo</div><div class="value">Women 25-45</div><div class="detail">Post-pregnancy, weight loss, teens</div></div>
+    <div class="brief-item"><div class="label">Daily Budget</div><div class="value">$100/day testing</div><div class="detail">$20-30 per ad set</div></div>
+    <div class="brief-item"><div class="label">Test Duration</div><div class="value">5-7 days</div><div class="detail">Kill at $150 total if 0 purchases</div></div>
+    <div class="brief-item"><div class="label">Platform</div><div class="value">Meta (Facebook/IG)</div><div class="detail">Via Ad Rail agency account (3% fee)</div></div>
+    <div class="brief-item"><div class="label">URL</div><div class="value"><a href="https://thalyve.com/products/thalyve-evolved-stretch-mark-stick" style="color:var(--accent2);font-size:10px">thalyve.com</a></div><div class="detail">60-day risk-free returns</div></div>
+  </div>
+</div>
+
+<!-- LAUNCH TIMELINE -->
+<div class="timeline">
+  <h2>🗓️ Launch Timeline</h2>
+  <div class="tl-item"><div class="tl-date">Feb 25</div><div class="tl-content"><strong>Warmup started</strong> — Impressions-only campaign, $5/day. Warming pixel.</div></div>
+  <div class="tl-item"><div class="tl-date">Feb 26-27</div><div class="tl-content"><strong>Warmup continues</strong> — 40hrs total warmup. Prepare creatives.</div></div>
+  <div class="tl-item"><div class="tl-date">Feb 28 (Fri)</div><div class="tl-content"><strong>🚀 LAUNCH DAY</strong> — Testing begins at $100/day. 3 ad sets × 3 creatives. DO NOT TOUCH for 24hrs.</div></div>
+  <div class="tl-item"><div class="tl-date">Mar 1 (Sat)</div><div class="tl-content"><strong>Day 1 Review</strong> — First data check. Monitor only. Kill nothing unless $20+ spend with 0 ATCs.</div></div>
+  <div class="tl-item"><div class="tl-date">Mar 2 (Sun)</div><div class="tl-content"><strong>Day 2 Full Eval</strong> — Apply kill criteria. Cut losers. Let winners run.</div></div>
+  <div class="tl-item"><div class="tl-date">Mar 3-4</div><div class="tl-content"><strong>Days 3-4</strong> — Accumulate purchase data. Need 3+ purchases per ad set to properly evaluate.</div></div>
+  <div class="tl-item"><div class="tl-date">Mar 5 (Wed)</div><div class="tl-content"><strong>Decision Day</strong> — Winner or kill. If profitable ROAS → scale. If $150+ with 0 purchases → next product.</div></div>
+</div>
+
+<!-- CAMPAIGN STRUCTURE -->
+<div class="brief">
+  <h2>🏗️ Campaign Structure — Ready for Friday</h2>
+  <div class="brief-grid">
+    <div class="brief-item" style="grid-column:span 2">
+      <div class="label">Campaign Setup</div>
+      <div class="value" style="font-size:11px;font-family:'SF Mono',monospace;line-height:1.8;white-space:pre">
+Campaign: THALYVE_SM_TEST_01 (ABO, Purchase Objective)
+├── Ad Set 1: Broad (no interests) — $33/day
+│   ├── Creative A: UGC — "I tried everything for my stretch marks..."
+│   ├── Creative B: Demo — Product application close-up
+│   └── Creative C: Before/After — Transformation montage
+├── Ad Set 2: Interest Stack (skincare, body care, pregnancy) — $33/day
+│   ├── Creative A: UGC
+│   ├── Creative B: Demo
+│   └── Creative C: Before/After
+└── Ad Set 3: Interest Stack 2 (weight loss, fitness, postpartum) — $33/day
+    ├── Creative A: UGC
+    ├── Creative B: Demo
+    └── Creative C: Before/After
+
+Settings: US only, Women 18-65+, Auto placement, 7-day click + 1-day view</div>
+    </div>
+  </div>
+</div>
+
+<!-- CREATIVE ANGLES -->
+<div class="brief">
+  <h2>🎬 Creative Angles — 3 Hooks to Test</h2>
+  <div class="brief-grid">
+    <div class="brief-item">
+      <div class="label">Creative A — UGC Style</div>
+      <div class="value">Person-to-camera testimonial</div>
+      <div class="detail">Hook: "I was SO embarrassed by my stretch marks until I found this..."<br>Body: Show application, ease of use<br>CTA: "Try it risk-free for 60 days"</div>
+    </div>
+    <div class="brief-item">
+      <div class="label">Creative B — Demo/Product</div>
+      <div class="value">Close-up application video</div>
+      <div class="detail">Hook: "30 seconds. No mess. No greasy oils."<br>Body: Side-by-side with messy oil vs clean stick<br>CTA: "Your skin deserves better"</div>
+    </div>
+    <div class="brief-item">
+      <div class="label">Creative C — Problem/Solution</div>
+      <div class="value">Before/after + social proof</div>
+      <div class="detail">Hook: "Why do stretch mark oils never work?"<br>Body: "It's not you — it's the format." Show stick.<br>CTA: "Join 10,000+ women who switched"</div>
+    </div>
+  </div>
+</div>
+
+<!-- DATA ENTRY -->
+<div class="entry">
+  <h2>📊 Daily Data Entry</h2>
+  <p style="font-size:11px;color:var(--sub);margin-bottom:12px">Enter daily numbers from Meta Ads Manager. All calculations are automatic.</p>
+  <div class="form-row">
+    <div class="form-group"><label>Date</label><input type="date" id="f-date"></div>
+    <div class="form-group"><label>Ad Set</label><select id="f-adset"><option>Broad</option><option>Interest 1</option><option>Interest 2</option></select></div>
+    <div class="form-group"><label>Spend ($)</label><input type="number" id="f-spend" step="0.01" placeholder="0.00"></div>
+    <div class="form-group"><label>Impressions</label><input type="number" id="f-impressions" placeholder="0"></div>
+    <div class="form-group"><label>Link Clicks</label><input type="number" id="f-clicks" placeholder="0"></div>
+    <div class="form-group"><label>Add to Carts</label><input type="number" id="f-atc" placeholder="0"></div>
+  </div>
+  <div class="form-row">
+    <div class="form-group"><label>Purchases</label><input type="number" id="f-purchases" placeholder="0"></div>
+    <div class="form-group"><label>Revenue ($)</label><input type="number" id="f-revenue" step="0.01" placeholder="0.00"></div>
+    <div class="form-group"><label>Best Creative</label><select id="f-creative"><option>UGC</option><option>Demo</option><option>Before/After</option></select></div>
+    <div class="form-group"><label>Notes</label><input type="text" id="f-notes" placeholder="Any observations..."></div>
+  </div>
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <button class="btn btn-primary" onclick="addEntry()">➕ Add Entry</button>
+    <button class="btn btn-secondary" onclick="exportData()">📥 Export CSV</button>
+    <button class="btn btn-danger" onclick="clearAll()">🗑️ Clear All</button>
+  </div>
+</div>
+
+<!-- ACTION PANEL -->
+<div class="actions" id="action-panel">
+  <h2>⚡ Actions & Recommendations</h2>
+  <div id="action-list">
+    <div class="action-item"><span class="action-badge badge-test">PREP</span> <span>Waiting for Friday launch — enter data once ads go live</span></div>
+  </div>
+</div>
+
+<!-- DATA TABLE -->
+<div class="entry">
+  <h2>📋 Performance Log</h2>
+  <div class="table-wrap">
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>Date</th><th>Ad Set</th><th>Spend</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>ATCs</th><th>Purch.</th><th>Rev.</th><th>CPA</th><th>ROAS</th><th>CVR</th><th>P/L</th><th>Status</th><th></th>
+        </tr>
+      </thead>
+      <tbody id="data-body"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- KILL CRITERIA REFERENCE -->
+<div class="brief">
+  <h2>🔴 Kill Criteria (Quick Reference)</h2>
+  <div class="brief-grid" style="grid-template-columns:repeat(auto-fill,minmax(250px,1fr))">
+    <div class="brief-item" style="border-left:3px solid var(--red)">
+      <div class="label">Kill Ad Set</div>
+      <div class="detail" style="font-size:12px">• $20+ spend, 0 add-to-carts<br>• $40+ spend, 0 purchases<br>• CPA 2× target after 3+ purchases<br>• ROAS below 1.0× after $100 spend</div>
+    </div>
+    <div class="brief-item" style="border-left:3px solid var(--red)">
+      <div class="label">Kill Product</div>
+      <div class="detail" style="font-size:12px">• All ad sets killed<br>• $150+ total spend, 0 purchases<br>• No path to B/E ROAS (1.31×)</div>
+    </div>
+    <div class="brief-item" style="border-left:3px solid var(--green)">
+      <div class="label">Scale</div>
+      <div class="detail" style="font-size:12px">• ROAS above 1.31× after 5+ purchases<br>• CPA consistently below $20<br>• Increase budget 20-30% every 2-3 days</div>
+    </div>
+    <div class="brief-item" style="border-left:3px solid var(--amber)">
+      <div class="label">Hold</div>
+      <div class="detail" style="font-size:12px">• ROAS between 1.0-1.31× (near B/E)<br>• Less than 3 purchases (need more data)<br>• Give it 1-2 more days</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">🔱 THALYVE™ Ad Tracker v1.0 — Built by Forge — Feb 2026<br>Data saves locally in your browser (localStorage)</div>
+
+</div>
+
+<script>
+const STORAGE_KEY = 'thalyve-ad-data';
+const BE_ROAS = 1.31;
+const TARGET_CPA = 20.01;
+const BLENDED_COGS = 13.08;
+const BLENDED_AOV = 54.99;
+
+let data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+function addEntry() {
+  const e = {
+    date: document.getElementById('f-date').value,
+    adset: document.getElementById('f-adset').value,
+    spend: parseFloat(document.getElementById('f-spend').value) || 0,
+    impressions: parseInt(document.getElementById('f-impressions').value) || 0,
+    clicks: parseInt(document.getElementById('f-clicks').value) || 0,
+    atc: parseInt(document.getElementById('f-atc').value) || 0,
+    purchases: parseInt(document.getElementById('f-purchases').value) || 0,
+    revenue: parseFloat(document.getElementById('f-revenue').value) || 0,
+    creative: document.getElementById('f-creative').value,
+    notes: document.getElementById('f-notes').value
+  };
+  if (!e.date) { alert('Please enter a date'); return; }
+  data.push(e);
+  save();
+  render();
+  // Clear form
+  ['f-spend','f-impressions','f-clicks','f-atc','f-purchases','f-revenue','f-notes'].forEach(id => document.getElementById(id).value = '');
+}
+
+function removeEntry(i) {
+  data.splice(i, 1);
+  save();
+  render();
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function clearAll() {
+  if (confirm('Clear ALL data? This cannot be undone.')) {
+    data = [];
+    save();
+    render();
+  }
+}
+
+function exportData() {
+  if (!data.length) { alert('No data to export'); return; }
+  let csv = 'Date,Ad Set,Spend,Impressions,Clicks,CTR,CPC,ATCs,Purchases,Revenue,CPA,ROAS,CVR,P/L,Creative,Notes\n';
+  data.forEach(e => {
+    const ctr = e.impressions ? (e.clicks/e.impressions*100).toFixed(2)+'%' : '-';
+    const cpc = e.clicks ? (e.spend/e.clicks).toFixed(2) : '-';
+    const cpa = e.purchases ? (e.spend/e.purchases).toFixed(2) : '-';
+    const roas = e.spend ? (e.revenue/e.spend).toFixed(2)+'x' : '-';
+    const cvr = e.clicks ? (e.purchases/e.clicks*100).toFixed(2)+'%' : '-';
+    const cogs = e.purchases * BLENDED_COGS;
+    const pl = (e.revenue - e.spend - cogs).toFixed(2);
+    csv += `${e.date},${e.adset},${e.spend},${e.impressions},${e.clicks},${ctr},${cpc},${e.atc},${e.purchases},${e.revenue},${cpa},${roas},${cvr},${pl},${e.creative},"${e.notes}"\n`;
+  });
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'thalyve-ad-data.csv';
+  a.click();
+}
+
+function render() {
+  // Table
+  const tbody = document.getElementById('data-body');
+  tbody.innerHTML = '';
+  let totalSpend=0, totalRev=0, totalPurchases=0, totalClicks=0, totalImpr=0;
+  
+  data.forEach((e, i) => {
+    const ctr = e.impressions ? (e.clicks/e.impressions*100) : 0;
+    const cpc = e.clicks ? (e.spend/e.clicks) : 0;
+    const cpa = e.purchases ? (e.spend/e.purchases) : 0;
+    const roas = e.spend ? (e.revenue/e.spend) : 0;
+    const cvr = e.clicks ? (e.purchases/e.clicks*100) : 0;
+    const cogs = e.purchases * BLENDED_COGS;
+    const pl = e.revenue - e.spend - cogs;
+    
+    totalSpend += e.spend;
+    totalRev += e.revenue;
+    totalPurchases += e.purchases;
+    totalClicks += e.clicks;
+    totalImpr += e.impressions;
+
+    let status = '—';
+    let statusClass = '';
+    if (e.purchases > 0) {
+      if (roas >= BE_ROAS) { status = '✅ Profit'; statusClass = 's-profit'; }
+      else if (roas >= 1.0) { status = '⚠️ Near B/E'; statusClass = 's-break'; }
+      else { status = '🔴 Loss'; statusClass = 's-loss'; }
+    } else if (e.spend >= 40) {
+      status = '🔴 Kill'; statusClass = 's-loss';
+    } else if (e.spend >= 20 && e.atc === 0) {
+      status = '⚠️ Watch'; statusClass = 's-break';
+    }
+
+    tbody.innerHTML += `<tr>
+      <td>${e.date}</td>
+      <td>${e.adset}</td>
+      <td>$${e.spend.toFixed(2)}</td>
+      <td>${e.impressions.toLocaleString()}</td>
+      <td>${e.clicks}</td>
+      <td>${ctr.toFixed(1)}%</td>
+      <td>$${cpc.toFixed(2)}</td>
+      <td>${e.atc}</td>
+      <td>${e.purchases}</td>
+      <td>$${e.revenue.toFixed(2)}</td>
+      <td>${e.purchases ? '$'+cpa.toFixed(2) : '—'}</td>
+      <td>${e.spend ? roas.toFixed(2)+'×' : '—'}</td>
+      <td>${cvr.toFixed(1)}%</td>
+      <td class="${pl>=0?'s-profit':'s-loss'}">$${pl.toFixed(2)}</td>
+      <td class="status-cell ${statusClass}">${status}</td>
+      <td><button onclick="removeEntry(${i})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:14px">×</button></td>
+    </tr>`;
+  });
+
+  // KPIs
+  const totalCogs = totalPurchases * BLENDED_COGS;
+  const totalProfit = totalRev - totalSpend - totalCogs;
+  const avgRoas = totalSpend ? totalRev / totalSpend : 0;
+  const avgCpa = totalPurchases ? totalSpend / totalPurchases : 0;
+  const avgCtr = totalImpr ? totalClicks / totalImpr * 100 : 0;
+  const avgCvr = totalClicks ? totalPurchases / totalClicks * 100 : 0;
+
+  document.getElementById('v-spend').textContent = '$' + totalSpend.toFixed(2);
+  document.getElementById('v-rev').textContent = '$' + totalRev.toFixed(2);
+  document.getElementById('v-roas').textContent = totalSpend ? avgRoas.toFixed(2) + '×' : '—';
+  document.getElementById('v-cpa').textContent = totalPurchases ? '$' + avgCpa.toFixed(2) : '—';
+  document.getElementById('v-purchases').textContent = totalPurchases;
+  document.getElementById('v-profit').textContent = '$' + totalProfit.toFixed(2);
+  document.getElementById('v-ctr').textContent = totalImpr ? avgCtr.toFixed(1) + '%' : '—';
+  document.getElementById('v-cvr').textContent = totalClicks ? avgCvr.toFixed(1) + '%' : '—';
+
+  // Color KPIs
+  const roasEl = document.getElementById('kpi-roas');
+  roasEl.className = 'kpi ' + (avgRoas >= BE_ROAS ? 'green' : avgRoas >= 1.0 ? 'amber' : totalSpend ? 'red' : '');
+  const cpaEl = document.getElementById('kpi-cpa');
+  cpaEl.className = 'kpi ' + (totalPurchases ? (avgCpa <= TARGET_CPA ? 'green' : avgCpa <= TARGET_CPA*2 ? 'amber' : 'red') : '');
+  const profitEl = document.getElementById('kpi-profit');
+  profitEl.className = 'kpi ' + (totalProfit > 0 ? 'green' : totalSpend ? 'red' : '');
+  const ctrEl = document.getElementById('kpi-ctr');
+  ctrEl.className = 'kpi ' + (avgCtr >= 1.5 ? 'green' : avgCtr >= 1.0 ? 'amber' : totalImpr ? 'red' : '');
+
+  // Actions
+  generateActions();
+}
+
+function generateActions() {
+  const panel = document.getElementById('action-list');
+  if (!data.length) {
+    panel.innerHTML = '<div class="action-item"><span class="action-badge badge-test">PREP</span> <span>Waiting for Friday launch — enter data once ads go live</span></div>';
+    return;
+  }
+
+  let actions = [];
+  // Aggregate by ad set
+  const adsets = {};
+  data.forEach(e => {
+    if (!adsets[e.adset]) adsets[e.adset] = {spend:0,purchases:0,revenue:0,atc:0,clicks:0};
+    adsets[e.adset].spend += e.spend;
+    adsets[e.adset].purchases += e.purchases;
+    adsets[e.adset].revenue += e.revenue;
+    adsets[e.adset].atc += e.atc;
+    adsets[e.adset].clicks += e.clicks;
+  });
+
+  for (const [name, s] of Object.entries(adsets)) {
+    const roas = s.spend ? s.revenue / s.spend : 0;
+    const cpa = s.purchases ? s.spend / s.purchases : 0;
+
+    if (s.spend >= 40 && s.purchases === 0) {
+      actions.push(`<div class="action-item"><span class="action-badge badge-kill">KILL</span> <span><strong>${name}:</strong> $${s.spend.toFixed(0)} spent, 0 purchases — kill this ad set</span></div>`);
+    } else if (s.spend >= 20 && s.atc === 0) {
+      actions.push(`<div class="action-item"><span class="action-badge badge-kill">KILL</span> <span><strong>${name}:</strong> $${s.spend.toFixed(0)} spent, 0 add-to-carts — kill this ad set</span></div>`);
+    } else if (s.purchases >= 5 && roas >= BE_ROAS) {
+      actions.push(`<div class="action-item"><span class="action-badge badge-scale">SCALE</span> <span><strong>${name}:</strong> ${roas.toFixed(2)}× ROAS, ${s.purchases} purchases — increase budget 20-30%</span></div>`);
+    } else if (s.purchases >= 3 && cpa > TARGET_CPA * 2) {
+      actions.push(`<div class="action-item"><span class="action-badge badge-kill">KILL</span> <span><strong>${name}:</strong> CPA $${cpa.toFixed(0)} is 2× target — kill this ad set</span></div>`);
+    } else if (s.purchases > 0 && roas >= 1.0) {
+      actions.push(`<div class="action-item"><span class="action-badge badge-hold">HOLD</span> <span><strong>${name}:</strong> ${roas.toFixed(2)}× ROAS — near B/E, need more data</span></div>`);
+    } else if (s.purchases > 0) {
+      actions.push(`<div class="action-item"><span class="action-badge badge-hold">HOLD</span> <span><strong>${name}:</strong> ${s.purchases} purchases, monitoring — need 3+ to evaluate properly</span></div>`);
+    } else {
+      actions.push(`<div class="action-item"><span class="action-badge badge-test">TEST</span> <span><strong>${name}:</strong> $${s.spend.toFixed(0)} spent — still testing, let it run</span></div>`);
+    }
+  }
+
+  // Overall check
+  const totalSpend = Object.values(adsets).reduce((a,b) => a+b.spend, 0);
+  const totalPurchases = Object.values(adsets).reduce((a,b) => a+b.purchases, 0);
+  if (totalSpend >= 150 && totalPurchases === 0) {
+    actions.unshift(`<div class="action-item"><span class="action-badge badge-kill">🚨 KILL</span> <span><strong>PRODUCT:</strong> $${totalSpend.toFixed(0)} total spend, 0 purchases — kill product, move to next</span></div>`);
+  }
+
+  panel.innerHTML = actions.length ? actions.join('') : '<div class="action-item"><span class="action-badge badge-test">OK</span> <span>All ad sets running normally</span></div>';
+}
+
+// Init
+document.getElementById('f-date').valueAsDate = new Date();
+render();
+</script>
+</body>
+</html>
