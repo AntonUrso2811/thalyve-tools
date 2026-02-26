@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-02-26T10:40:00Z",
+    "lastUpdated": "2026-02-26T11:20:00Z",
     "updatedBy": "Forge",
     "version": "3.1"
   },
@@ -505,46 +505,76 @@
     "date": "2026-02-26",
     "anton": [
       {
-        "task": "Review morning briefing (Telegram)",
-        "done": false
+        "task": "Verify Posture Corrector on GetHookd (10+ active ads, 7+ days)",
+        "done": false,
+        "time": "10 min"
       },
       {
-        "task": "Approve/reject product recommendations",
-        "done": false
+        "task": "Message Mutual Express — COGS quotes for top 3 products",
+        "done": false,
+        "time": "10 min"
       },
       {
-        "task": "Send Mutual Express message (when product selected)",
-        "done": false
+        "task": "Check FB Ad Library — competitor ad counts for top 3",
+        "done": false,
+        "time": "10 min"
       },
       {
-        "task": "Review ad brief + decide kill/scale/hold",
-        "done": false
+        "task": "Review stretch mark stick compliance fixes before Friday launch",
+        "done": false,
+        "time": "15 min"
       },
       {
-        "task": "One strategic decision (Forge flags what)",
-        "done": false
+        "task": "Run sudo pmset -c disablesleep 1 in Terminal",
+        "done": true,
+        "time": "1 min"
       }
     ],
     "forge": [
       {
-        "task": "Product research pipeline (Mon & Thu 3AM cron)",
-        "done": true
+        "task": "Product research cron (3AM) — 5 products delivered",
+        "done": true,
+        "time": "7 min"
       },
       {
-        "task": "Update tools/tracker on GitHub Pages",
-        "done": true
+        "task": "Master Strategy v1.0 built + pushed to GitHub Pages",
+        "done": true,
+        "time": "15 min"
       },
       {
-        "task": "Memory maintenance + backup verification",
-        "done": true
+        "task": "Media Buying SOP v1.0 rebuilt",
+        "done": true,
+        "time": "10 min"
       },
       {
-        "task": "System health check (gateway, channels, cron)",
-        "done": true
+        "task": "Survival Guide updated — quick fix cheat sheet + incident log",
+        "done": true,
+        "time": "8 min"
       },
       {
-        "task": "Prep morning briefing + flag decisions",
-        "done": true
+        "task": "Command Centre v3.2 — Backup & Recovery tab added",
+        "done": true,
+        "time": "12 min"
+      },
+      {
+        "task": "Absorbed 9 files — Meta infrastructure + Company Foundation + Compliance",
+        "done": true,
+        "time": "5 min"
+      },
+      {
+        "task": "Daily critical tasks cron created (6AM daily)",
+        "done": true,
+        "time": "1 min"
+      },
+      {
+        "task": "MBB playbook — framework extraction",
+        "done": true,
+        "time": "8 min"
+      },
+      {
+        "task": "All repos synced + pushed to GitHub",
+        "done": true,
+        "time": "2 min"
       }
     ]
   },
