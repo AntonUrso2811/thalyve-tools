@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-02-26T11:20:00Z",
+    "lastUpdated": "2026-02-26T11:25:00Z",
     "updatedBy": "Forge",
     "version": "3.1"
   },
@@ -503,78 +503,99 @@
   ],
   "dailyCriticalTasks": {
     "date": "2026-02-26",
+    "lastUpdated": "11:25 AM GMT",
     "anton": [
       {
-        "task": "Verify Posture Corrector on GetHookd (10+ active ads, 7+ days)",
+        "task": "🔴 Verify Posture Corrector on GetHookd — confirm 10+ active brand ads running 7+ days",
         "done": false,
-        "time": "10 min"
+        "time": "10 min",
+        "why": "Validates our #1 product pick (9.5/10 score). Cannot move forward without this."
       },
       {
-        "task": "Message Mutual Express — COGS quotes for top 3 products",
+        "task": "🔴 Message Mutual Express — COGS quotes for Posture Corrector, LED Face Mask, TENS Device",
         "done": false,
-        "time": "10 min"
+        "time": "10 min",
+        "why": "No COGS = no margin calc = no launch. This unlocks pricing decisions."
       },
       {
-        "task": "Check FB Ad Library — competitor ad counts for top 3",
+        "task": "🟡 Check FB Ad Library — count active ads for top 3 products",
         "done": false,
-        "time": "10 min"
+        "time": "10 min",
+        "why": "Confirms competitor spend and validates market demand."
       },
       {
-        "task": "Review stretch mark stick compliance fixes before Friday launch",
+        "task": "🟡 Review compliance fixes for stretch mark stick ads before Friday launch",
         "done": false,
-        "time": "15 min"
+        "time": "15 min",
+        "why": "Ad Rail flagged HIGH rejection risk. Ads will get banned without rework."
       },
       {
-        "task": "Run sudo pmset -c disablesleep 1 in Terminal",
-        "done": true,
-        "time": "1 min"
+        "task": "🟢 Pin the Command Hub message in Telegram",
+        "done": false,
+        "time": "30 sec",
+        "why": "Never lose your links again. One pinned message = everything accessible."
       }
     ],
     "forge": [
       {
-        "task": "Product research cron (3AM) — 5 products delivered",
+        "task": "✅ Product research cron — 5 products scored, 3 dropship-ready",
         "done": true,
-        "time": "7 min"
+        "time": "7 min",
+        "model": "Sonnet"
       },
       {
-        "task": "Master Strategy v1.0 built + pushed to GitHub Pages",
+        "task": "✅ Master Strategy v1.0 — bulletproof infra + £10K roadmap",
         "done": true,
-        "time": "15 min"
+        "time": "15 min",
+        "model": "Opus"
       },
       {
-        "task": "Media Buying SOP v1.0 rebuilt",
+        "task": "✅ Media Buying SOP v1.0 rebuilt + pushed to SOP Hub",
         "done": true,
-        "time": "10 min"
+        "time": "10 min",
+        "model": "Opus"
       },
       {
-        "task": "Survival Guide updated — quick fix cheat sheet + incident log",
+        "task": "✅ Survival Guide — quick fix cheat sheet + incident log",
         "done": true,
-        "time": "8 min"
+        "time": "8 min",
+        "model": "Opus"
       },
       {
-        "task": "Command Centre v3.2 — Backup & Recovery tab added",
+        "task": "✅ Command Centre v3.2 — Backup & Recovery tab + downloadable files",
         "done": true,
-        "time": "12 min"
+        "time": "12 min",
+        "model": "Opus"
       },
       {
-        "task": "Absorbed 9 files — Meta infrastructure + Company Foundation + Compliance",
+        "task": "✅ Absorbed 9 files — Meta infrastructure, Company Foundation, Compliance review",
         "done": true,
-        "time": "5 min"
+        "time": "5 min",
+        "model": "Opus"
       },
       {
-        "task": "Daily critical tasks cron created (6AM daily)",
+        "task": "✅ Daily critical tasks cron created (6AM daily, auto-delivered to Telegram)",
         "done": true,
-        "time": "1 min"
+        "time": "1 min",
+        "model": "Opus"
       },
       {
-        "task": "MBB playbook — framework extraction",
+        "task": "✅ Mark Builds Brands playbook — framework extraction from Drive",
         "done": true,
-        "time": "8 min"
+        "time": "8 min",
+        "model": "Opus"
       },
       {
-        "task": "All repos synced + pushed to GitHub",
+        "task": "✅ All repos synced + pushed to GitHub (forge-workspace + thalyve-tools)",
         "done": true,
-        "time": "2 min"
+        "time": "2 min",
+        "model": "Opus"
+      },
+      {
+        "task": "🟢 Rewrite stretch mark stick ad copy (compliance-safe)",
+        "done": false,
+        "time": "Next",
+        "model": "Opus"
       }
     ]
   },
