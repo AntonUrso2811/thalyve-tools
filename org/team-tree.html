@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anton Empire — Team Tree</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Inter',sans-serif;background:#0a0a0f;color:#e4e4e7;min-height:100vh;padding:20px}
+.app{max-width:1100px;margin:0 auto}
+h1{text-align:center;font-size:24px;font-weight:800;margin-bottom:6px}
+h1 span{color:#8b5cf6}
+.sub{text-align:center;color:#71717a;font-size:12px;margin-bottom:30px}
+.nav{display:flex;gap:8px;justify-content:center;margin-bottom:24px}
+.nav a{font-size:11px;color:#9b7dff;text-decoration:none;padding:5px 14px;border:1px solid #1e1e2e;border-radius:20px}
+
+/* Tree */
+.tree{display:flex;flex-direction:column;align-items:center;gap:0}
+.level{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative}
+.connector{width:2px;height:30px;background:#2e2e4e;margin:0 auto}
+.h-line{height:2px;background:#2e2e4e;margin:0 auto}
+
+.card{background:#12121a;border:1px solid #1e1e2e;border-radius:12px;padding:16px;min-width:180px;max-width:220px;text-align:center;transition:all .2s}
+.card:hover{border-color:#8b5cf6;transform:translateY(-2px);box-shadow:0 4px 20px rgba(139,92,246,.15)}
+.card.active{border-color:#22c55e}
+.card.planned{border-color:#f59e0b;opacity:.7}
+.card.future{border-color:#3b82f6;opacity:.5}
+.card .emoji{font-size:28px;margin-bottom:6px}
+.card .name{font-size:14px;font-weight:800}
+.card .role{font-size:10px;color:#71717a;margin-top:2px}
+.card .badge{display:inline-block;font-size:9px;padding:2px 10px;border-radius:10px;font-weight:700;margin-top:8px}
+.badge.active{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.2)}
+.badge.planned{background:rgba(245,158,11,.1);color:#f59e0b;border:1px solid rgba(245,158,11,.2)}
+.badge.future{background:rgba(59,130,246,.1);color:#3b82f6;border:1px solid rgba(59,130,246,.2)}
+.card .trigger{font-size:9px;color:#71717a;margin-top:6px;font-style:italic}
+.card .model{font-size:9px;color:#8b5cf6;margin-top:4px;font-weight:600}
+
+.phase-label{text-align:center;font-size:11px;font-weight:700;color:#71717a;text-transform:uppercase;letter-spacing:2px;margin:24px 0 12px;padding:8px 20px;border:1px solid #1e1e2e;border-radius:20px;display:inline-block}
+
+.section{text-align:center;margin:20px 0 8px}
+.footer{text-align:center;font-size:9px;color:#4a4a62;margin-top:40px}
+
+.legend{display:flex;gap:16px;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:10px;color:#71717a}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="nav">
+<a href="../">🏠 Home</a>
+<a href="../hub/">📁 SOP Hub</a>
+<a href="../dashboard/">📊 Dashboard</a>
+</div>
+
+<h1>🔱 <span>Anton Empire</span> — Team Infrastructure</h1>
+<p class="sub">Current team + planned hires + scaling triggers. Updated: 26 Feb 2026</p>
+
+<div class="legend">
+<div class="legend-item"><div class="legend-dot" style="background:#22c55e"></div> Active</div>
+<div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div> Planned (trigger set)</div>
+<div class="legend-item"><div class="legend-dot" style="background:#3b82f6"></div> Future (Phase 3+)</div>
+</div>
+
+<!-- CEO -->
+<div class="tree">
+<div class="level">
+<div class="card active">
+<div class="emoji">👑</div>
+<div class="name">Anton Urso</div>
+<div class="role">CEO — Strategy, Decisions, Creative Direction</div>
+<span class="badge active">ACTIVE</span>
+<div class="model">Human</div>
+</div>
+</div>
+
+<div class="connector"></div>
+
+<!-- COO -->
+<div class="level">
+<div class="card active">
+<div class="emoji">🔱</div>
+<div class="name">Forge</div>
+<div class="role">COO / Chief of Staff — Operations, QC, Orchestration</div>
+<span class="badge active">ACTIVE</span>
+<div class="model">Claude Opus 4.6</div>
+</div>
+</div>
+
+<div class="connector"></div>
+
+<!-- Phase 2 -->
+<div class="section"><span class="phase-label">Phase 2 — First Winner Found</span></div>
+
+<div class="level">
+<div class="card planned">
+<div class="emoji">🪶</div>
+<div class="name">Quill</div>
+<div class="role">Copywriter — Ad copy, advertorials, landing pages, email sequences</div>
+<span class="badge planned">PLANNED</span>
+<div class="trigger">Trigger: First winning product confirmed</div>
+<div class="model">Sonnet → Opus if quality needs it</div>
+</div>
+
+<div class="card planned">
+<div class="emoji">🔭</div>
+<div class="name">Scout</div>
+<div class="role">Product Researcher — Higher volume, deeper analysis, trend monitoring</div>
+<span class="badge planned">PLANNED</span>
+<div class="trigger">Trigger: First product validation complete</div>
+<div class="model">Sonnet</div>
+</div>
+</div>
+
+<div class="connector"></div>
+
+<!-- Phase 3 -->
+<div class="section"><span class="phase-label">Phase 3 — £10K+/month</span></div>
+
+<div class="level">
+<div class="card future">
+<div class="emoji">📸</div>
+<div class="name">Lens</div>
+<div class="role">Creative Director — Image gen, video, UGC briefs, ad creative</div>
+<span class="badge future">FUTURE</span>
+<div class="trigger">Trigger: 2+ winning products</div>
+<div class="model">Opus (creative quality)</div>
+</div>
+
+<div class="card future">
+<div class="emoji">🦅</div>
+<div class="name">Hawk</div>
+<div class="role">Market Intelligence — Competitor tracking, trend alerts, pricing intel</div>
+<span class="badge future">FUTURE</span>
+<div class="trigger">Trigger: Phase 3 scaling</div>
+<div class="model">Sonnet</div>
+</div>
+
+<div class="card future">
+<div class="emoji">🛡️</div>
+<div class="name">Shield</div>
+<div class="role">QC Agent — Reviews all output. Creator ≠ reviewer. No bias.</div>
+<span class="badge future">FUTURE</span>
+<div class="trigger">Trigger: 4+ agents producing output</div>
+<div class="model">Opus (needs nuance)</div>
+</div>
+</div>
+
+<div class="connector"></div>
+
+<!-- Phase 4 -->
+<div class="section"><span class="phase-label">Phase 4 — £30K+/month Empire</span></div>
+
+<div class="level">
+<div class="card future">
+<div class="emoji">💬</div>
+<div class="name">CS Agent</div>
+<div class="role">Customer Service — Tier 1 auto-response, escalation to Forge</div>
+<span class="badge future">FUTURE</span>
+<div class="trigger">Trigger: 5+ enquiries/day</div>
+<div class="model">Sonnet</div>
+</div>
+
+<div class="card future">
+<div class="emoji">📊</div>
+<div class="name">Analytics</div>
+<div class="role">Data Analyst — P&L forecasting, ad optimization, reporting</div>
+<span class="badge future">FUTURE</span>
+<div class="trigger">Trigger: £30K+/month revenue</div>
+<div class="model">Sonnet</div>
+</div>
+
+<div class="card future">
+<div class="emoji">🏗️</div>
+<div class="name">Brand Agents</div>
+<div class="role">Dedicated agents per brand — when Brand #2, #3 launch</div>
+<span class="badge future">FUTURE</span>
+<div class="trigger">Trigger: Multiple brands running</div>
+<div class="model">Varies</div>
+</div>
+</div>
+
+</div>
+
+<!-- QC Flow -->
+<div style="margin-top:40px;text-align:center">
+<span class="phase-label">QC & Onboarding Flow</span>
+</div>
+<div style="background:#12121a;border:1px solid #1e1e2e;border-radius:12px;padding:20px;margin-top:12px;font-size:12px;line-height:2">
+<strong>Every new hire goes through:</strong><br>
+1️⃣ Company Foundation v2.0 (mission, vision, values) → Must articulate each value in own words<br>
+2️⃣ Five-Filter Test training → Every decision filtered through all 5<br>
+3️⃣ Security Policy v1.2 → No data exfiltration, prompt injection defence, GDPR<br>
+4️⃣ Sub-Agent Onboarding SOP → Role brief, tools access, reporting chain<br>
+5️⃣ QC Trial Period → First 5 outputs reviewed by Forge. 3+ failures = fired.<br><br>
+<strong>QC Chain:</strong> Agent creates → Different agent reviews → Forge approves → Anton gets finished product<br>
+<strong>Rule:</strong> Creator NEVER reviews own work. No exceptions.
+</div>
+
+<div class="footer">🔱 Anton Empire — Team Infrastructure v1.0 — Built by Forge — 26 Feb 2026</div>
+</div>
+</body>
+</html>

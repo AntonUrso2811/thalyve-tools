@@ -222,7 +222,7 @@
   },
   "taskLog": [
     {
-      "status": "✅",
+      "status": "done",
       "task": "Product research cron — 5 products scored, 3 dropship-ready",
       "owner": "Forge (Sonnet)",
       "started": "2026-02-26T03:00:00Z",
@@ -230,7 +230,7 @@
       "duration": "7m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Master Strategy v1.0 — infrastructure + £10K roadmap",
       "owner": "Forge (Opus)",
       "started": "2026-02-26T08:45:00Z",
@@ -238,7 +238,7 @@
       "duration": "15m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Media Buying SOP v1.0 rebuilt",
       "owner": "Forge (Opus)",
       "started": "2026-02-26T08:30:00Z",
@@ -246,7 +246,7 @@
       "duration": "10m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Whisper voice model re-downloaded",
       "owner": "Forge (Opus)",
       "started": "2026-02-26T08:46:00Z",
@@ -254,7 +254,7 @@
       "duration": "4m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Daily critical tasks cron (6AM, Sonnet)",
       "owner": "Forge (Opus)",
       "started": "2026-02-26T10:03:00Z",
@@ -262,7 +262,7 @@
       "duration": "1m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "MBB playbook — framework extraction",
       "owner": "Forge (Opus)",
       "started": "2026-02-26T10:07:00Z",
@@ -270,7 +270,7 @@
       "duration": "8m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Mac sleep disabled — lid-close gateway running",
       "owner": "Anton",
       "started": "2026-02-26T10:03:00Z",
@@ -278,7 +278,7 @@
       "duration": "1m"
     },
     {
-      "status": "🟢",
+      "status": "in-progress",
       "task": "Full system sync + portal build",
       "owner": "Forge (Opus)",
       "started": "2026-02-26T10:40:00Z",
@@ -286,7 +286,7 @@
       "duration": "—"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "CRITICAL-TASKS.md — daily operating system",
       "owner": "Forge",
       "started": "2026-02-26T02:15:00Z",
@@ -294,7 +294,7 @@
       "duration": "2m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Morning briefing cron (7AM daily, Sonnet)",
       "owner": "Forge",
       "started": "2026-02-26T02:12:00Z",
@@ -302,7 +302,7 @@
       "duration": "1m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Telegram connected + pairing approved",
       "owner": "Forge",
       "started": "2026-02-26T02:08:00Z",
@@ -310,7 +310,7 @@
       "duration": "2m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Advanced Diagnostics — 15 failure scenarios",
       "owner": "Sub-agent",
       "started": "2026-02-26T02:04:00Z",
@@ -318,7 +318,7 @@
       "duration": "2m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Feb 25 incident corrected in memory (crash loop not cooldown)",
       "owner": "Forge",
       "started": "2026-02-26T02:02:00Z",
@@ -326,7 +326,7 @@
       "duration": "3m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Ad Performance Tracker v1.0 built",
       "owner": "Forge",
       "started": "2026-02-26T01:54:00Z",
@@ -334,7 +334,7 @@
       "duration": "3m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Security audit — all green + monthly cron added",
       "owner": "Forge",
       "started": "2026-02-26T01:49:00Z",
@@ -342,7 +342,7 @@
       "duration": "2m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Cron jobs optimised (Sonnet for auto, Opus for live)",
       "owner": "Forge",
       "started": "2026-02-26T01:41:00Z",
@@ -350,7 +350,7 @@
       "duration": "4m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Efficiency Bible built (HTML)",
       "owner": "Forge",
       "started": "2026-02-26T01:33:00Z",
@@ -358,7 +358,7 @@
       "duration": "5m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Survival Guide v1.1 — Telegram, API, restart sections",
       "owner": "Forge",
       "started": "2026-02-26T01:24:00Z",
@@ -366,7 +366,7 @@
       "duration": "3m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Full chat export analysis — MEMORY.md rebuilt",
       "owner": "Forge",
       "started": "2026-02-26T01:13:00Z",
@@ -374,7 +374,7 @@
       "duration": "4m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "SOS.md emergency guide created",
       "owner": "Forge",
       "started": "2026-02-26T01:10:00Z",
@@ -382,7 +382,7 @@
       "duration": "1m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "System health check + backups verified",
       "owner": "Forge",
       "started": "2026-02-26T01:02:00Z",
@@ -390,7 +390,7 @@
       "duration": "4m"
     },
     {
-      "status": "✅",
+      "status": "done",
       "task": "Workspace restored from GitHub",
       "owner": "Forge",
       "started": "2026-02-26T00:49:00Z",
@@ -398,7 +398,7 @@
       "duration": "6m"
     },
     {
-      "status": "🟢",
+      "status": "in-progress",
       "task": "Overnight — product research (3AM), morning briefing (7AM)",
       "owner": "Forge (cron)",
       "started": "2026-02-26T02:17:00Z",
