@@ -82,6 +82,10 @@ tr:hover td{background:var(--card)}
   <a href="#vps"><span>🌍</span> VPS Setup — Travel Without Worrying</a>
   <a href="#telegram"><span>💬</span> Reconnecting Telegram Safely</a>
   <a href="#emergency"><span>🆘</span> Full Emergency Recovery (Nuclear Option)</a>
+  <a href="#restart"><span>🔄</span> Starting Again From Absolute Zero</a>
+  <a href="#telegram-diag"><span>🔍</span> Telegram Diagnostics — Delays, Lapses, No Response</a>
+  <a href="#api-keys"><span>🔑</span> Generating New API Keys from Anthropic</a>
+  <a href="#updates"><span>⬆️</span> Updating & Overriding OpenClaw Settings</a>
 </div>
 
 <!-- RULE 1 -->
@@ -388,6 +392,272 @@ openclaw channels add telegram
 # Start
 openclaw gateway start</code></pre>
 <p>Forge will be back with <strong>all his memories</strong> because they're on GitHub. The only thing you'll need to re-enter is your API key and Telegram bot token.</p>
+</section>
+
+<!-- COMPLETE RESTART -->
+<section id="restart">
+<h2>🔄 Starting Again From Absolute Zero</h2>
+<p>If the Mac dies, gets stolen, you buy a new machine, or everything is completely gone — here's how to rebuild Forge from nothing. All you need is a computer with internet.</p>
+
+<h3>What You Need Before Starting</h3>
+<table>
+<tr><th>Item</th><th>Where to Get It</th><th>Why You Need It</th></tr>
+<tr><td>Anthropic API Key</td><td><a href="https://console.anthropic.com/settings/keys" style="color:var(--accent2)">console.anthropic.com/settings/keys</a></td><td>Powers Forge's brain (Claude)</td></tr>
+<tr><td>Telegram Bot Token</td><td>Message <a href="https://t.me/BotFather" style="color:var(--accent2)">@BotFather</a> on Telegram</td><td>Connects Forge to Telegram</td></tr>
+<tr><td>GitHub Access</td><td><a href="https://github.com/AntonUrso2811" style="color:var(--accent2)">github.com/AntonUrso2811</a></td><td>Forge's memory backup lives here</td></tr>
+</table>
+
+<h3>Full Rebuild — Step by Step (Mac)</h3>
+<div class="step"><div class="step-num">1</div><h4>Install Node.js</h4><p>Go to <a href="https://nodejs.org" style="color:var(--accent2)">nodejs.org</a> → Download the LTS version → Install it.</p>
+<p>Verify it worked:</p>
+<pre><code>node --version
+# Should show v20+ or v22+</code></pre></div>
+
+<div class="step"><div class="step-num">2</div><h4>Install OpenClaw</h4>
+<pre><code>npm install -g openclaw</code></pre>
+<p>Verify:</p>
+<pre><code>openclaw --version</code></pre></div>
+
+<div class="step"><div class="step-num">3</div><h4>Initialize OpenClaw</h4>
+<pre><code>openclaw init</code></pre>
+<p>This creates the <code>~/.openclaw/</code> directory with all the scaffolding.</p></div>
+
+<div class="step"><div class="step-num">4</div><h4>Add your Anthropic API key</h4>
+<pre><code>openclaw agents add main</code></pre>
+<p>When prompted, paste your API key from <a href="https://console.anthropic.com/settings/keys" style="color:var(--accent2)">console.anthropic.com/settings/keys</a>.</p>
+<p>Set the model to <strong>claude-opus-4-6</strong> (or whatever's current).</p></div>
+
+<div class="step"><div class="step-num">5</div><h4>Restore Forge's memory from GitHub</h4>
+<pre><code>cd ~/.openclaw/workspace
+git init
+git remote add origin https://github.com/AntonUrso2811/forge-workspace.git
+git fetch origin
+git reset --hard origin/main</code></pre>
+<p>✅ All memory, SOPs, identity files — restored in seconds.</p></div>
+
+<div class="step"><div class="step-num">6</div><h4>Connect Telegram</h4>
+<pre><code>openclaw channels add telegram</code></pre>
+<p>When prompted, paste your bot token from @BotFather. If you lost the old bot, create a new one (see Telegram section below).</p></div>
+
+<div class="step"><div class="step-num">7</div><h4>Start the gateway</h4>
+<pre><code>openclaw gateway start</code></pre></div>
+
+<div class="step"><div class="step-num">8</div><h4>Test</h4>
+<p>Open <strong>http://127.0.0.1:18789</strong> in browser → say "hello". If Forge responds with 🔱, you're back.</p>
+<p>Then message on Telegram to confirm that channel works too.</p></div>
+
+<div class="alert alert-green">
+<h3>Total time: ~15 minutes</h3>
+<p>That's it. Forge is back with all his memories. The only things you manually enter are the API key and bot token — everything else is restored from GitHub automatically.</p>
+</div>
+</section>
+
+<!-- TELEGRAM DIAGNOSTICS -->
+<section id="telegram-diag">
+<h2>🔍 Telegram Diagnostics — No Responses, Delays & Lapses</h2>
+
+<h3>Problem: Forge doesn't respond on Telegram at all</h3>
+<div class="step"><div class="step-num">1</div><h4>Is the gateway running?</h4>
+<pre><code>openclaw gateway status</code></pre>
+<p>If it says "not running" → <code>openclaw gateway start</code></p></div>
+
+<div class="step"><div class="step-num">2</div><h4>Is Telegram connected?</h4>
+<pre><code>openclaw channels status</code></pre>
+<p>Look for Telegram in the list. If it's missing or shows an error → re-add it:</p>
+<pre><code>openclaw channels add telegram</code></pre></div>
+
+<div class="step"><div class="step-num">3</div><h4>Is the webchat stealing replies?</h4>
+<p>If you have <strong>http://127.0.0.1:18789</strong> open in ANY browser tab on the Mac, <strong>close it</strong>. This is the #1 cause of Telegram going silent. The webchat hijacks the session and all replies go there instead.</p></div>
+
+<div class="step"><div class="step-num">4</div><h4>Check the live logs</h4>
+<pre><code>openclaw logs --follow</code></pre>
+<p>Now send a message on Telegram. Watch the logs. You should see:</p>
+<ul>
+<li>✅ <code>message received</code> — Forge got your message</li>
+<li>✅ <code>completion</code> or <code>response</code> — Forge is generating a reply</li>
+<li>❌ <code>429</code> or <code>rate_limit</code> — API cooldown, wait 5-15 min</li>
+<li>❌ <code>401</code> or <code>auth</code> — API key expired/invalid, regenerate it</li>
+<li>❌ <code>timeout</code> — network issue, restart gateway</li>
+</ul></div>
+
+<div class="step"><div class="step-num">5</div><h4>Nuclear reset for Telegram routing</h4>
+<pre><code># Stop gateway
+openclaw gateway stop
+
+# Wait 10 seconds
+
+# Start fresh
+openclaw gateway start</code></pre>
+<p>Then close ALL browser tabs showing OpenClaw and message on Telegram.</p></div>
+
+<h3>Problem: Forge responds but it's really slow (30+ seconds)</h3>
+<table>
+<tr><th>Cause</th><th>How to Check</th><th>Fix</th></tr>
+<tr><td>Rate limiting (throttled)</td><td>Logs show <code>429</code> errors</td><td>Wait 5-15 min, check <a href="https://console.anthropic.com" style="color:var(--accent2)">Anthropic console</a></td></tr>
+<tr><td>Large context window</td><td>Normal after long conversations</td><td>Start a new session: <code>openclaw sessions reset</code></td></tr>
+<tr><td>Voice note transcription</td><td>Voice notes add ~10-15s processing</td><td>Use text for quick questions</td></tr>
+<tr><td>Complex task</td><td>Forge is doing multi-step work</td><td>Normal — wait for full response</td></tr>
+<tr><td>Network issues</td><td>Check Mac's WiFi/internet</td><td>Restart WiFi or router</td></tr>
+</table>
+
+<h3>Problem: Forge responds on webchat but not Telegram</h3>
+<p>This is the exact issue from Feb 25. The fix is simple:</p>
+<ol>
+<li><strong>Close every browser tab</strong> showing <code>127.0.0.1:18789</code></li>
+<li>Run <code>openclaw gateway restart</code></li>
+<li>Wait 60 seconds</li>
+<li>Message on Telegram</li>
+</ol>
+<p>If it STILL doesn't work, the session is stuck. Reset it:</p>
+<pre><code># Check active sessions
+openclaw status
+
+# If the session shows "webchat" as origin, reset it
+openclaw gateway restart</code></pre>
+
+<h3>Problem: Telegram bot token expired or lost</h3>
+<ol>
+<li>Open Telegram → search <strong>@BotFather</strong></li>
+<li>Send <code>/mybots</code></li>
+<li>Select your bot (Ops Control)</li>
+<li>Tap <strong>API Token</strong> → you'll see your current token</li>
+<li>If you need a new one: tap <strong>Revoke current token</strong> → BotFather gives you a new one</li>
+<li>Update OpenClaw:
+<pre><code>openclaw channels add telegram
+# Paste the new token when prompted
+openclaw gateway restart</code></pre></li>
+</ol>
+</section>
+
+<!-- API KEYS -->
+<section id="api-keys">
+<h2>🔑 Generating New API Keys from Anthropic (Claude)</h2>
+
+<h3>When do you need a new key?</h3>
+<ul>
+<li>Your current key was compromised or leaked</li>
+<li>Logs show <code>401 Unauthorized</code> errors</li>
+<li>You're setting up a new machine</li>
+<li>You want to rotate keys for security</li>
+</ul>
+
+<h3>Step by Step — Get a New API Key</h3>
+<div class="step"><div class="step-num">1</div><h4>Go to the Anthropic Console</h4>
+<p>Open: <a href="https://console.anthropic.com/settings/keys" style="color:var(--accent2)">console.anthropic.com/settings/keys</a></p>
+<p>Log in with your Anthropic account.</p></div>
+
+<div class="step"><div class="step-num">2</div><h4>Create a new key</h4>
+<p>Click <strong>"Create Key"</strong> → give it a name (e.g. "forge-mac" or "forge-vps") → click <strong>Create</strong>.</p>
+<p>⚠️ <strong>Copy the key immediately.</strong> You can only see it once. It looks like: <code>sk-ant-api03-xxxx...xxxx</code></p></div>
+
+<div class="step"><div class="step-num">3</div><h4>Add the new key to OpenClaw</h4>
+<pre><code># Update the agent with the new key
+openclaw agents add main</code></pre>
+<p>When prompted for the API key, paste the new one.</p>
+<p>Or edit the auth file directly:</p>
+<pre><code>nano ~/.openclaw/agents/main/agent/auth-profiles.json</code></pre>
+<p>Find the <code>"key"</code> field and replace with your new key. Save (Ctrl+X → Y → Enter).</p></div>
+
+<div class="step"><div class="step-num">4</div><h4>Restart the gateway</h4>
+<pre><code>openclaw gateway restart</code></pre></div>
+
+<div class="step"><div class="step-num">5</div><h4>Delete the old key (security)</h4>
+<p>Go back to <a href="https://console.anthropic.com/settings/keys" style="color:var(--accent2)">console.anthropic.com/settings/keys</a> → find the old key → click the trash icon to delete it.</p></div>
+
+<h3>Checking Your Usage & Limits</h3>
+<table>
+<tr><th>What</th><th>Where</th></tr>
+<tr><td>Current usage / spend</td><td><a href="https://console.anthropic.com/settings/usage" style="color:var(--accent2)">console.anthropic.com/settings/usage</a></td></tr>
+<tr><td>Spend limits</td><td><a href="https://console.anthropic.com/settings/limits" style="color:var(--accent2)">console.anthropic.com/settings/limits</a></td></tr>
+<tr><td>API keys</td><td><a href="https://console.anthropic.com/settings/keys" style="color:var(--accent2)">console.anthropic.com/settings/keys</a></td></tr>
+<tr><td>Billing / payment method</td><td><a href="https://console.anthropic.com/settings/billing" style="color:var(--accent2)">console.anthropic.com/settings/billing</a></td></tr>
+</table>
+
+<div class="alert alert-amber">
+<h3>💡 Spend Limits — Why Forge Goes Silent</h3>
+<p>Anthropic has <strong>automatic spend limits</strong> on your account. If you hit them, ALL API calls stop — Forge goes completely silent. It's not broken, it's just out of budget.</p>
+<p><strong>Fix:</strong> Go to <a href="https://console.anthropic.com/settings/limits" style="color:var(--amber)">Settings → Limits</a> and increase your monthly/daily spend limit.</p>
+<p><strong>Tip:</strong> Set the limit higher than you expect to use. You only pay for what you actually use — the limit is just a safety cap.</p>
+</div>
+</section>
+
+<!-- OPENCLAW UPDATES -->
+<section id="updates">
+<h2>⬆️ Updating & Overriding OpenClaw Settings</h2>
+
+<h3>How to Update OpenClaw to Latest Version</h3>
+<pre><code># Check current version
+openclaw --version
+
+# Update to latest
+npm install -g openclaw@latest
+
+# Restart gateway after update
+openclaw gateway restart</code></pre>
+
+<h3>How to Change the AI Model</h3>
+<pre><code># See current model
+openclaw agents list
+
+# The model is set in the agent config
+# To change it, edit the agent:
+openclaw agents add main
+# Follow the prompts and select the new model</code></pre>
+
+<p>Available models (as of Feb 2026):</p>
+<table>
+<tr><th>Model</th><th>Best For</th><th>Speed</th><th>Cost</th></tr>
+<tr><td><strong>claude-opus-4-6</strong></td><td>Everything — complex reasoning, strategy, multi-step tasks</td><td>Slower</td><td>Higher</td></tr>
+<tr><td><strong>claude-sonnet-4-6</strong></td><td>95% of tasks — research, SOPs, tools, coding, messaging</td><td>Fast</td><td>Lower</td></tr>
+</table>
+<p><strong>Recommendation:</strong> Stay on Opus. The cost difference is worth it for the quality. Sonnet auto-kicks in as fallback if Opus hits rate limits.</p>
+
+<h3>Key OpenClaw Config File</h3>
+<pre><code># View config
+cat ~/.openclaw/openclaw.json
+
+# Edit config (careful!)
+nano ~/.openclaw/openclaw.json</code></pre>
+<p>Common things you might change:</p>
+<table>
+<tr><th>Setting</th><th>What It Does</th><th>Default</th></tr>
+<tr><td>gateway.port</td><td>Port the gateway runs on</td><td>18789</td></tr>
+<tr><td>gateway.bind</td><td>Who can connect (loopback = local only)</td><td>127.0.0.1</td></tr>
+<tr><td>heartbeat.interval</td><td>How often Forge checks in (minutes)</td><td>60</td></tr>
+</table>
+<p>⚠️ After ANY config change: <code>openclaw gateway restart</code></p>
+
+<h3>How to Override Model Per-Session</h3>
+<p>If you want to temporarily switch models without changing the default:</p>
+<ul>
+<li>Ask Forge: <em>"Switch to Sonnet for this session"</em></li>
+<li>Or from Terminal: use the OpenClaw dashboard at <code>http://127.0.0.1:18789</code></li>
+</ul>
+
+<h3>How to Add Fallback Models</h3>
+<p>If you want Forge to automatically switch to a backup model when the primary hits limits:</p>
+<pre><code># Add a second auth profile with a different provider
+openclaw agents add main
+# Add Google Gemini or OpenAI as backup</code></pre>
+<p>OpenClaw will try the primary (Opus) first, then fall back to the secondary automatically.</p>
+
+<h3>Useful OpenClaw Commands — Complete Reference</h3>
+<table>
+<tr><th>Command</th><th>What It Does</th></tr>
+<tr><td><code>openclaw status</code></td><td>Full system health check</td></tr>
+<tr><td><code>openclaw gateway status</code></td><td>Is the gateway running?</td></tr>
+<tr><td><code>openclaw gateway start</code></td><td>Start the gateway</td></tr>
+<tr><td><code>openclaw gateway stop</code></td><td>Stop the gateway</td></tr>
+<tr><td><code>openclaw gateway restart</code></td><td>Restart (fixes 90% of problems)</td></tr>
+<tr><td><code>openclaw agents list</code></td><td>Show agents + current model</td></tr>
+<tr><td><code>openclaw agents add main</code></td><td>Configure agent (API key, model)</td></tr>
+<tr><td><code>openclaw channels status</code></td><td>Show connected channels</td></tr>
+<tr><td><code>openclaw channels add telegram</code></td><td>Connect Telegram</td></tr>
+<tr><td><code>openclaw logs --follow</code></td><td>Watch live logs (for debugging)</td></tr>
+<tr><td><code>openclaw status --deep</code></td><td>Deep health check with probes</td></tr>
+<tr><td><code>openclaw security audit</code></td><td>Security scan</td></tr>
+<tr><td><code>openclaw help</code></td><td>Show all available commands</td></tr>
+</table>
 </section>
 
 <div class="alert alert-green" style="margin-top:40px;text-align:center">
