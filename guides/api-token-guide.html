@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>API & Token Master Guide — Anton Empire 🔱</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0a;--card:#111;--border:#222;--text:#fff;--muted:#888;--accent:#7c3aed;--green:#4caf50;--amber:#ff9800;--red:#ef4444;--blue:#3b82f6;--purple:#8b5cf6}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:20px;max-width:900px;margin:0 auto}
+h1{font-size:24px;margin-bottom:8px}h2{font-size:18px;margin:24px 0 12px;color:var(--accent)}h3{font-size:14px;margin:16px 0 8px;color:var(--amber)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px}
+.warn{border-left:3px solid var(--red);background:rgba(239,68,68,0.05);padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+.info{border-left:3px solid var(--blue);background:rgba(59,130,246,0.05);padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+.success{border-left:3px solid var(--green);background:rgba(76,175,80,0.05);padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+code{background:#1a1a2e;padding:2px 6px;border-radius:4px;font-size:12px;color:#a78bfa}
+pre{background:#1a1a2e;padding:12px;border-radius:8px;font-size:12px;overflow-x:auto;margin:8px 0;color:#a78bfa}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px}
+th{text-align:left;padding:8px;background:#1a1a2e;color:var(--accent);font-size:11px;text-transform:uppercase}
+td{padding:8px;border-bottom:1px solid var(--border)}
+.nav{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.nav a{font-size:11px;color:var(--muted);padding:4px 10px;background:var(--card);border:1px solid var(--border);border-radius:6px;text-decoration:none}
+.nav a:hover{color:var(--text);border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../">🏠 Home</a>
+  <a href="../dashboard/">📊 Command Centre</a>
+  <a href="../hub/">📁 SOPs</a>
+</div>
+
+<h1>🔑 API & Token Master Guide</h1>
+<p style="color:var(--muted);margin-bottom:24px">Everything about AI model access, tokens, billing, and emergency recovery. Built for Anton Empire.</p>
+
+<h2>1. The Two Access Models</h2>
+<div class="card">
+<table>
+<tr><th></th><th>Subscription (What We Use)</th><th>API (Pay-Per-Token)</th></tr>
+<tr><td><strong>How it works</strong></td><td>Flat monthly fee (Claude Max 20X)</td><td>Pay per token used via API key</td></tr>
+<tr><td><strong>Cost</strong></td><td>~$100-200/month flat</td><td>30x more expensive per token</td></tr>
+<tr><td><strong>Rate limits</strong></td><td>Usage allowance per period</td><td>No hard limits (just $$)</td></tr>
+<tr><td><strong>Risk</strong></td><td>Account ban if abused</td><td>Surprise bills if unmonitored</td></tr>
+<tr><td><strong>Best for</strong></td><td>Daily operations, experimentation</td><td>Production apps, unlimited burst</td></tr>
+<tr><td><strong>Our setup</strong></td><td style="color:var(--green)">✅ Primary (Opus 4.6)</td><td>❌ Not active</td></tr>
+</table>
+</div>
+
+<div class="info">💡 <strong>Our model:</strong> Claude Max subscription → OAT token → OpenClaw. Flat fee, cost-efficient, predictable. If we hit the usage cap, Forge goes quiet until it resets.</div>
+
+<h2>2. Our Token Architecture</h2>
+<div class="card">
+<h3>Layer 1: Primary — Claude Opus 4.6 (Subscription)</h3>
+<p>Used for: Live conversations with Anton, complex tasks, QC reviews, SOP writing</p>
+<p>Auth: OAT token in <code>~/.openclaw/openclaw.json</code></p>
+
+<h3>Layer 2: Fallback — Claude Sonnet (Same Subscription)</h3>
+<p>Used for: Cron jobs, product research, memory maintenance, mechanical tasks</p>
+<p>Config: Model override per cron job</p>
+
+<h3>Layer 3: Emergency — Second Token (Not Yet Active)</h3>
+<p>Recommended: Set up a second Anthropic account/token as backup</p>
+<p>Trigger: Primary account banned or extended outage</p>
+</div>
+
+<h2>3. Key Tokens & Credentials</h2>
+<div class="card">
+<table>
+<tr><th>Credential</th><th>Where</th><th>Expires</th><th>Action</th></tr>
+<tr><td>Anthropic OAT Token</td><td><code>openclaw.json</code></td><td>With subscription</td><td>Renew if subscription lapses</td></tr>
+<tr><td>GitHub PAT "forge-deploy"</td><td>macOS Keychain</td><td style="color:var(--amber)">Mar 27, 2026</td><td>Rotate 7 days before</td></tr>
+<tr><td>Telegram Bot Token</td><td><code>openclaw.json</code></td><td>Never (unless revoked)</td><td>Backup in MEMORY.md</td></tr>
+<tr><td>GetHookd Login</td><td>antonurso.ecomhq@gmail.com</td><td>Active</td><td>—</td></tr>
+</table>
+</div>
+
+<div class="warn">⚠️ <strong>NEVER</strong> put tokens in public repos, screenshots, or group chats. All credentials stored in macOS Keychain (encrypted).</div>
+
+<h2>4. Emergency: Token/Auth Issues</h2>
+
+<h3>🔴 Forge Goes Silent (Usage Cap Hit)</h3>
+<div class="card">
+<p><strong>Symptom:</strong> Messages sent but no reply for 30+ minutes</p>
+<p><strong>Cause:</strong> Monthly usage allowance exhausted</p>
+<pre>Fix: Wait for reset (usually next day/period)
+Or: Switch to Sonnet model temporarily
+   openclaw config set model anthropic/claude-sonnet-4-6</pre>
+</div>
+
+<h3>🔴 Gateway Crash Loop (OAuth 403)</h3>
+<div class="card">
+<p><strong>Symptom:</strong> Gateway restarts every 10 seconds, errors in logs</p>
+<p><strong>Cause:</strong> Auth error misclassified as rate limit → cooldown loop</p>
+<pre>Fix:
+1. Edit ~/.openclaw/auth-profiles.json
+2. Set "errorCount": 0
+3. Remove "cooldownUntil" field
+4. openclaw gateway restart</pre>
+</div>
+
+<h3>🔴 GitHub PAT Expired</h3>
+<div class="card">
+<p><strong>Symptom:</strong> Git push fails with 403</p>
+<pre>Fix:
+1. Go to github.com → Settings → Developer Settings → PATs
+2. Generate new token (repo + workflow scopes)
+3. git remote set-url origin https://NEW_TOKEN@github.com/AntonUrso2811/thalyve-tools.git
+4. Same for forge-workspace repo</pre>
+</div>
+
+<h3>🔴 Account Banned (Worst Case)</h3>
+<div class="card">
+<p><strong>Symptom:</strong> All API calls return 403/banned</p>
+<pre>Recovery:
+1. Contact Anthropic support immediately
+2. Switch to Layer 3 emergency token (if set up)
+3. Or: Set up new account + new subscription
+4. Update openclaw.json with new OAT token
+5. openclaw gateway restart</pre>
+</div>
+
+<h2>5. What's On The Market (Feb 2026)</h2>
+<div class="card">
+<table>
+<tr><th>Model</th><th>Provider</th><th>Tier</th><th>Best For</th><th>Our Use</th></tr>
+<tr><td><strong>Claude Opus 4.6</strong></td><td>Anthropic</td><td>🟢 Flagship</td><td>Complex reasoning, long tasks, code</td><td style="color:var(--green)">Primary</td></tr>
+<tr><td>Claude Sonnet 4.6</td><td>Anthropic</td><td>🟡 Mid-tier</td><td>Fast tasks, structured work</td><td>Cron jobs</td></tr>
+<tr><td>GPT 5.3 Codex</td><td>OpenAI</td><td>🟢 Flagship</td><td>Code, long-running tasks</td><td>Not used</td></tr>
+<tr><td>Kimi 2.5</td><td>Moonshot</td><td>🟡 Entry</td><td>Budget tasks, basic research</td><td>Not recommended</td></tr>
+<tr><td>Gemini 2.5</td><td>Google</td><td>🟢 Flagship</td><td>Video analysis, multimodal</td><td>Future: video ad QC</td></tr>
+</table>
+</div>
+
+<div class="success">✅ <strong>Our recommendation:</strong> Stay on Anthropic. Opus for quality, Sonnet for volume. Don't split across providers — consistency matters more than marginal model differences. Only add Gemini when we need native video analysis.</div>
+
+<h2>6. Cost Optimization</h2>
+<div class="card">
+<h3>Current Monthly Cost</h3>
+<p>Claude Max subscription: ~$100-200/month (covers Opus + Sonnet)</p>
+<p>No API costs. No surprise bills.</p>
+
+<h3>How We Save</h3>
+<ul style="margin:8px 0;padding-left:20px;font-size:13px">
+<li><strong>Dynamic routing:</strong> Opus for quality tasks, Sonnet for mechanical ones</li>
+<li><strong>Memory files > chat context:</strong> Save to files, not long conversations</li>
+<li><strong>Compaction awareness:</strong> Wrap up before context fills, save state</li>
+<li><strong>Cron on Sonnet:</strong> All automated jobs run on cheaper model</li>
+<li><strong>No API fallback:</strong> Subscription only — predictable costs</li>
+</ul>
+</div>
+
+<h2>7. Rotation Schedule</h2>
+<div class="card">
+<table>
+<tr><th>What</th><th>Frequency</th><th>Next Due</th><th>Owner</th></tr>
+<tr><td>GitHub PAT</td><td>Every 90 days</td><td style="color:var(--amber)">Mar 27, 2026</td><td>Forge (auto-warns 7d before)</td></tr>
+<tr><td>Anthropic subscription</td><td>Monthly renewal</td><td>Auto</td><td>Anton (payment method)</td></tr>
+<tr><td>Security audit</td><td>Monthly</td><td>Mar 1, 2026</td><td>Forge (cron)</td></tr>
+<tr><td>Credential review</td><td>Quarterly</td><td>May 2026</td><td>Forge</td></tr>
+</table>
+</div>
+
+<footer style="text-align:center;padding:24px;font-size:10px;color:var(--muted);border-top:1px solid var(--border);margin-top:32px">
+🔱 Anton Empire · API & Token Master Guide v1.0 · Built by Forge · Feb 2026
+</footer>
+
+</body>
+</html>

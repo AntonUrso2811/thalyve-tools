@@ -6,68 +6,156 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anton Empire — Hub — 🔱</title>
+<title>Anton Empire — 🔱</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0a;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center}
-.container{text-align:center;padding:2rem;max-width:800px}
-h1{font-size:2.5rem;margin-bottom:.5rem;letter-spacing:4px}
-.sub{color:#888;margin-bottom:2.5rem;font-size:1rem}
-.sections{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media(max-width:600px){.sections{grid-template-columns:1fr}}
-.section{border:1px solid #222;border-radius:16px;padding:24px 20px;text-align:center}
-.section-biz{background:linear-gradient(135deg,rgba(139,92,246,.06),rgba(59,130,246,.03));border-color:rgba(139,92,246,.2)}
-.section-personal{background:linear-gradient(135deg,rgba(20,184,166,.06),rgba(34,197,94,.03));border-color:rgba(20,184,166,.2)}
-.section h2{font-size:1.3rem;margin-bottom:4px}
-.section .label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
-.tools{display:flex;flex-direction:column;gap:10px}
-a.tool{display:block;padding:12px 16px;background:#111;border:1px solid #333;border-radius:10px;color:#fff;text-decoration:none;font-size:.95rem;transition:all .2s;text-align:left}
-a.tool:hover{background:#1a1a1a;border-color:#666;transform:translateY(-1px)}
-.emoji{font-size:1.2rem;margin-right:8px}
+:root{--bg:#0a0a0a;--card:#111;--border:#222;--text:#fff;--muted:#888;--accent:#7c3aed;--green:#4caf50;--amber:#ff9800;--red:#ef4444;--blue:#3b82f6;--purple:#8b5cf6;--teal:#14b8a6}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+a{text-decoration:none;color:inherit}
+
+/* Nav */
+.nav{background:rgba(17,17,17,0.95);border-bottom:1px solid var(--border);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.nav-links{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.nav-links a{font-size:10px;color:var(--muted);padding:4px 10px;border-radius:6px;background:rgba(255,255,255,0.03);transition:all .15s}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.08)}
+.nav-links a.active{color:var(--accent);background:rgba(124,58,237,0.1);font-weight:700}
+
+/* Hero */
+.hero{text-align:center;padding:60px 20px 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,0.08) 0%,transparent 70%);pointer-events:none}
+.hero .logo{font-size:48px;margin-bottom:12px}
+.hero h1{font-size:2.5rem;font-weight:800;letter-spacing:2px;background:linear-gradient(135deg,#fff 0%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .tagline{color:var(--muted);font-size:14px;margin-top:8px}
+.hero .stats{display:flex;gap:24px;justify-content:center;margin-top:24px}
+.hero .stat{text-align:center}
+.hero .stat-val{font-size:20px;font-weight:800}
+.hero .stat-lbl{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:2px}
+
+/* Content */
+.content{max-width:1000px;margin:0 auto;padding:0 20px 40px}
+.section-title{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px;padding-left:4px}
+
+/* Tool Cards */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:32px}
+.tool-card{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--card);border:1px solid var(--border);border-radius:12px;transition:all .2s;cursor:pointer;position:relative;overflow:hidden}
+.tool-card:hover{border-color:rgba(124,58,237,0.4);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.tool-card .icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.tool-card .info{flex:1}
+.tool-card .info h3{font-size:14px;font-weight:700;margin-bottom:2px}
+.tool-card .info p{font-size:10px;color:var(--muted)}
+.tool-card .arrow{font-size:14px;color:var(--muted);transition:transform .2s}
+.tool-card:hover .arrow{transform:translateX(3px);color:var(--accent)}
+.tool-card.primary{border-color:rgba(124,58,237,0.3);background:linear-gradient(135deg,rgba(124,58,237,0.06),rgba(59,130,246,0.03))}
+
+/* Status Bar */
+.status-bar{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px;margin-bottom:32px}
+.status-pill{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--card);border:1px solid var(--border);border-radius:20px;font-size:10px}
+.status-dot{width:6px;height:6px;border-radius:50%}
+
+@media(max-width:600px){
+  .hero h1{font-size:1.8rem}
+  .tools-grid{grid-template-columns:1fr}
+  .hero .stats{flex-wrap:wrap;gap:16px}
+}
 </style>
 </head>
 <body>
-<!-- Global Nav Bar -->
-<div style="background:rgba(17,17,17,0.95);border-bottom:1px solid #333;padding:6px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)">
-  <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-    <a href="./" style="font-size:10px;text-decoration:none;color:var(--accent);padding:3px 8px;border-radius:4px;background:rgba(124,58,237,0.1);font-weight:700">🏠 Home</a>
-      <a href="dashboard/" style="font-size:10px;text-decoration:none;color:#999;padding:3px 8px;border-radius:4px;background:#1a1a1a;transition:all .15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#999'">📊 Command Centre</a>
-      <a href="tracker/" style="font-size:10px;text-decoration:none;color:#999;padding:3px 8px;border-radius:4px;background:#1a1a1a;transition:all .15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#999'">🔍 Tracker</a>
-      <a href="hub/" style="font-size:10px;text-decoration:none;color:#999;padding:3px 8px;border-radius:4px;background:#1a1a1a;transition:all .15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#999'">📁 SOPs</a>
-      <a href="org/" style="font-size:10px;text-decoration:none;color:#999;padding:3px 8px;border-radius:4px;background:#1a1a1a;transition:all .15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#999'">👥 Org</a>
-      <a href="memory/" style="font-size:10px;text-decoration:none;color:#999;padding:3px 8px;border-radius:4px;background:#1a1a1a;transition:all .15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#999'">🧠 Memory</a>
-      <a href="personal/" style="font-size:10px;text-decoration:none;color:#999;padding:3px 8px;border-radius:4px;background:#1a1a1a;transition:all .15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#999'">💪 Personal</a>
+
+<div class="nav">
+  <div class="nav-links">
+    <a href="./" class="active">🏠 Home</a>
+    <a href="dashboard/">📊 Command Centre</a>
+    <a href="tracker/">🔍 Tracker</a>
+    <a href="hub/">📁 SOPs</a>
+    <a href="org/">👥 Org</a>
+    <a href="memory/">🧠 Memory</a>
+    <a href="personal/">💪 Personal</a>
   </div>
-  <div style="font-size:9px;color:#666">Anton Empire</div>
+  <div style="font-size:9px;color:var(--muted)">v3.2</div>
 </div>
 
-<div class="container">
-<h1>🔱 Anton Empire</h1>
-<p class="sub">Business · Personal · All in one place</p>
-<div class="sections">
-  <div class="section section-biz">
-    <h2>🏢 Business</h2>
-    <div class="label">Anton Empire Operations</div>
-    <div class="tools">
-      <a href="dashboard/" class="tool"><span class="emoji">📊</span> Command Centre</a>
-      <a href="ads/" class="tool" style="border-color:rgba(124,92,252,.3);background:rgba(124,92,252,.05)"><span class="emoji">📈</span> Ad Performance Tracker</a>
-      <a href="tracker/" class="tool"><span class="emoji">🔍</span> Product Research Tracker</a>
-      <a href="hub/" class="tool"><span class="emoji">📁</span> SOP Hub / Company Drive</a>
-      <a href="org/" class="tool"><span class="emoji">👥</span> Organisation Chart</a>
-      <a href="memory/" class="tool"><span class="emoji">🧠</span> Forge Memory Vault</a>
-      <a href="guides/efficiency-guide.html" class="tool" style="border-color:rgba(15,214,140,.3);background:rgba(15,214,140,.05)"><span class="emoji">⚡</span> Efficiency Bible</a>
-      <a href="guides/forge-survival-guide.html" class="tool" style="border-color:rgba(255,77,106,.3);background:rgba(255,77,106,.05)"><span class="emoji">🚨</span> Forge Survival Guide</a>
-    </div>
-  </div>
-  <div class="section section-personal">
-    <h2>💪 Personal</h2>
-    <div class="label">Health · Training · Optimisation</div>
-    <div class="tools">
-      <a href="personal/" class="tool"><span class="emoji">💪</span> Personal Hub</a>
-      <a href="personal/execution/" class="tool"><span class="emoji">🔥</span> Execution OS</a>
-    </div>
+<div class="hero">
+  <div class="logo">🔱</div>
+  <h1>Anton Empire</h1>
+  <p class="tagline">AI-Operated Business Infrastructure · Built by Forge</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-val" style="color:var(--green)">2</div><div class="stat-lbl">Active Members</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--amber)">4</div><div class="stat-lbl">Planned Hires</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--purple)">11</div><div class="stat-lbl">SOPs</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--blue)">8</div><div class="stat-lbl">Tools</div></div>
   </div>
 </div>
+
+<div class="status-bar">
+  <div class="status-pill"><div class="status-dot" style="background:var(--green)"></div> Gateway Online</div>
+  <div class="status-pill"><div class="status-dot" style="background:var(--green)"></div> Forge Active</div>
+  <div class="status-pill"><div class="status-dot" style="background:var(--amber)"></div> Ad Launch: Feb 28</div>
+  <div class="status-pill"><div class="status-dot" style="background:var(--purple)"></div> Phase 1: Foundation</div>
 </div>
+
+<div class="content">
+  <div class="section-title">🏢 Business Operations</div>
+  <div class="tools-grid">
+    <a href="dashboard/" class="tool-card primary">
+      <div class="icon" style="background:linear-gradient(135deg,#7c3aed,#3b82f6)">📊</div>
+      <div class="info"><h3>Command Centre</h3><p>P&L · KPIs · Team · Roadmap · Tasks · Everything</p></div>
+      <span class="arrow">→</span>
+    </a>
+    <a href="tracker/" class="tool-card">
+      <div class="icon" style="background:linear-gradient(135deg,#f97316,#ef4444)">🔍</div>
+      <div class="info"><h3>Product Research Tracker</h3><p>SOP-compliant product scoring & validation</p></div>
+      <span class="arrow">→</span>
+    </a>
+    <a href="ads/" class="tool-card">
+      <div class="icon" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">📈</div>
+      <div class="info"><h3>Ad Performance Tracker</h3><p>Meta ads · Creative testing · ROAS tracking</p></div>
+      <span class="arrow">→</span>
+    </a>
+    <a href="hub/" class="tool-card">
+      <div class="icon" style="background:linear-gradient(135deg,#14b8a6,#22c55e)">📁</div>
+      <div class="info"><h3>SOP Hub</h3><p>11 SOPs · Company drive · All documentation</p></div>
+      <span class="arrow">→</span>
+    </a>
+    <a href="org/" class="tool-card">
+      <div class="icon" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">👥</div>
+      <div class="info"><h3>Organisation Chart</h3><p>Team structure · Roles · Hiring pipeline</p></div>
+      <span class="arrow">→</span>
+    </a>
+    <a href="memory/" class="tool-card">
+      <div class="icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">🧠</div>
+      <div class="info"><h3>Forge Memory Vault</h3><p>Long-term memory · Daily logs · Context</p></div>
+      <span class="arrow">→</span>
+    </a>
+    <a href="guides/master-strategy.html" class="tool-card">
+      <div class="icon" style="background:linear-gradient(135deg,#22c55e,#14b8a6)">🗺️</div>
+      <div class="info"><h3>Master Strategy</h3><p>£10K roadmap · 4-phase plan · Financial model</p></div>
+      <span class="arrow">→</span>
+    </a>
+    <a href="guides/forge-survival-guide.html" class="tool-card" style="border-color:rgba(239,68,68,0.3)">
+      <div class="icon" style="background:linear-gradient(135deg,#ef4444,#f97316)">🚨</div>
+      <div class="info"><h3>Emergency Survival Guide</h3><p>Gateway down? Token expired? Fix it in 2 mins</p></div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+  <div class="section-title">💪 Personal</div>
+  <div class="tools-grid">
+    <a href="personal/" class="tool-card">
+      <div class="icon" style="background:linear-gradient(135deg,#14b8a6,#22c55e)">💪</div>
+      <div class="info"><h3>Personal Hub</h3><p>Health · Nutrition · Training · 75 Hard</p></div>
+      <span class="arrow">→</span>
+    </a>
+    <a href="personal/execution/" class="tool-card">
+      <div class="icon" style="background:linear-gradient(135deg,#f97316,#ef4444)">🔥</div>
+      <div class="info"><h3>Execution OS</h3><p>Daily tracker · Habits · Accountability</p></div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<footer style="text-align:center;padding:20px;font-size:10px;color:var(--muted);border-top:1px solid var(--border)">
+  🔱 Anton Empire · Built by Forge · v3.2
+</footer>
+
 </body>
 </html>

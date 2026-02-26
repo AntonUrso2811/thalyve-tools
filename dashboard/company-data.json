@@ -218,6 +218,51 @@
           "owner": "Anton"
         }
       ]
+    },
+    "milestones": [
+      {
+        "name": "First Sale",
+        "revenue": "\u00a340-200",
+        "profit": "\u00a38-50",
+        "target": "Week 2",
+        "status": "pending"
+      },
+      {
+        "name": "\u00a31K Profit Month",
+        "revenue": "\u00a34-5K",
+        "profit": "\u00a31K",
+        "target": "Week 4-6",
+        "status": "planned",
+        "margin": "20-25%"
+      },
+      {
+        "name": "\u00a35K Profit Month",
+        "revenue": "\u00a320-25K",
+        "profit": "\u00a35K",
+        "target": "Month 2-3",
+        "status": "planned",
+        "margin": "20-25%"
+      },
+      {
+        "name": "\u00a310K Profit Month",
+        "revenue": "\u00a340-50K",
+        "profit": "\u00a310K",
+        "target": "Month 3-4",
+        "status": "planned",
+        "margin": "20-25%"
+      }
+    ],
+    "financialModel": {
+      "targetProfit": 10000,
+      "marginRange": "20-25%",
+      "requiredRevenue": "\u00a340,000-50,000/month",
+      "avgOrderValue": 50,
+      "ordersNeeded": "800-1000/month at \u00a350 AOV",
+      "dailyOrders": "27-33/day",
+      "adBudget": "\u00a33-5K/month at scale",
+      "breakEvenRoas": 2.0,
+      "targetRoas": 3.0,
+      "note": "20-25% net margin is realistic for branded dropshipping after ad spend, COGS, platform fees, returns"
     }
   },
   "taskLog": [
