@@ -14,18 +14,126 @@
     "notes": "UK Ltd for now. Future plan: Hong Kong entity (0% tax). Corp tax 19% for small profits (<\u00a350K), 25% for >\u00a3250K. Target: \u00a310k net/month."
   },
   "companyExpenses": [
-    {"name":"Shopify Plan","category":"Subscriptions","amount":1,"frequency":"monthly","date":"2026-02-15","notes":"£1/mo promo until Mar 12 — downgrade before then","auto":true},
-    {"name":"Claude Max 20X Subscription","category":"AI/API Costs","amount":160,"frequency":"monthly","date":"2026-02-22","notes":"Anthropic subscription — powers Forge + all sub-agents","auto":true},
-    {"name":"GoDaddy Domain — thalyve.com","category":"Domain/Hosting","amount":12.99,"frequency":"annual","date":"2026-02-10","notes":"Primary brand domain","auto":true},
-    {"name":"Ad Rail Agency Account — Initial Deposit","category":"Media Buying","amount":1000,"frequency":"one-time","date":"2026-02-25","notes":"$1,000 deposit + 3% agency fee on spend","auto":true},
-    {"name":"Ad Rail Agency Fee (3%)","category":"Media Buying","amount":30,"frequency":"monthly","date":"2026-02-27","notes":"3% of ad spend — auto-calculated","auto":true},
-    {"name":"Ad Spend — THALYVE-SMS-TEST-01","category":"Media Buying","amount":25,"frequency":"monthly","date":"2026-02-27","notes":"$25/day CBO — Day 1 live. Auto-tracked via Meta API when connected","auto":true},
-    {"name":"Proxy Seller — 10x IPv4","category":"Software/Tools","amount":30,"frequency":"monthly","date":"2026-02-20","notes":"10 proxies for AdsPower profiles — country-matched","auto":true},
-    {"name":"OLD Account Europe — 10 Profiles","category":"Software/Tools","amount":140,"frequency":"one-time","date":"2026-02-18","notes":"Aged FB profiles for 3-BM structure","auto":true},
-    {"name":"BM350 Verified Business Managers x3","category":"Software/Tools","amount":105,"frequency":"one-time","date":"2026-02-18","notes":"3 pre-verified BMs (2020-2024) for Operations/Pixel/Pages","auto":true},
-    {"name":"Shrine Theme — Shopify","category":"Software/Tools","amount":0,"frequency":"one-time","date":"2026-02-20","notes":"Discount code BBA10 applied","auto":true},
-    {"name":"MyClaw Pro (OpenClaw)","category":"AI/API Costs","amount":39,"frequency":"monthly","date":"2026-02-26","notes":"Invoice OXPLFUEB-0001 · Mastercard -7487 · £29.92 GBP","auto":true},
-    {"name":"MyClaw Pro REFUND","category":"AI/API Costs","amount":-39,"frequency":"one-time","date":"2026-02-27","notes":"Full refund issued · Receipt 3084-7615 · £29.92 credited back · Net: $0","auto":true}
+    {
+      "name": "Shopify Plan",
+      "category": "Subscriptions",
+      "amount": 1,
+      "frequency": "monthly",
+      "date": "2026-02-15",
+      "notes": "\u00a31/mo promo until Mar 12 \u2014 downgrade before then",
+      "auto": true,
+      "id": "exp_shopify_plan_0"
+    },
+    {
+      "name": "Claude Max 20X Subscription",
+      "category": "AI/API Costs",
+      "amount": 160,
+      "frequency": "monthly",
+      "date": "2026-02-22",
+      "notes": "Anthropic subscription \u2014 powers Forge + all sub-agents",
+      "auto": true,
+      "id": "exp_claude_max_20x_subscription_1"
+    },
+    {
+      "name": "GoDaddy Domain \u2014 thalyve.com",
+      "category": "Domain/Hosting",
+      "amount": 12.99,
+      "frequency": "annual",
+      "date": "2026-02-10",
+      "notes": "Primary brand domain",
+      "auto": true,
+      "id": "exp_godaddy_domain_\u2014_thalyve.com_2"
+    },
+    {
+      "name": "Ad Rail Agency Account \u2014 Initial Deposit",
+      "category": "Media Buying",
+      "amount": 1000,
+      "frequency": "one-time",
+      "date": "2026-02-25",
+      "notes": "$1,000 deposit + 3% agency fee on spend",
+      "auto": true,
+      "id": "exp_ad_rail_agency_account_\u2014_initi_3"
+    },
+    {
+      "name": "Ad Rail Agency Fee (3%)",
+      "category": "Media Buying",
+      "amount": 30,
+      "frequency": "monthly",
+      "date": "2026-02-27",
+      "notes": "3% of ad spend \u2014 auto-calculated",
+      "auto": true,
+      "id": "exp_ad_rail_agency_fee_(3%)_4"
+    },
+    {
+      "name": "Ad Spend \u2014 THALYVE-SMS-TEST-01",
+      "category": "Media Buying",
+      "amount": 25,
+      "frequency": "monthly",
+      "date": "2026-02-27",
+      "notes": "$25/day CBO \u2014 Day 1 live. Auto-tracked via Meta API when connected",
+      "auto": true,
+      "id": "exp_ad_spend_\u2014_thalyve-sms-test-01_5"
+    },
+    {
+      "name": "Proxy Seller \u2014 10x IPv4",
+      "category": "Software/Tools",
+      "amount": 30,
+      "frequency": "monthly",
+      "date": "2026-02-20",
+      "notes": "10 proxies for AdsPower profiles \u2014 country-matched",
+      "auto": true,
+      "id": "exp_proxy_seller_\u2014_10x_ipv4_6"
+    },
+    {
+      "name": "OLD Account Europe \u2014 10 Profiles",
+      "category": "Software/Tools",
+      "amount": 140,
+      "frequency": "one-time",
+      "date": "2026-02-18",
+      "notes": "Aged FB profiles for 3-BM structure",
+      "auto": true,
+      "id": "exp_old_account_europe_\u2014_10_profil_7"
+    },
+    {
+      "name": "BM350 Verified Business Managers x3",
+      "category": "Software/Tools",
+      "amount": 105,
+      "frequency": "one-time",
+      "date": "2026-02-18",
+      "notes": "3 pre-verified BMs (2020-2024) for Operations/Pixel/Pages",
+      "auto": true,
+      "id": "exp_bm350_verified_business_manage_8"
+    },
+    {
+      "name": "Shrine Theme \u2014 Shopify",
+      "category": "Software/Tools",
+      "amount": 0,
+      "frequency": "one-time",
+      "date": "2026-02-20",
+      "notes": "Discount code BBA10 applied",
+      "auto": true,
+      "id": "exp_shrine_theme_\u2014_shopify_9"
+    },
+    {
+      "name": "MyClaw Pro (OpenClaw)",
+      "category": "AI/API Costs",
+      "amount": 39,
+      "frequency": "monthly",
+      "date": "2026-02-26",
+      "notes": "Invoice OXPLFUEB-0001 \u00b7 Mastercard -7487 \u00b7 \u00a329.92 GBP",
+      "auto": true,
+      "id": "exp_myclaw_pro_(openclaw)_10"
+    },
+    {
+      "name": "MyClaw Pro REFUND",
+      "category": "AI/API Costs",
+      "amount": -39,
+      "frequency": "one-time",
+      "date": "2026-02-27",
+      "notes": "Full refund issued \u00b7 Receipt 3084-7615 \u00b7 \u00a329.92 credited back \u00b7 Net: $0",
+      "auto": true,
+      "id": "exp_myclaw_pro_refund_11"
+    }
   ],
   "brands": [
     {
@@ -315,7 +423,7 @@
     },
     {
       "status": "done",
-      "task": "Cron Monitor updated — all 5 jobs verified healthy, descriptions added",
+      "task": "Cron Monitor updated \u2014 all 5 jobs verified healthy, descriptions added",
       "owner": "Forge (Opus)",
       "started": "2026-02-27T09:20:00Z",
       "finished": "2026-02-27T09:30:00Z",
@@ -331,7 +439,7 @@
     },
     {
       "status": "done",
-      "task": "MBB docs absorbed — landing pages $535K + internal reference",
+      "task": "MBB docs absorbed \u2014 landing pages $535K + internal reference",
       "owner": "Forge (Opus)",
       "started": "2026-02-27T08:10:00Z",
       "finished": "2026-02-27T08:20:00Z",
@@ -347,7 +455,7 @@
     },
     {
       "status": "done",
-      "task": "Daily critical tasks cron — 5 tasks each for Anton + Forge",
+      "task": "Daily critical tasks cron \u2014 5 tasks each for Anton + Forge",
       "owner": "Forge (Sonnet)",
       "started": "2026-02-27T06:00:00Z",
       "finished": "2026-02-27T06:01:00Z",
