@@ -1345,10 +1345,7 @@ async function loadFromJSON(){
     const j=await r.json();
     if(j.company)D.company={...D.company,...j.company};
     if(j.companyExpenses&&j.companyExpenses.length){
-      j.companyExpenses.forEach(ne=>{
-        if(!ne.id)ne.id='json_'+ne.name.replace(/\s+/g,'_').toLowerCase();
-        if(!D.companyExpenses.find(e=>e.id===ne.id||e.name===ne.name))D.companyExpenses.push(ne);
-      });
+      D.companyExpenses=j.companyExpenses.map(ne=>{if(!ne.id)ne.id='json_'+ne.name.replace(/\s+/g,'_').toLowerCase();return ne;});
     }
     if(j.brands&&j.brands.length){
       j.brands.forEach(nb=>{
