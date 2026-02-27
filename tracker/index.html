@@ -762,7 +762,7 @@ function mapForgeProduct(np){
     name:np.productName||np.name||'',
     what:np.whatItDoes||np.what||'',
     notes:np.notes||'',
-    competitor:np.gethookdBrands?.[0]?.name||np.competitor||'',
+    competitor:np.competitor||np.gethookdBrands?.[0]?.name||'',
     competitorSite:np.competitorSiteLink||np.competitorSite||np.site||'',
     site:np.competitorSiteLink||np.site||'',
     adLink:np.competitorAdLink||np.adLink||'',
