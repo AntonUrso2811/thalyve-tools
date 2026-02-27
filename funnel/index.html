@@ -6,568 +6,427 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Master Operations Funnel 🔱</title>
+<title>Master Operations Funnel — Anton Empire 🔱</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0a0a0a;--card:#111;--border:#222;--border2:#333;
-  --text:#fff;--muted:#888;--dim:#555;
-  --accent:#7c3aed;--accent2:#a78bfa;
-  --green:#22c55e;--green-bg:rgba(34,197,94,0.08);--green-border:rgba(34,197,94,0.25);
-  --amber:#f59e0b;--amber-bg:rgba(245,158,11,0.08);--amber-border:rgba(245,158,11,0.25);
-  --red:#ef4444;--red-bg:rgba(239,68,68,0.08);--red-border:rgba(239,68,68,0.25);
-  --blue:#3b82f6;--purple:#8b5cf6;
-}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+:root{--bg:#0a0a0a;--card:#111;--card2:#161616;--border:#222;--border2:#333;--text:#fff;--muted:#888;--dim:#555;--accent:#7c3aed;--accent2:#a78bfa;--green:#4caf50;--amber:#ff9800;--red:#ef4444;--blue:#3b82f6;--purple:#8b5cf6;--teal:#14b8a6;--pink:#ec4899}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 a{text-decoration:none;color:inherit}
 
-/* ── NAV ── */
 .nav{background:rgba(17,17,17,0.95);border-bottom:1px solid var(--border);padding:6px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
 .nav-links{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
 .nav-links a{font-size:10px;color:var(--muted);padding:3px 8px;border-radius:4px;background:#1a1a1a;transition:all .15s}
 .nav-links a:hover{color:var(--text)}
-.nav-links a.active{color:var(--accent);background:rgba(124,58,237,0.12);font-weight:700}
-.nav-brand{font-size:9px;color:var(--dim)}
+.nav-links a.active{color:var(--accent);background:rgba(124,58,237,0.1);font-weight:700}
 
-/* ── HERO ── */
-.hero{text-align:center;padding:44px 20px 28px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(circle,rgba(124,58,237,0.07) 0%,transparent 70%);pointer-events:none}
-.hero .logo{font-size:42px;margin-bottom:6px}
-.hero h1{font-size:2rem;font-weight:800;letter-spacing:2px;background:linear-gradient(135deg,#fff 0%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero .tagline{color:var(--muted);font-size:12px;margin-top:6px;letter-spacing:1px}
+.app{max-width:900px;margin:0 auto;padding:24px 20px 60px}
 
-/* ── SUMMARY BAR ── */
-.summary-wrap{max-width:980px;margin:0 auto 32px;padding:0 20px}
-.summary-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-.summary-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;text-align:center;position:relative;overflow:hidden}
-.summary-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,0.04),transparent);pointer-events:none}
-.summary-card .s-label{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:700;margin-bottom:6px}
-.summary-card .s-value{font-size:26px;font-weight:900;line-height:1}
-.summary-card .s-sub{font-size:9px;color:var(--muted);margin-top:4px}
-.summary-card.highlight{border-color:rgba(124,58,237,0.4);background:rgba(124,58,237,0.06)}
-.summary-card.highlight .s-value{background:linear-gradient(135deg,#a78bfa,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.summary-card.bottleneck{border-color:var(--amber-border);background:var(--amber-bg)}
-.summary-card.bottleneck .s-value{color:var(--amber);font-size:16px;margin-top:2px}
-.summary-card.milestone{border-color:var(--green-border);background:var(--green-bg)}
-.summary-card.milestone .s-value{color:var(--green);font-size:16px;margin-top:2px}
+.header{text-align:center;margin-bottom:24px}
+.header h1{font-size:24px;font-weight:800;background:linear-gradient(135deg,#fff,var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header p{font-size:11px;color:var(--muted);margin-top:4px}
 
-/* ── LEGEND ── */
-.legend{display:flex;align-items:center;justify-content:center;gap:16px;margin:0 auto 28px;padding:0 20px;flex-wrap:wrap}
-.legend-item{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted)}
-.legend-dot{width:10px;height:10px;border-radius:3px}
+/* Summary Bar */
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px}
+.sum-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.sum-card .val{font-size:22px;font-weight:900}
+.sum-card .lbl{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:2px}
 
-/* ── FUNNEL CONTAINER ── */
-.funnel-wrap{max-width:980px;margin:0 auto;padding:0 20px 60px}
+/* Stage */
+.stage{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:6px;position:relative;transition:all .15s}
+.stage:hover{border-color:var(--border2);transform:translateX(2px)}
+.stage-head{display:flex;align-items:start;gap:14px;margin-bottom:12px}
+.stage-num{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;font-weight:900}
+.stage-title{flex:1}
+.stage-title h2{font-size:15px;font-weight:800;display:flex;align-items:center;gap:8px}
+.stage-title .time{font-size:9px;color:var(--dim);font-weight:400}
+.stage-badges{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap}
+.badge{font-size:8px;padding:3px 8px;border-radius:10px;font-weight:700;letter-spacing:.3px}
+.b-auto{background:rgba(76,175,80,0.1);color:var(--green);border:1px solid rgba(76,175,80,0.2)}
+.b-semi{background:rgba(255,152,0,0.1);color:var(--amber);border:1px solid rgba(255,152,0,0.2)}
+.b-manual{background:rgba(239,68,68,0.1);color:var(--red);border:1px solid rgba(239,68,68,0.2)}
+.b-count{background:rgba(124,58,237,0.1);color:var(--accent2);border:1px solid rgba(124,58,237,0.2)}
 
-/* Desktop: horizontal scroll row */
-.funnel-row{display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding-bottom:16px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
-.funnel-row::-webkit-scrollbar{height:4px}
-.funnel-row::-webkit-scrollbar-track{background:transparent}
-.funnel-row::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+.stage-body{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stage-col h4{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);margin-bottom:6px;font-weight:700}
+.stage-col ul{list-style:none;font-size:11px;color:var(--muted);line-height:1.8}
+.stage-col ul li::before{content:'→ ';color:var(--dim)}
+.stage-col .sop-link{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--accent2);padding:4px 10px;background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.15);border-radius:6px;margin-top:6px;transition:.15s}
+.stage-col .sop-link:hover{background:rgba(124,58,237,0.12)}
+.gate{margin-top:10px;padding:8px 12px;background:rgba(255,152,0,0.06);border:1px solid rgba(255,152,0,0.15);border-radius:8px;font-size:10px;color:var(--amber)}
+.gate strong{color:var(--text)}
 
-/* Stage card */
-.stage-wrap{display:flex;align-items:center;flex-shrink:0}
-.stage-card{width:190px;border-radius:14px;border:1px solid var(--border);background:var(--card);overflow:hidden;position:relative;transition:transform .2s,box-shadow .2s;cursor:default;flex-shrink:0}
-.stage-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,0.4)}
+/* Arrow connector */
+.arrow-down{text-align:center;font-size:18px;color:var(--dim);padding:4px 0;letter-spacing:2px}
 
-/* Auto level color bands */
-.stage-card.auto{border-color:var(--green-border)}
-.stage-card.auto .stage-header{background:var(--green-bg);border-bottom-color:var(--green-border)}
-.stage-card.semi{border-color:var(--amber-border)}
-.stage-card.semi .stage-header{background:var(--amber-bg);border-bottom-color:var(--amber-border)}
-.stage-card.manual{border-color:var(--red-border)}
-.stage-card.manual .stage-header{background:var(--red-bg);border-bottom-color:var(--red-border)}
+/* Current marker */
+.stage.active{border-color:rgba(76,175,80,0.4);box-shadow:0 0 20px rgba(76,175,80,0.05)}
+.stage.active::after{content:'◀ ACTIVE';position:absolute;right:16px;top:16px;font-size:8px;font-weight:800;color:var(--green);letter-spacing:1px;background:rgba(76,175,80,0.1);padding:3px 8px;border-radius:6px}
 
-.stage-header{padding:10px 12px 8px;border-bottom:1px solid var(--border);position:relative}
-.stage-num{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:700;margin-bottom:4px}
-.stage-emoji{font-size:22px;line-height:1;margin-bottom:4px}
-.stage-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;line-height:1.2}
-
-/* Active badge */
-.stage-badge{position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;line-height:1.4}
-.stage-badge.zero{background:transparent;border:1px solid var(--border2);color:var(--dim)}
-
-.stage-body{padding:10px 12px}
-.stage-activities{list-style:none;margin-bottom:8px}
-.stage-activities li{font-size:9px;color:var(--muted);padding:2px 0 2px 10px;position:relative;line-height:1.4}
-.stage-activities li::before{content:'·';position:absolute;left:0;color:var(--dim);font-size:14px;line-height:12px}
-
-.stage-meta{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
-.stage-meta-row{display:flex;align-items:center;gap:4px;font-size:8px}
-.stage-meta-label{color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
-.stage-meta-value{color:var(--muted);flex:1}
-.stage-meta-value a{color:var(--accent2);text-decoration:none}
-.stage-meta-value a:hover{text-decoration:underline}
-
-.auto-badge{display:inline-flex;align-items:center;gap:3px;font-size:8px;font-weight:700;padding:2px 6px;border-radius:4px;margin-top:2px}
-.auto-badge.green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
-.auto-badge.amber{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
-.auto-badge.red{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
-
-.stage-output{margin-top:6px;padding:6px 8px;background:rgba(124,58,237,0.07);border:1px solid rgba(124,58,237,0.15);border-radius:6px;font-size:8px;color:var(--accent2)}
-.stage-output-label{font-size:7px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);font-weight:700;margin-bottom:2px}
-
-.stage-gate{margin-top:6px;padding:5px 8px;background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:6px;font-size:8px;color:#f87171}
-.stage-gate-label{font-size:7px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim);font-weight:700;margin-bottom:2px}
-
-.time-pill{display:inline-block;font-size:7px;padding:2px 6px;background:#1a1a1a;border:1px solid var(--border2);border-radius:10px;color:var(--dim);margin-top:6px}
-
-/* ── CONNECTOR ARROW ── */
-.connector{display:flex;flex-direction:column;align-items:center;justify-content:center;width:32px;flex-shrink:0;align-self:center;margin-top:-60px}
-.connector-line{width:20px;height:2px;background:linear-gradient(90deg,var(--border2),var(--dim))}
-.connector-arrow{color:var(--dim);font-size:14px;line-height:1;margin-left:-2px}
-
-/* ── MOBILE VERTICAL ── */
-@media(max-width:768px){
-  .funnel-row{flex-direction:column;align-items:center;overflow-x:visible;gap:0;padding-bottom:0}
-  .stage-wrap{flex-direction:column;align-items:center;width:100%;max-width:400px}
-  .stage-card{width:100%}
-  .connector{flex-direction:column;width:auto;height:32px;margin-top:0;align-items:center;justify-content:center}
-  .connector-line{width:2px;height:20px;background:linear-gradient(180deg,var(--border2),var(--dim))}
-  .connector-arrow{transform:rotate(90deg)}
-  .hero h1{font-size:1.5rem}
-  .summary-bar{grid-template-columns:repeat(2,1fr)}
-}
-
-/* ── DECISION STAGE special styling ── */
-.stage-card.decision{border-color:rgba(124,58,237,0.4);background:linear-gradient(180deg,rgba(124,58,237,0.08),var(--card))}
-.stage-card.decision .stage-header{background:rgba(124,58,237,0.1);border-bottom-color:rgba(124,58,237,0.25)}
-
-.decision-outcomes{display:flex;flex-direction:column;gap:4px;margin-top:6px}
-.outcome{padding:5px 8px;border-radius:6px;font-size:8px;font-weight:700}
-.outcome.kill{background:var(--red-bg);border:1px solid var(--red-border);color:var(--red)}
-.outcome.iterate{background:var(--amber-bg);border:1px solid var(--amber-border);color:var(--amber)}
-.outcome.scale{background:var(--green-bg);border:1px solid var(--green-border);color:var(--green)}
-.outcome span{font-weight:400;color:var(--muted)}
-
-/* ── FOOTER ── */
-.footer{text-align:center;padding:24px 20px 32px;border-top:1px solid var(--border);color:var(--dim);font-size:10px;letter-spacing:1px}
-.footer .version{margin-top:4px;color:#333;font-size:9px}
+@media(max-width:640px){.summary{grid-template-columns:repeat(2,1fr)}.stage-body{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav class="nav">
+<div class="nav">
   <div class="nav-links">
     <a href="../">🏠 Home</a>
     <a href="../dashboard/">📊 Command Centre</a>
     <a href="../tracker/">🔍 Tracker</a>
+    <a href="./" class="active">🔄 Funnel</a>
     <a href="../hub/">📁 SOPs</a>
     <a href="../org/">👥 Org</a>
     <a href="../memory/">🧠 Memory</a>
     <a href="../personal/">💪 Personal</a>
-    <a href="./" class="active">🔱 Funnel</a>
   </div>
-  <div class="nav-brand">Anton Empire · Funnel</div>
-</nav>
-
-<!-- ── HERO ── -->
-<div class="hero">
-  <div class="logo">🔱</div>
-  <h1>MASTER OPERATIONS FUNNEL</h1>
-  <p class="tagline">End-to-End Business Workflow · Discovery → Discovery → Branded</p>
+  <div style="font-size:9px;color:var(--dim)">Anton Empire</div>
 </div>
 
-<!-- ── SUMMARY BAR ── -->
-<div class="summary-wrap">
-  <div class="summary-bar">
-
-    <div class="summary-card highlight">
-      <div class="s-label">Total in Pipeline</div>
-      <div class="s-value">6</div>
-      <div class="s-sub">products tracked</div>
-    </div>
-
-    <div class="summary-card">
-      <div class="s-label">Conversion Rate</div>
-      <div class="s-value" style="color:var(--muted);font-size:22px">16.7%</div>
-      <div class="s-sub">1 of 6 in testing+</div>
-    </div>
-
-    <div class="summary-card bottleneck">
-      <div class="s-label">Current Bottleneck</div>
-      <div class="s-value">Stage 2</div>
-      <div class="s-sub">5 products in Research &amp; Scoring</div>
-    </div>
-
-    <div class="summary-card milestone">
-      <div class="s-label">Next Milestone</div>
-      <div class="s-value">First Sale 🎯</div>
-      <div class="s-sub">1 product in ad testing</div>
-    </div>
-
+<div class="app">
+  <div class="header">
+    <h1>🔄 Master Operations Funnel</h1>
+    <p>The complete journey from product discovery to branded empire — every step, every SOP, every automation</p>
   </div>
+
+  <!-- Summary -->
+  <div class="summary">
+    <div class="sum-card"><div class="val" style="color:var(--accent2)">6</div><div class="lbl">Products in Pipeline</div></div>
+    <div class="sum-card"><div class="val" style="color:var(--green)">17%</div><div class="lbl">Conversion (Testing+)</div></div>
+    <div class="sum-card"><div class="val" style="color:var(--amber)">Stage 2</div><div class="lbl">Current Bottleneck</div></div>
+    <div class="sum-card"><div class="val" style="color:var(--pink)">1st Sale</div><div class="lbl">Next Milestone</div></div>
+  </div>
+
+  <!-- STAGE 1 -->
+  <div class="stage">
+    <div class="stage-head">
+      <div class="stage-num" style="background:rgba(59,130,246,0.1);color:var(--blue)">1</div>
+      <div class="stage-title">
+        <h2>🔍 Discovery <span class="time">~2 hrs/run</span></h2>
+        <div class="stage-badges">
+          <span class="badge b-auto">🤖 FULLY AUTO</span>
+          <span class="badge b-count">Cron: Mon & Thu 3AM</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-col">
+        <h4>What Happens</h4>
+        <ul>
+          <li>Scan GetHookd for trending ads in health/wellness</li>
+          <li>Check FB Ad Library for active advertisers</li>
+          <li>Cross-reference Google Trends momentum</li>
+          <li>Competitor site analysis</li>
+          <li>Coach recommendations pipeline</li>
+        </ul>
+      </div>
+      <div class="stage-col">
+        <h4>Output</h4>
+        <ul>
+          <li>3-5 raw product ideas per run</li>
+          <li>Initial viability assessment</li>
+          <li>Competitor URLs identified</li>
+        </ul>
+        <a href="../hub/" class="sop-link">📁 Product Research SOP</a>
+      </div>
+    </div>
+  </div>
+  <div class="arrow-down">↓</div>
+
+  <!-- STAGE 2 -->
+  <div class="stage">
+    <div class="stage-head">
+      <div class="stage-num" style="background:rgba(139,92,246,0.1);color:var(--purple)">2</div>
+      <div class="stage-title">
+        <h2>📋 Research & Scoring <span class="time">~30 min/product</span></h2>
+        <div class="stage-badges">
+          <span class="badge b-auto">🤖 FULLY AUTO</span>
+          <span class="badge b-count">5 products here</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-col">
+        <h4>What Happens</h4>
+        <ul>
+          <li>Score 7 dimensions (Ad Signal, Market, Competition, Format, Margin, Audience, Dropship)</li>
+          <li>SimilarWeb traffic validation (30K+ threshold)</li>
+          <li>GetHookd verification (10+ brand ads, 7+ days)</li>
+          <li>FB Ad Library ad count</li>
+          <li>B/E ROAS calculation</li>
+          <li>Compliance risk assessment</li>
+        </ul>
+      </div>
+      <div class="stage-col">
+        <h4>Output</h4>
+        <ul>
+          <li>Scored product card (1-10)</li>
+          <li>Full tracker entry with all fields</li>
+          <li>Competitor intelligence brief</li>
+          <li>GetHookd ✅ verified badge</li>
+        </ul>
+        <a href="../tracker/" class="sop-link">🔍 Product Research Tracker</a>
+      </div>
+    </div>
+    <div class="gate">⚡ <strong>Gate:</strong> Score must be 8.0+ to proceed to sourcing. Products below 8.0 stay in research or get killed.</div>
+  </div>
+  <div class="arrow-down">↓</div>
+
+  <!-- STAGE 3 -->
+  <div class="stage">
+    <div class="stage-head">
+      <div class="stage-num" style="background:rgba(255,152,0,0.1);color:var(--amber)">3</div>
+      <div class="stage-title">
+        <h2>📦 Sourcing <span class="time">~24-48 hrs wait</span></h2>
+        <div class="stage-badges">
+          <span class="badge b-manual">👤 MANUAL</span>
+          <span class="badge b-count">0 products here</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-col">
+        <h4>What Happens</h4>
+        <ul>
+          <li>Anton messages Mutual Express on WhatsApp</li>
+          <li>Request COGS quote for top products</li>
+          <li>Validate 3× COGS rule (selling price ≥ 3× COGS)</li>
+          <li>Calculate final B/E ROAS with real COGS</li>
+          <li>Confirm shipping times & reliability</li>
+        </ul>
+      </div>
+      <div class="stage-col">
+        <h4>Output</h4>
+        <ul>
+          <li>Confirmed COGS per unit</li>
+          <li>Validated margins (target 20-25% net)</li>
+          <li>Supplier reliability confirmed</li>
+        </ul>
+        <a href="../hub/" class="sop-link">📁 Product Research SOP</a>
+      </div>
+    </div>
+    <div class="gate">⚡ <strong>Gate:</strong> B/E ROAS must be under 2.0. COGS must allow 3× markup. If not, kill or find alternative supplier.</div>
+  </div>
+  <div class="arrow-down">↓</div>
+
+  <!-- STAGE 4 -->
+  <div class="stage">
+    <div class="stage-head">
+      <div class="stage-num" style="background:rgba(20,184,166,0.1);color:var(--teal)">4</div>
+      <div class="stage-title">
+        <h2>🏪 Store Setup <span class="time">~2-4 hrs</span></h2>
+        <div class="stage-badges">
+          <span class="badge b-semi">🔄 SEMI-AUTO</span>
+          <span class="badge b-count">0 products here</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-col">
+        <h4>What Happens</h4>
+        <ul>
+          <li>Create product on Shopify (thalyve.com)</li>
+          <li>Write compliance-safe product description</li>
+          <li>Set pricing tiers (1x / 2x / 3x bundles)</li>
+          <li>Upload images and content</li>
+          <li>Configure payment & shipping</li>
+          <li>Test checkout flow</li>
+        </ul>
+      </div>
+      <div class="stage-col">
+        <h4>Output</h4>
+        <ul>
+          <li>Live product page on thalyve.com</li>
+          <li>Working checkout</li>
+          <li>Pixel tracking confirmed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="arrow-down">↓</div>
+
+  <!-- STAGE 5 -->
+  <div class="stage">
+    <div class="stage-head">
+      <div class="stage-num" style="background:rgba(236,72,153,0.1);color:var(--pink)">5</div>
+      <div class="stage-title">
+        <h2>🎬 Ad Creative <span class="time">~3-6 hrs</span></h2>
+        <div class="stage-badges">
+          <span class="badge b-semi">🔄 SEMI-AUTO</span>
+          <span class="badge b-count">0 products here</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-col">
+        <h4>What Happens</h4>
+        <ul>
+          <li>Write 3 ad scripts per ad set (compliance-safe)</li>
+          <li>Source/create video content (UGC, product demos)</li>
+          <li>Build 3 ad sets × 3 creatives = 9 ads</li>
+          <li>Compliance review (no transformation claims, no before/after)</li>
+          <li>Format-mechanism angle focus</li>
+        </ul>
+      </div>
+      <div class="stage-col">
+        <h4>Output</h4>
+        <ul>
+          <li>9 ready-to-launch ad creatives</li>
+          <li>Compliance-checked copy</li>
+          <li>Creative brief for each angle</li>
+        </ul>
+        <a href="../hub/" class="sop-link">📁 Media Buying SOP</a>
+      </div>
+    </div>
+  </div>
+  <div class="arrow-down">↓</div>
+
+  <!-- STAGE 6 -->
+  <div class="stage active">
+    <div class="stage-head">
+      <div class="stage-num" style="background:rgba(76,175,80,0.15);color:var(--green)">6</div>
+      <div class="stage-title">
+        <h2>🧪 Ad Testing <span class="time">3-7 days</span></h2>
+        <div class="stage-badges">
+          <span class="badge b-manual">👤 MANUAL (Anton launches)</span>
+          <span class="badge b-count">1 product here — Stretch Mark Stick 🟢</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-col">
+        <h4>What Happens</h4>
+        <ul>
+          <li>Launch Advantage+ Sales campaign on Meta</li>
+          <li>CBO budget $25-100/day</li>
+          <li>❌ 48-hour NO TOUCH rule</li>
+          <li>Day 3: First kill/scale decision</li>
+          <li>Monitor CTR, CPC, CPM, ROAS</li>
+        </ul>
+      </div>
+      <div class="stage-col">
+        <h4>Output</h4>
+        <ul>
+          <li>Performance data (CTR, CPC, ROAS)</li>
+          <li>Creative winners identified</li>
+          <li>Audience signals from Advantage+</li>
+        </ul>
+        <a href="../hub/" class="sop-link">📁 Media Buying SOP</a>
+        <a href="../ads/" class="sop-link">📈 Ad Tracker</a>
+      </div>
+    </div>
+    <div class="gate">⚡ <strong>Current:</strong> THALYVE-SMS-TEST-01 — 9 ads LIVE since Feb 27. Day 3 kill/scale = Sunday Mar 1. DO NOT TOUCH.</div>
+  </div>
+  <div class="arrow-down">↓</div>
+
+  <!-- STAGE 7 -->
+  <div class="stage">
+    <div class="stage-head">
+      <div class="stage-num" style="background:rgba(255,152,0,0.1);color:var(--amber)">7</div>
+      <div class="stage-title">
+        <h2>⚖️ Kill / Scale Decision <span class="time">Day 3</span></h2>
+        <div class="stage-badges">
+          <span class="badge b-semi">🔄 DATA-DRIVEN</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-col">
+        <h4>Decision Framework</h4>
+        <ul>
+          <li>🔴 <strong>KILL:</strong> ROAS &lt; 1.0, CTR &lt; 0.8%, zero sales after $75+ spend</li>
+          <li>🟡 <strong>ITERATE:</strong> ROAS 1.0-1.8, some engagement, tweak creatives</li>
+          <li>🟢 <strong>SCALE:</strong> ROAS &gt; 2.0, consistent sales, profitable</li>
+        </ul>
+      </div>
+      <div class="stage-col">
+        <h4>Actions</h4>
+        <ul>
+          <li>Kill → back to Stage 1 (next product)</li>
+          <li>Iterate → new creatives, retry Stage 6</li>
+          <li>Scale → proceed to Stage 8</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="arrow-down">↓</div>
+
+  <!-- STAGE 8 -->
+  <div class="stage">
+    <div class="stage-head">
+      <div class="stage-num" style="background:rgba(20,184,166,0.1);color:var(--teal)">8</div>
+      <div class="stage-title">
+        <h2>🚀 Scaling <span class="time">Weeks 2-8</span></h2>
+        <div class="stage-badges">
+          <span class="badge b-semi">🔄 SEMI-AUTO</span>
+          <span class="badge b-count">0 products here</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-col">
+        <h4>What Happens</h4>
+        <ul>
+          <li>Increase budget $100 → $500+/day</li>
+          <li>Test new audiences and lookalikes</li>
+          <li>Launch new creative variations</li>
+          <li>Optimize landing pages (A/B test)</li>
+          <li>Add email flows (abandoned cart, post-purchase)</li>
+          <li>Hire sub-agents: Quill (copy), Lens (video)</li>
+        </ul>
+      </div>
+      <div class="stage-col">
+        <h4>Output</h4>
+        <ul>
+          <li>Profitable product at $500+/day</li>
+          <li>Target: 3.0× ROAS sustained</li>
+          <li>27-33 orders/day at £50 AOV</li>
+          <li>Revenue: £40-50K/month</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gate">⚡ <strong>Target:</strong> £10K net profit/month = £40-50K revenue at 20-25% margin. This is THE goal.</div>
+  </div>
+  <div class="arrow-down">↓</div>
+
+  <!-- STAGE 9 -->
+  <div class="stage" style="border-color:rgba(236,72,153,0.3);background:linear-gradient(135deg,rgba(236,72,153,0.03),rgba(124,58,237,0.03))">
+    <div class="stage-head">
+      <div class="stage-num" style="background:rgba(236,72,153,0.1);color:var(--pink)">9</div>
+      <div class="stage-title">
+        <h2>👑 Branded Empire <span class="time">Month 3+</span></h2>
+        <div class="stage-badges">
+          <span class="badge b-semi">🔄 FULL TEAM</span>
+          <span class="badge b-count">The Endgame</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage-body">
+      <div class="stage-col">
+        <h4>What Happens</h4>
+        <ul>
+          <li>Spin winner off to dedicated domain</li>
+          <li>Build brand identity & packaging</li>
+          <li>Private label sourcing (own branding)</li>
+          <li>Build brand moat (email list, community)</li>
+          <li>Full team: Hawk, Scout, Quill, Lens, Shield</li>
+        </ul>
+      </div>
+      <div class="stage-col">
+        <h4>Output</h4>
+        <ul>
+          <li>Standalone branded business</li>
+          <li>Own domain (e.g. "StretchLife.com")</li>
+          <li>Defensible brand with repeat customers</li>
+          <li>Multiple products under one brand</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gate">🏆 <strong>Vision:</strong> THALYVE tests products → winners become standalone brands → each brand = its own revenue stream → Anton Empire.</div>
+  </div>
+
 </div>
 
-<!-- ── LEGEND ── -->
-<div class="legend">
-  <div class="legend-item">
-    <div class="legend-dot" style="background:var(--green);"></div>
-    <span>🤖 Fully Automated</span>
-  </div>
-  <div class="legend-item">
-    <div class="legend-dot" style="background:var(--amber);"></div>
-    <span>🔄 Semi-Automated</span>
-  </div>
-  <div class="legend-item">
-    <div class="legend-dot" style="background:var(--red);"></div>
-    <span>👤 Manual</span>
-  </div>
-  <div class="legend-item" style="margin-left:8px;opacity:.6">
-    <span>📦 Products at each stage shown as badge</span>
-  </div>
-</div>
-
-<!-- ── FUNNEL ── -->
-<div class="funnel-wrap">
-  <div class="funnel-row" id="funnel">
-
-    <!-- ══ STAGE 1: DISCOVERY ══ -->
-    <div class="stage-wrap">
-      <div class="stage-card auto">
-        <div class="stage-header">
-          <div class="stage-num">Stage 1</div>
-          <div class="stage-emoji">🔍</div>
-          <div class="stage-title">Discovery</div>
-          <div class="stage-badge zero">0</div>
-        </div>
-        <div class="stage-body">
-          <ul class="stage-activities">
-            <li>GetHookd trending feed</li>
-            <li>FB Ad Library scan</li>
-            <li>Google Trends analysis</li>
-            <li>Competitor research</li>
-            <li>Coach recommendations</li>
-          </ul>
-          <div class="stage-meta">
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">SOP</span>
-              <span class="stage-meta-value"><a href="../hub/" target="_blank">Product Research SOP ↗</a></span>
-            </div>
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">Auto</span>
-              <span class="stage-meta-value">Cron: Mon &amp; Thu 3AM</span>
-            </div>
-          </div>
-          <span class="auto-badge green">🤖 Fully Auto</span>
-          <div class="stage-output">
-            <div class="stage-output-label">Output</div>
-            Raw product ideas
-          </div>
-          <div class="time-pill">⏱ 0–4 hrs / cycle</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="connector"><div class="connector-line"></div><div class="connector-arrow">▶</div></div>
-
-    <!-- ══ STAGE 2: RESEARCH & SCORING ══ -->
-    <div class="stage-wrap">
-      <div class="stage-card auto">
-        <div class="stage-header">
-          <div class="stage-num">Stage 2</div>
-          <div class="stage-emoji">📋</div>
-          <div class="stage-title">Research &amp; Scoring</div>
-          <div class="stage-badge">5</div>
-        </div>
-        <div class="stage-body">
-          <ul class="stage-activities">
-            <li>BBA score: 7 dimensions</li>
-            <li>Ad Signal · Market Size</li>
-            <li>Competition · Format · Margin</li>
-            <li>SimilarWeb 30K+ threshold</li>
-            <li>GetHookd: 10+ brand ads, 7+ days</li>
-            <li>FB Ad Library count</li>
-          </ul>
-          <div class="stage-meta">
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">SOP</span>
-              <span class="stage-meta-value"><a href="../hub/" target="_blank">Product Research SOP ↗</a></span>
-            </div>
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">Auto</span>
-              <span class="stage-meta-value">Cron + browser agent</span>
-            </div>
-          </div>
-          <span class="auto-badge green">🤖 Fully Auto</span>
-          <div class="stage-gate">
-            <div class="stage-gate-label">🔒 Gate</div>
-            Score must be 8+ to proceed
-          </div>
-          <div class="stage-output">
-            <div class="stage-output-label">Output</div>
-            Scored product in Tracker (1–10)
-          </div>
-          <div class="time-pill">⏱ 1–2 hrs / product</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="connector"><div class="connector-line"></div><div class="connector-arrow">▶</div></div>
-
-    <!-- ══ STAGE 3: SOURCING ══ -->
-    <div class="stage-wrap">
-      <div class="stage-card manual">
-        <div class="stage-header">
-          <div class="stage-num">Stage 3</div>
-          <div class="stage-emoji">📦</div>
-          <div class="stage-title">Sourcing</div>
-          <div class="stage-badge zero">0</div>
-        </div>
-        <div class="stage-body">
-          <ul class="stage-activities">
-            <li>Message Mutual Express (WhatsApp)</li>
-            <li>Get COGS quote</li>
-            <li>Calculate B/E ROAS (&lt; 2.0)</li>
-            <li>3× COGS rule: price ≥ 3× cost</li>
-            <li>Confirm margins viable</li>
-          </ul>
-          <div class="stage-meta">
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">SOP</span>
-              <span class="stage-meta-value"><a href="../hub/" target="_blank">Product Research SOP ↗</a></span>
-            </div>
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">Owner</span>
-              <span class="stage-meta-value">Anton → Mutual Express</span>
-            </div>
-          </div>
-          <span class="auto-badge red">👤 Manual</span>
-          <div class="stage-output">
-            <div class="stage-output-label">Output</div>
-            COGS confirmed, margins validated
-          </div>
-          <div class="time-pill">⏱ 1–3 days</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="connector"><div class="connector-line"></div><div class="connector-arrow">▶</div></div>
-
-    <!-- ══ STAGE 4: STORE SETUP ══ -->
-    <div class="stage-wrap">
-      <div class="stage-card semi">
-        <div class="stage-header">
-          <div class="stage-num">Stage 4</div>
-          <div class="stage-emoji">🏪</div>
-          <div class="stage-title">Store Setup</div>
-          <div class="stage-badge zero">0</div>
-        </div>
-        <div class="stage-body">
-          <ul class="stage-activities">
-            <li>Create product on Shopify</li>
-            <li>Write compliance-safe copy</li>
-            <li>Set pricing (1× / 2× / 3× bundles)</li>
-            <li>Upload images &amp; content</li>
-            <li>Anton final approval</li>
-          </ul>
-          <div class="stage-meta">
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">SOP</span>
-              <span class="stage-meta-value" style="color:var(--dim)">(planned)</span>
-            </div>
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">Owner</span>
-              <span class="stage-meta-value">Forge builds · Anton approves</span>
-            </div>
-          </div>
-          <span class="auto-badge amber">🔄 Semi-Auto</span>
-          <div class="stage-output">
-            <div class="stage-output-label">Output</div>
-            Live product page on thalyve.com
-          </div>
-          <div class="time-pill">⏱ 2–4 hrs</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="connector"><div class="connector-line"></div><div class="connector-arrow">▶</div></div>
-
-    <!-- ══ STAGE 5: AD CREATIVE ══ -->
-    <div class="stage-wrap">
-      <div class="stage-card semi">
-        <div class="stage-header">
-          <div class="stage-num">Stage 5</div>
-          <div class="stage-emoji">🎬</div>
-          <div class="stage-title">Ad Creative</div>
-          <div class="stage-badge zero">0</div>
-        </div>
-        <div class="stage-body">
-          <ul class="stage-activities">
-            <li>3 scripts × ad set (compliance-safe)</li>
-            <li>UGC / product demo content</li>
-            <li>3 ad sets × 3 creatives = 9 ads</li>
-            <li>Future: Lens agent automation</li>
-          </ul>
-          <div class="stage-meta">
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">SOP</span>
-              <span class="stage-meta-value"><a href="../hub/" target="_blank">Media Buying SOP ↗</a></span>
-            </div>
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">Owner</span>
-              <span class="stage-meta-value">Forge writes copy</span>
-            </div>
-          </div>
-          <span class="auto-badge amber">🔄 Semi-Auto</span>
-          <div class="stage-output">
-            <div class="stage-output-label">Output</div>
-            9 ready-to-launch ads
-          </div>
-          <div class="time-pill">⏱ 4–8 hrs</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="connector"><div class="connector-line"></div><div class="connector-arrow">▶</div></div>
-
-    <!-- ══ STAGE 6: AD TESTING ══ -->
-    <div class="stage-wrap">
-      <div class="stage-card manual">
-        <div class="stage-header">
-          <div class="stage-num">Stage 6</div>
-          <div class="stage-emoji">🧪</div>
-          <div class="stage-title">Ad Testing</div>
-          <div class="stage-badge" style="background:var(--amber);color:#000">1</div>
-        </div>
-        <div class="stage-body">
-          <ul class="stage-activities">
-            <li>Launch Advantage+ Sales campaign</li>
-            <li>CBO budget: $25–$100/day</li>
-            <li>48-hour no-touch rule</li>
-            <li>Day 3: Kill/Scale decision</li>
-          </ul>
-          <div class="stage-meta">
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">SOP</span>
-              <span class="stage-meta-value"><a href="../hub/" target="_blank">Media Buying SOP ↗</a></span>
-            </div>
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">Owner</span>
-              <span class="stage-meta-value">Anton launches on Meta</span>
-            </div>
-          </div>
-          <span class="auto-badge red">👤 Manual</span>
-          <div class="stage-output">
-            <div class="stage-output-label">Output</div>
-            Performance data (CTR · CPC · ROAS)
-          </div>
-          <div class="time-pill">⏱ 3 days</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="connector"><div class="connector-line"></div><div class="connector-arrow">▶</div></div>
-
-    <!-- ══ STAGE 7: DECISION ══ -->
-    <div class="stage-wrap">
-      <div class="stage-card decision">
-        <div class="stage-header">
-          <div class="stage-num">Stage 7</div>
-          <div class="stage-emoji">⚖️</div>
-          <div class="stage-title">Decision</div>
-          <div class="stage-badge zero">0</div>
-        </div>
-        <div class="stage-body">
-          <ul class="stage-activities">
-            <li>Day 3 metrics review</li>
-            <li>Anton makes call</li>
-          </ul>
-          <div class="decision-outcomes">
-            <div class="outcome kill">💀 KILL <span>ROAS &lt;1.5 · CTR &lt;1%</span></div>
-            <div class="outcome iterate">🔁 ITERATE <span>Promising but not yet profitable</span></div>
-            <div class="outcome scale">🚀 SCALE <span>ROAS &gt;2.0 · consistent sales</span></div>
-          </div>
-          <span class="auto-badge red" style="margin-top:8px">👤 Manual</span>
-          <div class="stage-output">
-            <div class="stage-output-label">Output</div>
-            KILL / ITERATE / SCALE decision
-          </div>
-          <div class="time-pill">⏱ 30 min review</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="connector"><div class="connector-line"></div><div class="connector-arrow">▶</div></div>
-
-    <!-- ══ STAGE 8: SCALING ══ -->
-    <div class="stage-wrap">
-      <div class="stage-card manual">
-        <div class="stage-header">
-          <div class="stage-num">Stage 8</div>
-          <div class="stage-emoji">🚀</div>
-          <div class="stage-title">Scaling</div>
-          <div class="stage-badge zero">0</div>
-        </div>
-        <div class="stage-body">
-          <ul class="stage-activities">
-            <li>Budget → $500+/day</li>
-            <li>Test new audiences &amp; creatives</li>
-            <li>Optimise landing pages</li>
-            <li>Add email flows</li>
-          </ul>
-          <div class="stage-meta">
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">SOP</span>
-              <span class="stage-meta-value"><a href="../hub/" target="_blank">Media Buying SOP ↗</a></span>
-            </div>
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">Owner</span>
-              <span class="stage-meta-value">Anton + Forge</span>
-            </div>
-          </div>
-          <span class="auto-badge red">👤 Manual</span>
-          <div class="stage-output">
-            <div class="stage-output-label">Output</div>
-            Profitable product at scale
-          </div>
-          <div class="time-pill">⏱ Ongoing</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="connector"><div class="connector-line"></div><div class="connector-arrow">▶</div></div>
-
-    <!-- ══ STAGE 9: BRANDED ══ -->
-    <div class="stage-wrap">
-      <div class="stage-card" style="border-color:rgba(124,58,237,0.5);background:linear-gradient(160deg,rgba(124,58,237,0.1),var(--card))">
-        <div class="stage-header" style="background:rgba(124,58,237,0.12);border-bottom-color:rgba(124,58,237,0.3)">
-          <div class="stage-num">Stage 9</div>
-          <div class="stage-emoji">👑</div>
-          <div class="stage-title">Branded</div>
-          <div class="stage-badge zero">0</div>
-        </div>
-        <div class="stage-body">
-          <ul class="stage-activities">
-            <li>Spin off to dedicated domain</li>
-            <li>Build brand identity</li>
-            <li>Private label sourcing</li>
-            <li>Build brand moat</li>
-          </ul>
-          <div class="stage-meta">
-            <div class="stage-meta-row">
-              <span class="stage-meta-label">Owner</span>
-              <span class="stage-meta-value">Anton · Strategic</span>
-            </div>
-          </div>
-          <span class="auto-badge amber">🔄 Semi-Auto</span>
-          <div class="stage-output">
-            <div class="stage-output-label">🏆 The Endgame</div>
-            Standalone brand
-          </div>
-          <div class="time-pill">⏱ 3–12 months</div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /funnel-row -->
-</div><!-- /funnel-wrap -->
-
-<!-- ── FOOTER ── -->
-<footer class="footer">
-  🔱 Master Operations Funnel v1.0 — Anton Empire
-  <div class="version">Built by Forge · Auto-operated end-to-end · No VAs needed</div>
+<footer style="text-align:center;padding:20px;font-size:9px;color:var(--dim);border-top:1px solid var(--border)">
+  🔱 Master Operations Funnel v1.0 — Anton Empire — Built by Forge — Feb 27, 2026
 </footer>
 
 </body>
