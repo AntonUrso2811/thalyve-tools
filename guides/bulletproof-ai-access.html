@@ -144,6 +144,67 @@ To activate (60-second swap):
 <strong>My honest recommendation:</strong> Stay on Claude. Opus 4.6 is better for what we do (SOPs, copy, complex operations, personality). OpenAI is the emergency backup, not a replacement. The only scenario I'd recommend switching primary to OpenAI is if Anthropic raises prices 3x+ or permanently bans subscription usage via OpenClaw.
 </div>
 
+<h2>Connecting OpenAI (Layer 3 Setup)</h2>
+
+<div class="card">
+<h3>Option A: OpenAI API Key (Recommended)</h3>
+<p>Pay-per-token. More expensive but zero ban risk. Best for emergency fallback.</p>
+<pre>1. Go to platform.openai.com → sign up / log in
+2. API Keys → Create new secret key
+3. Add credit: Billing → Add $20-50
+4. Give Forge the API key
+
+To activate:
+  openclaw config set model openai/gpt-5.3-codex
+  openclaw config set auth.profiles.openai:default.mode api-key
+  openclaw config set auth.profiles.openai:default.token sk-YOUR_KEY
+  openclaw gateway restart
+
+To switch back to Claude:
+  openclaw config set model anthropic/claude-opus-4-6
+  openclaw gateway restart</pre>
+<div class="info">💡 Cost: ~$0.01-0.03 per message. A heavy day might cost $5-10. Fine for emergency use, expensive for daily ops.</div>
+</div>
+
+<div class="card">
+<h3>Option B: ChatGPT Pro Subscription (Cheaper but riskier)</h3>
+<p>Same approach as our Anthropic setup — flat monthly fee, route subscription through OpenClaw.</p>
+<pre>1. Subscribe to ChatGPT Pro ($200/month)
+2. Extract session token from browser cookies
+3. Configure in OpenClaw:
+   openclaw config set model openai/gpt-5.3-codex
+   openclaw config set auth.profiles.openai:default.mode token
+   openclaw config set auth.profiles.openai:default.token YOUR_SESSION_TOKEN
+   openclaw gateway restart</pre>
+<div class="warn">⚠️ Same ban risk as Anthropic subscription method. Same mitigations apply. Less stable — session tokens expire more frequently than Anthropic OAT tokens.</div>
+</div>
+
+<div class="card" style="border-top:3px solid var(--accent)">
+<h3>⚡ Forge's Quick-Swap Protocol</h3>
+<p>If Anton says "switch to OpenAI" — Forge executes this in under 2 minutes:</p>
+<ol style="padding-left:20px;font-size:13px;line-height:2">
+<li>Save current session state to memory files</li>
+<li>Update model config to <code>openai/gpt-5.3-codex</code></li>
+<li>Swap auth token</li>
+<li>Restart gateway</li>
+<li>Verify with test message</li>
+<li>Confirm to Anton on Telegram</li>
+</ol>
+<p style="font-size:12px;color:var(--muted);margin-top:8px"><strong>What changes:</strong> Model brain (slightly different personality/style). <strong>What stays:</strong> All memory, SOPs, tools, cron jobs, infrastructure — everything is file-based, not model-dependent.</p>
+</div>
+
+<h2>Priority Setup Checklist</h2>
+
+<div class="card">
+<table>
+<tr><th>Priority</th><th>Layer</th><th>What</th><th>Who</th><th>Time</th><th>Status</th></tr>
+<tr><td style="color:var(--green);font-weight:700">1</td><td>Layer 1</td><td>Current Anthropic subscription</td><td>—</td><td>—</td><td style="color:var(--green)">✅ ACTIVE</td></tr>
+<tr><td style="color:var(--amber);font-weight:700">2</td><td>Layer 2</td><td>Second Anthropic account (different email + payment)</td><td>Anton</td><td>10 min</td><td style="color:var(--amber)">⏳ TODO</td></tr>
+<tr><td style="color:var(--muted);font-weight:700">3</td><td>Layer 3</td><td>OpenAI API key ($20 credit)</td><td>Anton</td><td>5 min</td><td style="color:var(--muted)">⏳ OPTIONAL</td></tr>
+</table>
+<div class="success" style="margin-top:12px">✅ Once Layer 2 is set up, you have 99.9% uptime coverage. Layer 3 is insurance for the 0.1% scenario where Anthropic as a platform goes down.</div>
+</div>
+
 <h2>Proxy / VPN Considerations</h2>
 
 <div class="card">
