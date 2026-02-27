@@ -13,7 +13,18 @@
     "targetMonthlyNet": 10000,
     "notes": "UK Ltd for now. Future plan: Hong Kong entity (0% tax). Corp tax 19% for small profits (<\u00a350K), 25% for >\u00a3250K. Target: \u00a310k net/month."
   },
-  "companyExpenses": [],
+  "companyExpenses": [
+    {"name":"Shopify Plan","category":"Subscriptions","amount":1,"frequency":"monthly","date":"2026-02-15","notes":"£1/mo promo until Mar 12 — downgrade before then","auto":true},
+    {"name":"Claude Max 20X Subscription","category":"AI/API Costs","amount":160,"frequency":"monthly","date":"2026-02-22","notes":"Anthropic subscription — powers Forge + all sub-agents","auto":true},
+    {"name":"GoDaddy Domain — thalyve.com","category":"Domain/Hosting","amount":12.99,"frequency":"annual","date":"2026-02-10","notes":"Primary brand domain","auto":true},
+    {"name":"Ad Rail Agency Account — Initial Deposit","category":"Media Buying","amount":1000,"frequency":"one-time","date":"2026-02-25","notes":"$1,000 deposit + 3% agency fee on spend","auto":true},
+    {"name":"Ad Rail Agency Fee (3%)","category":"Media Buying","amount":30,"frequency":"monthly","date":"2026-02-27","notes":"3% of ad spend — auto-calculated","auto":true},
+    {"name":"Ad Spend — THALYVE-SMS-TEST-01","category":"Media Buying","amount":25,"frequency":"monthly","date":"2026-02-27","notes":"$25/day CBO — Day 1 live. Auto-tracked via Meta API when connected","auto":true},
+    {"name":"Proxy Seller — 10x IPv4","category":"Software/Tools","amount":30,"frequency":"monthly","date":"2026-02-20","notes":"10 proxies for AdsPower profiles — country-matched","auto":true},
+    {"name":"OLD Account Europe — 10 Profiles","category":"Software/Tools","amount":140,"frequency":"one-time","date":"2026-02-18","notes":"Aged FB profiles for 3-BM structure","auto":true},
+    {"name":"BM350 Verified Business Managers x3","category":"Software/Tools","amount":105,"frequency":"one-time","date":"2026-02-18","notes":"3 pre-verified BMs (2020-2024) for Operations/Pixel/Pages","auto":true},
+    {"name":"Shrine Theme — Shopify","category":"Software/Tools","amount":0,"frequency":"one-time","date":"2026-02-20","notes":"Discount code BBA10 applied","auto":true}
+  ],
   "brands": [
     {
       "id": "thalyve",
