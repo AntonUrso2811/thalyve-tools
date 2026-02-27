@@ -481,7 +481,7 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
     </div>
   </div>
 
-  <div class="footer">🔱 Product Research Tracker v4.1 — SOP-Compliant · GetHookd Integrated · Auto-Synced from Forge</div>
+  <div class="footer">🔱 Product Research Tracker v4.2 — SOP-Compliant · GetHookd Integrated · Auto-Synced from Forge</div>
 </div>
 
 <input type="file" id="impF" accept=".json" style="display:none" onchange="handleImp(event)">
@@ -767,17 +767,17 @@ function mapForgeProduct(np){
     site:np.competitorSiteLink||np.site||'',
     adLink:np.competitorAdLink||np.adLink||'',
     mutualLink:np.mutualDropshipping||np.mutualLink||'',
-    cogs:parseFloat(np.cogsTotal)||np.cogs||0,
+    cogs:parseFloat(np.cogsTotal||'')||parseFloat(np.cogs||'')||0,
     traffic:np.similarwebTraffic||np.traffic||0,
-    ads:parseInt(String(np.activeFBads).replace(/[^0-9]/g,''))||np.ads||0,
+    ads:parseInt(String(np.activeFBads||'').match(/\d+/)?.[0])||np.ads||0,
     price:np.sellingPrice||np.price||0,
     beroas:np.beRoas||np.beroas||0,
     content:np.sufficientContent?np.sufficientContent.split('—')[0].trim():np.content||'',
     niche:'Health/Wellness',
-    format:np.format||'Device',
+    format:np.format||(function(n){n=(n||'').toLowerCase();if(n.includes('stick'))return'Stick';if(n.includes('patch'))return'Patch';if(n.includes('drop'))return'Drops';if(n.includes('mask'))return'Device';if(n.includes('gumm'))return'Other';if(n.includes('tea'))return'Other';return'Device'})(np.productName||np.name),
     target:np.targetDemographic||np.target||'',
     mrr:np.mrr||'No',
-    status:np.status||'research',
+    status:np.status||(np.coachApproval==='Approved'?'test':'research'),
     score:np.score||0,
     verdict:np.verdict||'',
     approval:np.coachApproval||np.approval||'',
@@ -791,13 +791,15 @@ function mapForgeProduct(np){
     discoveryMethod:np.discoveryMethod||np.session||'gethookd-trending',
     filtersUsed:np.filtersUsed||'',
     creativeSwipes:np.creativeSwipes||[],
-    margin:np.price&&np.cogs?((np.price-(parseFloat(np.cogsTotal)||np.cogs||0))/np.price*100):0,
-    revenueEstimate:np.traffic&&np.price?Math.round((np.similarwebTraffic||np.traffic||0)*(np.sellingPrice||np.price||0)*0.025):0
+    margin:(function(){const p=np.sellingPrice||np.price||0;const c=parseFloat(np.cogsTotal||'')||parseFloat(np.cogs||'')||0;return p&&c?((p-c)/p*100):0})(),
+    revenueEstimate:(function(){const t=np.similarwebTraffic||np.traffic||0;const p=np.sellingPrice||np.price||0;return t&&p?Math.round(t*p*0.025):0})()
   };
 }
-async function loadJSON(){try{const r=await fetch('research-data.json?t='+Date.now());if(!r.ok)return;const d=await r.json();if(Array.isArray(d)&&d.length>0){let a=0,u=0;d.forEach(np=>{const mapped=mapForgeProduct(np);const existing=P.find(p=>p.id===np.id);if(!existing){P.push(mapped);a++}else{
-  // Update existing with any new GetHookd data
-  if(np.gethookdVerified&&!existing.gethookdVerified){Object.assign(existing,{gethookdVerified:true,gethookdDate:np.gethookdDate,gethookdBrands:np.gethookdBrands,ads:mapped.ads,competitor:mapped.competitor});u++}
+async function loadJSON(){try{const r=await fetch('research-data.json?t='+Date.now());if(!r.ok)return;const d=await r.json();if(Array.isArray(d)&&d.length>0){let a=0,u=0;d.forEach(np=>{const mapped=mapForgeProduct(np);const idx=P.findIndex(p=>p.id===np.id);if(idx===-1){P.push(mapped);a++}else{
+  // Always update with latest mapped data from Forge, preserve local-only fields
+  const local=P[idx];
+  const preserve={creativeSwipes:local.creativeSwipes||[],timeline:local.timeline||[]};
+  Object.assign(P[idx],mapped,preserve);u++
 }});if(a||u){save();render();toast((a?'Synced '+a+' new':'')+(a&&u?' + ':'')+(u?'Updated '+u:'')+ ' from Forge ✓')}}}catch(e){}}
 
 // ═══ AUTO-VERDICT ═══
