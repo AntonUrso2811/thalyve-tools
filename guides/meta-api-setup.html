@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Meta Marketing API Setup — Anton Empire</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#e0e0e0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:20px;max-width:720px;margin:0 auto;line-height:1.7}
+h1{font-size:1.6rem;margin-bottom:8px;background:linear-gradient(135deg,#7c3aed,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#888;font-size:.9rem;margin-bottom:32px}
+.badge{display:inline-block;background:#7c3aed22;color:#a78bfa;border:1px solid #7c3aed44;border-radius:6px;padding:2px 10px;font-size:.75rem;margin-bottom:24px}
+.step{background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin-bottom:16px;position:relative}
+.step-num{position:absolute;top:-10px;left:16px;background:#7c3aed;color:#fff;font-weight:700;font-size:.75rem;padding:2px 10px;border-radius:20px}
+.step h2{font-size:1.1rem;margin:8px 0 12px;color:#fff}
+.step p,.step li{font-size:.9rem;color:#ccc}
+.step ol,.step ul{padding-left:20px;margin-top:8px}
+.step li{margin-bottom:6px}
+.step code{background:#1a1a2e;color:#a78bfa;padding:2px 6px;border-radius:4px;font-size:.85rem}
+.warn{background:#7c3aed11;border-left:3px solid #7c3aed;padding:12px 16px;margin:12px 0;border-radius:0 8px 8px 0;font-size:.85rem}
+.security{background:#111;border:1px solid #222;border-radius:12px;padding:20px;margin:24px 0}
+.security h2{color:#fff;font-size:1.1rem;margin-bottom:12px}
+.security .row{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:.9rem}
+.security .icon{font-size:1.1rem}
+.auto-table{width:100%;border-collapse:collapse;margin:16px 0}
+.auto-table th{text-align:left;color:#a78bfa;font-size:.8rem;padding:8px 12px;border-bottom:1px solid #333}
+.auto-table td{padding:8px 12px;font-size:.85rem;border-bottom:1px solid #1a1a1a;color:#ccc}
+.cta{display:block;text-align:center;background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:14px 24px;border-radius:10px;font-weight:600;font-size:1rem;margin:32px 0;text-decoration:none}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.nav a{color:#a78bfa;text-decoration:none;font-size:.8rem;padding:4px 10px;border:1px solid #333;border-radius:6px}
+.nav a:hover{background:#7c3aed22;border-color:#7c3aed}
+.time{color:#10b981;font-weight:600}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<a href="../">🏠 Home</a>
+<a href="../dashboard/">📊 Command Centre</a>
+<a href="../hub/">📁 SOP Hub</a>
+<a href="../guides/master-strategy.html">🗺️ Strategy</a>
+</nav>
+
+<span class="badge">⏱️ ~10 minutes</span>
+<h1>🔗 Meta Marketing API Setup</h1>
+<p class="subtitle">Give Forge read-only access to your ad data. Zero risk. Full automation.</p>
+
+<div class="step">
+<span class="step-num">STEP 1</span>
+<h2>Open Business Settings</h2>
+<ol>
+<li>Open <strong>business.facebook.com</strong> (use your Ad Rail proxy browser)</li>
+<li>Make sure you're in <strong>BM1 — Operations</strong> (<code>365131313137753</code>)</li>
+<li>Click <strong>Business Settings</strong> (⚙️ gear icon, bottom-left)</li>
+</ol>
+</div>
+
+<div class="step">
+<span class="step-num">STEP 2</span>
+<h2>Create a System User</h2>
+<ol>
+<li>Go to <strong>Users → System Users</strong></li>
+<li>Click <strong>Add</strong></li>
+<li>Name: <code>forge-readonly</code></li>
+<li>Role: <strong>Admin</strong> (needed to read ad data — we restrict permissions next)</li>
+<li>Click <strong>Create System User</strong></li>
+</ol>
+</div>
+
+<div class="step">
+<span class="step-num">STEP 3</span>
+<h2>Assign Ad Account Access</h2>
+<ol>
+<li>Click on <code>forge-readonly</code></li>
+<li>Click <strong>Add Assets → Ad Accounts</strong></li>
+<li>Select your ad account (the one running THALYVE-SMS-TEST-01)</li>
+<li>Set permission to <strong>View performance</strong> only</li>
+<li>Click <strong>Save Changes</strong></li>
+</ol>
+</div>
+
+<div class="step">
+<span class="step-num">STEP 4</span>
+<h2>Generate Access Token</h2>
+<ol>
+<li>Click on <code>forge-readonly</code> → <strong>Generate New Token</strong></li>
+<li>Select your App (if you don't have one, see Step 4b below)</li>
+<li>Select these permissions ONLY:
+<ul>
+<li><code>ads_read</code></li>
+<li><code>read_insights</code></li>
+<li><code>business_management</code></li>
+</ul>
+</li>
+<li>Click <strong>Generate Token</strong></li>
+<li><strong>Copy the token</strong> — you'll only see it once!</li>
+</ol>
+<div class="warn">
+<strong>No App yet?</strong> Go to <strong>developers.facebook.com → My Apps → Create App → Business</strong>. Name it "Anton Empire Analytics". Link to BM1. Then come back here.
+</div>
+</div>
+
+<div class="step">
+<span class="step-num">STEP 5</span>
+<h2>Send Token to Forge</h2>
+<p>Paste the token in our Telegram DM. That's it.</p>
+<p>I will:</p>
+<ul>
+<li>Store it <strong>encrypted</strong> in macOS Keychain</li>
+<li>Never log it in plaintext</li>
+<li>Use it <strong>only</strong> for read-only data pulls</li>
+</ul>
+<p style="margin-top:12px">⏱️ <span class="time">Daily ad reports go live within 10 minutes of receiving the token.</span></p>
+</div>
+
+<div class="security">
+<h2>🔒 Security Guarantees</h2>
+<div class="row"><span class="icon">❌</span> Token CANNOT modify ads, budgets, or campaigns</div>
+<div class="row"><span class="icon">❌</span> Forge will NEVER log into Ads Manager via browser</div>
+<div class="row"><span class="icon">✅</span> Read-only API calls only (GET requests)</div>
+<div class="row"><span class="icon">✅</span> Token encrypted in macOS Keychain</div>
+<div class="row"><span class="icon">✅</span> Token rotated every 60 days (cron reminder)</div>
+</div>
+
+<h2 style="color:#fff;margin:24px 0 12px">🤖 What Gets Automated</h2>
+<table class="auto-table">
+<tr><th>Automation</th><th>Schedule</th><th>Output</th></tr>
+<tr><td>Daily Ad Intelligence Report</td><td>9PM daily</td><td>Telegram + Command Centre</td></tr>
+<tr><td>P&L Snapshot</td><td>9PM daily</td><td>Revenue - COGS - spend = profit</td></tr>
+<tr><td>Kill/Scale Recommendation</td><td>Day 3+</td><td>Data-driven decision brief</td></tr>
+<tr><td>Weekly Trend Report</td><td>Sunday 8AM</td><td>Week-over-week comparison</td></tr>
+<tr><td>Creative Performance Ranking</td><td>9PM daily</td><td>Which hooks/angles are winning</td></tr>
+</table>
+
+<h2 style="color:#fff;margin:24px 0 12px">📊 Every Metric Explained</h2>
+<p style="font-size:.9rem;color:#999;margin-bottom:16px">Each report breaks down what every number means and what your next move should be:</p>
+<table class="auto-table">
+<tr><th>Metric</th><th>What It Tells You</th><th>Decision</th></tr>
+<tr><td>CTR (link)</td><td>Is the creative grabbing attention?</td><td>< 1% → creative issue</td></tr>
+<tr><td>CPC</td><td>Cost efficiency of clicks</td><td>> $2 → audience or creative issue</td></tr>
+<tr><td>CPM</td><td>How competitive the auction is</td><td>> $30 → audience too narrow or saturated</td></tr>
+<tr><td>CPA</td><td>Cost per purchase</td><td>Must be < selling price - COGS</td></tr>
+<tr><td>ROAS</td><td>Return on ad spend</td><td>< 1.5× → kill. 1.5-2× → optimize. > 2× → scale</td></tr>
+<tr><td>Frequency</td><td>How many times each person sees your ad</td><td>> 2.5 → ad fatigue, need fresh creatives</td></tr>
+<tr><td>ThruPlay %</td><td>Are people watching the full video?</td><td>< 15% → hook isn't working</td></tr>
+<tr><td>Add to Cart %</td><td>Landing page effectiveness</td><td>Clicks but no ATC → page issue</td></tr>
+</table>
+
+<a class="cta" href="https://business.facebook.com/settings/system-users" target="_blank">Open Meta Business Settings →</a>
+
+<p style="text-align:center;color:#555;font-size:.8rem;margin-top:32px">Anton Empire 🔱 · Forge · 2026</p>
+</body>
+</html>
