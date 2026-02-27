@@ -807,7 +807,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
       </div>
       <div style="padding:6px 14px;border-radius:8px;background:rgba(76,175,80,0.08);border:1px solid rgba(76,175,80,0.2)">
         <div style="font-size:9px;text-transform:uppercase;color:var(--muted)">Active Jobs</div>
-        <div style="font-size:13px;font-weight:700;color:var(--green)" id="cron-count">5</div>
+        <div style="font-size:13px;font-weight:700;color:var(--green)" id="cron-count">7</div>
       </div>
     </div>
 
@@ -815,7 +815,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
     <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">
       <div class="card" style="text-align:center;padding:12px;border-top:3px solid var(--green)">
         <div style="font-size:9px;text-transform:uppercase;color:var(--muted)">Last 24h Runs</div>
-        <div style="font-size:22px;font-weight:800;color:var(--green);margin-top:4px" id="cron-runs">3 ✅</div>
+        <div style="font-size:22px;font-weight:800;color:var(--green);margin-top:4px" id="cron-runs">4 ✅</div>
       </div>
       <div class="card" style="text-align:center;padding:12px;border-top:3px solid var(--amber)">
         <div style="font-size:9px;text-transform:uppercase;color:var(--muted)">Opus Tasks</div>
@@ -823,7 +823,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
       </div>
       <div class="card" style="text-align:center;padding:12px;border-top:3px solid var(--purple)">
         <div style="font-size:9px;text-transform:uppercase;color:var(--muted)">Sonnet Tasks</div>
-        <div style="font-size:22px;font-weight:800;color:var(--purple);margin-top:4px" id="cron-sonnet">4</div>
+        <div style="font-size:22px;font-weight:800;color:var(--purple);margin-top:4px" id="cron-sonnet">6</div>
       </div>
     </div>
 
@@ -922,6 +922,48 @@ tr:hover td{background:rgba(139,92,246,.03)}
           <div style="text-align:right;min-width:80px">
             <div style="font-size:9px;color:var(--muted)">Next Run</div>
             <div style="font-size:10px;font-weight:600">Sun 2AM</div>
+          </div>
+        </div>
+
+        <!-- Dashboard Refresh -->
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg);border-radius:10px;border-left:3px solid var(--green)">
+          <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:rgba(76,175,80,0.1);display:flex;align-items:center;justify-content:center;font-size:16px">🔄</div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700">Dashboard Auto-Refresh</div>
+            <div style="font-size:10px;color:var(--muted)">Daily at 5:00 AM · Updates company-data.json with current dates, statuses, and metrics. Ensures dashboard never shows stale data. Prevents the "not updated" problem permanently.</div>
+          </div>
+          <div style="text-align:center;padding:4px 10px;border-radius:6px;background:rgba(139,92,246,0.1)">
+            <div style="font-size:9px;color:var(--muted)">Model</div>
+            <div style="font-size:11px;font-weight:700;color:var(--purple)">Sonnet</div>
+          </div>
+          <div style="text-align:center;min-width:60px">
+            <div style="font-size:9px;color:var(--muted)">Status</div>
+            <div style="font-size:11px;font-weight:700;color:var(--green)">🟢 OK</div>
+          </div>
+          <div style="text-align:right;min-width:80px">
+            <div style="font-size:9px;color:var(--muted)">Last Run</div>
+            <div style="font-size:10px;font-weight:600">Today 5AM</div>
+          </div>
+        </div>
+
+        <!-- Weekly Forge Report -->
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg);border-radius:10px;border-left:3px solid var(--muted)">
+          <div style="flex-shrink:0;width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:16px">📝</div>
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:700">Weekly COO Report</div>
+            <div style="font-size:10px;color:var(--muted)">Monday at 7:00 AM · Forge's weekly brief to Anton: what was improved, new hires, system health, next week's plan, and one strategic insight. The CEO gets a report from his COO every Monday.</div>
+          </div>
+          <div style="text-align:center;padding:4px 10px;border-radius:6px;background:rgba(139,92,246,0.1)">
+            <div style="font-size:9px;color:var(--muted)">Model</div>
+            <div style="font-size:11px;font-weight:700;color:var(--purple)">Sonnet</div>
+          </div>
+          <div style="text-align:center;min-width:60px">
+            <div style="font-size:9px;color:var(--muted)">Status</div>
+            <div style="font-size:11px;font-weight:700;color:var(--muted)">⚪ New</div>
+          </div>
+          <div style="text-align:right;min-width:80px">
+            <div style="font-size:9px;color:var(--muted)">Next Run</div>
+            <div style="font-size:10px;font-weight:600">Mon 7AM</div>
           </div>
         </div>
 
