@@ -46,14 +46,20 @@ h1{font-size:1.6rem;margin-bottom:8px;background:linear-gradient(135deg,#7c3aed,
 <h1>🔗 Meta Marketing API Setup</h1>
 <p class="subtitle">Give Forge read-only access to your ad data. Zero risk. Full automation.</p>
 
+<div class="warn">
+<strong>⚠️ Your Ad Rail Structure:</strong> You have 3 BMs — BM1 (Operations, runs ads), BM2 (Pixel), BM3 (Pages). The API token must be created in <strong>BM1</strong> because that's where the ad accounts live. Use <strong>Profile 1 or Profile 2</strong> (Admin access) via AdsPower to do this. Do NOT use Media Buyer profiles (P3-P6).
+</div>
+
 <div class="step">
 <span class="step-num">STEP 1</span>
-<h2>Open Business Settings</h2>
+<h2>Open Business Settings (via AdsPower)</h2>
 <ol>
-<li>Open <strong>business.facebook.com</strong> (use your Ad Rail proxy browser)</li>
-<li>Make sure you're in <strong>BM1 — Operations</strong> (<code>365131313137753</code>)</li>
+<li>Open <strong>AdsPower</strong> → launch <strong>Profile 1</strong> or <strong>Profile 2</strong> (BM1 Admin)</li>
+<li>Go to <strong>business.facebook.com</strong></li>
+<li>Confirm you're in <strong>BM1 — Operations</strong> (<code>365131313137753</code>)</li>
 <li>Click <strong>Business Settings</strong> (⚙️ gear icon, bottom-left)</li>
 </ol>
+<div class="warn">⚠️ Never do this from your personal browser or without a proxy. Always use AdsPower with the correct profile.</div>
 </div>
 
 <div class="step">
