@@ -109,18 +109,69 @@ tr:hover td{background:rgba(139,92,246,.03)}
 
   <!-- ===== COMPANY OVERVIEW ===== -->
   <div class="page active" id="p-overview">
-    <div class="grid g6">
-      <div class="card"><div class="sl">Total Revenue (All Brands)</div><div class="sv green" id="o-rev">$0</div><div class="ss" id="o-orders">0 orders</div></div>
-      <div class="card"><div class="sl">Total Ad Spend</div><div class="sv red" id="o-ads">$0</div><div class="ss" id="o-adpct">—</div></div>
-      <div class="card"><div class="sl">Total COGS</div><div class="sv amber" id="o-cogs">$0</div><div class="ss" id="o-cogspct">—</div></div>
-      <div class="card"><div class="sl">Company Expenses</div><div class="sv blue" id="o-opex">$0</div><div class="ss" id="o-opexn">—</div></div>
-      <div class="card"><div class="sl">Tax Provision (est.)</div><div class="sv teal" id="o-tax">$0</div><div class="ss" id="o-taxr">—</div></div>
-      <div class="card"><div class="sl">Net Company Profit</div><div class="sv" id="o-net">$0</div><div class="ss" id="o-netm">—</div></div>
+    <!-- Hero Header -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+      <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;box-shadow:0 4px 16px rgba(124,58,237,.3)">🔱</div>
+      <div style="flex:1">
+        <h2 style="margin:0;font-size:20px;font-weight:800">Empire Overview</h2>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">Real-time P&L · All brands combined · Auto-updated daily</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:1px">Status</div>
+        <div style="display:flex;align-items:center;gap:4px;margin-top:2px"><span style="width:7px;height:7px;border-radius:50%;background:#0fd68c;display:inline-block;animation:pulse 2s infinite"></span><span style="font-size:12px;font-weight:700;color:#0fd68c">LIVE</span></div>
+      </div>
+    </div>
+    <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}</style>
+
+    <!-- Hero Net Profit Card -->
+    <div style="background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(168,85,247,.06));border:1px solid rgba(124,58,237,.25);border-radius:16px;padding:24px;text-align:center;margin-bottom:16px">
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px">Net Company Profit</div>
+      <div style="font-size:36px;font-weight:900;letter-spacing:-1px" id="o-net">$0</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px" id="o-netm">—</div>
     </div>
 
-    <!-- P&L Waterfall -->
-    <div class="hl hl-p">
-      <h3 style="font-size:13px;margin-bottom:10px">📋 Company P&L</h3>
+    <!-- KPI Cards — 2 rows of 3 -->
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">
+      <div class="card" style="text-align:center;padding:14px;border-top:3px solid var(--green)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:.5px">Total Revenue</div>
+        <div style="font-size:24px;font-weight:800;color:var(--green);margin-top:6px" id="o-rev">$0</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px" id="o-orders">0 orders</div>
+      </div>
+      <div class="card" style="text-align:center;padding:14px;border-top:3px solid var(--red)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:.5px">Ad Spend</div>
+        <div style="font-size:24px;font-weight:800;color:var(--red);margin-top:6px" id="o-ads">$0</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px" id="o-adpct">—</div>
+      </div>
+      <div class="card" style="text-align:center;padding:14px;border-top:3px solid var(--amber)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:.5px">COGS</div>
+        <div style="font-size:24px;font-weight:800;color:var(--amber);margin-top:6px" id="o-cogs">$0</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px" id="o-cogspct">—</div>
+      </div>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">
+      <div class="card" style="text-align:center;padding:14px;border-top:3px solid var(--blue)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:.5px">Company Expenses</div>
+        <div style="font-size:24px;font-weight:800;color:var(--blue);margin-top:6px" id="o-opex">$0</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px" id="o-opexn">—</div>
+      </div>
+      <div class="card" style="text-align:center;padding:14px;border-top:3px solid var(--teal)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:.5px">Tax Provision (est.)</div>
+        <div style="font-size:24px;font-weight:800;color:var(--teal);margin-top:6px" id="o-tax">$0</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px" id="o-taxr">19% of pre-tax profit</div>
+      </div>
+      <div class="card" style="text-align:center;padding:14px;border-top:3px solid var(--purple)">
+        <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:.5px">Active Brands</div>
+        <div style="font-size:24px;font-weight:800;color:var(--purple);margin-top:6px" id="o-brands-count">1</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px">THALYVE™ testing</div>
+      </div>
+    </div>
+
+    <!-- P&L Waterfall — redesigned -->
+    <div class="card" style="background:linear-gradient(135deg,rgba(15,214,140,.03),rgba(124,58,237,.03));margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+        <span style="font-size:18px">📋</span>
+        <h3 style="font-size:14px;margin:0;font-weight:700">Company P&L Statement</h3>
+      </div>
       <div class="pl" id="o-pl">
         <span>Gross Revenue (all brands)</span><span class="green" id="pl-rev">$0</span>
         <span>− Total COGS</span><span class="red" id="pl-cogs">$0</span>
@@ -128,23 +179,61 @@ tr:hover td{background:rgba(139,92,246,.03)}
         <span>− Total Ad Spend</span><span class="red" id="pl-ads">$0</span>
         <span>− Company Expenses</span><span class="red" id="pl-opex">$0</span>
         <span class="pl-sep">Pre-Tax Profit</span><span class="pl-sep" id="pl-pretax">$0</span>
-        <span>− Tax Provision (est.)</span><span class="red" id="pl-tax">$0</span>
+        <span>− Tax Provision (19%)</span><span class="red" id="pl-tax">$0</span>
         <span class="pl-total">Net Profit (After Tax Est.)</span><span class="pl-total" id="pl-net">$0</span>
       </div>
     </div>
 
-    <!-- Brand Summary -->
-    <div class="card">
-      <h2>🏷 Brand Performance</h2>
-      <table>
-        <thead><tr><th>Brand</th><th>Revenue</th><th>Orders</th><th>Ad Spend</th><th>COGS</th><th>Brand Profit</th><th>ROAS</th><th>Margin</th></tr></thead>
-        <tbody id="o-brands"><tr><td colspan="8" class="empty">No brand data yet</td></tr></tbody>
-      </table>
+    <!-- Two-column: Brand Performance + Quick Stats -->
+    <div class="grid" style="grid-template-columns:1fr 300px;gap:12px">
+      <!-- Brand Summary -->
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+          <span style="font-size:16px">🏷</span>
+          <h2 style="margin:0;font-size:14px;font-weight:700">Brand Performance</h2>
+        </div>
+        <table>
+          <thead><tr><th>Brand</th><th>Revenue</th><th>Orders</th><th>Ad Spend</th><th>COGS</th><th>Profit</th><th>ROAS</th><th>Margin</th></tr></thead>
+          <tbody id="o-brands"><tr><td colspan="8" class="empty">No brand data yet — updates when ad data flows in</td></tr></tbody>
+        </table>
+      </div>
+
+      <!-- Quick Stats Sidebar -->
+      <div>
+        <div class="card" style="margin-bottom:10px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:10px">
+            <span style="font-size:14px">⚡</span>
+            <h3 style="font-size:12px;margin:0;font-weight:700">Quick Stats</h3>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--muted)">War Chest</span><span style="font-weight:700;color:var(--amber)">£5,000</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--muted)">Monthly Burn</span><span style="font-weight:700;color:var(--red)" id="qs-burn">—</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--muted)">Runway</span><span style="font-weight:700;color:var(--blue)" id="qs-runway">—</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--muted)">Break-Even Target</span><span style="font-weight:700;color:var(--green)">£2K/mo rev</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--muted)">Team Size</span><span style="font-weight:700">3 (Anton + Forge + Quill)</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:11px"><span style="color:var(--muted)">Products Testing</span><span style="font-weight:700;color:var(--purple)">1 live · 5 research</span></div>
+          </div>
+        </div>
+        <div class="card" style="background:linear-gradient(135deg,rgba(239,68,68,.05),rgba(249,115,22,.03))">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+            <span style="font-size:14px">🎯</span>
+            <h3 style="font-size:12px;margin:0;font-weight:700">Target: £10K/mo Net</h3>
+          </div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.5">
+            = £40-50K revenue at 20-25% margin<br>
+            = 27-33 orders/day at £50 AOV<br>
+            = 3.0x ROAS minimum
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 7-day chart -->
     <div class="card" style="margin-top:12px">
-      <h2>📈 Last 7 Days</h2>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="font-size:16px">📈</span>
+        <h2 style="margin:0;font-size:14px;font-weight:700">Last 7 Days</h2>
+      </div>
       <div id="o-chart"><div class="empty">Add daily entries to see trends</div></div>
     </div>
   </div>
@@ -1109,6 +1198,8 @@ function render(){
   document.getElementById('pl-pretax').textContent=f(preTax);document.getElementById('pl-pretax').className='pl-sep '+(preTax>=0?'green':'red');
   document.getElementById('pl-tax').textContent=f(taxEst);
   const plN=document.getElementById('pl-net');plN.textContent=f(netProfit);plN.className='pl-total '+(netProfit>=0?'green':'red');
+  const qsBurn=document.getElementById('qs-burn');if(qsBurn)qsBurn.textContent='$'+totalOpex.toFixed(0)+'/mo';
+  const qsRun=document.getElementById('qs-runway');if(qsRun){const months=totalOpex>0?Math.floor(5000/totalOpex*0.77):99;qsRun.textContent=months>12?'12+ months':months+' months';}
 
   // Brand summary table
   const obr=document.getElementById('o-brands');
