@@ -229,9 +229,10 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
 
   <!-- ═══ TABS ═══ -->
   <div class="tabs">
-    <div class="tab active" onclick="switchTab('research',this)">📋 Product Research</div>
-    <div class="tab" onclick="switchTab('scoring',this)">🎯 Scoring Matrix</div>
-    <div class="tab" onclick="switchTab('strategy',this)">🧠 Strategy Deep Dive</div>
+    <div class="tab active" onclick="switchTab('research',this)">📋 Research</div>
+    <div class="tab" onclick="switchTab('pipeline',this)">🔄 Pipeline</div>
+    <div class="tab" onclick="switchTab('scoring',this)">🎯 Scoring</div>
+    <div class="tab" onclick="switchTab('strategy',this)">🧠 Strategy</div>
   </div>
 
   <!-- ═══ STATS ═══ -->
@@ -349,6 +350,104 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
           </table>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: PIPELINE ═══ -->
+  <div class="tab-panel" id="tp-pipeline">
+    <!-- Pipeline Header -->
+    <div class="card" style="background:linear-gradient(135deg,rgba(124,92,252,0.05),rgba(15,214,140,0.03));border-top:2px solid var(--accent)">
+      <div class="card-body" style="padding:16px 20px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <span style="font-size:20px">🔄</span>
+          <div>
+            <div style="font-size:15px;font-weight:800">Product Pipeline</div>
+            <div style="font-size:10px;color:var(--sub)">Every product's journey from research to branded empire. Drag-free — status updates auto-flow from the Research tab.</div>
+          </div>
+        </div>
+        <!-- Pipeline Flow Diagram -->
+        <div style="display:flex;align-items:center;justify-content:center;gap:0;margin:16px 0 8px;flex-wrap:wrap">
+          <div style="text-align:center;padding:10px 16px;background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:10px;min-width:100px">
+            <div style="font-size:18px">📋</div>
+            <div style="font-size:10px;font-weight:800;color:var(--blue);margin-top:2px">RESEARCH</div>
+            <div style="font-size:9px;color:var(--sub)">Score & validate</div>
+            <div style="font-size:16px;font-weight:900;color:var(--blue);margin-top:4px" id="pipe-research">0</div>
+          </div>
+          <div style="color:var(--dim);font-size:16px;padding:0 6px">→</div>
+          <div style="text-align:center;padding:10px 16px;background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:10px;min-width:100px">
+            <div style="font-size:18px">📦</div>
+            <div style="font-size:10px;font-weight:800;color:var(--amber);margin-top:2px">SOURCING</div>
+            <div style="font-size:9px;color:var(--sub)">Mutual COGS</div>
+            <div style="font-size:16px;font-weight:900;color:var(--amber);margin-top:4px" id="pipe-source">0</div>
+          </div>
+          <div style="color:var(--dim);font-size:16px;padding:0 6px">→</div>
+          <div style="text-align:center;padding:10px 16px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:10px;min-width:100px">
+            <div style="font-size:18px">🧪</div>
+            <div style="font-size:10px;font-weight:800;color:var(--green);margin-top:2px">TESTING</div>
+            <div style="font-size:9px;color:var(--sub)">$100/day ads</div>
+            <div style="font-size:16px;font-weight:900;color:var(--green);margin-top:4px" id="pipe-test">0</div>
+          </div>
+          <div style="color:var(--dim);font-size:16px;padding:0 6px">→</div>
+          <div style="text-align:center;padding:10px 16px;background:var(--teal-bg);border:1px solid rgba(0,212,170,.15);border-radius:10px;min-width:100px">
+            <div style="font-size:18px">🚀</div>
+            <div style="font-size:10px;font-weight:800;color:var(--teal);margin-top:2px">SCALING</div>
+            <div style="font-size:9px;color:var(--sub)">$500+/day</div>
+            <div style="font-size:16px;font-weight:900;color:var(--teal);margin-top:4px" id="pipe-scale">0</div>
+          </div>
+          <div style="color:var(--dim);font-size:16px;padding:0 6px">→</div>
+          <div style="text-align:center;padding:10px 16px;background:var(--pink-bg);border:1px solid rgba(255,107,170,.15);border-radius:10px;min-width:100px">
+            <div style="font-size:18px">👑</div>
+            <div style="font-size:10px;font-weight:800;color:var(--pink);margin-top:2px">BRANDED</div>
+            <div style="font-size:9px;color:var(--sub)">Own domain</div>
+            <div style="font-size:16px;font-weight:900;color:var(--pink);margin-top:4px" id="pipe-brand">0</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;gap:12px;margin-top:8px">
+          <span style="font-size:9px;color:var(--red)">❌ Killed: <strong id="pipe-kill">0</strong></span>
+          <span style="font-size:9px;color:var(--sub)">|</span>
+          <span style="font-size:9px;color:var(--sub)">Total: <strong id="pipe-total">0</strong></span>
+          <span style="font-size:9px;color:var(--sub)">|</span>
+          <span style="font-size:9px;color:var(--green)">Conversion: <strong id="pipe-conv">0%</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pipeline Columns -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px" id="pipeline-grid">
+      <!-- Research Column -->
+      <div class="card" style="border-top:2px solid var(--blue)">
+        <div class="card-h" style="padding:10px 14px"><div class="card-t" style="font-size:11px">📋 Research</div></div>
+        <div class="card-body" style="padding:8px 10px;min-height:200px" id="col-research"></div>
+      </div>
+      <!-- Sourcing Column -->
+      <div class="card" style="border-top:2px solid var(--amber)">
+        <div class="card-h" style="padding:10px 14px"><div class="card-t" style="font-size:11px">📦 Sourcing</div></div>
+        <div class="card-body" style="padding:8px 10px;min-height:200px" id="col-source"></div>
+      </div>
+      <!-- Testing Column -->
+      <div class="card" style="border-top:2px solid var(--green)">
+        <div class="card-h" style="padding:10px 14px"><div class="card-t" style="font-size:11px">🧪 Testing</div></div>
+        <div class="card-body" style="padding:8px 10px;min-height:200px" id="col-test"></div>
+      </div>
+      <!-- Scaling Column -->
+      <div class="card" style="border-top:2px solid var(--teal)">
+        <div class="card-h" style="padding:10px 14px"><div class="card-t" style="font-size:11px">🚀 Scaling</div></div>
+        <div class="card-body" style="padding:8px 10px;min-height:200px" id="col-scale"></div>
+      </div>
+      <!-- Branded Column -->
+      <div class="card" style="border-top:2px solid var(--pink)">
+        <div class="card-h" style="padding:10px 14px"><div class="card-t" style="font-size:11px">👑 Branded</div></div>
+        <div class="card-body" style="padding:8px 10px;min-height:200px" id="col-brand"></div>
+      </div>
+    </div>
+
+    <!-- Killed Products -->
+    <div class="card" style="margin-top:12px;border-top:2px solid var(--red);opacity:0.7">
+      <div class="card-h coll-trigger" onclick="toggleColl(this)" style="padding:10px 14px">
+        <div class="card-t" style="font-size:11px">❌ Killed Products</div>
+        <span class="chev">▼</span>
+      </div>
+      <div class="card-body coll-body shut" style="padding:8px 10px" id="col-kill"></div>
     </div>
   </div>
 
@@ -794,6 +893,60 @@ function hideTT(){if(ttEl)ttEl.classList.remove('vis')}
 
 // ═══ PATCH: track status changes on save ═══
 const _origAddProduct=addProduct;
+
+function renderPipeline(){
+  const stages={new:'research',research:'research',source:'source',test:'test',scale:'scale',brand:'brand',kill:'kill'};
+  const cols={research:[],source:[],test:[],scale:[],brand:[],kill:[]};
+  P.forEach(p=>{const s=stages[p.status]||'research';cols[s].push(p)});
+
+  // Sort each column by score descending
+  Object.values(cols).forEach(arr=>arr.sort((a,b)=>b.score-a.score));
+
+  const stColors={research:'var(--blue)',source:'var(--amber)',test:'var(--green)',scale:'var(--teal)',brand:'var(--pink)',kill:'var(--red)'};
+
+  function pipeCard(p,stage){
+    const sc=p.score>=8?'var(--green)':p.score>=5?'var(--amber)':'var(--red)';
+    const ghBadge=p.gethookdVerified?'<span style="font-size:7px;background:var(--green-bg);color:var(--green);padding:1px 4px;border-radius:3px;border:1px solid var(--green-border)">✅ GH</span>':'';
+    const adCount=p.ads?`<span style="font-size:9px;color:var(--sub)">${p.ads} ads</span>`:'';
+    const trafficStr=p.traffic?`<span style="font-size:9px;color:var(--sub)">${fN(p.traffic)} visits</span>`:'';
+    return`<div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid ${stColors[stage]};border-radius:8px;padding:10px 12px;margin-bottom:6px;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='${stColors[stage]}'" onmouseout="this.style.borderColor='var(--border)'" onclick="editProduct('${p.id}')">
+      <div style="display:flex;justify-content:space-between;align-items:start">
+        <div style="font-size:11px;font-weight:700;line-height:1.3;flex:1">${esc(p.name)}</div>
+        <span style="font-size:12px;font-weight:800;color:${sc};margin-left:6px">${p.score.toFixed(1)}</span>
+      </div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:4px;align-items:center">
+        ${ghBadge}${adCount}${trafficStr}
+        ${p.price?'<span style="font-size:9px;font-weight:600;color:var(--text2)">$'+p.price.toFixed(0)+'</span>':''}
+      </div>
+      ${p.verdict?'<div style="font-size:8px;color:var(--sub);margin-top:4px;line-height:1.3">'+esc(p.verdict.slice(0,60))+(p.verdict.length>60?'…':'')+'</div>':''}
+    </div>`;
+  }
+
+  ['research','source','test','scale','brand'].forEach(s=>{
+    const el=document.getElementById('col-'+s);
+    if(cols[s].length){el.innerHTML=cols[s].map(p=>pipeCard(p,s)).join('')}
+    else{el.innerHTML='<div style="text-align:center;padding:20px 8px;color:var(--dim);font-size:10px">No products</div>'}
+  });
+  const killEl=document.getElementById('col-kill');
+  if(cols.kill.length){killEl.innerHTML=cols.kill.map(p=>pipeCard(p,'kill')).join('')}
+  else{killEl.innerHTML='<div style="text-align:center;padding:12px;color:var(--dim);font-size:10px">None killed yet</div>'}
+
+  // Pipeline counts
+  document.getElementById('pipe-research').textContent=cols.research.length;
+  document.getElementById('pipe-source').textContent=cols.source.length;
+  document.getElementById('pipe-test').textContent=cols.test.length;
+  document.getElementById('pipe-scale').textContent=cols.scale.length;
+  document.getElementById('pipe-brand').textContent=cols.brand.length;
+  document.getElementById('pipe-kill').textContent=cols.kill.length;
+  document.getElementById('pipe-total').textContent=P.length;
+  const active=cols.test.length+cols.scale.length+cols.brand.length;
+  document.getElementById('pipe-conv').textContent=P.length?(Math.round(active/P.length*100))+'%':'0%';
+}
+
+// Patch render to also update pipeline
+const _origRender=render;
+const _patchedRender=function(){_origRender();renderPipeline()};
+render=_patchedRender;
 
 render();loadJSON();
 </script>
