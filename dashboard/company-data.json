@@ -23,7 +23,9 @@
     {"name":"Proxy Seller — 10x IPv4","category":"Software/Tools","amount":30,"frequency":"monthly","date":"2026-02-20","notes":"10 proxies for AdsPower profiles — country-matched","auto":true},
     {"name":"OLD Account Europe — 10 Profiles","category":"Software/Tools","amount":140,"frequency":"one-time","date":"2026-02-18","notes":"Aged FB profiles for 3-BM structure","auto":true},
     {"name":"BM350 Verified Business Managers x3","category":"Software/Tools","amount":105,"frequency":"one-time","date":"2026-02-18","notes":"3 pre-verified BMs (2020-2024) for Operations/Pixel/Pages","auto":true},
-    {"name":"Shrine Theme — Shopify","category":"Software/Tools","amount":0,"frequency":"one-time","date":"2026-02-20","notes":"Discount code BBA10 applied","auto":true}
+    {"name":"Shrine Theme — Shopify","category":"Software/Tools","amount":0,"frequency":"one-time","date":"2026-02-20","notes":"Discount code BBA10 applied","auto":true},
+    {"name":"MyClaw Pro (OpenClaw)","category":"AI/API Costs","amount":39,"frequency":"monthly","date":"2026-02-26","notes":"Invoice OXPLFUEB-0001 · Mastercard -7487 · £29.92 GBP","auto":true},
+    {"name":"MyClaw Pro REFUND","category":"AI/API Costs","amount":-39,"frequency":"one-time","date":"2026-02-27","notes":"Full refund issued · Receipt 3084-7615 · £29.92 credited back · Net: $0","auto":true}
   ],
   "brands": [
     {
