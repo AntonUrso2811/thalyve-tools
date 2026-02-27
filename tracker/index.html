@@ -382,7 +382,7 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
     </div>
   </div>
 
-  <div class="footer">🔱 Product Research Tracker v4.0 — SOP-Compliant — Data stored locally</div>
+  <div class="footer">🔱 Product Research Tracker v4.1 — SOP-Compliant · GetHookd Integrated · Auto-Synced from Forge</div>
 </div>
 
 <input type="file" id="impF" accept=".json" style="display:none" onchange="handleImp(event)">
@@ -572,7 +572,7 @@ function render(){
         <td class="${brc}" style="font-weight:700">${br}${!hasCogs&&p.price?'<br><span style="font-size:8px;color:var(--amber)">Pending</span>':''}</td>
         <td class="${tc}" style="font-weight:600">${p.traffic?fN(p.traffic):'—'}</td>
         <td class="${revClass}" style="font-weight:700">${revDisplay}</td>
-        <td style="font-weight:700">${p.ads||'—'}</td>
+        <td style="font-weight:700">${p.ads||'—'}${p.gethookdVerified?'<br><span style="font-size:8px;color:var(--green)">✅ GetHookd</span>':''}</td>
         <td><span class="score-b ${sc}">${p.score.toFixed(1)}</span></td>
         <td><span class="chip ${stM[p.status]||'ch-new'}">${stL[p.status]||p.status}</span></td>
         <td>${mrrTag||'—'}</td>
@@ -657,7 +657,49 @@ function toggleSwipes(id){
   else if(action==='clear'){p.creativeSwipes=[];save();render();toast('Swipes cleared');}
 }
 
-async function loadJSON(){try{const r=await fetch('research-data.json?t='+Date.now());if(!r.ok)return;const d=await r.json();if(Array.isArray(d)){if(d.length===0&&P.length>0){P=[];save();render();toast('Data reset by Forge — clean slate ✓')}else if(d.length>0){let a=0;d.forEach(np=>{if(!P.find(p=>p.id===np.id)){P.push(np);a++}});if(a){save();render();toast('Synced '+a+' from Forge ✓')}}}}catch(e){}}
+function mapForgeProduct(np){
+  return{
+    id:np.id,date:np.date||'',
+    name:np.productName||np.name||'',
+    what:np.whatItDoes||np.what||'',
+    notes:np.notes||'',
+    competitor:np.gethookdBrands?.[0]?.name||np.competitor||'',
+    competitorSite:np.competitorSiteLink||np.competitorSite||np.site||'',
+    site:np.competitorSiteLink||np.site||'',
+    adLink:np.competitorAdLink||np.adLink||'',
+    mutualLink:np.mutualDropshipping||np.mutualLink||'',
+    cogs:parseFloat(np.cogsTotal)||np.cogs||0,
+    traffic:np.similarwebTraffic||np.traffic||0,
+    ads:parseInt(String(np.activeFBads).replace(/[^0-9]/g,''))||np.ads||0,
+    price:np.sellingPrice||np.price||0,
+    beroas:np.beRoas||np.beroas||0,
+    content:np.sufficientContent?np.sufficientContent.split('—')[0].trim():np.content||'',
+    niche:'Health/Wellness',
+    format:np.format||'Device',
+    target:np.targetDemographic||np.target||'',
+    mrr:np.mrr||'No',
+    status:np.status||'research',
+    score:np.score||0,
+    verdict:np.verdict||'',
+    approval:np.coachApproval||np.approval||'',
+    coachNotes:np.coachComments||np.coachNotes||'',
+    scores:np.scores||{ad:0,market:0,comp:0,format:0,margin:0,audience:0,dropship:0},
+    gethookdVerified:np.gethookdVerified||false,
+    gethookdDate:np.gethookdDate||'',
+    gethookdBrands:np.gethookdBrands||[],
+    upsellPotential:np.upsellPotential||'',
+    complianceRisk:np.complianceRisk||'',
+    discoveryMethod:np.discoveryMethod||np.session||'gethookd-trending',
+    filtersUsed:np.filtersUsed||'',
+    creativeSwipes:np.creativeSwipes||[],
+    margin:np.price&&np.cogs?((np.price-(parseFloat(np.cogsTotal)||np.cogs||0))/np.price*100):0,
+    revenueEstimate:np.traffic&&np.price?Math.round((np.similarwebTraffic||np.traffic||0)*(np.sellingPrice||np.price||0)*0.025):0
+  };
+}
+async function loadJSON(){try{const r=await fetch('research-data.json?t='+Date.now());if(!r.ok)return;const d=await r.json();if(Array.isArray(d)&&d.length>0){let a=0,u=0;d.forEach(np=>{const mapped=mapForgeProduct(np);const existing=P.find(p=>p.id===np.id);if(!existing){P.push(mapped);a++}else{
+  // Update existing with any new GetHookd data
+  if(np.gethookdVerified&&!existing.gethookdVerified){Object.assign(existing,{gethookdVerified:true,gethookdDate:np.gethookdDate,gethookdBrands:np.gethookdBrands,ads:mapped.ads,competitor:mapped.competitor});u++}
+}});if(a||u){save();render();toast((a?'Synced '+a+' new':'')+(a&&u?' + ':'')+(u?'Updated '+u:'')+ ' from Forge ✓')}}}catch(e){}}
 
 // ═══ AUTO-VERDICT ═══
 function autoVerdict(p){

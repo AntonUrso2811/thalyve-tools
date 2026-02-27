@@ -11,7 +11,21 @@
     "competitorAdLink": "https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&q=posture+corrector&search_type=keyword_unordered",
     "competitorSiteLink": "https://uprightpose.com",
     "similarwebTraffic": 368604,
-    "activeFBads": "50+ (estimated — large category with multiple active advertisers)",
+    "activeFBads": "305 (Corecare alone — verified GetHookd Feb 27)",
+    "gethookdVerified": true,
+    "gethookdDate": "2026-02-27",
+    "gethookdBrands": [
+      {
+        "name": "Corecare",
+        "site": "corecareshop.com",
+        "activeAds": 305,
+        "runningDays": 24,
+        "startDate": "2026-02-03",
+        "adCopy": "Instant Posture Corrector | 50% Off — scoliosis/upper body pain angle",
+        "videoLengths": ["2:00", "2:30", "2:32"],
+        "cta": "Shop Now"
+      }
+    ],
     "sellingPrice": 49.99,
     "beRoas": 1.32,
     "sufficientContent": "Yes — abundant before/after video, workplace wellness UGC, influencer content",
