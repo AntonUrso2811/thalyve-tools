@@ -176,9 +176,9 @@
         "agencyFeeNote": "3% on all deposits transferred to ad account (automatic)",
         "dailyTestBudget": 100,
         "accountDeposit": 1000,
-        "status": "LIVE \u2014 $25/day CBO",
+        "status": "LIVE \u2014 $100/day CBO",
         "launchDate": "2026-02-27",
-        "testBudget": 25
+        "testBudget": 100
       },
       "daily": []
     }
