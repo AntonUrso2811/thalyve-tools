@@ -130,6 +130,66 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <div class="content">
+  <!-- Forge Status -->
+  <div id="forge-status" style="background:linear-gradient(135deg,rgba(124,58,237,.06),rgba(20,184,166,.04));border:1px solid rgba(124,58,237,.2);border-radius:14px;padding:16px;margin-bottom:20px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:20px">🔱</span>
+        <div>
+          <div style="font-size:14px;font-weight:700">Forge Status</div>
+          <div style="font-size:10px;color:var(--dim)">AI Chief of Staff · Always On</div>
+        </div>
+      </div>
+      <div id="forge-status-badge" style="display:flex;align-items:center;gap:6px;background:rgba(15,214,140,.1);border:1px solid rgba(15,214,140,.2);border-radius:8px;padding:4px 12px">
+        <span style="width:8px;height:8px;border-radius:50%;background:#0fd68c;display:inline-block;animation:pulse 2s infinite"></span>
+        <span style="font-size:10px;font-weight:700;color:#0fd68c" id="forge-mode">OPERATIONAL</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;font-size:10px">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px">
+        <div style="color:var(--dim);margin-bottom:3px">Last Activity</div>
+        <div style="font-weight:700" id="forge-last-activity">Loading...</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px">
+        <div style="color:var(--dim);margin-bottom:3px">Currently Working On</div>
+        <div style="font-weight:700" id="forge-current">Loading...</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px">
+        <div style="color:var(--dim);margin-bottom:3px">Active Cron Jobs</div>
+        <div style="font-weight:700" id="forge-crons">8 jobs running</div>
+      </div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:10px">
+        <div style="color:var(--dim);margin-bottom:3px">Model</div>
+        <div style="font-weight:700" id="forge-model">Claude Opus 4.6</div>
+      </div>
+    </div>
+    <div style="margin-top:8px;font-size:9px;color:var(--dim)" id="forge-next">Next scheduled: checking...</div>
+  </div>
+  <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}</style>
+  <script>
+  (async function loadForgeStatus(){
+    try{
+      const r=await fetch('dashboard/company-data.json?t='+Date.now());
+      const d=await r.json();
+      // Last activity
+      if(d.lastUpdated){
+        const ago=Math.round((Date.now()-new Date(d.lastUpdated).getTime())/60000);
+        const el=document.getElementById('forge-last-activity');
+        el.textContent=ago<1?'Just now':ago<60?ago+'m ago':ago<1440?Math.round(ago/60)+'h ago':Math.round(ago/1440)+'d ago';
+        el.style.color=ago<30?'#0fd68c':ago<120?'#f59e0b':'#ef4444';
+      }
+      // Current work
+      const cur=document.getElementById('forge-current');
+      if(d.forgeStatus&&d.forgeStatus.current){cur.textContent=d.forgeStatus.current;}
+      else{cur.textContent='Awaiting instructions';cur.style.color='var(--dim)';}
+      // Next scheduled
+      const nxt=document.getElementById('forge-next');
+      if(d.forgeStatus&&d.forgeStatus.nextScheduled){nxt.textContent='Next scheduled: '+d.forgeStatus.nextScheduled;}
+      else{nxt.textContent='Next crons: Product Research (Mon 3AM) · Dashboard Refresh (daily 5AM) · Morning Brief (daily 7AM)';}
+    }catch(e){console.error('Forge status:',e);}
+  })();
+  </script>
+
   <!-- Quick Access -->
   <div style="margin-bottom:28px">
     <div class="section-title">⚡ Quick Access</div>

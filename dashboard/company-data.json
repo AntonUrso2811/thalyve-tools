@@ -1069,7 +1069,7 @@
       "resources": "Manual"
     }
   ],
-  "lastUpdated": "2026-02-28T11:05:26Z",
+  "lastUpdated": "2026-02-28T11:20:16Z",
   "aiEngine": {
     "currentModel": "claude-opus-4-6",
     "provider": "Anthropic",
@@ -1294,5 +1294,14 @@
         }
       ]
     }
+  },
+  "forgeStatus": {
+    "current": "Dashboard upgrades \u2014 cache busting, tab persistence, Forge Status panel",
+    "nextScheduled": "Dashboard Refresh (daily 5AM) \u00b7 Morning Brief (7AM)",
+    "status": "operational",
+    "model": "Claude Opus 4.6",
+    "cronCount": 8,
+    "lastTask": "Fixed refresh/navigation, added Forge Status to homepage",
+    "lastTaskTime": "2026-02-28T11:20:16Z"
   }
 }
