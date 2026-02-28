@@ -272,13 +272,31 @@ tr:hover td{background:rgba(124,92,252,.03)}
   </div>
 </div>
 
-<!-- DATA TABLE -->
+<!-- KILL/SCALE DECISION FUNNEL -->
+<div class="brief">
+  <h2>🎯 Kill/Scale Decision Funnel</h2>
+  <p style="font-size:11px;color:var(--sub);margin-bottom:14px">Systematic evaluation at every level. Green = pass, Red = fail, Amber = watch. Time needed before each decision.</p>
+  <div id="decision-funnel"></div>
+</div>
+
+<!-- KPI TARGET vs ACTUAL -->
+<div class="brief">
+  <h2>📊 KPI Targets vs Actual</h2>
+  <div id="kpi-targets"></div>
+</div>
+
+<!-- MULTI-LEVEL PERFORMANCE -->
 <div class="entry">
   <h2>📋 Performance Log</h2>
+  <div style="display:flex;gap:6px;margin-bottom:12px">
+    <button class="btn btn-primary" id="lvl-campaign" onclick="setLevel('campaign')" style="font-size:10px;padding:6px 14px">📊 Campaign</button>
+    <button class="btn btn-secondary" id="lvl-adset" onclick="setLevel('adset')" style="font-size:10px;padding:6px 14px">📁 Ad Set</button>
+    <button class="btn btn-secondary" id="lvl-ad" onclick="setLevel('ad')" style="font-size:10px;padding:6px 14px">🎬 Ad</button>
+  </div>
   <div class="table-wrap">
     <table id="data-table">
       <thead>
-        <tr>
+        <tr id="perf-thead">
           <th>Date</th><th>Ad Set</th><th>Spend</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>CPC</th><th>ATCs</th><th>Purch.</th><th>Rev.</th><th>CPA</th><th>ROAS</th><th>CVR</th><th>P/L</th><th>Status</th><th></th>
         </tr>
       </thead>
@@ -471,8 +489,10 @@ function render() {
   const ctrEl = document.getElementById('kpi-ctr');
   ctrEl.className = 'kpi ' + (avgCtr >= 1.5 ? 'green' : avgCtr >= 1.0 ? 'amber' : totalImpr ? 'red' : '');
 
-  // Actions
+  // Actions & new panels
   generateActions();
+  renderDecisionFunnel();
+  renderKPITargets();
 }
 
 function generateActions() {
@@ -523,6 +543,131 @@ function generateActions() {
   }
 
   panel.innerHTML = actions.length ? actions.join('') : '<div class="action-item"><span class="action-badge badge-test">OK</span> <span>All ad sets running normally</span></div>';
+}
+
+// ===== PERFORMANCE LEVELS =====
+let _perfLevel = 'campaign';
+function setLevel(level) {
+  _perfLevel = level;
+  ['campaign','adset','ad'].forEach(l => {
+    const b = document.getElementById('lvl-'+l);
+    if (b) b.className = l === level ? 'btn btn-primary' : 'btn btn-secondary';
+  });
+  render();
+}
+
+// ===== KILL/SCALE DECISION FUNNEL =====
+function renderDecisionFunnel() {
+  const el = document.getElementById('decision-funnel');
+  if (!el || !data.length) { el.innerHTML = '<div style="color:var(--dim);font-size:11px;text-align:center;padding:12px">No data yet — funnel populates when ad data is entered</div>'; return; }
+  
+  // Aggregate totals
+  const totals = data.reduce((a,e) => ({spend:a.spend+e.spend,purchases:a.purchases+e.purchases,revenue:a.revenue+e.revenue,atc:a.atc+e.atc,clicks:a.clicks+e.clicks,impressions:a.impressions+e.impressions}), {spend:0,purchases:0,revenue:0,atc:0,clicks:0,impressions:0});
+  const roas = totals.spend ? totals.revenue/totals.spend : 0;
+  const cpa = totals.purchases ? totals.spend/totals.purchases : 0;
+  const ctr = totals.impressions ? totals.clicks/totals.impressions*100 : 0;
+  const cvr = totals.clicks ? totals.purchases/totals.clicks*100 : 0;
+  const days = [...new Set(data.map(d=>d.date))].length;
+
+  // Aggregate by ad set
+  const adsets = {};
+  data.forEach(e => {
+    const k = e.adset || 'Unknown';
+    if (!adsets[k]) adsets[k] = {spend:0,purchases:0,revenue:0,atc:0,clicks:0,impressions:0};
+    adsets[k].spend+=e.spend;adsets[k].purchases+=e.purchases;adsets[k].revenue+=e.revenue;adsets[k].atc+=e.atc;adsets[k].clicks+=e.clicks;adsets[k].impressions+=e.impressions;
+  });
+
+  const check = (pass, label) => pass ? `<span style="color:var(--green)">✅ ${label}</span>` : `<span style="color:var(--red)">❌ ${label}</span>`;
+  const watch = (label) => `<span style="color:var(--amber)">⚠️ ${label}</span>`;
+  
+  let html = '';
+  
+  // CAMPAIGN LEVEL
+  html += `<div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span style="font-size:12px;font-weight:700;color:var(--accent2)">📊 CAMPAIGN LEVEL — THALYVE-SMS-TEST-01</span>
+      <span style="font-size:10px;color:var(--sub)">Day ${days} · $${totals.spend.toFixed(0)} spent</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;font-size:10px;line-height:1.8">
+      ${totals.spend < 150 || totals.purchases > 0 ? check(true, 'Under $150 kill threshold ($'+totals.spend.toFixed(0)+')') : check(false, '$150+ spent, 0 purchases — KILL PRODUCT')}
+      ${totals.purchases > 0 ? check(roas >= BE_ROAS, 'ROAS '+roas.toFixed(2)+'× (target: '+BE_ROAS+'×)') : watch('No purchases yet — need data')}
+      ${days < 3 ? watch('Day '+days+'/3 — evaluation starts Day 3') : check(true, 'Day '+days+' — ready to evaluate')}
+      ${totals.atc > 0 ? check(true, totals.atc+' ATCs — product has interest') : watch('0 ATCs — concerning if spend > $40')}
+      ${ctr >= 1.5 ? check(true, 'CTR '+ctr.toFixed(1)+'% (target: ≥1.5%)') : ctr >= 1.0 ? watch('CTR '+ctr.toFixed(1)+'% — below target (≥1.5%)') : check(false, 'CTR '+ctr.toFixed(1)+'% — too low')}
+    </div>
+    <div style="margin-top:8px;padding:6px 10px;border-radius:6px;font-size:10px;font-weight:600;${totals.spend>=150&&totals.purchases===0?'background:var(--red-bg);color:var(--red)':days<3?'background:var(--amber-bg);color:var(--amber)':totals.purchases>0&&roas>=BE_ROAS?'background:var(--green-bg);color:var(--green)':'background:rgba(77,158,255,.08);color:var(--blue)'}">
+      ${totals.spend>=150&&totals.purchases===0?'🚨 KILL PRODUCT — $150+ with 0 purchases':days<3?'⏳ HOLD — In '+days+'/3 day evaluation window. Do not touch.':totals.purchases>=5&&roas>=BE_ROAS?'🚀 SCALE — ROAS above B/E with 5+ purchases':totals.purchases>0?'📊 MONITORING — '+totals.purchases+' purchase(s), need 3-5 to properly evaluate':'⚠️ WATCH — No purchases yet, monitoring ATCs and engagement'}
+    </div>
+  </div>`;
+
+  // AD SET LEVEL
+  html += `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;margin-bottom:10px">`;
+  for (const [name, s] of Object.entries(adsets)) {
+    const asRoas = s.spend ? s.revenue/s.spend : 0;
+    const asCpa = s.purchases ? s.spend/s.purchases : 0;
+    const asCtr = s.impressions ? s.clicks/s.impressions*100 : 0;
+    let verdict = '', verdictStyle = '';
+    if (s.spend >= 40 && s.purchases === 0) { verdict = '🔴 KILL — $40+ spend, 0 purchases'; verdictStyle = 'background:var(--red-bg);color:var(--red)'; }
+    else if (s.spend >= 20 && s.atc === 0) { verdict = '🔴 KILL — $20+ spend, 0 ATCs'; verdictStyle = 'background:var(--red-bg);color:var(--red)'; }
+    else if (s.purchases >= 5 && asRoas >= BE_ROAS) { verdict = '🚀 SCALE 20-30%'; verdictStyle = 'background:var(--green-bg);color:var(--green)'; }
+    else if (s.purchases >= 3 && asCpa > TARGET_CPA*2) { verdict = '🔴 KILL — CPA 2× target'; verdictStyle = 'background:var(--red-bg);color:var(--red)'; }
+    else if (s.purchases > 0 && asRoas >= 1.0) { verdict = '⏳ HOLD — Near B/E'; verdictStyle = 'background:var(--amber-bg);color:var(--amber)'; }
+    else { verdict = '🧪 TESTING — Need more data'; verdictStyle = 'background:rgba(77,158,255,.08);color:var(--blue)'; }
+    
+    html += `<div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px">
+      <div style="font-size:11px;font-weight:700;color:var(--accent2);margin-bottom:8px">📁 ${name}</div>
+      <div style="font-size:10px;color:var(--sub);line-height:1.8">
+        💰 Spend: <strong style="color:var(--text)">$${s.spend.toFixed(2)}</strong><br>
+        🛒 Purchases: <strong style="color:var(--text)">${s.purchases}</strong> · ATCs: ${s.atc}<br>
+        💵 Revenue: <strong style="color:var(--text)">$${s.revenue.toFixed(2)}</strong><br>
+        📈 ROAS: <strong style="color:${asRoas>=BE_ROAS?'var(--green)':asRoas>=1?'var(--amber)':'var(--red)'}">${s.spend?asRoas.toFixed(2)+'×':'—'}</strong> · CTR: ${asCtr.toFixed(1)}%
+      </div>
+      <div style="margin-top:6px;padding:4px 8px;border-radius:4px;font-size:9px;font-weight:700;${verdictStyle}">${verdict}</div>
+    </div>`;
+  }
+  html += '</div>';
+
+  // EVALUATION TIMELINE
+  html += `<div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px">
+    <div style="font-size:11px;font-weight:700;color:var(--accent2);margin-bottom:8px">⏱️ Evaluation Timeline</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;font-size:10px">
+      <div style="padding:6px;border-radius:6px;text-align:center;${days>=1?'background:var(--green-bg);color:var(--green)':'background:var(--card);color:var(--dim)'}"><strong>Day 1-2</strong><br>48hr No-Touch<br><em>${days>=2?'✅ Complete':'⏳ In progress'}</em></div>
+      <div style="padding:6px;border-radius:6px;text-align:center;${days>=3?'background:var(--green-bg);color:var(--green)':days===2?'background:var(--amber-bg);color:var(--amber)':'background:var(--card);color:var(--dim)'}"><strong>Day 3</strong><br>First Review<br><em>${days>=3?'✅ Review now':'⏳ '+Math.max(0,3-days)+' day(s) away'}</em></div>
+      <div style="padding:6px;border-radius:6px;text-align:center;${days>=5?'background:var(--green-bg);color:var(--green)':'background:var(--card);color:var(--dim)'}"><strong>Day 3-5</strong><br>Accumulate Data<br><em>Need 3+ purchases</em></div>
+      <div style="padding:6px;border-radius:6px;text-align:center;${days>=5&&totals.purchases>=5?'background:var(--green-bg);color:var(--green)':'background:var(--card);color:var(--dim)'}"><strong>Day 5-7</strong><br>Kill or Scale<br><em>Final decision</em></div>
+    </div>
+  </div>`;
+
+  el.innerHTML = html;
+}
+
+// ===== KPI TARGETS vs ACTUAL =====
+function renderKPITargets() {
+  const el = document.getElementById('kpi-targets');
+  if (!el) return;
+  const totals = data.reduce((a,e) => ({spend:a.spend+e.spend,purchases:a.purchases+e.purchases,revenue:a.revenue+e.revenue,atc:a.atc+e.atc,clicks:a.clicks+e.clicks,impressions:a.impressions+e.impressions}), {spend:0,purchases:0,revenue:0,atc:0,clicks:0,impressions:0});
+  
+  const metrics = [
+    {name:'ROAS',actual:totals.spend?totals.revenue/totals.spend:0,target:BE_ROAS,unit:'×',fmt:v=>v.toFixed(2)+'×',higher:true},
+    {name:'CPA',actual:totals.purchases?totals.spend/totals.purchases:null,target:TARGET_CPA,unit:'$',fmt:v=>v!==null?'$'+v.toFixed(2):'No purchases',higher:false},
+    {name:'CTR',actual:totals.impressions?totals.clicks/totals.impressions*100:0,target:1.5,unit:'%',fmt:v=>v.toFixed(1)+'%',higher:true},
+    {name:'CVR',actual:totals.clicks?totals.purchases/totals.clicks*100:0,target:2.0,unit:'%',fmt:v=>v.toFixed(1)+'%',higher:true},
+    {name:'CPC',actual:totals.clicks?totals.spend/totals.clicks:0,target:2.00,unit:'$',fmt:v=>'$'+v.toFixed(2),higher:false},
+    {name:'ATC Rate',actual:totals.clicks?totals.atc/totals.clicks*100:0,target:5.0,unit:'%',fmt:v=>v.toFixed(1)+'%',higher:true},
+  ];
+
+  el.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px">'+metrics.map(m => {
+    const pass = m.actual !== null && (m.higher ? m.actual >= m.target : m.actual <= m.target);
+    const pct = m.actual !== null && m.target ? Math.min(100, (m.higher ? m.actual/m.target : m.target/m.actual) * 100) : 0;
+    const col = m.actual === null ? 'var(--dim)' : pass ? 'var(--green)' : pct >= 70 ? 'var(--amber)' : 'var(--red)';
+    return `<div style="background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center">
+      <div style="font-size:9px;color:var(--sub);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px">${m.name}</div>
+      <div style="font-size:18px;font-weight:800;color:${col}">${m.fmt(m.actual)}</div>
+      <div style="font-size:9px;color:var(--dim);margin:4px 0">Target: ${m.fmt(m.target)}</div>
+      <div style="width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${col};border-radius:2px"></div></div>
+      <div style="font-size:8px;margin-top:4px;color:${col}">${pass?'✅ On Target':'❌ Below Target'}</div>
+    </div>`;
+  }).join('')+'</div>';
 }
 
 // Decision Log from JSON
