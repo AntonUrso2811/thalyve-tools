@@ -124,9 +124,26 @@ tr:hover td{background:rgba(139,92,246,.03)}
     </div>
     <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}</style>
 
+    <!-- Time Period Filter -->
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px;flex-wrap:wrap" id="period-filter">
+      <span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-right:4px">Period:</span>
+      <button class="pfb active" onclick="setPeriod('today',this)">Today</button>
+      <button class="pfb" onclick="setPeriod('7d',this)">7 Days</button>
+      <button class="pfb" onclick="setPeriod('30d',this)">30 Days</button>
+      <button class="pfb" onclick="setPeriod('mtd',this)">This Month</button>
+      <button class="pfb" onclick="setPeriod('qtd',this)">This Quarter</button>
+      <button class="pfb" onclick="setPeriod('all',this)">All Time</button>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:6px">
+        <input type="date" id="pf-from" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:4px 8px;color:var(--text);font-size:10px;font-family:inherit" onchange="setPeriod('custom')">
+        <span style="font-size:10px;color:var(--muted)">to</span>
+        <input type="date" id="pf-to" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:4px 8px;color:var(--text);font-size:10px;font-family:inherit" onchange="setPeriod('custom')">
+      </div>
+    </div>
+    <style>.pfb{font-size:10px;padding:4px 12px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;font-family:inherit;transition:all .15s}.pfb:hover{border-color:var(--accent);color:var(--text)}.pfb.active{background:var(--accent);color:#fff;border-color:var(--accent)}</style>
+
     <!-- Hero Net Profit Card -->
     <div style="background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(168,85,247,.06));border:1px solid rgba(124,58,237,.25);border-radius:16px;padding:24px;text-align:center;margin-bottom:16px">
-      <div style="font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px">Net Company Profit</div>
+      <div style="font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px">Net Company Profit <span id="o-period-label" style="color:var(--accent2)">(All Time)</span></div>
       <div style="font-size:36px;font-weight:900;letter-spacing:-1px" id="o-net">$0</div>
       <div style="font-size:11px;color:var(--muted);margin-top:4px" id="o-netm">—</div>
     </div>
@@ -174,14 +191,14 @@ tr:hover td{background:rgba(139,92,246,.03)}
         <h3 style="font-size:14px;margin:0;font-weight:700">Company P&L Statement</h3>
       </div>
       <div class="pl" id="o-pl">
-        <span>Gross Revenue (all brands)</span><span class="green" id="pl-rev">$0</span>
-        <span>− Total COGS</span><span class="red" id="pl-cogs">$0</span>
-        <span class="pl-sep">Gross Profit</span><span class="pl-sep green" id="pl-gross">$0</span>
-        <span>− Total Ad Spend</span><span class="red" id="pl-ads">$0</span>
-        <span>− Company Expenses</span><span class="red" id="pl-opex">$0</span>
-        <span class="pl-sep">Pre-Tax Profit</span><span class="pl-sep" id="pl-pretax">$0</span>
-        <span>− Tax Provision (19%)</span><span class="red" id="pl-tax">$0</span>
-        <span class="pl-total">Net Profit (After Tax Est.)</span><span class="pl-total" id="pl-net">$0</span>
+        <span>💰 Gross Revenue (Shopify sales, all brands)</span><span class="green" id="pl-rev">$0</span>
+        <span>📦 − Cost of Goods Sold (supplier + shipping per unit)</span><span class="red" id="pl-cogs">$0</span>
+        <span class="pl-sep">Gross Profit (revenue − COGS)</span><span class="pl-sep green" id="pl-gross">$0</span>
+        <span>📣 − Meta Ad Spend (via Ad Rail, incl. 3% agency fee)</span><span class="red" id="pl-ads">$0</span>
+        <span>🏢 − Operating Expenses (tools, domains, subscriptions)</span><span class="red" id="pl-opex">$0</span>
+        <span class="pl-sep">Pre-Tax Profit (EBIT)</span><span class="pl-sep" id="pl-pretax">$0</span>
+        <span>🏛️ − Corporation Tax Provision (19% small profits rate)</span><span class="red" id="pl-tax">$0</span>
+        <span class="pl-total">Net Profit After Tax (Est.)</span><span class="pl-total" id="pl-net">$0</span>
       </div>
     </div>
 
@@ -1196,6 +1213,50 @@ function saveSettings(){
 }
 
 // ===== RENDER =====
+// Period filter state
+let _period = 'all';
+function setPeriod(p, btn) {
+  _period = p;
+  if (btn) {
+    document.querySelectorAll('.pfb').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  render();
+}
+function getFilteredDaily() {
+  const now = new Date();
+  const todayStr = now.toISOString().slice(0, 10);
+  let from = null, to = null;
+  const labels = { today: 'Today', '7d': 'Last 7 Days', '30d': 'Last 30 Days', mtd: 'This Month', qtd: 'This Quarter', all: 'All Time', custom: 'Custom Range' };
+  const lbl = document.getElementById('o-period-label');
+  if (lbl) lbl.textContent = '(' + (labels[_period] || 'All Time') + ')';
+
+  if (_period === 'today') {
+    from = to = todayStr;
+  } else if (_period === '7d') {
+    const d = new Date(now); d.setDate(d.getDate() - 6);
+    from = d.toISOString().slice(0, 10); to = todayStr;
+  } else if (_period === '30d') {
+    const d = new Date(now); d.setDate(d.getDate() - 29);
+    from = d.toISOString().slice(0, 10); to = todayStr;
+  } else if (_period === 'mtd') {
+    from = todayStr.slice(0, 8) + '01'; to = todayStr;
+  } else if (_period === 'qtd') {
+    const q = Math.floor(now.getMonth() / 3) * 3;
+    from = now.getFullYear() + '-' + String(q + 1).padStart(2, '0') + '-01'; to = todayStr;
+  } else if (_period === 'custom') {
+    from = document.getElementById('pf-from').value || null;
+    to = document.getElementById('pf-to').value || null;
+  }
+  // 'all' → no filter
+  if (!from && !to) return D.daily;
+  return D.daily.filter(e => {
+    if (from && e.date < from) return false;
+    if (to && e.date > to) return false;
+    return true;
+  });
+}
+
 function render(){
   const c=D.company.currency||'$';
   const f=n=>(n>=0?c:'-'+c)+Math.abs(n).toFixed(2);
@@ -1206,11 +1267,12 @@ function render(){
   const once=D.companyExpenses.filter(e=>e.frequency==='one-time').reduce((s,e)=>s+e.amount,0);
   const totalOpex=mRecur+aRecur+once;
 
-  // Daily totals
-  const totRev=D.daily.reduce((s,e)=>s+e.revenue,0);
-  const totAds=D.daily.reduce((s,e)=>s+e.adSpend,0);
-  const totCogs=D.daily.reduce((s,e)=>s+e.cogs,0);
-  const totOrders=D.daily.reduce((s,e)=>s+e.orders,0);
+  // Daily totals (filtered by period)
+  const _fd=getFilteredDaily();
+  const totRev=_fd.reduce((s,e)=>s+e.revenue,0);
+  const totAds=_fd.reduce((s,e)=>s+e.adSpend,0);
+  const totCogs=_fd.reduce((s,e)=>s+e.cogs,0);
+  const totOrders=_fd.reduce((s,e)=>s+e.orders,0);
   const grossProfit=totRev-totCogs;
   const preTax=grossProfit-totAds-totalOpex;
   const taxEst=preTax>0?preTax*(D.company.taxRate||20)/100:0;
@@ -1249,19 +1311,19 @@ function render(){
   if(D.brands.length===0){obr.innerHTML='<tr><td colspan="8" class="empty">No brands</td></tr>';}
   else{
     obr.innerHTML=D.brands.map(b=>{
-      const bd=D.daily.filter(d=>d.brandId===b.id);
+      const bd=_fd.filter(d=>d.brandId===b.id);
       const br=bd.reduce((s,d)=>s+d.revenue,0),bo=bd.reduce((s,d)=>s+d.orders,0),ba=bd.reduce((s,d)=>s+d.adSpend,0),bc=bd.reduce((s,d)=>s+d.cogs,0);
       const bp=br-ba-bc,bm=br>0?(bp/br*100).toFixed(1):'0',broas=ba>0?(br/ba).toFixed(2):'—';
       return`<tr><td><strong>${b.name}</strong></td><td class="green">${f(br)}</td><td>${bo}</td><td class="red">${f(ba)}</td><td>${f(bc)}</td><td class="${bp>=0?'green':'red'}">${f(bp)}</td><td>${broas}x</td><td class="${parseFloat(bm)>=0?'green':'red'}">${bm}%</td></tr>`;
     }).join('');
   }
 
-  // 7-day chart
-  const dates=[...new Set(D.daily.map(d=>d.date))].sort().slice(-7);
+  // 7-day chart (filtered)
+  const dates=[...new Set(_fd.map(d=>d.date))].sort().slice(-7);
   const oc=document.getElementById('o-chart');
   if(!dates.length){oc.innerHTML='<div class="empty">Add daily entries to see trends</div>';}
   else{
-    const dd=dates.map(dt=>{const e=D.daily.filter(d=>d.date===dt);return{date:dt,rev:e.reduce((s,d)=>s+d.revenue,0),prof:e.reduce((s,d)=>s+(d.revenue-d.adSpend-d.cogs),0)};});
+    const dd=dates.map(dt=>{const e=_fd.filter(d=>d.date===dt);return{date:dt,rev:e.reduce((s,d)=>s+d.revenue,0),prof:e.reduce((s,d)=>s+(d.revenue-d.adSpend-d.cogs),0)};});
     const mx=Math.max(...dd.map(d=>d.rev),1);
     oc.innerHTML=dd.map(d=>{const dt=new Date(d.date+'T12:00:00');const l=dt.toLocaleDateString('en-GB',{day:'numeric',month:'short'});return`<div class="chart-row"><div class="chart-lbl">${l}</div><div class="chart-bg"><div class="chart-bar" style="width:${(d.rev/mx*100).toFixed(1)}%;background:linear-gradient(90deg,var(--accent),var(--accent2))">${f(d.rev)}</div></div><div style="width:50px;text-align:right;font-size:10px;font-weight:600" class="${d.prof>=0?'green':'red'}">${d.prof>=0?'+':''}${f(d.prof)}</div></div>`;}).join('');
   }
