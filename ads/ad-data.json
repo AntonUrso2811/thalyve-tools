@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-02-28T09:40:00Z",
+  "lastUpdated": "2026-02-28T09:58:00Z",
   "campaign": {
     "name": "THALYVE-SMS-TEST-01",
     "type": "Advantage+ Sales",
@@ -75,6 +75,45 @@
       "madeBy": "Anton",
       "executedBy": "Forge",
       "status": "active",
+      "outcome": ""
+    },
+    {
+      "id": "DEC-003",
+      "date": "2026-02-28",
+      "time": "09:32",
+      "decision": "HOLD",
+      "scope": "campaign",
+      "target": "THALYVE-SMS-TEST-01",
+      "reasoning": "Day 1-2 data review. $115.06 spent, 87 clicks, 2.96% CTR (excellent \u2014 above 1.5% target), 3 ATCs, 2 checkouts initiated. CTR shows creatives are hooking people. Funnel is converting clicks \u2192 ATCs \u2192 checkouts. Still inside 48hr no-touch window. Algorithm is learning. DO NOT ADJUST.",
+      "madeBy": "Forge",
+      "executedBy": "N/A",
+      "status": "active",
+      "outcome": ""
+    },
+    {
+      "id": "DEC-004",
+      "date": "2026-02-28",
+      "time": "09:32",
+      "decision": "HOLD",
+      "scope": "creative",
+      "target": "All 9 creatives",
+      "reasoning": "Creative analysis: 2.96% CTR across all 3 ad sets is strong for Day 1-2 cold traffic. This means the hooks are working \u2014 people are stopping and clicking. 3 ATCs and 2 checkout initiations from 87 clicks = 3.4% ATC rate (decent for cold). No creative kills needed yet. Need per-ad-set breakdown on Mar 1 to identify which of the 3 creative types (UGC/Demo/Problem-Solution) is driving the most ATCs.",
+      "madeBy": "Forge",
+      "executedBy": "N/A",
+      "status": "active",
+      "outcome": ""
+    },
+    {
+      "id": "DEC-005",
+      "date": "2026-02-28",
+      "time": "09:32",
+      "decision": "ADJUST",
+      "scope": "process",
+      "target": "Data collection method",
+      "reasoning": "Need Anton to screenshot the AD SET level breakdown on Mar 1 (not just campaign level). This lets me see which of the 3 ad sets is spending most efficiently, which creatives have highest CTR, and where the ATCs are coming from. Campaign-level data is good for overview but I need ad-set granularity for kill/scale decisions.",
+      "madeBy": "Forge",
+      "executedBy": "Anton",
+      "status": "pending",
       "outcome": ""
     }
   ],
