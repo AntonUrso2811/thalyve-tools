@@ -283,7 +283,7 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
             <select id="f-mrr"><option value="No">No</option><option value="Yes">Yes — Monthly Recurring</option><option value="High">High — Repeat Buy Natural</option></select>
           </div>
           <div class="fi"><label>Status</label>
-            <select id="f-status"><option value="new">🔵 New</option><option value="research">🟣 Researching</option><option value="source">🟡 Sourcing</option><option value="test">🟢 Testing</option><option value="kill">🔴 Killed</option><option value="scale">🩵 Scaling</option></select>
+            <select id="f-status"><option value="new">🔵 New</option><option value="research">🟣 Researching</option><option value="source">🟡 Sourcing</option><option value="test">🟢 Testing</option><option value="killed">🔴 Killed</option><option value="scale">🩵 Scaling</option></select>
           </div>
           <div class="fi"><label>Discovery Method</label>
             <select id="f-method"><option value="gethookd-trending">GetHookd Trending</option><option value="gethookd-niche">GetHookd Niche Filter</option><option value="fb-adlibrary">FB Ad Library Search</option><option value="competitor-analysis">Competitor Analysis</option><option value="coach-rec">Coach Recommendation</option><option value="market-scan">Market/Trend Scan</option><option value="manual">Manual Find</option><option value="other">Other</option></select>
@@ -324,7 +324,7 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
           <div class="pill" onclick="setF('research',this)">🟣 Research</div>
           <div class="pill" onclick="setF('source',this)">🟡 Source</div>
           <div class="pill" onclick="setF('test',this)">🟢 Test</div>
-          <div class="pill" onclick="setF('kill',this)">🔴 Killed</div>
+          <div class="pill" onclick="setF('killed',this)">🔴 Killed</div>
           <div class="pill" onclick="setF('scale',this)">🩵 Scale</div>
         </div>
         <div class="tw">
@@ -442,12 +442,11 @@ tr{transition:background .1s}tr:hover td{background:var(--accent-glow)}tr:last-c
     </div>
 
     <!-- Killed Products -->
-    <div class="card" style="margin-top:12px;border-top:2px solid var(--red);opacity:0.7">
-      <div class="card-h coll-trigger" onclick="toggleColl(this)" style="padding:10px 14px">
+    <div class="card" style="margin-top:12px;border-top:2px solid var(--red)">
+      <div class="card-h" style="padding:10px 14px">
         <div class="card-t" style="font-size:11px">❌ Killed Products</div>
-        <span class="chev">▼</span>
       </div>
-      <div class="card-body coll-body shut" style="padding:8px 10px" id="col-kill"></div>
+      <div class="card-body" style="padding:8px 10px" id="col-kill"></div>
     </div>
   </div>
 
