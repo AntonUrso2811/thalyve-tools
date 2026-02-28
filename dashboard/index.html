@@ -99,7 +99,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
   <div class="tabs">
     <div class="tab active" onclick="nav('overview',this)">📊 Company Overview</div>
     <div class="tab" onclick="nav('brand',this)">🏷 THALYVE™</div>
-    <div class="tab" onclick="nav('expenses',this)">💰 Company Expenses</div>
+    <div class="tab" onclick="nav('expenses',this)">💰 Expenses</div>
     <div class="tab" onclick="nav('log',this)">📅 Daily Log</div>
     <div class="tab" onclick="nav('tasks',this)">🎯 5 Critical Tasks</div>
     <div class="tab" onclick="nav('team',this)">👥 Team</div>
@@ -1938,6 +1938,14 @@ async function loadFromJSON(){
         if(ex){ex.products=nb.products;ex.mediaBuying=nb.mediaBuying;ex.status=nb.status;}
         else D.brands.push(nb);
         if(nb.daily&&nb.daily.length){nb.daily.forEach(nd=>{if(!D.daily.find(d=>d.id===nd.id)){nd.brandId=nb.id;nd.brandName=nb.name;D.daily.push(nd);}});}
+      });
+    }
+    // Top-level daily data: JSON always wins
+    if(j.daily&&j.daily.length){
+      j.daily.forEach(nd=>{
+        const idx=D.daily.findIndex(d=>d.id===nd.id);
+        if(idx>=0)D.daily[idx]=nd; // update existing
+        else D.daily.push(nd); // add new
       });
     }
     if(j.taxes)D.company.taxRate=j.taxes.estimatedRate||D.company.taxRate;
