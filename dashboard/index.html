@@ -1513,7 +1513,9 @@ const D={
 };
 function sv(k){if(k)localStorage.setItem('ae2_'+k,JSON.stringify(D[k]));else['company','companyExpenses','brands','daily'].forEach(k=>localStorage.setItem('ae2_'+k,JSON.stringify(D[k])))}
 
-function nav(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('p-'+id).classList.add('active');el.classList.add('active')}
+function nav(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('p-'+id).classList.add('active');el.classList.add('active');history.replaceState(null,null,'#'+id)}
+// Restore tab from URL hash on load
+(function(){const h=location.hash.replace('#','');if(h){const page=document.getElementById('p-'+h);if(page){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));page.classList.add('active');const tabs=document.querySelectorAll('.tab');tabs.forEach(t=>{if(t.getAttribute('onclick')&&t.getAttribute('onclick').includes("'"+h+"'"))t.classList.add('active');});}}})();
 
 // ===== EXPENSES =====
 function addExpense(){
