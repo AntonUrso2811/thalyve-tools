@@ -318,6 +318,17 @@ tr:hover td{background:rgba(139,92,246,.03)}
         </div>
       </div>
 
+      <!-- 30-Day Forecast -->
+      <div style="background:var(--bg);border-radius:10px;padding:14px;border:1px solid var(--border)">
+        <div style="font-size:11px;font-weight:700;margin-bottom:10px;color:var(--accent2)">🔮 30-Day Forecast (Projected)</div>
+        <div id="fa-forecast" style="font-size:10px;color:var(--muted);line-height:1.6">Calculating...</div>
+      </div>
+
+      <!-- Expense Verification -->
+      <div id="fa-expense-warn" style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:10px;font-size:10px;color:var(--amber);line-height:1.5;display:none">
+        ⚠️ <strong>Some expenses are estimated.</strong> Tell Forge your actual monthly costs to get accurate projections. Unverified items are marked with *.
+      </div>
+
       <!-- Recommended Splits -->
       <div style="background:var(--bg);border-radius:10px;padding:14px;border:1px solid var(--border)">
         <div style="font-size:11px;font-weight:700;margin-bottom:10px;color:var(--accent2)">📐 Recommended Profit Allocation</div>
@@ -1450,8 +1461,14 @@ function getFilteredDaily() {
     from = document.getElementById('pf-from').value || null;
     to = document.getElementById('pf-to').value || null;
   }
-  // 'all' → no filter
-  if (!from && !to) return { daily: D.daily, from: null, to: null };
+  // 'all' → return all daily but still provide from/to for expense consistency
+  if (!from && !to) {
+    // Derive range from earliest daily entry (or earliest expense date) to today
+    let earliest = todayStr;
+    D.daily.forEach(d => { if (d.date < earliest) earliest = d.date; });
+    D.companyExpenses.forEach(e => { if (e.date && e.date < earliest) earliest = e.date; });
+    return { daily: D.daily, from: earliest, to: todayStr };
+  }
   const filtered = D.daily.filter(e => {
     if (from && e.date < from) return false;
     if (to && e.date > to) return false;
@@ -1515,7 +1532,7 @@ function render(){
   document.getElementById('o-cogs').textContent=f(totCogs);
   document.getElementById('o-cogspct').textContent=totRev>0?(totCogs/totRev*100).toFixed(1)+'% of revenue':'—';
   document.getElementById('o-opex').textContent=f(totalOpex);
-  if(_from&&_to){const days=Math.max(1,Math.round((new Date(_to+'T23:59:59')-new Date(_from+'T00:00:00'))/86400000)+1);document.getElementById('o-opexn').textContent='Pro-rated: '+days+' day'+(days>1?'s':'');}
+  if(_from&&_to){const days=Math.max(1,Math.round((new Date(_to+'T23:59:59')-new Date(_from+'T00:00:00'))/86400000)+1);document.getElementById('o-opexn').textContent=(_period==='all'?'All time: ':'Pro-rated: ')+days+' day'+(days>1?'s':'');}
   else{document.getElementById('o-opexn').textContent=D.companyExpenses.length+' items (monthly)';}
   document.getElementById('o-tax').textContent=f(taxEst);
   document.getElementById('o-taxr').textContent=(D.company.taxRate||20)+'% of pre-tax profit';
@@ -1607,6 +1624,43 @@ function render(){
     faPT.textContent=f(preTax);faTX.textContent=f(taxEst);faDR.textContent='$0';
     faAdv.innerHTML='📊 No revenue yet — ratios calculate once sales data flows in. Currently tracking: <strong style="color:var(--red)">'+f(totAds)+'</strong> ad spend + <strong style="color:var(--blue)">'+f(totalOpex)+'</strong> expenses = <strong style="color:var(--red)">'+f(totAds+totalOpex)+'</strong> total costs.';
   }
+
+  // ===== 30-DAY FORECAST =====
+  const fcEl=document.getElementById('fa-forecast');
+  if(fcEl){
+    const daysData=_fd.length;
+    const daySpan=daysData>1?Math.max(1,Math.round((new Date(_fd[_fd.length-1].date+'T12:00:00')-new Date(_fd[0].date+'T12:00:00'))/86400000)+1):1;
+    const dailyRev=daySpan>0?totRev/daySpan:0;
+    const dailyAds=daySpan>0?totAds/daySpan:0;
+    const dailyCogs=daySpan>0?totCogs/daySpan:0;
+    const dailyOrders=daySpan>0?totOrders/daySpan:0;
+    const monthlyExpenses=getFilteredExpenseTotal(null,null); // true monthly
+    const fc30Rev=dailyRev*30;
+    const fc30Ads=dailyAds*30;
+    const fc30Cogs=dailyCogs*30;
+    const fc30Gross=fc30Rev-fc30Cogs;
+    const fc30Net=fc30Gross-fc30Ads-monthlyExpenses;
+    const fc30Tax=fc30Net>0?fc30Net*(D.company.taxRate||20)/100:0;
+    const fc30After=fc30Net-fc30Tax;
+    const rows=[
+      {l:'📈 Projected Revenue',v:f(fc30Rev),cls:fc30Rev>0?'green':'muted'},
+      {l:'🛒 Projected Orders',v:Math.round(dailyOrders*30)+' orders',cls:'muted'},
+      {l:'📦 Projected COGS',v:f(fc30Cogs),cls:'red'},
+      {l:'📣 Projected Ad Spend',v:f(fc30Ads),cls:'red'},
+      {l:'🏢 Monthly Expenses',v:f(monthlyExpenses),cls:'red'},
+      {l:'<strong>Projected Gross Profit</strong>',v:'<strong>'+f(fc30Gross)+'</strong>',cls:fc30Gross>=0?'green':'red'},
+      {l:'<strong>Projected Net (after tax)</strong>',v:'<strong>'+f(fc30After)+'</strong>',cls:fc30After>=0?'green':'red'},
+    ];
+    const brkEvenRev=fc30Ads+monthlyExpenses+fc30Cogs;
+    const brkEvenDaily=brkEvenRev/30;
+    rows.push({l:'🎯 Break-Even Revenue',v:f(brkEvenRev)+'/mo ('+f(brkEvenDaily)+'/day)',cls:'amber'});
+    if(daysData<3)rows.push({l:'⚠️',v:'<em>Low data ('+daysData+' day'+(daysData>1?'s':'')+') — forecast accuracy improves with more data</em>',cls:'muted'});
+    fcEl.innerHTML='<table style="width:100%;border-collapse:collapse">'+rows.map(r=>'<tr><td style="padding:3px 0">'+r.l+'</td><td style="padding:3px 0;text-align:right;font-weight:600" class="'+r.cls+'">'+r.v+'</td></tr>').join('')+'</table>';
+  }
+
+  // Show expense warning if any expenses lack 'verified' flag
+  const ewEl=document.getElementById('fa-expense-warn');
+  if(ewEl){const hasUnverified=D.companyExpenses.some(e=>!e.verified);ewEl.style.display=hasUnverified?'block':'none';}
 
   // ===== BRAND PAGE (THALYVE) =====
   const tb=D.brands.find(b=>b.id==='thalyve');

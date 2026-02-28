@@ -22,7 +22,8 @@
       "date": "2026-02-15",
       "notes": "\u00a31/mo promo until Mar 12 \u2014 downgrade before then",
       "auto": true,
-      "id": "exp_shopify_plan_0"
+      "id": "exp_shopify_plan_0",
+      "verified": true
     },
     {
       "name": "Claude Max 20X Subscription",
@@ -32,7 +33,8 @@
       "date": "2026-02-22",
       "notes": "Anthropic subscription \u2014 powers Forge + all sub-agents",
       "auto": true,
-      "id": "exp_claude_max_20x_subscription_1"
+      "id": "exp_claude_max_20x_subscription_1",
+      "verified": true
     },
     {
       "name": "GoDaddy Domain \u2014 thalyve.com",
@@ -42,7 +44,8 @@
       "date": "2026-02-10",
       "notes": "Primary brand domain",
       "auto": true,
-      "id": "exp_godaddy_domain_\u2014_thalyve.com_2"
+      "id": "exp_godaddy_domain_\u2014_thalyve.com_2",
+      "verified": false
     },
     {
       "name": "Ad Rail Agency Account \u2014 Initial Deposit",
@@ -52,7 +55,8 @@
       "date": "2026-02-25",
       "notes": "$1,000 deposit + 3% agency fee on spend",
       "auto": true,
-      "id": "exp_ad_rail_agency_account_\u2014_initi_3"
+      "id": "exp_ad_rail_agency_account_\u2014_initi_3",
+      "verified": true
     },
     {
       "name": "Ad Rail Agency Fee (3%)",
@@ -62,7 +66,8 @@
       "date": "2026-02-27",
       "notes": "3% of ad spend \u2014 auto-calculated",
       "auto": true,
-      "id": "exp_ad_rail_agency_fee_(3%)_4"
+      "id": "exp_ad_rail_agency_fee_(3%)_4",
+      "verified": false
     },
     {
       "name": "Ad Spend \u2014 THALYVE-SMS-TEST-01",
@@ -72,7 +77,8 @@
       "date": "2026-02-27",
       "notes": "$100/day CBO \u2014 Day 1 live Feb 27. Auto-tracked via screenshot method",
       "auto": true,
-      "id": "exp_ad_spend_\u2014_thalyve-sms-test-01_5"
+      "id": "exp_ad_spend_\u2014_thalyve-sms-test-01_5",
+      "verified": false
     },
     {
       "name": "Proxy Seller \u2014 10x IPv4",
@@ -82,7 +88,8 @@
       "date": "2026-02-20",
       "notes": "10 proxies for AdsPower profiles \u2014 country-matched",
       "auto": true,
-      "id": "exp_proxy_seller_\u2014_10x_ipv4_6"
+      "id": "exp_proxy_seller_\u2014_10x_ipv4_6",
+      "verified": false
     },
     {
       "name": "OLD Account Europe \u2014 10 Profiles",
@@ -92,7 +99,8 @@
       "date": "2026-02-18",
       "notes": "Aged FB profiles for 3-BM structure",
       "auto": true,
-      "id": "exp_old_account_europe_\u2014_10_profil_7"
+      "id": "exp_old_account_europe_\u2014_10_profil_7",
+      "verified": false
     },
     {
       "name": "BM350 Verified Business Managers x3",
@@ -102,7 +110,8 @@
       "date": "2026-02-18",
       "notes": "3 pre-verified BMs (2020-2024) for Operations/Pixel/Pages",
       "auto": true,
-      "id": "exp_bm350_verified_business_manage_8"
+      "id": "exp_bm350_verified_business_manage_8",
+      "verified": false
     },
     {
       "name": "Shrine Theme \u2014 Shopify",
@@ -112,7 +121,8 @@
       "date": "2026-02-20",
       "notes": "Discount code BBA10 applied",
       "auto": true,
-      "id": "exp_shrine_theme_\u2014_shopify_9"
+      "id": "exp_shrine_theme_\u2014_shopify_9",
+      "verified": false
     },
     {
       "name": "MyClaw Pro (OpenClaw)",
@@ -122,7 +132,8 @@
       "date": "2026-02-26",
       "notes": "Invoice OXPLFUEB-0001 \u00b7 Mastercard -7487 \u00b7 \u00a329.92 GBP",
       "auto": true,
-      "id": "exp_myclaw_pro_(openclaw)_10"
+      "id": "exp_myclaw_pro_(openclaw)_10",
+      "verified": true
     },
     {
       "name": "MyClaw Pro REFUND",
@@ -132,7 +143,8 @@
       "date": "2026-02-27",
       "notes": "Full refund issued \u00b7 Receipt 3084-7615 \u00b7 \u00a329.92 credited back \u00b7 Net: $0",
       "auto": true,
-      "id": "exp_myclaw_pro_refund_11"
+      "id": "exp_myclaw_pro_refund_11",
+      "verified": true
     }
   ],
   "brands": [
