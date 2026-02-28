@@ -1183,5 +1183,61 @@
       "resources": "Manual"
     }
   ],
-  "lastUpdated": "2026-02-28T10:28:06Z"
+  "lastUpdated": "2026-02-28T10:28:06Z",
+  "aiEngine": {
+    "currentModel": "claude-opus-4-6",
+    "provider": "Anthropic",
+    "subscription": "Claude Max 20X",
+    "monthlyFee": 160,
+    "contextWindow": 200000,
+    "contextUsed": 73000,
+    "compactions": 8,
+    "cacheHitRate": 100,
+    "status": "operational",
+    "lastSessionStart": "2026-02-28T06:00:00Z",
+    "sessionsToday": 3,
+    "alerts": [
+      {
+        "type": "info",
+        "message": "Opus allowance resets periodically \u2014 Forge monitors and switches to Sonnet if nearing cap"
+      },
+      {
+        "type": "reminder",
+        "message": "GitHub PAT expires Mar 27, 2026 \u2014 rotation needed before then"
+      },
+      {
+        "type": "info",
+        "message": "OpenClaw update available: 2026.2.26 (current: 2026.2.24)"
+      }
+    ],
+    "history": [
+      {
+        "date": "2026-02-28",
+        "model": "opus",
+        "sessions": 3,
+        "tokensIn": "~50k",
+        "tokensOut": "~30k",
+        "compactions": 8,
+        "notes": "Heavy build session \u2014 dashboard overhaul"
+      },
+      {
+        "date": "2026-02-27",
+        "model": "opus",
+        "sessions": 4,
+        "tokensIn": "~80k",
+        "tokensOut": "~45k",
+        "compactions": 6,
+        "notes": "Ad launch, tracker fixes, nav unification"
+      },
+      {
+        "date": "2026-02-26",
+        "model": "opus",
+        "sessions": 5,
+        "tokensIn": "~100k",
+        "tokensOut": "~60k",
+        "compactions": 10,
+        "notes": "Full rebuild after reset, GetHookd automation"
+      }
+    ]
+  }
 }

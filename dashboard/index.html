@@ -107,6 +107,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
     <div class="tab" onclick="nav('roadmap',this)">🗺 Roadmap</div>
     <div class="tab" onclick="nav('tasklog',this)">⚡ Task Log</div>
     <div class="tab" onclick="nav('cron',this)">🤖 Cron Monitor</div>
+    <div class="tab" onclick="nav('engine',this)">⚡ AI Engine</div>
     <div class="tab" onclick="nav('settings',this)">⚙️ Settings</div>
     <div class="tab" onclick="nav('backup',this)" style="border-color:var(--red);color:var(--red)">🆘 Backup & Recovery</div>
   </div>
@@ -1270,6 +1271,64 @@ tr:hover td{background:rgba(139,92,246,.03)}
     </div>
   </div>
 
+  <!-- ===== AI ENGINE MONITOR ===== -->
+  <div class="page" id="p-engine">
+    <div class="grid g2">
+      <div class="card" style="grid-column:1/-1">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+          <span style="font-size:18px">⚡</span>
+          <div>
+            <h2 style="margin:0;font-size:16px">AI Engine Monitor</h2>
+            <div style="font-size:10px;color:var(--muted)">Live model status, usage tracking, and efficiency metrics</div>
+          </div>
+        </div>
+        <div id="engine-status">Loading...</div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:13px;margin:0 0 12px">📊 Model Routing Policy</h3>
+        <div style="font-size:10px;line-height:1.8;color:var(--muted)">
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span>💬 Live chat with Anton</span><span style="color:var(--green);font-weight:700">OPUS</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span>🔍 Product research (cron)</span><span style="color:var(--blue);font-weight:700">SONNET</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span>🧠 Memory maintenance (cron)</span><span style="color:var(--blue);font-weight:700">SONNET</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span>🔒 Security audit (cron)</span><span style="color:var(--blue);font-weight:700">SONNET</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span>📊 Dashboard refresh (cron)</span><span style="color:var(--blue);font-weight:700">SONNET</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span>🏗️ App/tool building</span><span style="color:var(--green);font-weight:700">OPUS</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span>📝 SOP writing</span><span style="color:var(--green);font-weight:700">OPUS</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border)"><span>✍️ Copywriting (Quill)</span><span style="color:var(--blue);font-weight:700">SONNET</span></div>
+          <div style="display:flex;justify-content:space-between;padding:4px 0"><span>🤖 Sub-agents (default)</span><span style="color:var(--blue);font-weight:700">SONNET</span></div>
+        </div>
+        <div style="margin-top:10px;padding:8px;border-radius:6px;background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.15);font-size:9px;color:var(--muted)">
+          Strategy: Opus reserved for human-facing interactions & complex builds. Sonnet handles all automated/background work to preserve Opus allowance.
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:13px;margin:0 0 12px">🔄 Failover Chain</h3>
+        <div style="font-size:10px;line-height:2;color:var(--muted)">
+          <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--border)">
+            <span style="background:var(--green);color:#fff;font-size:8px;font-weight:700;padding:2px 6px;border-radius:4px">PRIMARY</span>
+            <span>Claude Opus 4.6 (Anthropic)</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid var(--border)">
+            <span style="background:var(--amber);color:#fff;font-size:8px;font-weight:700;padding:2px 6px;border-radius:4px">FALLBACK</span>
+            <span>Claude Sonnet (Anthropic)</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:4px 0">
+            <span style="background:var(--red);color:#fff;font-size:8px;font-weight:700;padding:2px 6px;border-radius:4px">EMERGENCY</span>
+            <span>Manual token swap (saved in Keychain)</span>
+          </div>
+        </div>
+        <div style="margin-top:12px">
+          <h4 style="font-size:11px;margin:0 0 8px;color:var(--accent2)">⚠️ Alerts & Reminders</h4>
+          <div id="engine-alerts" style="font-size:10px;color:var(--muted);line-height:1.6">Loading...</div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <h3 style="font-size:13px;margin:0 0 12px">📈 Session History</h3>
+      <div id="engine-history" style="font-size:10px;color:var(--muted)">Loading...</div>
+    </div>
+  </div>
+
   <!-- ===== SETTINGS ===== -->
   <div class="page" id="p-settings">
     <div class="grid g2">
@@ -1835,8 +1894,66 @@ async function loadFromJSON(){
     try{renderKPI(j);}catch(e){console.error('KPI:',e);}
     try{renderRoadmap(j);}catch(e){console.error('Roadmap:',e);}
     try{renderTaskLog(j);}catch(e){console.error('TaskLog:',e);}
+    try{renderEngine();}catch(e){console.error('Engine:',e);}
     render();toast('Synced from Forge');
   }catch(e){console.error('loadFromJSON error:',e);}
+}
+
+// ===== AI ENGINE MONITOR =====
+function renderEngine(){
+  const e=D.aiEngine;if(!e)return;
+  const c=D.company.currency||'$';
+  const ctxPct=e.contextWindow>0?Math.round(e.contextUsed/e.contextWindow*100):0;
+  const ctxCol=ctxPct<50?'var(--green)':ctxPct<75?'var(--amber)':'var(--red)';
+  const statusCol=e.status==='operational'?'var(--green)':e.status==='degraded'?'var(--amber)':'var(--red)';
+  const statusIcon=e.status==='operational'?'🟢':e.status==='degraded'?'🟡':'🔴';
+
+  document.getElementById('engine-status').innerHTML=`
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px">
+      <div style="background:var(--bg);border-radius:8px;padding:12px;border:1px solid var(--border);text-align:center">
+        <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Status</div>
+        <div style="font-size:16px;font-weight:700;color:${statusCol}">${statusIcon} ${e.status.toUpperCase()}</div>
+      </div>
+      <div style="background:var(--bg);border-radius:8px;padding:12px;border:1px solid var(--border);text-align:center">
+        <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Active Model</div>
+        <div style="font-size:14px;font-weight:700;color:var(--green)">${e.currentModel}</div>
+        <div style="font-size:9px;color:var(--muted)">${e.provider} · ${e.subscription}</div>
+      </div>
+      <div style="background:var(--bg);border-radius:8px;padding:12px;border:1px solid var(--border);text-align:center">
+        <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Context Window</div>
+        <div style="font-size:14px;font-weight:700;color:${ctxCol}">${ctxPct}%</div>
+        <div style="width:100%;height:6px;background:var(--border);border-radius:3px;margin-top:4px;overflow:hidden"><div style="width:${ctxPct}%;height:100%;background:${ctxCol};border-radius:3px"></div></div>
+        <div style="font-size:8px;color:var(--muted);margin-top:2px">${(e.contextUsed/1000).toFixed(0)}k / ${(e.contextWindow/1000).toFixed(0)}k tokens</div>
+      </div>
+      <div style="background:var(--bg);border-radius:8px;padding:12px;border:1px solid var(--border);text-align:center">
+        <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Cache Hit Rate</div>
+        <div style="font-size:14px;font-weight:700;color:var(--green)">${e.cacheHitRate}%</div>
+      </div>
+      <div style="background:var(--bg);border-radius:8px;padding:12px;border:1px solid var(--border);text-align:center">
+        <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Compactions</div>
+        <div style="font-size:14px;font-weight:700">${e.compactions}</div>
+        <div style="font-size:8px;color:var(--muted)">context resets today</div>
+      </div>
+      <div style="background:var(--bg);border-radius:8px;padding:12px;border:1px solid var(--border);text-align:center">
+        <div style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Monthly Cost</div>
+        <div style="font-size:14px;font-weight:700">$${e.monthlyFee}</div>
+        <div style="font-size:8px;color:var(--muted)">flat subscription</div>
+      </div>
+    </div>`;
+
+  // Alerts
+  const aEl=document.getElementById('engine-alerts');
+  if(aEl&&e.alerts){
+    const icons={info:'ℹ️',warning:'⚠️',reminder:'🔔',critical:'🚨'};
+    const cols={info:'var(--blue)',warning:'var(--amber)',reminder:'var(--accent2)',critical:'var(--red)'};
+    aEl.innerHTML=e.alerts.map(a=>`<div style="padding:4px 0;border-bottom:1px solid var(--border);display:flex;gap:6px"><span>${icons[a.type]||'ℹ️'}</span><span style="color:${cols[a.type]||'var(--muted)'}">${a.message}</span></div>`).join('');
+  }
+
+  // History
+  const hEl=document.getElementById('engine-history');
+  if(hEl&&e.history){
+    hEl.innerHTML='<table style="width:100%;border-collapse:collapse"><thead><tr style="border-bottom:1px solid var(--border);font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)"><th style="text-align:left;padding:6px 4px">Date</th><th>Model</th><th>Sessions</th><th>Tokens In</th><th>Tokens Out</th><th>Compactions</th><th style="text-align:left">Notes</th></tr></thead><tbody>'+e.history.map(h=>`<tr style="border-bottom:1px solid var(--border)"><td style="padding:6px 4px;font-weight:600">${h.date}</td><td style="text-align:center"><span style="background:${h.model==='opus'?'var(--green)':'var(--blue)'};color:#fff;font-size:8px;padding:1px 6px;border-radius:3px;font-weight:700">${h.model.toUpperCase()}</span></td><td style="text-align:center">${h.sessions}</td><td style="text-align:center">${h.tokensIn}</td><td style="text-align:center">${h.tokensOut}</td><td style="text-align:center">${h.compactions}</td><td style="color:var(--muted)">${h.notes}</td></tr>`).join('')+'</tbody></table>';
+  }
 }
 
 // ===== EXPENSE EDITOR =====
