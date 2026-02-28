@@ -1036,5 +1036,139 @@
       "cogs": 0
     }
   ],
-  "version": "3.4"
+  "version": "3.4",
+  "jobMonitor": [
+    {
+      "id": "j001",
+      "member": "Forge",
+      "task": "Built Command Centre v3.2",
+      "status": "done",
+      "started": "2026-02-26T10:00:00",
+      "finished": "2026-02-26T14:30:00",
+      "duration": "4h 30m",
+      "model": "Opus",
+      "resources": "~50K tokens"
+    },
+    {
+      "id": "j002",
+      "member": "Forge",
+      "task": "Product Research Pipeline (6 products)",
+      "status": "done",
+      "started": "2026-02-27T03:00:00",
+      "finished": "2026-02-27T03:45:00",
+      "duration": "45m",
+      "model": "Sonnet",
+      "resources": "~15K tokens"
+    },
+    {
+      "id": "j003",
+      "member": "Forge",
+      "task": "GetHookd automation + Tracker v4.2",
+      "status": "done",
+      "started": "2026-02-27T08:00:00",
+      "finished": "2026-02-27T10:30:00",
+      "duration": "2h 30m",
+      "model": "Opus",
+      "resources": "~40K tokens"
+    },
+    {
+      "id": "j004",
+      "member": "Forge",
+      "task": "Ad Tracker v1.1 + Decision Log",
+      "status": "done",
+      "started": "2026-02-28T09:00:00",
+      "finished": "2026-02-28T09:15:00",
+      "duration": "15m",
+      "model": "Opus",
+      "resources": "~8K tokens"
+    },
+    {
+      "id": "j005",
+      "member": "Forge",
+      "task": "Financial Advisor panel + Expense chart",
+      "status": "done",
+      "started": "2026-02-28T09:45:00",
+      "finished": "2026-02-28T09:55:00",
+      "duration": "10m",
+      "model": "Opus",
+      "resources": "~6K tokens"
+    },
+    {
+      "id": "j006",
+      "member": "Forge",
+      "task": "Period filters + pro-rated expenses",
+      "status": "done",
+      "started": "2026-02-28T09:25:00",
+      "finished": "2026-02-28T09:35:00",
+      "duration": "10m",
+      "model": "Opus",
+      "resources": "~5K tokens"
+    },
+    {
+      "id": "j007",
+      "member": "Forge",
+      "task": "Killed status color-coding fix",
+      "status": "done",
+      "started": "2026-02-28T09:05:00",
+      "finished": "2026-02-28T09:10:00",
+      "duration": "5m",
+      "model": "Opus",
+      "resources": "~3K tokens"
+    },
+    {
+      "id": "j008",
+      "member": "Forge",
+      "task": "Homepage Quick Access + pipeline KPIs",
+      "status": "done",
+      "started": "2026-02-28T09:33:00",
+      "finished": "2026-02-28T09:36:00",
+      "duration": "3m",
+      "model": "Opus",
+      "resources": "~3K tokens"
+    },
+    {
+      "id": "j009",
+      "member": "Forge",
+      "task": "Cron delivery \u2192 Telegram (all 8 jobs)",
+      "status": "done",
+      "started": "2026-02-28T09:38:00",
+      "finished": "2026-02-28T09:40:00",
+      "duration": "2m",
+      "model": "Opus",
+      "resources": "~2K tokens"
+    },
+    {
+      "id": "j010",
+      "member": "Quill",
+      "task": "Ad copy v1.0 \u2014 3 ad sets, compliance-safe",
+      "status": "done",
+      "started": "2026-02-27T15:00:00",
+      "finished": "2026-02-27T15:30:00",
+      "duration": "30m",
+      "model": "Sonnet",
+      "resources": "~10K tokens"
+    },
+    {
+      "id": "j011",
+      "member": "Anton",
+      "task": "Meta Ads Manager \u2014 launch THALYVE-SMS-TEST-01",
+      "status": "done",
+      "started": "2026-02-27T14:00:00",
+      "finished": "2026-02-27T14:15:00",
+      "duration": "15m",
+      "model": "\u2014",
+      "resources": "Manual"
+    },
+    {
+      "id": "j012",
+      "member": "Anton",
+      "task": "Ad performance screenshot \u2192 Forge",
+      "status": "done",
+      "started": "2026-02-28T09:30:00",
+      "finished": "2026-02-28T09:31:00",
+      "duration": "1m",
+      "model": "\u2014",
+      "resources": "Manual"
+    }
+  ]
 }

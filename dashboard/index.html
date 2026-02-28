@@ -729,6 +729,41 @@ tr:hover td{background:rgba(139,92,246,.03)}
     <!-- Profile Cards -->
     <div id="tm-profiles" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px"></div>
 
+    <!-- Job Monitor -->
+    <div class="card" style="margin-top:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">📋</span>
+          <h2 style="margin:0;font-size:14px;font-weight:700">Job Monitor — Task History</h2>
+        </div>
+        <select id="jm-filter" onchange="filterJobMonitor()" style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:4px 10px;color:var(--text);font-size:10px;font-family:inherit">
+          <option value="all">All Members</option>
+        </select>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+        <div style="background:var(--bg);border-radius:8px;padding:10px;text-align:center;border:1px solid var(--border)">
+          <div style="font-size:9px;text-transform:uppercase;color:var(--muted)">Total Tasks</div>
+          <div style="font-size:18px;font-weight:800;color:var(--accent2);margin-top:2px" id="jm-total">0</div>
+        </div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px;text-align:center;border:1px solid var(--border)">
+          <div style="font-size:9px;text-transform:uppercase;color:var(--muted)">Completed</div>
+          <div style="font-size:18px;font-weight:800;color:var(--green);margin-top:2px" id="jm-done">0</div>
+        </div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px;text-align:center;border:1px solid var(--border)">
+          <div style="font-size:9px;text-transform:uppercase;color:var(--muted)">Avg Duration</div>
+          <div style="font-size:18px;font-weight:800;color:var(--blue);margin-top:2px" id="jm-avgtime">—</div>
+        </div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px;text-align:center;border:1px solid var(--border)">
+          <div style="font-size:9px;text-transform:uppercase;color:var(--muted)">Resources Used</div>
+          <div style="font-size:18px;font-weight:800;color:var(--amber);margin-top:2px" id="jm-resources">—</div>
+        </div>
+      </div>
+      <table>
+        <thead><tr><th>Member</th><th>Task</th><th>Status</th><th>Started</th><th>Duration</th><th>Model</th></tr></thead>
+        <tbody id="jm-table"><tr><td colspan="6" class="empty">No task history yet</td></tr></tbody>
+      </table>
+    </div>
+
     <!-- Legacy table (hidden) -->
     <table style="display:none"><tbody id="tm-table"></tbody></table>
   </div>
@@ -1892,6 +1927,43 @@ function renderTeam(data){
   // Legacy table (hidden)
   const tb=document.getElementById('tm-table');
   tb.innerHTML='';
+
+  // Job Monitor
+  if(data.jobMonitor&&data.jobMonitor.length){
+    const jobs=data.jobMonitor;
+    // Populate filter dropdown
+    const filt=document.getElementById('jm-filter');
+    const members=[...new Set(jobs.map(j=>j.member))];
+    filt.innerHTML='<option value="all">All Members</option>'+members.map(m=>'<option value="'+m+'">'+m+'</option>').join('');
+    window._jobData=jobs;
+    filterJobMonitor();
+  }
+}
+function filterJobMonitor(){
+  const jobs=window._jobData||[];
+  const filt=document.getElementById('jm-filter').value;
+  const filtered=filt==='all'?jobs:jobs.filter(j=>j.member===filt);
+  const done=filtered.filter(j=>j.status==='done').length;
+  document.getElementById('jm-total').textContent=filtered.length;
+  document.getElementById('jm-done').textContent=done;
+  // Avg duration
+  const durations=filtered.map(j=>{
+    const d=j.duration||'';const m=d.match(/(\d+)h/);const m2=d.match(/(\d+)m/);
+    return(m?parseInt(m[1])*60:0)+(m2?parseInt(m2[1]):0);
+  }).filter(d=>d>0);
+  const avg=durations.length?Math.round(durations.reduce((a,b)=>a+b,0)/durations.length):0;
+  document.getElementById('jm-avgtime').textContent=avg>=60?Math.floor(avg/60)+'h '+avg%60+'m':avg+'m';
+  // Resources
+  const models={};filtered.forEach(j=>{const m=j.model||'—';if(!models[m])models[m]=0;models[m]++;});
+  document.getElementById('jm-resources').textContent=Object.entries(models).map(([k,v])=>k+': '+v).join(' · ')||'—';
+  // Table
+  const tbl=document.getElementById('jm-table');
+  const statusMap={done:'<span style="color:var(--green);font-weight:700">✅ Done</span>',active:'<span style="color:var(--blue);font-weight:700">🔄 Active</span>',pending:'<span style="color:var(--amber);font-weight:700">⏳ Pending</span>'};
+  const modelColor={Opus:'var(--amber)',Sonnet:'var(--purple)','—':'var(--muted)'};
+  tbl.innerHTML=filtered.sort((a,b)=>(b.started||'').localeCompare(a.started||'')).map(j=>{
+    const dt=j.started?new Date(j.started).toLocaleDateString('en-GB',{day:'numeric',month:'short'})+' '+new Date(j.started).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}):'—';
+    return'<tr><td style="font-weight:600;white-space:nowrap">'+j.member+'</td><td>'+j.task+'</td><td>'+(statusMap[j.status]||j.status)+'</td><td style="white-space:nowrap;font-size:10px">'+dt+'</td><td style="font-weight:600">'+j.duration+'</td><td><span style="color:'+(modelColor[j.model]||'var(--muted)')+';font-weight:600;font-size:10px">'+j.model+'</span></td></tr>';
+  }).join('')||'<tr><td colspan="6" class="empty">No tasks recorded</td></tr>';
 }
 
 function renderKPI(data){
