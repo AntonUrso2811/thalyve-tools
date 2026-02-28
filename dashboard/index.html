@@ -1280,30 +1280,56 @@ function getFilteredDaily() {
     to = document.getElementById('pf-to').value || null;
   }
   // 'all' → no filter
-  if (!from && !to) return D.daily;
-  return D.daily.filter(e => {
+  if (!from && !to) return { daily: D.daily, from: null, to: null };
+  const filtered = D.daily.filter(e => {
     if (from && e.date < from) return false;
     if (to && e.date > to) return false;
     return true;
   });
+  return { daily: filtered, from, to };
+}
+function getFilteredExpenseTotal(from, to) {
+  if (!from && !to) {
+    // All time: monthly as-is, annual /12, one-time full
+    const m = D.companyExpenses.filter(e => e.frequency === 'monthly').reduce((s, e) => s + e.amount, 0);
+    const a = D.companyExpenses.filter(e => e.frequency === 'annual').reduce((s, e) => s + e.amount / 12, 0);
+    const o = D.companyExpenses.filter(e => e.frequency === 'one-time').reduce((s, e) => s + e.amount, 0);
+    return m + a + o;
+  }
+  const f = new Date(from + 'T00:00:00');
+  const t = new Date(to + 'T23:59:59');
+  const days = Math.max(1, Math.round((t - f) / 86400000) + 1);
+  let total = 0;
+  D.companyExpenses.forEach(e => {
+    if (e.frequency === 'monthly') {
+      total += e.amount * (days / 30.44); // pro-rate monthly
+    } else if (e.frequency === 'annual') {
+      total += e.amount * (days / 365.25); // pro-rate annual
+    } else if (e.frequency === 'one-time') {
+      // Only count if expense date falls in range
+      if (e.date && e.date >= from && e.date <= to) total += e.amount;
+      else if (!e.date) total += e.amount; // no date = include always
+    }
+  });
+  return total;
 }
 
 function render(){
   const c=D.company.currency||'$';
   const f=n=>(n>=0?c:'-'+c)+Math.abs(n).toFixed(2);
 
-  // Expense calcs
-  const mRecur=D.companyExpenses.filter(e=>e.frequency==='monthly').reduce((s,e)=>s+e.amount,0);
-  const aRecur=D.companyExpenses.filter(e=>e.frequency==='annual').reduce((s,e)=>s+e.amount/12,0);
-  const once=D.companyExpenses.filter(e=>e.frequency==='one-time').reduce((s,e)=>s+e.amount,0);
-  const totalOpex=mRecur+aRecur+once;
-
   // Daily totals (filtered by period)
-  const _fd=getFilteredDaily();
+  const _fResult=getFilteredDaily();
+  const _fd=_fResult.daily;
+  const _from=_fResult.from;
+  const _to=_fResult.to;
   const totRev=_fd.reduce((s,e)=>s+e.revenue,0);
   const totAds=_fd.reduce((s,e)=>s+e.adSpend,0);
   const totCogs=_fd.reduce((s,e)=>s+e.cogs,0);
   const totOrders=_fd.reduce((s,e)=>s+e.orders,0);
+
+  // Expense calcs (pro-rated to period)
+  const totalOpex=getFilteredExpenseTotal(_from,_to);
   const grossProfit=totRev-totCogs;
   const preTax=grossProfit-totAds-totalOpex;
   const taxEst=preTax>0?preTax*(D.company.taxRate||20)/100:0;
@@ -1334,8 +1360,9 @@ function render(){
   document.getElementById('pl-pretax').textContent=f(preTax);document.getElementById('pl-pretax').className='pl-sep '+(preTax>=0?'green':'red');
   document.getElementById('pl-tax').textContent=f(taxEst);
   const plN=document.getElementById('pl-net');plN.textContent=f(netProfit);plN.className='pl-total '+(netProfit>=0?'green':'red');
-  const qsBurn=document.getElementById('qs-burn');if(qsBurn)qsBurn.textContent='$'+totalOpex.toFixed(0)+'/mo';
-  const qsRun=document.getElementById('qs-runway');if(qsRun){const months=totalOpex>0?Math.floor(5000/totalOpex*0.77):99;qsRun.textContent=months>12?'12+ months':months+' months';}
+  const monthlyBurn=getFilteredExpenseTotal(null,null);
+  const qsBurn=document.getElementById('qs-burn');if(qsBurn)qsBurn.textContent='$'+monthlyBurn.toFixed(0)+'/mo';
+  const qsRun=document.getElementById('qs-runway');if(qsRun){const months=monthlyBurn>0?Math.floor(5000/monthlyBurn*0.77):99;qsRun.textContent=months>12?'12+ months':months+' months';}
 
   // Brand summary table
   const obr=document.getElementById('o-brands');
