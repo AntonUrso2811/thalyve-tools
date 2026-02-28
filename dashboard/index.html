@@ -86,6 +86,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
   <header>
     <div><h1>🔱 <span>Anton Empire</span> — Command Centre</h1><p style="font-size:10px;color:var(--muted);margin-top:2px">Company P&L • Brand Performance • Expenses • Tax Provisioning</p></div>
     <div style="display:flex;gap:5px;align-items:center">
+      <button class="btn-s btn-o" onclick="forceRefresh()" style="background:var(--green);color:#000;font-weight:700;border-color:var(--green)">🔄 Refresh Data</button>
       <button class="btn-s btn-o" onclick="exportAll()">📥 Export</button>
       <button class="btn-s btn-o" onclick="exportJSON()">💾 Backup</button>
       <span class="badge" id="lastSync">—</span>
@@ -1414,6 +1415,7 @@ async function loadFromJSON(){
 }
 
 // ===== EXPORT =====
+function forceRefresh(){localStorage.clear();toast('Cache cleared — reloading...');setTimeout(()=>location.reload(true),500);}
 function exportAll(){
   let csv='Date,Brand,Product,Orders,Revenue,Ad Spend,COGS,Profit,ROAS\n';
   D.daily.forEach(e=>{const p=e.revenue-e.adSpend-e.cogs;csv+=`${e.date},"${e.brandName}","${e.productName}",${e.orders},${e.revenue.toFixed(2)},${e.adSpend.toFixed(2)},${e.cogs.toFixed(2)},${p.toFixed(2)},${e.adSpend>0?(e.revenue/e.adSpend).toFixed(2):'0'}\n`;});
