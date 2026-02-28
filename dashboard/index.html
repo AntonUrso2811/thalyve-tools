@@ -1164,37 +1164,88 @@ tr:hover td{background:rgba(139,92,246,.03)}
     <div class="card" style="margin-top:12px;background:linear-gradient(135deg,rgba(255,193,7,0.04),rgba(249,115,22,0.04))">
       <h2 style="font-size:13px;margin-bottom:10px">🔮 Planned Automations (Enable When Triggered)</h2>
       <div style="display:flex;flex-direction:column;gap:6px">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px">
-          <div><span style="font-size:11px;font-weight:700">📊 Daily Ad Performance Check</span><span style="font-size:10px;color:var(--muted);margin-left:8px">9PM daily</span></div>
-          <span style="font-size:10px;font-weight:600;color:var(--amber)">Trigger: Ads go live (Feb 27) — READY</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg);border-radius:10px;border-left:3px solid var(--green)">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:16px">📊</span>
+            <div><div style="font-size:12px;font-weight:700">Daily Ad Performance Sync</div><div style="font-size:10px;color:var(--muted)">9PM daily · Screenshot → extract → update dashboard + ad tracker</div></div>
+          </div>
+          <span style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:6px;background:rgba(76,175,80,0.1);color:var(--green);border:1px solid rgba(76,175,80,0.2)">🟢 READY — Ads LIVE</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px">
-          <div><span style="font-size:11px;font-weight:700">🧾 Auto-Log Recurring Expenses</span><span style="font-size:10px;color:var(--muted);margin-left:8px">1st of month</span></div>
-          <span style="font-size:10px;font-weight:600;color:var(--amber)">Trigger: Expenses configured</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg);border-radius:10px;border-left:3px solid var(--green)">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:16px">🧾</span>
+            <div><div style="font-size:12px;font-weight:700">Auto-Log Recurring Expenses</div><div style="font-size:10px;color:var(--muted)">1st of month · Auto-enters Shopify, Claude, domains, Ad Rail fees</div></div>
+          </div>
+          <span style="font-size:10px;font-weight:700;padding:3px 10px;border-radius:6px;background:rgba(76,175,80,0.1);color:var(--green);border:1px solid rgba(76,175,80,0.2)">🟢 READY — Mar 1</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:8px">
-          <div><span style="font-size:11px;font-weight:700">🦅 Hawk Intelligence Brief</span><span style="font-size:10px;color:var(--muted);margin-left:8px">Weekly</span></div>
-          <span style="font-size:10px;font-weight:600;color:var(--muted)">Trigger: Hawk hired (Phase 2)</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg);border-radius:10px;border-left:3px solid var(--amber)">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:16px">📧</span>
+            <div><div style="font-size:12px;font-weight:700">Email Sequence Automation</div><div style="font-size:10px;color:var(--muted)">Klaviyo flows · Welcome, abandoned cart, post-purchase</div></div>
+          </div>
+          <span style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:6px;background:rgba(255,193,7,0.08);color:var(--amber);border:1px solid rgba(255,193,7,0.2)">⏳ Trigger: First 10 orders</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg);border-radius:10px;border-left:3px solid var(--muted)">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:16px">🦅</span>
+            <div><div style="font-size:12px;font-weight:700">Hawk Intelligence Brief</div><div style="font-size:10px;color:var(--muted)">Weekly · Market trends, competitor moves, opportunity alerts</div></div>
+          </div>
+          <span style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:6px;background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--border)">⚪ Trigger: Hawk hired (Phase 2)</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg);border-radius:10px;border-left:3px solid var(--muted)">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:16px">🛡️</span>
+            <div><div style="font-size:12px;font-weight:700">QC Agent Auto-Review</div><div style="font-size:10px;color:var(--muted)">Every output · Independent quality check before delivery</div></div>
+          </div>
+          <span style="font-size:10px;font-weight:600;padding:3px 10px;border-radius:6px;background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--border)">⚪ Trigger: 4+ agents active</span>
         </div>
       </div>
     </div>
 
     <!-- Model Routing Strategy -->
-    <div class="card" style="margin-top:12px">
-      <h2 style="font-size:13px;margin-bottom:10px">⚡ Model Routing Strategy</h2>
-      <div style="font-size:11px;color:var(--muted);margin-bottom:10px">Forge dynamically routes tasks to the right model to maximise quality while preserving Opus allowance for Anton's live conversations.</div>
+    <div class="card" style="margin-top:12px;background:linear-gradient(135deg,rgba(124,58,237,.03),rgba(59,130,246,.03))">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <span style="font-size:18px">⚡</span>
+        <div>
+          <h2 style="font-size:14px;margin:0;font-weight:700">Model Routing Strategy</h2>
+          <div style="font-size:10px;color:var(--muted)">Forge dynamically routes each task to the right model — quality where it matters, efficiency everywhere else</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div style="background:rgba(255,193,7,0.06);border:1px solid rgba(255,193,7,0.15);border-radius:10px;padding:12px">
+          <div style="font-size:12px;font-weight:800;color:var(--amber);margin-bottom:8px">🟣 Opus — Deep Work</div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.8">
+            • Live chat with Anton<br>
+            • App/tool building (multi-file)<br>
+            • SOP writing (long-form, nuanced)<br>
+            • QC reviews (needs deep reasoning)<br>
+            • Ad strategy & kill/scale decisions<br>
+            • Copywriting (brand voice critical)
+          </div>
+        </div>
+        <div style="background:rgba(139,92,246,0.06);border:1px solid rgba(139,92,246,0.15);border-radius:10px;padding:12px">
+          <div style="font-size:12px;font-weight:800;color:var(--purple);margin-bottom:8px">🔵 Sonnet — Structured Tasks</div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.8">
+            • Product research pipeline (cron)<br>
+            • Memory maintenance (file ops)<br>
+            • Daily briefings (templated)<br>
+            • Dashboard refresh (data updates)<br>
+            • Security audits (checklist-based)<br>
+            • Data entry / git operations
+          </div>
+        </div>
+      </div>
+      <div style="padding:8px 12px;background:var(--bg);border-radius:8px;font-size:10px;color:var(--muted);display:flex;align-items:center;gap:8px">
+        <span style="font-size:14px">💡</span>
+        <span><strong style="color:var(--text)">Why:</strong> Anton is on Claude Max subscription (flat fee, usage allowance). Opus for live chat preserves quality where it matters. Sonnet for crons saves allowance. No silent downgrades — Anton always knows which model is running.</span>
+      </div>
+    </div>
+
+    <!-- Legacy table hidden -->
+    <div style="display:none">
       <table style="font-size:11px">
         <thead><tr><th>Task Type</th><th>Model</th><th>Why</th></tr></thead>
         <tbody>
-          <tr><td>Live chat with Anton</td><td style="color:var(--amber);font-weight:700">Opus</td><td>Quality matters most — this is where Anton interacts</td></tr>
-          <tr><td>App/tool building</td><td style="color:var(--amber);font-weight:700">Opus</td><td>Complex, multi-file, needs reasoning</td></tr>
-          <tr><td>SOP writing</td><td style="color:var(--amber);font-weight:700">Opus</td><td>Long-form, needs nuance and structure</td></tr>
-          <tr><td>QC reviews</td><td style="color:var(--amber);font-weight:700">Opus</td><td>Needs deep understanding to catch issues</td></tr>
-          <tr><td>Product research (cron)</td><td style="color:var(--purple);font-weight:700">Sonnet</td><td>SOP-driven, structured output</td></tr>
-          <tr><td>Memory maintenance</td><td style="color:var(--purple);font-weight:700">Sonnet</td><td>Simple file operations</td></tr>
-          <tr><td>Daily briefings</td><td style="color:var(--purple);font-weight:700">Sonnet</td><td>Templated summary generation</td></tr>
-          <tr><td>Security audits</td><td style="color:var(--purple);font-weight:700">Sonnet</td><td>Checklist-based verification</td></tr>
-          <tr><td>Data entry / git ops</td><td style="color:var(--purple);font-weight:700">Sonnet</td><td>Mechanical tasks</td></tr>
         </tbody>
       </table>
     </div>
