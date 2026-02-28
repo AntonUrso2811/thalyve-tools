@@ -2246,15 +2246,15 @@ function renderCriticalTasks(data){
   if(oEl)oEl.textContent=overallPct+'%';
 
   // ROI Tracker
-  if(data.productivity){
-    const p=data.productivity.totals;
+  if(data.productivity&&data.productivity.totals){
+    const p=data.productivity.totals||{};
     const el=id=>document.getElementById(id);
-    if(el('roi-equiv'))el('roi-equiv').textContent='$'+p.humanCostEquiv.toLocaleString();
-    if(el('roi-hours'))el('roi-hours').textContent=p.forgeHours+'h';
-    if(el('roi-hequiv'))el('roi-hequiv').textContent=p.humanEquivHours+'h';
-    if(el('roi-tasks'))el('roi-tasks').textContent=p.tasksCompleted;
-    if(el('roi-since'))el('roi-since').textContent='since '+new Date(data.productivity.since+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});
-    if(el('roi-note'))el('roi-note').textContent='Based on $'+p.hourlyRate+'/hr VA rate · '+p.humanEquivHours+'h would cost $'+p.humanCostEquiv;
+    if(el('roi-equiv')&&p.humanCostEquiv)el('roi-equiv').textContent='$'+p.humanCostEquiv.toLocaleString();
+    if(el('roi-hours')&&p.forgeHours!=null)el('roi-hours').textContent=p.forgeHours+'h';
+    if(el('roi-hequiv')&&p.humanEquivHours!=null)el('roi-hequiv').textContent=p.humanEquivHours+'h';
+    if(el('roi-tasks')&&p.tasksCompleted!=null)el('roi-tasks').textContent=p.tasksCompleted;
+    if(el('roi-since')&&data.productivity.since)el('roi-since').textContent='since '+new Date(data.productivity.since+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+    if(el('roi-note')&&p.hourlyRate&&p.humanEquivHours&&p.humanCostEquiv)el('roi-note').textContent='Based on $'+p.hourlyRate+'/hr VA rate · '+p.humanEquivHours+'h would cost $'+p.humanCostEquiv;
 
     // Time split bar (today)
     const today=data.productivity.days[data.productivity.days.length-1];
