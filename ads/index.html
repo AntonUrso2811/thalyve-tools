@@ -647,13 +647,16 @@ function renderKPITargets() {
   if (!el) return;
   const totals = data.reduce((a,e) => ({spend:a.spend+e.spend,purchases:a.purchases+e.purchases,revenue:a.revenue+e.revenue,atc:a.atc+e.atc,clicks:a.clicks+e.clicks,impressions:a.impressions+e.impressions}), {spend:0,purchases:0,revenue:0,atc:0,clicks:0,impressions:0});
   
+  // BBA-aligned targets (Brand Builder's Academy + ecom benchmarks)
   const metrics = [
-    {name:'ROAS',actual:totals.spend?totals.revenue/totals.spend:0,target:BE_ROAS,unit:'×',fmt:v=>v.toFixed(2)+'×',higher:true},
-    {name:'CPA',actual:totals.purchases?totals.spend/totals.purchases:null,target:TARGET_CPA,unit:'$',fmt:v=>v!==null?'$'+v.toFixed(2):'No purchases',higher:false},
-    {name:'CTR',actual:totals.impressions?totals.clicks/totals.impressions*100:0,target:1.5,unit:'%',fmt:v=>v.toFixed(1)+'%',higher:true},
-    {name:'CVR',actual:totals.clicks?totals.purchases/totals.clicks*100:0,target:2.0,unit:'%',fmt:v=>v.toFixed(1)+'%',higher:true},
-    {name:'CPC',actual:totals.clicks?totals.spend/totals.clicks:0,target:2.00,unit:'$',fmt:v=>'$'+v.toFixed(2),higher:false},
-    {name:'ATC Rate',actual:totals.clicks?totals.atc/totals.clicks*100:0,target:5.0,unit:'%',fmt:v=>v.toFixed(1)+'%',higher:true},
+    {name:'ROAS',actual:totals.spend?totals.revenue/totals.spend:0,target:BE_ROAS,scale:2.0,unit:'×',fmt:v=>v.toFixed(2)+'×',higher:true,note:'B/E: 1.31× · Scale: 2.0×+'},
+    {name:'CPA',actual:totals.purchases?totals.spend/totals.purchases:null,target:TARGET_CPA,unit:'$',fmt:v=>v!==null?'$'+v.toFixed(2):'No purchases',higher:false,note:'Max B/E: $40 · Target: <$20'},
+    {name:'CTR',actual:totals.impressions?totals.clicks/totals.impressions*100:0,target:1.0,unit:'%',fmt:v=>v.toFixed(2)+'%',higher:true,note:'Good: ≥1% · Great: ≥2%'},
+    {name:'CVR',actual:totals.clicks?totals.purchases/totals.clicks*100:0,target:2.5,unit:'%',fmt:v=>v.toFixed(2)+'%',higher:true,note:'BBA validation: 2.5% CVR'},
+    {name:'CPC',actual:totals.clicks?totals.spend/totals.clicks:0,target:1.50,unit:'$',fmt:v=>'$'+v.toFixed(2),higher:false,note:'H&W avg: $1-2 · >$3 = bad creative'},
+    {name:'ATC Rate',actual:totals.clicks?totals.atc/totals.clicks*100:0,target:8.0,unit:'%',fmt:v=>v.toFixed(1)+'%',higher:true,note:'Good: ≥8% · Low = landing page issue'},
+    {name:'ATC→Purchase',actual:totals.atc?totals.purchases/totals.atc*100:0,target:30.0,unit:'%',fmt:v=>v.toFixed(0)+'%',higher:true,note:'Good: ≥30% · Low = checkout friction'},
+    {name:'CPM',actual:totals.impressions?totals.spend/(totals.impressions/1000):0,target:15.00,unit:'$',fmt:v=>'$'+v.toFixed(2),higher:false,note:'H&W avg: $10-20 · >$25 = narrow audience'},
   ];
 
   el.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px">'+metrics.map(m => {
@@ -666,6 +669,7 @@ function renderKPITargets() {
       <div style="font-size:9px;color:var(--dim);margin:4px 0">Target: ${m.fmt(m.target)}</div>
       <div style="width:100%;height:4px;background:var(--border);border-radius:2px;overflow:hidden"><div style="width:${pct}%;height:100%;background:${col};border-radius:2px"></div></div>
       <div style="font-size:8px;margin-top:4px;color:${col}">${pass?'✅ On Target':'❌ Below Target'}</div>
+      <div style="font-size:7px;color:var(--dim);margin-top:3px">${m.note||''}</div>
     </div>`;
   }).join('')+'</div>';
 }
