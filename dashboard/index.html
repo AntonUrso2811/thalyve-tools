@@ -195,7 +195,12 @@ tr:hover td{background:rgba(139,92,246,.03)}
         <span>📦 − Cost of Goods Sold (supplier + shipping per unit)</span><span class="red" id="pl-cogs">$0</span>
         <span class="pl-sep">Gross Profit (revenue − COGS)</span><span class="pl-sep green" id="pl-gross">$0</span>
         <span>📣 − Meta Ad Spend (via Ad Rail, incl. 3% agency fee)</span><span class="red" id="pl-ads">$0</span>
-        <span>🏢 − Operating Expenses (tools, domains, subscriptions)</span><span class="red" id="pl-opex">$0</span>
+        <span style="font-weight:700;color:var(--accent2);padding-top:6px">🏢 Operating Expenses Breakdown:</span><span></span>
+        <div id="pl-opex-items" style="grid-column:1/-1;display:flex;flex-direction:column;gap:2px;padding:4px 0 4px 20px;border-left:2px solid var(--border);margin:2px 0"></div>
+        <span style="font-weight:600">　　Total Operating Expenses</span><span class="red" style="font-weight:600" id="pl-opex">$0</span>
+        <div style="grid-column:1/-1;text-align:right;padding:2px 0">
+          <button onclick="showExpenseEditor()" style="background:var(--accent);color:#fff;border:none;border-radius:4px;padding:3px 10px;font-size:9px;cursor:pointer;font-family:inherit">✏️ Edit Expenses</button>
+        </div>
         <span class="pl-sep">Pre-Tax Profit (EBIT)</span><span class="pl-sep" id="pl-pretax">$0</span>
         <span>🏛️ − Corporation Tax Provision (19% small profits rate)</span><span class="red" id="pl-tax">$0</span>
         <span class="pl-total">Net Profit After Tax (Est.)</span><span class="pl-total" id="pl-net">$0</span>
@@ -1545,6 +1550,20 @@ function render(){
   document.getElementById('pl-cogs').textContent=f(totCogs);
   document.getElementById('pl-gross').textContent=f(grossProfit);document.getElementById('pl-gross').className='pl-sep '+(grossProfit>=0?'green':'red');
   document.getElementById('pl-ads').textContent=f(totAds);
+  // Itemized expense breakdown in P&L
+  const plItems=document.getElementById('pl-opex-items');
+  if(plItems){
+    const periodDays=(_from&&_to)?Math.max(1,Math.round((new Date(_to+'T23:59:59')-new Date(_from+'T00:00:00'))/86400000)+1):30;
+    plItems.innerHTML=D.companyExpenses.filter(e=>e.amount!==0).map(e=>{
+      let amt=0;
+      if(e.frequency==='monthly')amt=e.amount*(periodDays/30.44);
+      else if(e.frequency==='annual')amt=e.amount*(periodDays/365.25);
+      else amt=e.amount; // one-time
+      const vFlag=e.verified?'':'<span title="Unverified — tell Forge the real amount" style="color:var(--amber)">*</span>';
+      const freq=e.frequency==='monthly'?'/mo':e.frequency==='annual'?'/yr':'one-time';
+      return'<div style="display:flex;justify-content:space-between;font-size:10px;padding:1px 0"><span style="color:var(--muted)">'+e.name+' <span style="opacity:.5">('+freq+')</span> '+vFlag+'</span><span class="red">'+f(Math.abs(amt))+'</span></div>';
+    }).join('');
+  }
   document.getElementById('pl-opex').textContent=f(totalOpex);
   document.getElementById('pl-pretax').textContent=f(preTax);document.getElementById('pl-pretax').className='pl-sep '+(preTax>=0?'green':'red');
   document.getElementById('pl-tax').textContent=f(taxEst);
@@ -1812,6 +1831,51 @@ async function loadFromJSON(){
     try{renderTaskLog(j);}catch(e){console.error('TaskLog:',e);}
     render();toast('Synced from Forge');
   }catch(e){console.error('loadFromJSON error:',e);}
+}
+
+// ===== EXPENSE EDITOR =====
+function showExpenseEditor(){
+  let el=document.getElementById('expense-modal');
+  if(el){el.remove();}
+  const m=document.createElement('div');m.id='expense-modal';
+  m.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px';
+  const c=D.company.currency||'$';
+  let html='<div style="background:var(--card);border-radius:12px;padding:20px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto;border:1px solid var(--border)">';
+  html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="margin:0;font-size:16px">✏️ Expense Manager</h3><button onclick="document.getElementById(\'expense-modal\').remove()" style="background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer">✕</button></div>';
+  html+='<div style="font-size:9px;color:var(--amber);margin-bottom:12px">⚠️ Changes save to localStorage. Tell Forge via Telegram to make them permanent in JSON.</div>';
+  html+='<table style="width:100%;border-collapse:collapse;font-size:11px"><thead><tr style="border-bottom:1px solid var(--border)"><th style="text-align:left;padding:4px">Name</th><th style="text-align:right;padding:4px">Amount</th><th style="text-align:center;padding:4px">Freq</th><th style="text-align:center;padding:4px">Cat</th><th style="width:30px"></th></tr></thead><tbody>';
+  D.companyExpenses.forEach((e,i)=>{
+    html+='<tr style="border-bottom:1px solid var(--border)">';
+    html+='<td style="padding:4px"><input type="text" value="'+e.name.replace(/"/g,'&quot;')+'" data-idx="'+i+'" data-f="name" onchange="editExp(this)" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:2px 6px;color:var(--text);width:100%;font-size:10px;font-family:inherit"></td>';
+    html+='<td style="padding:4px;text-align:right"><input type="number" step="0.01" value="'+e.amount+'" data-idx="'+i+'" data-f="amount" onchange="editExp(this)" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:2px 6px;color:var(--text);width:70px;text-align:right;font-size:10px;font-family:inherit"></td>';
+    html+='<td style="padding:4px;text-align:center"><select data-idx="'+i+'" data-f="frequency" onchange="editExp(this)" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:2px 4px;color:var(--text);font-size:9px;font-family:inherit"><option value="monthly"'+(e.frequency==='monthly'?' selected':'')+'>Monthly</option><option value="annual"'+(e.frequency==='annual'?' selected':'')+'>Annual</option><option value="one-time"'+(e.frequency==='one-time'?' selected':'')+'>One-time</option></select></td>';
+    html+='<td style="padding:4px;text-align:center"><input type="text" value="'+(e.category||'Other')+'" data-idx="'+i+'" data-f="category" onchange="editExp(this)" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:2px 4px;color:var(--text);width:80px;font-size:9px;font-family:inherit"></td>';
+    html+='<td style="padding:4px"><button onclick="delExp('+i+')" style="background:var(--red);color:#fff;border:none;border-radius:4px;padding:2px 6px;font-size:9px;cursor:pointer">✕</button></td>';
+    html+='</tr>';
+  });
+  html+='</tbody></table>';
+  html+='<div style="margin-top:12px;display:flex;gap:8px"><button onclick="addExp()" style="background:var(--green);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:11px;cursor:pointer;font-family:inherit">+ Add Expense</button>';
+  html+='<button onclick="document.getElementById(\'expense-modal\').remove()" style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:11px;cursor:pointer;font-family:inherit">Done</button></div>';
+  html+='</div>';
+  m.innerHTML=html;
+  document.body.appendChild(m);
+}
+function editExp(el){
+  const i=+el.dataset.idx,field=el.dataset.f;
+  D.companyExpenses[i][field]=field==='amount'?parseFloat(el.value)||0:el.value;
+  localStorage.setItem('companyExpenses',JSON.stringify(D.companyExpenses));
+  render();
+}
+function delExp(i){
+  if(!confirm('Delete "'+D.companyExpenses[i].name+'"?'))return;
+  D.companyExpenses.splice(i,1);
+  localStorage.setItem('companyExpenses',JSON.stringify(D.companyExpenses));
+  render();showExpenseEditor();
+}
+function addExp(){
+  D.companyExpenses.push({id:'exp_new_'+Date.now(),name:'New Expense',amount:0,frequency:'monthly',category:'Other',verified:false});
+  localStorage.setItem('companyExpenses',JSON.stringify(D.companyExpenses));
+  render();showExpenseEditor();
 }
 
 // ===== EXPORT =====
