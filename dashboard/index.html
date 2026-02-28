@@ -82,7 +82,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
       <a href="../guides/master-strategy.html" style="font-size:10px;text-decoration:none;color:var(--muted);padding:3px 8px;border-radius:4px;background:var(--bg);transition:all .15s" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">🗺️ Strategy</a>
     </div>
   </div>
-  <div style="font-size:9px;color:var(--muted)">Anton Empire · v3.2</div>
+  <div style="font-size:9px;color:var(--muted)">Anton Empire · v3.3 · <span id="last-updated" style="color:var(--green)"></span></div>
 </div>
 
 <div class="ctr">
@@ -1513,6 +1513,9 @@ function getFilteredExpenseTotal(from, to) {
 function render(){
   const c=D.company.currency||'$';
   const f=n=>(n>=0?c:'-'+c)+Math.abs(n).toFixed(2);
+  // Last updated indicator
+  const luEl=document.getElementById('last-updated');
+  if(luEl&&D.lastUpdated){const d=new Date(D.lastUpdated);const ago=Math.round((Date.now()-d.getTime())/60000);luEl.textContent=ago<60?ago+'m ago':ago<1440?Math.round(ago/60)+'h ago':Math.round(ago/1440)+'d ago';luEl.style.color=ago<120?'var(--green)':ago<720?'var(--amber)':'var(--red)';}
 
   // Daily totals (filtered by period)
   const _fResult=getFilteredDaily();
