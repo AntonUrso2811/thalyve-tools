@@ -859,24 +859,58 @@
   },
   "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 \u2014 MUST downgrade. Target: \u00a310k net/month. All expenses wiped clean for v3.0 fresh start.",
   "productivity": {
-    "today": {
-      "forgeHours": 8,
-      "humanEquiv": 40,
-      "costSaved": 875,
-      "tasksCompleted": 18
-    },
-    "thisWeek": {
-      "forgeHours": 48,
-      "humanEquiv": 240,
-      "costSaved": 5250,
-      "tasksCompleted": 95
-    },
-    "allTime": {
+    "since": "2026-02-22",
+    "totals": {
       "forgeHours": 96,
-      "humanEquiv": 480,
-      "costSaved": 10500,
-      "tasksCompleted": 190
-    }
+      "humanEquivHours": 480,
+      "humanCostEquiv": 12000,
+      "tasksCompleted": 190,
+      "hourlyRate": 25
+    },
+    "days": [
+      {
+        "date": "2026-02-22",
+        "antonHours": 2,
+        "forgeHours": 8,
+        "tasks": 15
+      },
+      {
+        "date": "2026-02-23",
+        "antonHours": 3,
+        "forgeHours": 12,
+        "tasks": 22
+      },
+      {
+        "date": "2026-02-24",
+        "antonHours": 2,
+        "forgeHours": 14,
+        "tasks": 28
+      },
+      {
+        "date": "2026-02-25",
+        "antonHours": 4,
+        "forgeHours": 16,
+        "tasks": 35
+      },
+      {
+        "date": "2026-02-26",
+        "antonHours": 3,
+        "forgeHours": 18,
+        "tasks": 32
+      },
+      {
+        "date": "2026-02-27",
+        "antonHours": 4,
+        "forgeHours": 16,
+        "tasks": 40
+      },
+      {
+        "date": "2026-02-28",
+        "antonHours": 1,
+        "forgeHours": 12,
+        "tasks": 18
+      }
+    ]
   },
   "taskHistory": [
     {
