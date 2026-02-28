@@ -2173,7 +2173,7 @@ function addExp(){
 }
 
 // ===== EXPORT =====
-function forceRefresh(){localStorage.clear();toast('Cache cleared — reloading...');setTimeout(()=>location.reload(true),500);}
+function forceRefresh(){localStorage.clear();toast('Cache cleared — reloading...');setTimeout(()=>{window.location.href=window.location.pathname+'?bust='+Date.now()+(window.location.hash||'');},500);}
 function exportAll(){
   let csv='Date,Brand,Product,Orders,Revenue,Ad Spend,COGS,Profit,ROAS\n';
   D.daily.forEach(e=>{const p=e.revenue-e.adSpend-e.cogs;csv+=`${e.date},"${e.brandName}","${e.productName}",${e.orders},${e.revenue.toFixed(2)},${e.adSpend.toFixed(2)},${e.cogs.toFixed(2)},${p.toFixed(2)},${e.adSpend>0?(e.revenue/e.adSpend).toFixed(2):'0'}\n`;});
@@ -2578,8 +2578,22 @@ document.getElementById('s-margin').value=D.company.targetNetMargin;
 document.getElementById('d-brand').onchange=updateProdDropdown;
 render();
 loadFromJSON();
+
+// ===== AUTO-FRESHNESS CHECK =====
+// Every 60s, check if JSON has been updated. If so, reload data silently.
+setInterval(async()=>{
+  try{
+    const r=await fetch('company-data.json?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return;
+    const j=await r.json();
+    if(j.lastUpdated&&D.lastUpdated&&j.lastUpdated!==D.lastUpdated){
+      console.log('Data updated, refreshing...');
+      loadFromJSON();
+    }
+  }catch(e){}
+},60000);
 </script>
 </body>
 </html>
 
-<!-- cache-bust: 1772268554 -->
+<!-- cache-bust: ${Date.now()} -->
