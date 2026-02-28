@@ -748,7 +748,8 @@
       "responsibilities": "Strategy, final decisions, Mutual sourcing, ad account ownership, financial oversight",
       "notes": "20-30 min/week operational input. Guides direction, Forge executes.",
       "strengths": "Systems thinking, discipline (75 Hard), quality standards, pattern recognition",
-      "style": "Voice-first communicator. Prefers finished products over updates."
+      "style": "Voice-first communicator. Prefers finished products over updates.",
+      "domain": "business"
     },
     {
       "id": "forge",
@@ -764,7 +765,8 @@
       "responsibilities": "Operations, product research, tool building, SOP creation, sub-agent hiring, daily briefings, automation",
       "notes": "Runs 24/7. Autonomous execution with full hiring authority.",
       "strengths": "Multi-tasking, SOP creation, rapid execution, memory management, code/tools",
-      "style": "Delivers finished products. No check-ins. Flags risks immediately."
+      "style": "Delivers finished products. No check-ins. Flags risks immediately.",
+      "domain": "business"
     },
     {
       "id": "hawk",
@@ -780,7 +782,8 @@
       "responsibilities": "Google Trends analysis, market research, trending product identification, competitive intelligence",
       "notes": "Trigger: when research volume exceeds Forge's capacity.",
       "strengths": "Data analysis, trend detection, competitor monitoring, market sizing",
-      "style": "Delivers weekly intelligence briefs. Speaks in data, not opinions."
+      "style": "Delivers weekly intelligence briefs. Speaks in data, not opinions.",
+      "domain": "business"
     },
     {
       "id": "scout",
@@ -796,14 +799,15 @@
       "responsibilities": "GetHookd ad analysis, creative swipe library, ad script writing, creative angle identification",
       "notes": "Trigger: when we have 5+ validated products needing creative.",
       "strengths": "Ad pattern recognition, hook writing, competitor creative analysis, angle testing",
-      "style": "Builds creative briefs. Catalogues winning ad patterns."
+      "style": "Builds creative briefs. Catalogues winning ad patterns.",
+      "domain": "business"
     },
     {
       "id": "quill",
       "name": "Quill",
       "role": "Copywriter & Content Agent",
       "type": "ai-agent",
-      "status": "planned",
+      "status": "active",
       "since": null,
       "phase": "Phase 3 \u00b7 Week 4-6",
       "emoji": "\u270d\ufe0f",
@@ -812,7 +816,8 @@
       "responsibilities": "Ad copy, product descriptions, email sequences, landing page copy",
       "notes": "Trigger: first product ready for ad launch. Must match Anton's anti-shortcut voice.",
       "strengths": "Conversion copywriting, brand voice, email funnels, compliance-safe claims",
-      "style": "Writes like Anton talks. Direct, real, no fluff. Every word earns its place."
+      "style": "Writes like Anton talks. Direct, real, no fluff. Every word earns its place.",
+      "domain": "business"
     },
     {
       "id": "lens",
@@ -828,7 +833,8 @@
       "responsibilities": "Video ad scripting, UGC brief creation, creative production pipeline",
       "notes": "Trigger: when ad creative pipeline needs scaling.",
       "strengths": "Video hooks, UGC briefs, storyboarding, creative testing frameworks",
-      "style": "Thinks in 3-second hooks. Every frame has a job."
+      "style": "Thinks in 3-second hooks. Every frame has a job.",
+      "domain": "business"
     }
   ],
   "dailyCriticalTasks": {
@@ -941,5 +947,68 @@
         "done": 5
       }
     }
-  ]
+  ],
+  "members": {
+    "anton": {
+      "name": "Anton",
+      "tasks": [
+        {
+          "text": "Don't touch ads \u2014 Day 2 of 48hr no-touch rule",
+          "done": false,
+          "time": 0
+        },
+        {
+          "text": "Screenshot Ads Manager \u2192 send to Forge (data collection only)",
+          "done": false,
+          "time": 5
+        },
+        {
+          "text": "Deep work \u2014 4 Pomodoro cycles (6:40-11:00)",
+          "done": false,
+          "time": 280
+        },
+        {
+          "text": "GetHookd: verify Smart Posture Corrector (20 min)",
+          "done": false,
+          "time": 20
+        },
+        {
+          "text": "Message Mutual Express for COGS quotes (Posture Corrector + LED Mask)",
+          "done": false,
+          "time": 10
+        }
+      ]
+    },
+    "forge": {
+      "name": "Forge",
+      "tasks": [
+        {
+          "text": "Rebuild Personal Hub (nutrition, training, 75 Hard)",
+          "done": false,
+          "time": 60
+        },
+        {
+          "text": "Rebuild Expenses tab (Monthly Recurring vs Invoices)",
+          "done": false,
+          "time": 45
+        },
+        {
+          "text": "Fix all dashboard rendering issues (localStorage, team, task log)",
+          "done": true,
+          "time": 30
+        },
+        {
+          "text": "Build dynamic critical tasks cron around schedule",
+          "done": false,
+          "time": 30
+        },
+        {
+          "text": "Update all SOPs to reflect current state",
+          "done": false,
+          "time": 40
+        }
+      ]
+    },
+    "_date": "2026-02-28"
+  }
 }
