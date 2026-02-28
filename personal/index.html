@@ -70,36 +70,116 @@ tr:hover td{background:rgba(20,184,166,.03)}
     <div class="tab" onclick="nav('goals',this)">🎯 Goals</div>
     <div class="tab" onclick="window.location='execution/'">🔥 Execution OS</div>
     <div class="tab" onclick="nav('sops',this)">📁 SOPs</div>
-      <a href="../funnel/" style="font-size:10px;text-decoration:none;color:#999;padding:3px 8px;border-radius:4px;background:#1a1a1a;transition:all .15s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#999'">🔄 Funnel</a>  </div>
+  </div>
 
   <!-- HEALTH OVERVIEW -->
   <div class="page active" id="p-health">
-    <div class="hl hl-g">
-      <h3 style="font-size:14px;margin-bottom:4px">💪 Health & Personal Optimisation</h3>
-      <p style="font-size:11px;color:var(--muted)">Paul Saladino-inspired approach. Train hard, eat clean, optimise everything.</p>
+    <!-- Hero Banner -->
+    <div style="background:linear-gradient(135deg,rgba(20,184,166,.08),rgba(139,92,246,.06));border:1px solid rgba(20,184,166,.15);border-radius:14px;padding:20px;margin-bottom:16px;position:relative;overflow:hidden">
+      <div style="position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:60px;opacity:.08">💪</div>
+      <div style="font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:6px">Personal Optimisation Dashboard</div>
+      <h2 style="font-size:20px;font-weight:800;margin-bottom:4px">Anton Urso</h2>
+      <p style="font-size:11px;color:var(--muted)">Animal-based nutrition · Foundations-first training · Anti-shortcut philosophy</p>
     </div>
 
-    <div class="grid g6">
-      <div class="card"><div class="sl">Height</div><div class="sv" style="font-size:18px">5'8.5"</div></div>
-      <div class="card"><div class="sl">Weight</div><div class="sv" style="font-size:18px">142 lbs</div></div>
-      <div class="card"><div class="sl">Age</div><div class="sv" style="font-size:18px">25</div></div>
-      <div class="card"><div class="sl">Training</div><div class="sv teal" style="font-size:18px">5x/wk</div></div>
-      <div class="card"><div class="sl">Cardio</div><div class="sv teal" style="font-size:18px">4x Z2</div></div>
-      <div class="card"><div class="sl">Diet</div><div class="sv" style="font-size:14px">Saladino</div></div>
-      <div class="card"><div class="sl">Cheat Meals</div><div class="sv red" style="font-size:16px">Zero</div></div>
+    <!-- Body Stats -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:16px">
+      <div class="card" style="text-align:center;margin:0"><div class="sl">Height</div><div style="font-size:20px;font-weight:800">5'8.5"</div><div style="font-size:9px;color:var(--muted)">174 cm</div></div>
+      <div class="card" style="text-align:center;margin:0"><div class="sl">Weight</div><div style="font-size:20px;font-weight:800">142 lbs</div><div style="font-size:9px;color:var(--muted)">64.4 kg · Target: 145 lbs</div></div>
+      <div class="card" style="text-align:center;margin:0"><div class="sl">Age</div><div style="font-size:20px;font-weight:800">24</div><div style="font-size:9px;color:var(--muted)">Turning 25</div></div>
+      <div class="card" style="text-align:center;margin:0"><div class="sl">TDEE</div><div style="font-size:20px;font-weight:800;color:var(--accent)">~2,900</div><div style="font-size:9px;color:var(--muted)">cal/day</div></div>
+      <div class="card" style="text-align:center;margin:0"><div class="sl">Goal</div><div style="font-size:16px;font-weight:800;color:var(--green)">Lean Recomp</div><div style="font-size:9px;color:var(--muted)">2-3 months</div></div>
+      <div class="card" style="text-align:center;margin:0"><div class="sl">Daily Steps</div><div style="font-size:20px;font-weight:800;color:var(--accent2)">11-13K</div><div style="font-size:9px;color:var(--muted)">target/day</div></div>
+    </div>
+
+    <!-- 75 Hard Challenge -->
+    <div class="card" style="background:linear-gradient(135deg,rgba(239,68,68,.06),rgba(245,158,11,.04));border-color:rgba(239,68,68,.2);margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div>
+          <h2 style="margin:0;font-size:15px;color:var(--red)">🔥 75 Hard Challenge</h2>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">Started Jan 5 · Finishes ~Mar 6</div>
+        </div>
+        <div style="text-align:right">
+          <div id="hard75-day" style="font-size:28px;font-weight:800;color:var(--amber)">Day 64</div>
+          <div id="hard75-left" style="font-size:10px;color:var(--muted)">11 days left</div>
+        </div>
+      </div>
+      <div style="width:100%;height:12px;background:var(--border);border-radius:6px;overflow:hidden;margin-bottom:10px">
+        <div id="hard75-bar" style="height:100%;border-radius:6px;background:linear-gradient(90deg,var(--red),var(--amber),var(--green));transition:width .5s"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;font-size:10px;text-align:center">
+        <div style="background:var(--bg);border-radius:6px;padding:6px;border:1px solid var(--border)"><div style="font-size:14px;margin-bottom:2px">🥗</div><div class="sl">Diet</div><div style="font-weight:700;color:var(--green)">✓</div></div>
+        <div style="background:var(--bg);border-radius:6px;padding:6px;border:1px solid var(--border)"><div style="font-size:14px;margin-bottom:2px">🏋️</div><div class="sl">Workout 1</div><div style="font-weight:700;color:var(--green)">✓</div></div>
+        <div style="background:var(--bg);border-radius:6px;padding:6px;border:1px solid var(--border)"><div style="font-size:14px;margin-bottom:2px">🚶</div><div class="sl">Outdoor 45m</div><div style="font-weight:700;color:var(--green)">✓</div></div>
+        <div style="background:var(--bg);border-radius:6px;padding:6px;border:1px solid var(--border)"><div style="font-size:14px;margin-bottom:2px">💧</div><div class="sl">Water</div><div style="font-weight:700;color:var(--green)">✓</div></div>
+        <div style="background:var(--bg);border-radius:6px;padding:6px;border:1px solid var(--border)"><div style="font-size:14px;margin-bottom:2px">📖</div><div class="sl">Reading</div><div style="font-weight:700;color:var(--green)">✓</div></div>
+      </div>
+    </div>
+
+    <!-- Today's Macros -->
+    <div class="grid g2" style="margin-bottom:12px">
+      <div class="card" style="margin:0">
+        <h2 style="margin-bottom:12px">🍽 Today's Macros <span id="macro-type" style="font-size:9px;color:var(--accent);font-weight:400;background:rgba(20,184,166,.1);padding:2px 8px;border-radius:4px">Training Day</span></h2>
+        <div id="macro-display">
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+            <div style="text-align:center"><div class="sl">Calories</div><div style="font-size:18px;font-weight:800;color:var(--accent)" id="m-cal">2,600</div></div>
+            <div style="text-align:center"><div class="sl">Protein</div><div style="font-size:18px;font-weight:800;color:var(--red)" id="m-pro">165g</div></div>
+            <div style="text-align:center"><div class="sl">Fat</div><div style="font-size:18px;font-weight:800;color:var(--amber)" id="m-fat">73g</div></div>
+            <div style="text-align:center"><div class="sl">Carbs</div><div style="font-size:18px;font-weight:800;color:var(--blue)" id="m-carb">333g</div></div>
+          </div>
+          <div style="display:flex;gap:4px;height:8px;border-radius:4px;overflow:hidden">
+            <div id="bar-pro" style="background:var(--red);border-radius:4px"></div>
+            <div id="bar-fat" style="background:var(--amber);border-radius:4px"></div>
+            <div id="bar-carb" style="background:var(--blue);border-radius:4px"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:8px;color:var(--muted);margin-top:4px">
+            <span>🔴 Protein 25%</span><span>🟡 Fat 25%</span><span>🔵 Carbs 50%</span>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin:0">
+        <h2 style="margin-bottom:12px">🕐 Today's Schedule</h2>
+        <div id="today-routine" style="font-size:10px;line-height:1.8;max-height:200px;overflow-y:auto"></div>
+      </div>
+    </div>
+
+    <!-- Weekly Training Calendar -->
+    <div class="card" style="margin-bottom:12px">
+      <h2>📅 This Week</h2>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;font-size:10px;text-align:center" id="week-cal"></div>
     </div>
 
     <!-- Injuries -->
+    <div class="card" style="margin-bottom:12px">
+      <h2>⚠️ Active Injuries & Management</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px">
+        <div style="background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;padding:12px">
+          <div style="font-weight:700;font-size:12px;margin-bottom:4px">🦵 Left Knee</div>
+          <div style="font-size:10px;color:var(--amber);margin-bottom:4px">Lateral meniscus tear</div>
+          <div style="font-size:9px;color:var(--muted)">Avoid deep squats, monitor load, controlled ROM</div>
+        </div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;padding:12px">
+          <div style="font-weight:700;font-size:12px;margin-bottom:4px">🦵 Right Knee</div>
+          <div style="font-size:10px;color:var(--amber);margin-bottom:4px">Meniscectomy + ACL reconstruction</div>
+          <div style="font-size:9px;color:var(--muted)">Rehab protocol, controlled loading, no heavy bilateral squats</div>
+        </div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:8px;padding:12px">
+          <div style="font-weight:700;font-size:12px;margin-bottom:4px">🔄 Right Scapula</div>
+          <div style="font-size:10px;color:var(--amber);margin-bottom:4px">Scapular dysfunction</div>
+          <div style="font-size:9px;color:var(--muted)">Warm up rotator cuff before pressing, face pulls every session</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sleep Protocol -->
     <div class="card">
-      <h2>⚠️ Active Injuries</h2>
-      <table>
-        <thead><tr><th>Area</th><th>Injury</th><th>Status</th><th>Management</th></tr></thead>
-        <tbody>
-          <tr><td><strong>Left Knee</strong></td><td>Lateral meniscus tear</td><td class="amber">Active</td><td>Avoid deep squats, monitor load</td></tr>
-          <tr><td><strong>Right Knee</strong></td><td>Meniscectomy + ACL reconstruction</td><td class="amber">Post-surgical</td><td>Rehab protocol, controlled loading</td></tr>
-          <tr><td><strong>Right Scapula</strong></td><td>Scapular dysfunction</td><td class="amber">Active</td><td>Physio exercises, postural work</td></tr>
-        </tbody>
-      </table>
+      <h2>😴 Sleep Protocol</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;font-size:10px">
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center"><div class="sl">Wake</div><div style="font-size:16px;font-weight:800">5:00 AM</div></div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center"><div class="sl">Phone Down</div><div style="font-size:16px;font-weight:800">9:00 PM</div><div style="font-size:8px;color:var(--muted)">+ Magnesium 400mg</div></div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center"><div class="sl">Lights Out</div><div style="font-size:16px;font-weight:800">9:15 PM</div></div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center"><div class="sl">Target Sleep</div><div style="font-size:16px;font-weight:800;color:var(--green)">7.5 hrs</div></div>
+      </div>
     </div>
   </div>
 
@@ -143,17 +223,84 @@ tr:hover td{background:rgba(20,184,166,.03)}
 
   <!-- NUTRITION -->
   <div class="page" id="p-nutrition">
-    <div class="card">
-      <h2>🍽 Nutrition Protocol</h2>
-      <div style="padding:14px;background:var(--bg);border-radius:8px;border:1px solid var(--border)">
-        <p style="font-size:13px;font-weight:700;margin-bottom:6px">Current Plan: Meal Plan v4.1</p>
-        <p style="font-size:11px;color:var(--muted);margin-bottom:10px">Paul Saladino-inspired • Same meals daily • No cheat meals • Disciplined</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:12px">
-          <div class="card" style="margin:0;text-align:center"><div class="sl">Approach</div><div style="font-weight:700;font-size:13px">Animal-based</div></div>
-          <div class="card" style="margin:0;text-align:center"><div class="sl">Consistency</div><div style="font-weight:700;font-size:13px;color:var(--green)">Same daily</div></div>
-          <div class="card" style="margin:0;text-align:center"><div class="sl">Cheat Meals</div><div style="font-weight:700;font-size:13px;color:var(--red)">None</div></div>
+    <!-- Macro Summary Cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div class="card" style="margin:0;border-left:3px solid var(--green)">
+        <div style="font-size:10px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">🏋️ Training Day (Mon-Wed, Fri-Sat)</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center">
+          <div><div class="sl">Calories</div><div style="font-size:18px;font-weight:800;color:var(--accent)">2,600</div></div>
+          <div><div class="sl">Protein</div><div style="font-size:18px;font-weight:800;color:var(--red)">165g</div></div>
+          <div><div class="sl">Fat</div><div style="font-size:18px;font-weight:800;color:var(--amber)">73g</div></div>
+          <div><div class="sl">Carbs</div><div style="font-size:18px;font-weight:800;color:var(--blue)">333g</div></div>
         </div>
-        <p style="font-size:10px;color:var(--muted);margin-top:12px">📄 Full plan: <code>health/meal-plan.html</code> — ask Forge to send latest version via Telegram</p>
+        <div style="font-size:9px;color:var(--muted);margin-top:6px;text-align:center">3 meals · Slight surplus for lean recomp</div>
+      </div>
+      <div class="card" style="margin:0;border-left:3px solid var(--blue)">
+        <div style="font-size:10px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">🧘 Rest Day (Thu, Sun)</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center">
+          <div><div class="sl">Calories</div><div style="font-size:18px;font-weight:800;color:var(--accent)">2,350</div></div>
+          <div><div class="sl">Protein</div><div style="font-size:18px;font-weight:800;color:var(--red)">178g</div></div>
+          <div><div class="sl">Fat</div><div style="font-size:18px;font-weight:800;color:var(--amber)">85g</div></div>
+          <div><div class="sl">Carbs</div><div style="font-size:18px;font-weight:800;color:var(--blue)">227g</div></div>
+        </div>
+        <div style="font-size:9px;color:var(--muted);margin-top:6px;text-align:center">2 meals · Higher protein, lower carbs</div>
+      </div>
+    </div>
+
+    <!-- Training Day Meals -->
+    <div class="card" style="margin-bottom:12px">
+      <h2>🏋️ Training Day Meals (3 meals)</h2>
+      <div style="display:grid;gap:10px">
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div><span style="font-weight:700;font-size:13px">Meal 1 — Pre-Workout</span><span style="font-size:10px;color:var(--muted);margin-left:8px">~10:30 AM</span></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.8">
+            🥩 200g ground beef (5% fat), crispy with 5g tallow + Knorr stock pot<br>
+            🍌 2 bananas + 3 tbsp honey (in the bowl, not on the side)<br>
+            🥝 Kiwi (75g)
+          </div>
+        </div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div><span style="font-weight:700;font-size:13px">Meal 2 — Post-Workout Shake</span><span style="font-size:10px;color:var(--muted);margin-left:8px">~2:15 PM</span></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.8">
+            🥤 1 scoop (30g) whey + 200g frozen berries + 1 banana + 2 tbsp honey<br>
+            🥝 Kiwi + 🍐 Pear on the side
+          </div>
+        </div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <div><span style="font-weight:700;font-size:13px">Meal 3 — "The Anton Bowl" 🏆</span><span style="font-size:10px;color:var(--muted);margin-left:8px">~5-6 PM</span></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.8">
+            🥩 200g beef + Knorr stock pot + 5g tallow<br>
+            🥚 4 eggs scrambled (into the sauce for max flavour)<br>
+            🍚 350g cooked rice (140g dry)<br>
+            🥒 150g zucchini · 🥑 75g avocado<br>
+            🧀 30g parmesan (grated fresh off the block)<br>
+            🍅 150g passata · 🍐 Pear (180g)
+          </div>
+          <div style="font-size:9px;color:var(--accent);margin-top:6px">📝 Non-stick pan · Banana/honey IN the bowl · Eggs scrambled into sauce</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rest Day Meals -->
+    <div class="card">
+      <h2>🧘 Rest Day Meals (2 meals)</h2>
+      <div style="display:grid;gap:10px">
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div><span style="font-weight:700;font-size:13px">Meal 1 — Shake</span><span style="font-size:10px;color:var(--muted);margin-left:8px">~12:00 PM</span></div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.8;margin-top:6px">Same post-workout shake + kiwi & pear on side</div>
+        </div>
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div><span style="font-weight:700;font-size:13px">Meal 2 — Big Anton Bowl 🏆</span><span style="font-size:10px;color:var(--muted);margin-left:8px">~5-6 PM</span></div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.8;margin-top:6px">
+            🥩 <strong>400g beef</strong> (double) + 4 eggs + <strong>450g cooked rice</strong> + all toppings
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -276,6 +423,127 @@ function renderSOPs(){
   }).join('');
 }
 
+// ===== DYNAMIC HEALTH DATA =====
+const H75_START = new Date('2026-01-05');
+const TRAINING_DAYS = [1,2,3,5,6]; // Mon-Wed, Fri, Sat
+const ZONE2_DAYS = [1,2,4,0]; // Mon, Tue, Thu, Sun
+const REST_DAYS = [0,4]; // Sun, Thu
+
+function isTrainingDay(d) { return TRAINING_DAYS.includes(d || new Date().getDay()); }
+
+function render75Hard() {
+  const now = new Date();
+  const day = Math.floor((now - H75_START) / 86400000) + 1;
+  const left = Math.max(0, 75 - day);
+  const pct = Math.min(100, (day/75)*100);
+  const el1 = document.getElementById('hard75-day');
+  const el2 = document.getElementById('hard75-left');
+  const el3 = document.getElementById('hard75-bar');
+  if(el1) el1.textContent = day >= 75 ? '🎉 COMPLETE!' : 'Day ' + day;
+  if(el2) el2.textContent = day >= 75 ? 'Challenge completed!' : left + ' day' + (left!==1?'s':'') + ' left';
+  if(el3) el3.style.width = pct + '%';
+}
+
+function renderMacros() {
+  const training = isTrainingDay();
+  document.getElementById('macro-type').textContent = training ? 'Training Day' : 'Rest Day';
+  document.getElementById('m-cal').textContent = training ? '2,600' : '2,350';
+  document.getElementById('m-pro').textContent = training ? '165g' : '178g';
+  document.getElementById('m-fat').textContent = training ? '73g' : '85g';
+  document.getElementById('m-carb').textContent = training ? '333g' : '227g';
+  // Macro bar ratios
+  const p = training ? 165*4 : 178*4;
+  const f = training ? 73*9 : 85*9;
+  const c = training ? 333*4 : 227*4;
+  const total = p+f+c;
+  document.getElementById('bar-pro').style.width = (p/total*100)+'%';
+  document.getElementById('bar-fat').style.width = (f/total*100)+'%';
+  document.getElementById('bar-carb').style.width = (c/total*100)+'%';
+}
+
+function renderWeekCal() {
+  const el = document.getElementById('week-cal');
+  if (!el) return;
+  const now = new Date();
+  const dayOfWeek = now.getDay();
+  const monday = new Date(now); monday.setDate(now.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+  const dayNames = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const dayNums = [1,2,3,4,5,6,0];
+  let html = '';
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(monday); d.setDate(monday.getDate() + i);
+    const dn = dayNums[i];
+    const isToday = d.toDateString() === now.toDateString();
+    const isPast = d < new Date(now.toDateString());
+    const hasWeights = TRAINING_DAYS.includes(dn);
+    const hasZ2 = ZONE2_DAYS.includes(dn);
+    const isRest = REST_DAYS.includes(dn);
+    const bg = isToday ? 'rgba(20,184,166,.15)' : 'var(--bg)';
+    const border = isToday ? '2px solid var(--accent)' : '1px solid var(--border)';
+    html += `<div style="background:${bg};border:${border};border-radius:8px;padding:8px 4px">
+      <div style="font-weight:${isToday?'800':'500'};color:${isToday?'var(--accent)':'var(--text)'};margin-bottom:4px">${dayNames[i]}</div>
+      <div style="font-size:9px;color:var(--muted)">${d.getDate()}/${d.getMonth()+1}</div>
+      <div style="margin-top:6px;display:flex;flex-direction:column;gap:2px;align-items:center">
+        ${hasWeights?'<span style="font-size:8px;background:rgba(139,92,246,.15);color:var(--purple);padding:1px 4px;border-radius:3px">🏋️ Weights</span>':''}
+        ${hasZ2?'<span style="font-size:8px;background:rgba(20,184,166,.15);color:var(--accent);padding:1px 4px;border-radius:3px">🫀 Zone 2</span>':''}
+        ${isRest&&!hasWeights&&!hasZ2?'<span style="font-size:8px;background:rgba(113,113,122,.1);color:var(--muted);padding:1px 4px;border-radius:3px">🧘 Rest</span>':''}
+      </div>
+    </div>`;
+  }
+  el.innerHTML = html;
+}
+
+function renderTodayRoutine() {
+  const el = document.getElementById('today-routine');
+  if (!el) return;
+  const isRest = REST_DAYS.includes(new Date().getDay());
+  const routine = isRest ? [
+    {t:'05:00',l:'Wake → Hygiene, Hydrate'},
+    {t:'05:15',l:'Walk + Zone 2 (fasted)'},
+    {t:'06:30',l:'Deep Work (4hr max)'},
+    {t:'10:30',l:'Mobility'},
+    {t:'12:00',l:'Meal 1 (shake)'},
+    {t:'14:00',l:'Light work, reading, recovery'},
+    {t:'17:00',l:'Meal 2 (Big Anton Bowl)'},
+    {t:'21:00',l:'Magnesium → 21:15 Lights out'},
+  ] : [
+    {t:'05:00',l:'Wake → Hygiene, Hydrate'},
+    {t:'05:15',l:'45min Walk (75 Hard outdoor)'},
+    {t:'06:15',l:'Deep Work Block (4hr max)'},
+    {t:'10:15',l:'Mobility (neck/shoulder)'},
+    {t:'10:30',l:'Meal 1 + Italian listening'},
+    {t:'12:00',l:'Walk to gym'},
+    {t:'12:15',l:'Weights (~1hr)'},
+    {t:'13:15',l:'Zone 2 (Mon/Tue only)'},
+    {t:'14:15',l:'Walk home → Shake → Shower'},
+    {t:'14:30',l:'Meditation (10min)'},
+    {t:'15:00',l:'Meal 3 (The Anton Bowl)'},
+    {t:'16:00',l:'Work Block 2 (hard focus)'},
+    {t:'19:00',l:'Light work'},
+    {t:'20:00',l:'Italian practice'},
+    {t:'21:00',l:'Magnesium → 21:15 Lights out'},
+  ];
+  // Highlight current time slot
+  const nowH = new Date().getHours();
+  const nowM = new Date().getMinutes();
+  const nowMin = nowH*60+nowM;
+  el.innerHTML = routine.map((r,i) => {
+    const [h,m] = r.t.split(':').map(Number);
+    const rMin = h*60+m;
+    const nextMin = i<routine.length-1 ? (() => { const [nh,nm] = routine[i+1].t.split(':').map(Number); return nh*60+nm; })() : 24*60;
+    const isCurrent = nowMin >= rMin && nowMin < nextMin;
+    const isPast = nowMin >= nextMin;
+    return `<div style="display:flex;gap:8px;padding:3px 6px;border-radius:4px;${isCurrent?'background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.2)':''}${isPast?';opacity:.5':''}">
+      <span style="font-weight:700;color:${isCurrent?'var(--accent)':'var(--muted)'};min-width:36px">${r.t}</span>
+      <span style="color:${isCurrent?'var(--text)':'var(--muted)'}">${isCurrent?'👉 ':''} ${r.l}</span>
+    </div>`;
+  }).join('');
+}
+
+render75Hard();
+renderMacros();
+renderWeekCal();
+renderTodayRoutine();
 renderTeam();
 renderSOPs();
 </script>
