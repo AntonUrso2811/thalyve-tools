@@ -1190,6 +1190,22 @@
         "category": "business",
         "notes": "Automated Mon 3AM cron \u2014 3-5 new products",
         "done": false
+      },
+      {
+        "id": "evt_gethookd_call",
+        "title": "GetHookd 1-on-1 Call \u2014 Akos Gado",
+        "date": "2026-03-03",
+        "time": "18:45",
+        "category": "business",
+        "notes": "ESS Support Call via HubSpot"
+      },
+      {
+        "id": "evt_haircut_mar5",
+        "title": "Haircut",
+        "date": "2026-03-05",
+        "time": "12:00",
+        "category": "personal",
+        "notes": ""
       }
     ],
     "routine": {
