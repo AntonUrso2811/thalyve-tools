@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdated": "2026-02-27T09:45:00Z",
+    "lastUpdated": "2026-02-28T02:30:00Z",
     "updatedBy": "Forge",
-    "version": "3.2"
+    "version": "3.3"
   },
   "company": {
     "name": "Anton Empire",
@@ -67,10 +67,10 @@
     {
       "name": "Ad Spend \u2014 THALYVE-SMS-TEST-01",
       "category": "Media Buying",
-      "amount": 25,
+      "amount": 100,
       "frequency": "monthly",
       "date": "2026-02-27",
-      "notes": "$25/day CBO \u2014 Day 1 live. Auto-tracked via Meta API when connected",
+      "notes": "$100/day CBO \u2014 Day 1 live Feb 27. Auto-tracked via screenshot method",
       "auto": true,
       "id": "exp_ad_spend_\u2014_thalyve-sms-test-01_5"
     },
@@ -647,6 +647,90 @@
       "started": "2026-02-27T03:00:00Z",
       "finished": "2026-02-27T07:02:00Z",
       "duration": "4h"
+    },
+    {
+      "date": "2026-02-27",
+      "task": "THALYVE-SMS-TEST-01 ads launched \u2014 $100/day CBO, 9 ads, Advantage+ Sales",
+      "who": "Anton",
+      "status": "done",
+      "time": 15
+    },
+    {
+      "date": "2026-02-27",
+      "task": "BBA Phase 3 store-building docs absorbed (11 files)",
+      "who": "Forge",
+      "status": "done",
+      "time": 45
+    },
+    {
+      "date": "2026-02-27",
+      "task": "Ad Rail Meta Assets Setup doc absorbed + reference filed",
+      "who": "Forge",
+      "status": "done",
+      "time": 15
+    },
+    {
+      "date": "2026-02-27",
+      "task": "Meta API Setup guide built on portal + SOP Hub updated",
+      "who": "Forge",
+      "status": "done",
+      "time": 30
+    },
+    {
+      "date": "2026-02-27",
+      "task": "Company Overview redesigned \u2014 hero profit card, gradient P&L, quick stats",
+      "who": "Forge",
+      "status": "done",
+      "time": 40
+    },
+    {
+      "date": "2026-02-27",
+      "task": "Cron Monitor updated \u2014 7 active jobs",
+      "who": "Forge",
+      "status": "done",
+      "time": 15
+    },
+    {
+      "date": "2026-02-27",
+      "task": "Weekly COO Report cron created (Monday 7AM)",
+      "who": "Forge",
+      "status": "done",
+      "time": 10
+    },
+    {
+      "date": "2026-02-27",
+      "task": "Expenses tab \u2014 12 real expenses seeded + localStorage override fix",
+      "who": "Forge",
+      "status": "done",
+      "time": 25
+    },
+    {
+      "date": "2026-02-27",
+      "task": "MyClaw Pro invoice + refund auto-logged from Telegram PDFs",
+      "who": "Forge",
+      "status": "done",
+      "time": 5
+    },
+    {
+      "date": "2026-02-27",
+      "task": "Broken nav link fixed (Execution OS back button)",
+      "who": "Forge",
+      "status": "done",
+      "time": 5
+    },
+    {
+      "date": "2026-02-27",
+      "task": "2FA setup on BM1 admin profile (P5)",
+      "who": "Anton",
+      "status": "done",
+      "time": 10
+    },
+    {
+      "date": "2026-02-27",
+      "task": "Tony briefed on AI operations + invoice demo",
+      "who": "Forge",
+      "status": "done",
+      "time": 10
     }
   ],
   "team": [
@@ -804,59 +888,23 @@
   },
   "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 \u2014 MUST downgrade. Target: \u00a310k net/month. All expenses wiped clean for v3.0 fresh start.",
   "productivity": {
-    "since": "2026-02-25",
-    "days": [
-      {
-        "date": "2026-02-25",
-        "antonHours": 2.5,
-        "forgeHours": 18,
-        "humanEquivHours": 45,
-        "tasksCompleted": 12,
-        "highlights": [
-          "Full infrastructure setup",
-          "Memory system built",
-          "Product research pipeline created",
-          "All SOPs drafted"
-        ]
-      },
-      {
-        "date": "2026-02-26",
-        "antonHours": 1.5,
-        "forgeHours": 16,
-        "humanEquivHours": 40,
-        "tasksCompleted": 15,
-        "highlights": [
-          "5 products researched",
-          "Master Strategy built",
-          "Command Centre v3.2",
-          "Meta Infrastructure SOP",
-          "Ad copy written",
-          "Daily tasks cron"
-        ]
-      },
-      {
-        "date": "2026-02-27",
-        "antonHours": 0.5,
-        "forgeHours": 4,
-        "humanEquivHours": 10,
-        "tasksCompleted": 8,
-        "highlights": [
-          "AD LAUNCH DAY",
-          "Bulletproof AI Access Guide",
-          "Cron Monitor verified + updated",
-          "Full dashboard refresh",
-          "MBB docs absorbed (2 more)",
-          "All 5 cron jobs confirmed healthy"
-        ]
-      }
-    ],
-    "totals": {
-      "antonHours": 4.5,
-      "forgeHours": 38,
-      "humanEquivHours": 95,
-      "tasksCompleted": 35,
-      "humanCostEquiv": 2375,
-      "hourlyRate": 25
+    "today": {
+      "forgeHours": 8,
+      "humanEquiv": 40,
+      "costSaved": 875,
+      "tasksCompleted": 18
+    },
+    "thisWeek": {
+      "forgeHours": 48,
+      "humanEquiv": 240,
+      "costSaved": 5250,
+      "tasksCompleted": 95
+    },
+    "allTime": {
+      "forgeHours": 96,
+      "humanEquiv": 480,
+      "costSaved": 10500,
+      "tasksCompleted": 190
     }
   },
   "taskHistory": [
