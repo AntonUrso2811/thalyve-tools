@@ -638,8 +638,8 @@ function render(){
   } else {
     tb.innerHTML=items.map((p,i)=>{
       const sc=p.score>=8?'s-hi':p.score>=5?'s-md':'s-lo';
-      const stM={new:'ch-new',research:'ch-res',source:'ch-src',test:'ch-tst',kill:'ch-kil',scale:'ch-scl'};
-      const stL={new:'New',research:'Research',source:'Sourcing',test:'Testing',kill:'Killed',scale:'Scaling'};
+      const stM={new:'ch-new',research:'ch-res',source:'ch-src',test:'ch-tst',kill:'ch-kil',killed:'ch-kil',scale:'ch-scl'};
+      const stL={new:'New',research:'Research',source:'Sourcing',test:'Testing',kill:'Killed',killed:'Killed',scale:'Scaling'};
       const hasCogs=p.cogs&&p.cogs>0;
       const br=hasCogs&&p.beroas>0?p.beroas.toFixed(2):'—';
       const brc=hasCogs&&p.beroas>0&&p.beroas<=1.5?'m-hi':p.beroas<=2?'m-md':'m-lo';
@@ -687,7 +687,7 @@ function render(){
   sb.innerHTML=ranked.map((p,i)=>{
     const sc=p.score>=8?'s-hi':p.score>=5?'s-md':'s-lo';
     const s=p.scores||{};
-    const dec=p.status==='kill'?'❌ Killed':p.status==='test'?'🟢 Testing':p.status==='scale'?'🚀 Scaling':p.score>=8?'⭐ Strong candidate':p.score>=6?'🔍 Worth investigating':'⚠️ Weak';
+    const dec=(p.status==='kill'||p.status==='killed')?'❌ Killed':p.status==='test'?'🟢 Testing':p.status==='scale'?'🚀 Scaling':p.score>=8?'⭐ Strong candidate':p.score>=6?'🔍 Worth investigating':'⚠️ Weak';
     return`<tr>
       <td>${i+1}</td><td class="pname">${esc(p.name)}</td>
       <td>${s.ad||'—'}</td><td>${s.market||'—'}</td><td>${s.comp||'—'}</td><td>${s.format||'—'}</td>
@@ -850,8 +850,8 @@ function showTT(ev,id){
     return`<div class="tt-row"><span class="tt-key" title="${label}">${label.split('—')[0].trim()}</span><span class="tt-val" style="color:${color}">${val||'—'}/10</span></div>`;
   }).join('');
 
-  const stColors={new:'var(--blue)',research:'var(--accent2)',source:'var(--amber)',test:'var(--green)',kill:'var(--red)',scale:'var(--teal)'};
-  const stNames={new:'New',research:'Researching',source:'Sourcing',test:'Testing',kill:'Killed',scale:'Scaling'};
+  const stColors={new:'var(--blue)',research:'var(--accent2)',source:'var(--amber)',test:'var(--green)',kill:'var(--red)',killed:'var(--red)',scale:'var(--teal)'};
+  const stNames={new:'New',research:'Researching',source:'Sourcing',test:'Testing',kill:'Killed',killed:'Killed',scale:'Scaling'};
   const tl=p.timeline||[];
   const tlHtml=tl.length?tl.map(t=>`<div class="tt-tl-item"><span class="tt-tl-dot" style="background:${stColors[t.to]||'var(--sub)'}"></span><span class="tt-tl-date">${t.date}</span><span>${stNames[t.from]||t.from} → <strong>${stNames[t.to]||t.to}</strong></span></div>`).join(''):`<div class="tt-tl-item" style="color:var(--dim)"><span class="tt-tl-dot" style="background:${stColors[p.status]}"></span><span class="tt-tl-date">${p.date}</span><span>Added as <strong>${stNames[p.status]||p.status}</strong></span></div>`;
 
@@ -897,7 +897,7 @@ function hideTT(){if(ttEl)ttEl.classList.remove('vis')}
 const _origAddProduct=addProduct;
 
 function renderPipeline(){
-  const stages={new:'research',research:'research',source:'source',test:'test',scale:'scale',brand:'brand',kill:'kill'};
+  const stages={new:'research',research:'research',source:'source',test:'test',scale:'scale',brand:'brand',kill:'kill',killed:'kill'};
   const cols={research:[],source:[],test:[],scale:[],brand:[],kill:[]};
   P.forEach(p=>{const s=stages[p.status]||'research';cols[s].push(p)});
 
