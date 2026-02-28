@@ -254,6 +254,91 @@ tr:hover td{background:rgba(139,92,246,.03)}
       </div>
       <div id="o-chart"><div class="empty">Add daily entries to see trends</div></div>
     </div>
+
+    <!-- Expense Breakdown Chart -->
+    <div class="card" style="margin-top:12px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="font-size:16px">💰</span>
+        <h2 style="margin:0;font-size:14px;font-weight:700">Expense Breakdown</h2>
+      </div>
+      <div id="o-expense-chart"></div>
+    </div>
+
+    <!-- Financial Advisor Panel -->
+    <div class="card" style="margin-top:12px;background:linear-gradient(135deg,rgba(20,184,166,.04),rgba(59,130,246,.04))">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+        <span style="font-size:18px">🧮</span>
+        <div>
+          <h2 style="margin:0;font-size:14px;font-weight:700">Financial Advisor</h2>
+          <div style="font-size:10px;color:var(--muted)">Auto-calculated from your real numbers · UK Ltd tax rules</div>
+        </div>
+      </div>
+      <div class="grid" style="grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
+        <div style="background:var(--bg);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)">
+          <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:.5px">Gross Margin</div>
+          <div style="font-size:20px;font-weight:800;margin-top:4px" id="fa-gm">—</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px">Target: 60%+</div>
+        </div>
+        <div style="background:var(--bg);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)">
+          <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:.5px">Net Margin</div>
+          <div style="font-size:20px;font-weight:800;margin-top:4px" id="fa-nm">—</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px">Target: 20-25%</div>
+        </div>
+        <div style="background:var(--bg);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)">
+          <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:.5px">Ad:Revenue Ratio</div>
+          <div style="font-size:20px;font-weight:800;margin-top:4px" id="fa-ar">—</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px">Ideal: 30-40%</div>
+        </div>
+        <div style="background:var(--bg);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)">
+          <div style="font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:.5px">Opex:Revenue Ratio</div>
+          <div style="font-size:20px;font-weight:800;margin-top:4px" id="fa-or">—</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px">Ideal: <10%</div>
+        </div>
+      </div>
+
+      <!-- Salary Calculator -->
+      <div style="background:var(--bg);border-radius:10px;padding:14px;border:1px solid var(--border);margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;margin-bottom:10px;color:var(--teal)">💷 What Can You Pay Yourself?</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <div>
+            <div style="font-size:9px;text-transform:uppercase;color:var(--muted);margin-bottom:2px">Pre-Tax Profit</div>
+            <div style="font-size:16px;font-weight:800" id="fa-pretax">$0</div>
+          </div>
+          <div>
+            <div style="font-size:9px;text-transform:uppercase;color:var(--muted);margin-bottom:2px">Corporation Tax (19%)</div>
+            <div style="font-size:16px;font-weight:800;color:var(--red)" id="fa-tax">$0</div>
+          </div>
+          <div>
+            <div style="font-size:9px;text-transform:uppercase;color:var(--muted);margin-bottom:2px">Available to Draw</div>
+            <div style="font-size:16px;font-weight:800;color:var(--green)" id="fa-draw">$0</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;padding:8px;border-radius:6px;background:rgba(20,184,166,.06);border:1px solid rgba(20,184,166,.15);font-size:10px;color:var(--muted);line-height:1.5" id="fa-advice">
+          📊 No revenue data yet — financial ratios will calculate once ad performance data flows in.
+        </div>
+      </div>
+
+      <!-- Recommended Splits -->
+      <div style="background:var(--bg);border-radius:10px;padding:14px;border:1px solid var(--border)">
+        <div style="font-size:11px;font-weight:700;margin-bottom:10px;color:var(--accent2)">📐 Recommended Profit Allocation</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="width:100%;height:18px;background:var(--card);border-radius:4px;overflow:hidden;display:flex">
+              <div style="width:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff">50% Reinvest</div>
+              <div style="width:20%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff">20% Cash</div>
+              <div style="width:19%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff">19% Tax</div>
+              <div style="width:11%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff">11% Draw</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;font-size:9px;color:var(--muted);flex-wrap:wrap">
+            <span>🟢 50% → Ad spend & inventory (growth)</span>
+            <span>🔵 20% → Cash reserve (3-month runway)</span>
+            <span>🟡 19% → Tax provision (set aside)</span>
+            <span>🟣 11% → Owner's draw (your pay)</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ===== BRAND PAGE ===== -->
@@ -1385,6 +1470,56 @@ function render(){
     const dd=dates.map(dt=>{const e=_fd.filter(d=>d.date===dt);return{date:dt,rev:e.reduce((s,d)=>s+d.revenue,0),prof:e.reduce((s,d)=>s+(d.revenue-d.adSpend-d.cogs),0)};});
     const mx=Math.max(...dd.map(d=>d.rev),1);
     oc.innerHTML=dd.map(d=>{const dt=new Date(d.date+'T12:00:00');const l=dt.toLocaleDateString('en-GB',{day:'numeric',month:'short'});return`<div class="chart-row"><div class="chart-lbl">${l}</div><div class="chart-bg"><div class="chart-bar" style="width:${(d.rev/mx*100).toFixed(1)}%;background:linear-gradient(90deg,var(--accent),var(--accent2))">${f(d.rev)}</div></div><div style="width:50px;text-align:right;font-size:10px;font-weight:600" class="${d.prof>=0?'green':'red'}">${d.prof>=0?'+':''}${f(d.prof)}</div></div>`;}).join('');
+  }
+
+  // ===== EXPENSE BREAKDOWN CHART =====
+  const ecEl=document.getElementById('o-expense-chart');
+  if(D.companyExpenses.length){
+    const cats={};D.companyExpenses.forEach(e=>{const c=e.category||'Other';if(!cats[c])cats[c]=0;cats[c]+=e.frequency==='annual'?e.amount/12:e.amount;});
+    const catArr=Object.entries(cats).sort((a,b)=>b[1]-a[1]);
+    const mxE=Math.max(...catArr.map(c=>c[1]),1);
+    const catColors={'Subscriptions':'var(--purple)','AI/API Costs':'var(--blue)','Domain/Hosting':'var(--teal)','Media Buying':'var(--red)','Software/Tools':'var(--amber)','Other':'var(--muted)'};
+    ecEl.innerHTML=catArr.map(([cat,amt])=>{
+      const col=catColors[cat]||'var(--accent)';
+      return`<div class="chart-row"><div class="chart-lbl" style="min-width:100px">${cat}</div><div class="chart-bg"><div class="chart-bar" style="width:${(amt/mxE*100).toFixed(1)}%;background:${col}">${f(amt)}/mo</div></div></div>`;
+    }).join('')+'<div style="text-align:right;font-size:10px;color:var(--muted);margin-top:6px">Total: <strong style="color:var(--red)">'+f(getFilteredExpenseTotal(null,null))+'/mo</strong></div>';
+  }else{ecEl.innerHTML='<div class="empty">No expenses logged</div>';}
+
+  // ===== FINANCIAL ADVISOR =====
+  const faGM=document.getElementById('fa-gm');
+  const faNM=document.getElementById('fa-nm');
+  const faAR=document.getElementById('fa-ar');
+  const faOR=document.getElementById('fa-or');
+  const faPT=document.getElementById('fa-pretax');
+  const faTX=document.getElementById('fa-tax');
+  const faDR=document.getElementById('fa-draw');
+  const faAdv=document.getElementById('fa-advice');
+  if(totRev>0){
+    const gm=((totRev-totCogs)/totRev*100);
+    faGM.textContent=gm.toFixed(1)+'%';faGM.style.color=gm>=60?'var(--green)':gm>=40?'var(--amber)':'var(--red)';
+    const nm=(netProfit/totRev*100);
+    faNM.textContent=nm.toFixed(1)+'%';faNM.style.color=nm>=20?'var(--green)':nm>=10?'var(--amber)':'var(--red)';
+    const ar=(totAds/totRev*100);
+    faAR.textContent=ar.toFixed(1)+'%';faAR.style.color=ar<=40?'var(--green)':ar<=60?'var(--amber)':'var(--red)';
+    const or=(totalOpex/totRev*100);
+    faOR.textContent=or.toFixed(1)+'%';faOR.style.color=or<=10?'var(--green)':or<=20?'var(--amber)':'var(--red)';
+    faPT.textContent=f(preTax);faPT.style.color=preTax>=0?'var(--text)':'var(--red)';
+    faTX.textContent=f(taxEst);
+    const draw=netProfit>0?netProfit*0.11:0;
+    faDR.textContent=f(netProfit>0?netProfit:0);
+    // Advice
+    const advParts=[];
+    if(nm>=20)advParts.push('✅ Net margin is healthy ('+nm.toFixed(1)+'%). You\'re in the zone.');
+    else if(nm>=10)advParts.push('⚠️ Net margin is '+nm.toFixed(1)+'% — aim for 20%+ by cutting CPA or increasing AOV.');
+    else advParts.push('🔴 Net margin is low ('+nm.toFixed(1)+'%). Focus on reducing ad spend or increasing conversion rate.');
+    if(ar>50)advParts.push('🔴 Ad spend is '+ar.toFixed(0)+'% of revenue — too high. Need better ROAS or cut underperformers.');
+    if(netProfit>0)advParts.push('💷 At current rate, you can draw ~'+f(draw)+'/mo (11% of net profit). Reinvest the rest for growth.');
+    else advParts.push('💷 Not profitable yet — reinvest everything until ROAS exceeds 1.31×.');
+    faAdv.innerHTML=advParts.join('<br>');
+  }else{
+    faGM.textContent='—';faNM.textContent='—';faAR.textContent='—';faOR.textContent='—';
+    faPT.textContent=f(preTax);faTX.textContent=f(taxEst);faDR.textContent='$0';
+    faAdv.innerHTML='📊 No revenue yet — ratios calculate once sales data flows in. Currently tracking: <strong style="color:var(--red)">'+f(totAds)+'</strong> ad spend + <strong style="color:var(--blue)">'+f(totalOpex)+'</strong> expenses = <strong style="color:var(--red)">'+f(totAds+totalOpex)+'</strong> total costs.';
   }
 
   // ===== BRAND PAGE (THALYVE) =====
