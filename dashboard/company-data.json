@@ -201,83 +201,77 @@
     "action": "Downgrade before March 12 to suitable plan"
   },
   "kpiTargets": {
-    "weekOf": "2026-02-24",
+    "weekOf": "24 Feb 2026",
     "departments": {
-      "research": {
-        "name": "Product Research",
+      "revenue": {
+        "name": "\ud83d\udcb0 Revenue & Ads",
+        "owner": "Anton + Forge",
+        "targets": [
+          {
+            "metric": "Daily Ad Spend Active",
+            "target": 100,
+            "current": 100,
+            "unit": "$/day"
+          },
+          {
+            "metric": "First Sale",
+            "target": 1,
+            "current": 0,
+            "unit": "sale"
+          },
+          {
+            "metric": "Break-Even ROAS",
+            "target": 1.5,
+            "current": 0,
+            "unit": "x"
+          }
+        ]
+      },
+      "pipeline": {
+        "name": "\ud83d\udd0d Product Pipeline",
         "owner": "Forge",
         "targets": [
           {
             "metric": "Products Researched",
-            "target": 10,
-            "current": 11,
+            "target": 5,
+            "current": 5,
             "unit": "products"
           },
           {
-            "metric": "Competitors Validated (SimilarWeb)",
-            "target": 8,
-            "current": 6,
-            "unit": "brands"
+            "metric": "Products Testing",
+            "target": 1,
+            "current": 1,
+            "unit": "product"
           },
           {
-            "metric": "GetHookd Ad Swipes Saved",
-            "target": 20,
+            "metric": "COGS Quotes Received",
+            "target": 2,
             "current": 0,
-            "unit": "ads"
+            "unit": "quotes"
           }
         ]
       },
-      "creative": {
-        "name": "Creative & Ads",
-        "owner": "Forge (future: Lens)",
-        "targets": [
-          {
-            "metric": "Ad Scripts Written",
-            "target": 3,
-            "current": 3,
-            "unit": "scripts"
-          },
-          {
-            "metric": "Creative Angles Identified",
-            "target": 5,
-            "current": 3,
-            "unit": "angles"
-          },
-          {
-            "metric": "Ads Live on Meta",
-            "target": 9,
-            "current": 9,
-            "unit": "ads"
-          }
-        ]
-      },
-      "operations": {
-        "name": "Operations & Systems",
+      "infra": {
+        "name": "\u2699\ufe0f Infrastructure",
         "owner": "Forge",
         "targets": [
           {
-            "metric": "SOPs Created/Updated",
-            "target": 3,
+            "metric": "Cron Jobs Active",
+            "target": 7,
+            "current": 7,
+            "unit": "jobs"
+          },
+          {
+            "metric": "SOPs Created",
+            "target": 15,
             "current": 13,
             "unit": "SOPs"
           },
           {
-            "metric": "Tools Shipped",
-            "target": 2,
-            "current": 8,
-            "unit": "tools"
-          },
-          {
-            "metric": "Systems Automated",
-            "target": 2,
-            "current": 5,
-            "unit": "systems"
-          },
-          {
-            "metric": "Docs Absorbed",
-            "target": 19,
-            "current": 12,
-            "unit": "docs"
+            "metric": "Dashboard Tabs Live",
+            "target": 12,
+            "current": 10,
+            "unit": "tabs"
           }
         ]
       }
@@ -417,320 +411,291 @@
   },
   "taskLog": [
     {
-      "status": "done",
       "task": "Full dashboard + company-data.json refresh to Feb 27",
-      "owner": "Forge (Opus)",
-      "started": "2026-02-27T09:30:00Z",
-      "finished": "2026-02-27T09:45:00Z",
-      "duration": "15m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Cron Monitor updated \u2014 all 5 jobs verified healthy, descriptions added",
-      "owner": "Forge (Opus)",
-      "started": "2026-02-27T09:20:00Z",
-      "finished": "2026-02-27T09:30:00Z",
-      "duration": "10m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Bulletproof AI Access Guide v1.0 built + published",
-      "owner": "Forge (Opus)",
-      "started": "2026-02-27T08:20:00Z",
-      "finished": "2026-02-27T08:35:00Z",
-      "duration": "15m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "MBB docs absorbed \u2014 landing pages $535K + internal reference",
-      "owner": "Forge (Opus)",
-      "started": "2026-02-27T08:10:00Z",
-      "finished": "2026-02-27T08:20:00Z",
-      "duration": "10m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Morning briefing delivered (AD LAUNCH DAY, 75 Hard Day 63)",
-      "owner": "Forge (Sonnet)",
-      "started": "2026-02-27T07:00:00Z",
-      "finished": "2026-02-27T07:02:00Z",
-      "duration": "2m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Daily critical tasks cron \u2014 5 tasks each for Anton + Forge",
-      "owner": "Forge (Sonnet)",
-      "started": "2026-02-27T06:00:00Z",
-      "finished": "2026-02-27T06:01:00Z",
-      "duration": "1m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Product research cron \u2014 5 products scored, 3 dropship-ready",
-      "owner": "Forge (Sonnet)",
-      "started": "2026-02-26T03:00:00Z",
-      "finished": "2026-02-26T03:07:00Z",
-      "duration": "7m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Master Strategy v1.0 \u2014 infrastructure + \u00a310K roadmap",
-      "owner": "Forge (Opus)",
-      "started": "2026-02-26T08:45:00Z",
-      "finished": "2026-02-26T09:00:00Z",
-      "duration": "15m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Media Buying SOP v1.0 rebuilt",
-      "owner": "Forge (Opus)",
-      "started": "2026-02-26T08:30:00Z",
-      "finished": "2026-02-26T08:40:00Z",
-      "duration": "10m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Whisper voice model re-downloaded",
-      "owner": "Forge (Opus)",
-      "started": "2026-02-26T08:46:00Z",
-      "finished": "2026-02-26T08:50:00Z",
-      "duration": "4m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Daily critical tasks cron (6AM, Sonnet)",
-      "owner": "Forge (Opus)",
-      "started": "2026-02-26T10:03:00Z",
-      "finished": "2026-02-26T10:03:00Z",
-      "duration": "1m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "MBB playbook \u2014 framework extraction",
-      "owner": "Forge (Opus)",
-      "started": "2026-02-26T10:07:00Z",
-      "finished": "2026-02-26T10:15:00Z",
-      "duration": "8m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Mac sleep disabled \u2014 lid-close gateway running",
-      "owner": "Anton",
-      "started": "2026-02-26T10:03:00Z",
-      "finished": "2026-02-26T10:03:00Z",
-      "duration": "1m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Full system sync + portal build",
-      "owner": "Forge (Opus)",
-      "started": "2026-02-26T10:40:00Z",
-      "finished": "2026-02-26T22:00:00Z",
-      "duration": "11h"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "CRITICAL-TASKS.md \u2014 daily operating system",
       "owner": "Forge",
-      "started": "2026-02-26T02:15:00Z",
-      "finished": "2026-02-26T02:15:00Z",
-      "duration": "2m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Morning briefing cron (7AM daily, Sonnet)",
       "owner": "Forge",
-      "started": "2026-02-26T02:12:00Z",
-      "finished": "2026-02-26T02:12:00Z",
-      "duration": "1m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Telegram connected + pairing approved",
       "owner": "Forge",
-      "started": "2026-02-26T02:08:00Z",
-      "finished": "2026-02-26T02:10:00Z",
-      "duration": "2m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Advanced Diagnostics \u2014 15 failure scenarios",
-      "owner": "Sub-agent",
-      "started": "2026-02-26T02:04:00Z",
-      "finished": "2026-02-26T02:05:00Z",
-      "duration": "2m"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Feb 25 incident corrected in memory (crash loop not cooldown)",
       "owner": "Forge",
-      "started": "2026-02-26T02:02:00Z",
-      "finished": "2026-02-26T02:05:00Z",
-      "duration": "3m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Ad Performance Tracker v1.0 built",
       "owner": "Forge",
-      "started": "2026-02-26T01:54:00Z",
-      "finished": "2026-02-26T01:57:00Z",
-      "duration": "3m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Security audit \u2014 all green + monthly cron added",
       "owner": "Forge",
-      "started": "2026-02-26T01:49:00Z",
-      "finished": "2026-02-26T01:51:00Z",
-      "duration": "2m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Cron jobs optimised (Sonnet for auto, Opus for live)",
       "owner": "Forge",
-      "started": "2026-02-26T01:41:00Z",
-      "finished": "2026-02-26T01:45:00Z",
-      "duration": "4m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Efficiency Bible built (HTML)",
       "owner": "Forge",
-      "started": "2026-02-26T01:33:00Z",
-      "finished": "2026-02-26T01:38:00Z",
-      "duration": "5m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Survival Guide v1.1 \u2014 Telegram, API, restart sections",
       "owner": "Forge",
-      "started": "2026-02-26T01:24:00Z",
-      "finished": "2026-02-26T01:27:00Z",
-      "duration": "3m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Full chat export analysis \u2014 MEMORY.md rebuilt",
       "owner": "Forge",
-      "started": "2026-02-26T01:13:00Z",
-      "finished": "2026-02-26T01:17:00Z",
-      "duration": "4m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "SOS.md emergency guide created",
       "owner": "Forge",
-      "started": "2026-02-26T01:10:00Z",
-      "finished": "2026-02-26T01:11:00Z",
-      "duration": "1m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "System health check + backups verified",
       "owner": "Forge",
-      "started": "2026-02-26T01:02:00Z",
-      "finished": "2026-02-26T01:06:00Z",
-      "duration": "4m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Workspace restored from GitHub",
       "owner": "Forge",
-      "started": "2026-02-26T00:49:00Z",
-      "finished": "2026-02-26T00:55:00Z",
-      "duration": "6m"
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "status": "done",
       "task": "Overnight crons \u2014 product research (3AM) + morning briefing (7AM)",
-      "owner": "Forge (Sonnet)",
-      "started": "2026-02-27T03:00:00Z",
-      "finished": "2026-02-27T07:02:00Z",
-      "duration": "4h"
+      "owner": "Forge",
+      "status": "done",
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "THALYVE-SMS-TEST-01 ads launched \u2014 $100/day CBO, 9 ads, Advantage+ Sales",
-      "who": "Anton",
+      "owner": "Anton",
       "status": "done",
-      "time": 15
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "BBA Phase 3 store-building docs absorbed (11 files)",
-      "who": "Forge",
+      "owner": "Forge",
       "status": "done",
-      "time": 45
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:45:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "Ad Rail Meta Assets Setup doc absorbed + reference filed",
-      "who": "Forge",
+      "owner": "Forge",
       "status": "done",
-      "time": 15
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "Meta API Setup guide built on portal + SOP Hub updated",
-      "who": "Forge",
+      "owner": "Forge",
       "status": "done",
-      "time": 30
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:30:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "Company Overview redesigned \u2014 hero profit card, gradient P&L, quick stats",
-      "who": "Forge",
+      "owner": "Forge",
       "status": "done",
-      "time": 40
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:40:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "Cron Monitor updated \u2014 7 active jobs",
-      "who": "Forge",
+      "owner": "Forge",
       "status": "done",
-      "time": 15
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "Weekly COO Report cron created (Monday 7AM)",
-      "who": "Forge",
+      "owner": "Forge",
       "status": "done",
-      "time": 10
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:10:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "Expenses tab \u2014 12 real expenses seeded + localStorage override fix",
-      "who": "Forge",
+      "owner": "Forge",
       "status": "done",
-      "time": 25
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:25:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "MyClaw Pro invoice + refund auto-logged from Telegram PDFs",
-      "who": "Forge",
+      "owner": "Forge",
       "status": "done",
-      "time": 5
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:05:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "Broken nav link fixed (Execution OS back button)",
-      "who": "Forge",
+      "owner": "Forge",
       "status": "done",
-      "time": 5
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:05:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "2FA setup on BM1 admin profile (P5)",
-      "who": "Anton",
+      "owner": "Anton",
       "status": "done",
-      "time": 10
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:10:00Z"
     },
     {
-      "date": "2026-02-27",
       "task": "Tony briefed on AI operations + invoice demo",
-      "who": "Forge",
+      "owner": "Forge",
       "status": "done",
-      "time": 10
+      "started": "2026-02-27T08:00:00Z",
+      "finished": "2026-02-27T08:10:00Z"
     }
   ],
   "team": [
@@ -838,55 +803,55 @@
     }
   ],
   "dailyCriticalTasks": {
-    "date": "2026-02-27",
+    "date": "2026-02-28",
     "members": {
       "anton": {
-        "name": "\ud83d\udc51 Anton (CEO)",
+        "name": "Anton",
         "tasks": [
           {
-            "task": "\ud83d\udd34 Confirm 9 ads ACTIVE on Meta \u2014 THALYVE-SMS-TEST-01 launch day",
+            "task": "Don't touch ads \u2014 Day 2 of 48hr no-touch rule",
             "done": false
           },
           {
-            "task": "\ud83d\udd34 DO NOT touch ads for 48hrs \u2014 Day 3 kill/scale = Sunday Mar 1",
+            "task": "Screenshot Ads Manager \u2192 send to Forge (data only)",
             "done": false
           },
           {
-            "task": "\ud83d\udfe1 Verify Posture Corrector on GetHookd \u2014 confirm 10+ active brand ads",
+            "task": "Deep work \u2014 4 Pomodoro cycles (6:40-11:00)",
             "done": false
           },
           {
-            "task": "\ud83d\udfe1 Message Mutual Express \u2014 COGS quotes for top 3 products",
+            "task": "Message Mutual Express \u2014 COGS quotes (LED Mask + TENS)",
             "done": false
           },
           {
-            "task": "\ud83d\udfe2 Send remaining ~7 MBB docs via Telegram (1-5 per message)",
+            "task": "Review Command Centre after Forge fixes",
             "done": false
           }
         ]
       },
       "forge": {
-        "name": "\ud83d\udd31 Forge (COO)",
+        "name": "Forge",
         "tasks": [
           {
-            "task": "\u2705 Morning briefing delivered (75 Hard Day 63, AD LAUNCH DAY)",
+            "task": "Fix all dashboard rendering (Team, KPI, Task Log, Critical Tasks)",
             "done": true
           },
           {
-            "task": "\u2705 Daily critical tasks cron ran successfully at 6AM",
-            "done": true
+            "task": "Rebuild Personal Hub (nutrition, training, 75 Hard)",
+            "done": false
           },
           {
-            "task": "\u2705 Bulletproof AI Access Guide v1.0 built + published",
-            "done": true
+            "task": "Rebuild Expenses tab (Monthly vs Invoices separation)",
+            "done": false
           },
           {
-            "task": "\u2705 Cron Monitor updated \u2014 all 5 jobs verified healthy",
-            "done": true
+            "task": "Build automated daily check-in system",
+            "done": false
           },
           {
-            "task": "\u2705 Dashboard + company-data.json full refresh to Feb 27",
-            "done": true
+            "task": "Update tracker \u2014 kill Posture Corrector, update pipeline",
+            "done": false
           }
         ]
       }

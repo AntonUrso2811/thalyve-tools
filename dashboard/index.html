@@ -1411,7 +1411,7 @@ async function loadFromJSON(){
     if(savedTasks&&savedTasks.date===j.dailyCriticalTasks?.date&&savedTasks.members){j.dailyCriticalTasks=savedTasks;}
     renderCriticalTasks(j);renderTeam(j);renderKPI(j);renderRoadmap(j);renderTaskLog(j);
     render();toast('Synced from Forge');
-  }catch(e){}
+  }catch(e){console.error('loadFromJSON error:',e);}
 }
 
 // ===== EXPORT =====
