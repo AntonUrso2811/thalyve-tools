@@ -1009,5 +1009,32 @@
       ]
     },
     "_date": "2026-02-28"
-  }
+  },
+  "daily": [
+    {
+      "id": "day_20260227",
+      "date": "2026-02-27",
+      "brandId": "thalyve",
+      "brandName": "THALYVE\u2122",
+      "productId": "stretch-mark-stick",
+      "productName": "Stretch Mark Stick",
+      "orders": 0,
+      "revenue": 0,
+      "adSpend": 57.53,
+      "cogs": 0
+    },
+    {
+      "id": "day_20260228",
+      "date": "2026-02-28",
+      "brandId": "thalyve",
+      "brandName": "THALYVE\u2122",
+      "productId": "stretch-mark-stick",
+      "productName": "Stretch Mark Stick",
+      "orders": 0,
+      "revenue": 0,
+      "adSpend": 57.53,
+      "cogs": 0
+    }
+  ],
+  "version": "3.4"
 }

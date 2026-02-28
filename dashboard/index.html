@@ -1344,7 +1344,8 @@ function render(){
   document.getElementById('o-cogs').textContent=f(totCogs);
   document.getElementById('o-cogspct').textContent=totRev>0?(totCogs/totRev*100).toFixed(1)+'% of revenue':'—';
   document.getElementById('o-opex').textContent=f(totalOpex);
-  document.getElementById('o-opexn').textContent=D.companyExpenses.length+' items';
+  if(_from&&_to){const days=Math.max(1,Math.round((new Date(_to+'T23:59:59')-new Date(_from+'T00:00:00'))/86400000)+1);document.getElementById('o-opexn').textContent='Pro-rated: '+days+' day'+(days>1?'s':'');}
+  else{document.getElementById('o-opexn').textContent=D.companyExpenses.length+' items (monthly)';}
   document.getElementById('o-tax').textContent=f(taxEst);
   document.getElementById('o-taxr').textContent=(D.company.taxRate||20)+'% of pre-tax profit';
   const onEl=document.getElementById('o-net');onEl.textContent=f(netProfit);onEl.className='sv '+(netProfit>=0?'green':'red');

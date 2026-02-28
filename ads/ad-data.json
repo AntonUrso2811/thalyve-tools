@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-02-28T09:10:00Z",
+  "lastUpdated": "2026-02-28T09:40:00Z",
   "campaign": {
     "name": "THALYVE-SMS-TEST-01",
     "type": "Advantage+ Sales",
@@ -9,7 +9,11 @@
     "launched": "2026-02-27",
     "product": "THALYVE Evolved Stretch Mark Stick",
     "cogs": 8.44,
-    "prices": [39.99, 69.99, 89.99],
+    "prices": [
+      39.99,
+      69.99,
+      89.99
+    ],
     "blendedAOV": 54.99,
     "blendedCOGS": 13.08,
     "beROAS": 1.31,
@@ -18,9 +22,34 @@
     "adSets": 3,
     "adsPerSet": 3,
     "totalAds": 9,
-    "targeting": "Fully broad — NO age, NO gender, NO interests. Advantage+ does ALL targeting."
+    "targeting": "Fully broad \u2014 NO age, NO gender, NO interests. Advantage+ does ALL targeting."
   },
-  "dailyData": [],
+  "dailyData": [
+    {
+      "date": "2026-02-27",
+      "adset": "SMS-BROAD (all 3)",
+      "spend": 57.53,
+      "impressions": 624,
+      "clicks": 44,
+      "atc": 1,
+      "purchases": 0,
+      "revenue": 0,
+      "creative": "Mixed",
+      "notes": "Day 1 - launch day. 48hr no-touch. Algorithm learning."
+    },
+    {
+      "date": "2026-02-28",
+      "adset": "SMS-BROAD (all 3)",
+      "spend": 57.53,
+      "impressions": 624,
+      "clicks": 43,
+      "atc": 2,
+      "purchases": 0,
+      "revenue": 0,
+      "creative": "Mixed",
+      "notes": "Day 2 - still in 48hr no-touch window. 3 ATCs, 2 checkouts total."
+    }
+  ],
   "decisionLog": [
     {
       "id": "DEC-001",
@@ -42,7 +71,7 @@
       "decision": "HOLD",
       "scope": "campaign",
       "target": "THALYVE-SMS-TEST-01",
-      "reasoning": "48hr no-touch rule — do NOT adjust anything until Mar 1. Let Meta's algorithm learn.",
+      "reasoning": "48hr no-touch rule \u2014 do NOT adjust anything until Mar 1. Let Meta's algorithm learn.",
       "madeBy": "Anton",
       "executedBy": "Forge",
       "status": "active",
@@ -51,19 +80,19 @@
   ],
   "killCriteria": {
     "adSet": [
-      "$20+ spend, 0 add-to-carts → KILL",
-      "$40+ spend, 0 purchases → KILL",
-      "CPA 2× target ($40) after 3+ purchases → KILL",
-      "ROAS below 1.0× after $100 spend → KILL"
+      "$20+ spend, 0 add-to-carts \u2192 KILL",
+      "$40+ spend, 0 purchases \u2192 KILL",
+      "CPA 2\u00d7 target ($40) after 3+ purchases \u2192 KILL",
+      "ROAS below 1.0\u00d7 after $100 spend \u2192 KILL"
     ],
     "product": [
-      "All ad sets killed → KILL product",
-      "$150+ total spend, 0 purchases → KILL product",
-      "No path to B/E ROAS (1.31×) → KILL product"
+      "All ad sets killed \u2192 KILL product",
+      "$150+ total spend, 0 purchases \u2192 KILL product",
+      "No path to B/E ROAS (1.31\u00d7) \u2192 KILL product"
     ],
     "scale": [
-      "ROAS above 1.31× after 5+ purchases → SCALE 20-30%",
-      "CPA consistently below $20 → SCALE"
+      "ROAS above 1.31\u00d7 after 5+ purchases \u2192 SCALE 20-30%",
+      "CPA consistently below $20 \u2192 SCALE"
     ]
   }
 }
