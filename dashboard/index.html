@@ -1870,6 +1870,9 @@ function render(){
   else{et.innerHTML=D.companyExpenses.map(e=>`<tr><td style="font-weight:600">${e.name}</td><td style="font-size:10px">${e.category}</td><td style="font-weight:700">${c}${e.amount.toFixed(2)}</td><td style="font-size:10px">${e.frequency}</td><td style="font-size:10px">${e.date||'—'}</td><td><button class="btn-s btn-r" onclick="delExp('${e.id}')">✕</button></td></tr>`).join('');}
   const eCt=document.getElementById('e-count');if(eCt)eCt.textContent=D.companyExpenses.length+' expenses';
   const eInv=document.getElementById('e-invoices');if(eInv)eInv.textContent=D.companyExpenses.filter(e=>e.invoice).length;
+  const mRecur=D.companyExpenses.filter(e=>e.frequency==='monthly').reduce((s,e)=>s+e.amount,0);
+  const aRecur=D.companyExpenses.filter(e=>e.frequency==='annual').reduce((s,e)=>s+e.amount/12,0);
+  const once=D.companyExpenses.filter(e=>e.frequency==='one-time').reduce((s,e)=>s+e.amount,0);
   document.getElementById('e-recur').textContent=f(mRecur+aRecur);
   document.getElementById('e-once').textContent=f(once);
   document.getElementById('e-burn').textContent=f(totalOpex);
