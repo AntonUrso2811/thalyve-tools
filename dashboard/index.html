@@ -108,6 +108,7 @@ tr:hover td{background:rgba(139,92,246,.03)}
     <div class="tab" onclick="nav('tasklog',this)">⚡ Task Log</div>
     <div class="tab" onclick="nav('cron',this)">🤖 Cron Monitor</div>
     <div class="tab" onclick="nav('engine',this)">⚡ AI Engine</div>
+    <div class="tab" onclick="nav('calendar',this)">📅 Calendar</div>
     <div class="tab" onclick="nav('settings',this)">⚙️ Settings</div>
     <div class="tab" onclick="nav('backup',this)" style="border-color:var(--red);color:var(--red)">🆘 Backup & Recovery</div>
   </div>
@@ -1329,6 +1330,63 @@ tr:hover td{background:rgba(139,92,246,.03)}
     </div>
   </div>
 
+  <!-- ===== CALENDAR ===== -->
+  <div class="page" id="p-calendar">
+    <div class="grid" style="grid-template-columns:1fr 320px;gap:12px">
+      <!-- Calendar Grid -->
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:18px">📅</span>
+            <h2 style="margin:0;font-size:16px">Anton's Calendar</h2>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <button onclick="calNav(-1)" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:4px 10px;color:var(--text);cursor:pointer;font-family:inherit">◀</button>
+            <span id="cal-month" style="font-size:13px;font-weight:700;min-width:140px;text-align:center"></span>
+            <button onclick="calNav(1)" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:4px 10px;color:var(--text);cursor:pointer;font-family:inherit">▶</button>
+            <button onclick="calToday()" style="background:var(--accent);color:#fff;border:none;border-radius:4px;padding:4px 10px;font-size:10px;cursor:pointer;font-family:inherit">Today</button>
+          </div>
+        </div>
+        <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px"></div>
+      </div>
+
+      <!-- Day Detail + Add Event -->
+      <div>
+        <div class="card" style="margin-bottom:12px">
+          <h3 style="font-size:13px;margin:0 0 10px">📋 <span id="cal-day-title">Select a Day</span></h3>
+          <div id="cal-day-events" style="font-size:10px;color:var(--muted);line-height:1.6">Click a day to see events</div>
+        </div>
+        <div class="card" style="margin-bottom:12px">
+          <h3 style="font-size:13px;margin:0 0 10px">➕ Add Event</h3>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:10px">
+            <input id="cal-new-date" type="date" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:4px 8px;color:var(--text);font-family:inherit;font-size:10px">
+            <input id="cal-new-time" type="time" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:4px 8px;color:var(--text);font-family:inherit;font-size:10px">
+            <input id="cal-new-title" type="text" placeholder="Event title..." style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:4px 8px;color:var(--text);font-family:inherit;font-size:10px">
+            <select id="cal-new-cat" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:4px 8px;color:var(--text);font-family:inherit;font-size:10px">
+              <option value="business">🏢 Business</option>
+              <option value="health">💪 Health</option>
+              <option value="personal">🧘 Personal</option>
+              <option value="deadline">🔴 Deadline</option>
+              <option value="reminder">🔔 Reminder</option>
+            </select>
+            <textarea id="cal-new-notes" placeholder="Notes (optional)..." rows="2" style="background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:4px 8px;color:var(--text);font-family:inherit;font-size:10px;resize:vertical"></textarea>
+            <button onclick="calAddEvent()" style="background:var(--green);color:#fff;border:none;border-radius:6px;padding:6px 12px;font-size:10px;cursor:pointer;font-family:inherit;font-weight:600">+ Add Event</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="font-size:13px;margin:0 0 10px">📌 Upcoming</h3>
+          <div id="cal-upcoming" style="font-size:10px;color:var(--muted);line-height:1.6">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Daily Routine Template -->
+    <div class="card" style="margin-top:12px">
+      <h3 style="font-size:13px;margin:0 0 10px">🕐 Daily Routine Template</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;font-size:10px" id="cal-routine"></div>
+    </div>
+  </div>
+
   <!-- ===== SETTINGS ===== -->
   <div class="page" id="p-settings">
     <div class="grid g2">
@@ -1879,6 +1937,9 @@ async function loadFromJSON(){
       });
     }
     if(j.taxes)D.company.taxRate=j.taxes.estimatedRate||D.company.taxRate;
+    if(j.aiEngine)D.aiEngine=j.aiEngine;
+    if(j.calendar){D.calendar=j.calendar;const lsCal=JSON.parse(localStorage.getItem('calendar')||'null');if(lsCal&&lsCal.events){lsCal.events.forEach(le=>{if(!D.calendar.events.find(e=>e.id===le.id))D.calendar.events.push(le);});}}
+    if(j.lastUpdated)D.lastUpdated=j.lastUpdated;
     sv();
     document.getElementById('s-company').value=D.company.name;
     document.getElementById('s-cur').value=D.company.currency;
@@ -1895,8 +1956,114 @@ async function loadFromJSON(){
     try{renderRoadmap(j);}catch(e){console.error('Roadmap:',e);}
     try{renderTaskLog(j);}catch(e){console.error('TaskLog:',e);}
     try{renderEngine();}catch(e){console.error('Engine:',e);}
+    try{renderCalendar();}catch(e){console.error('Calendar:',e);}
     render();toast('Synced from Forge');
   }catch(e){console.error('loadFromJSON error:',e);}
+}
+
+// ===== CALENDAR =====
+let _calMonth=new Date().getMonth(),_calYear=new Date().getFullYear(),_calSel=new Date().toISOString().slice(0,10);
+const _catIcons={business:'🏢',health:'💪',personal:'🧘',deadline:'🔴',reminder:'🔔'};
+const _catCols={business:'var(--blue)',health:'var(--green)',personal:'var(--purple)',deadline:'var(--red)',reminder:'var(--amber)'};
+
+function calNav(d){_calMonth+=d;if(_calMonth>11){_calMonth=0;_calYear++;}if(_calMonth<0){_calMonth=11;_calYear--;}renderCalendar();}
+function calToday(){const n=new Date();_calMonth=n.getMonth();_calYear=n.getFullYear();_calSel=n.toISOString().slice(0,10);renderCalendar();}
+
+function renderCalendar(){
+  if(!D.calendar)return;
+  const evts=D.calendar.events||[];
+  const mNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('cal-month').textContent=mNames[_calMonth]+' '+_calYear;
+  
+  const grid=document.getElementById('cal-grid');
+  const firstDay=new Date(_calYear,_calMonth,1).getDay();
+  const daysInMonth=new Date(_calYear,_calMonth+1,0).getDate();
+  const todayStr=new Date().toISOString().slice(0,10);
+  const dayNames=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  
+  let html=dayNames.map(d=>'<div style="text-align:center;font-size:9px;font-weight:700;color:var(--muted);padding:4px;text-transform:uppercase;letter-spacing:1px">'+d+'</div>').join('');
+  
+  for(let i=0;i<firstDay;i++)html+='<div></div>';
+  
+  for(let d=1;d<=daysInMonth;d++){
+    const ds=_calYear+'-'+String(_calMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+    const dayEvts=evts.filter(e=>e.date===ds);
+    const isToday=ds===todayStr;
+    const isSel=ds===_calSel;
+    const hasDeadline=dayEvts.some(e=>e.category==='deadline');
+    const bg=isSel?'var(--accent)':isToday?'rgba(15,214,140,.15)':'var(--bg)';
+    const border=isToday?'1px solid var(--green)':isSel?'1px solid var(--accent)':'1px solid var(--border)';
+    const txtCol=isSel?'#fff':'var(--text)';
+    html+='<div onclick="calSelectDay(\''+ds+'\')" style="background:'+bg+';border:'+border+';border-radius:6px;padding:4px;text-align:center;cursor:pointer;min-height:42px;transition:all .15s;position:relative" onmouseover="this.style.borderColor=\'var(--accent)\'" onmouseout="this.style.borderColor=\''+(isToday?'var(--green)':isSel?'var(--accent)':'var(--border)')+'\'"><div style="font-size:11px;font-weight:'+(isToday||isSel?'700':'500')+';color:'+txtCol+'">'+d+'</div>';
+    if(dayEvts.length){
+      html+='<div style="display:flex;gap:1px;justify-content:center;margin-top:2px;flex-wrap:wrap">'+dayEvts.slice(0,3).map(e=>'<div style="width:5px;height:5px;border-radius:50%;background:'+(_catCols[e.category]||'var(--muted)')+'"></div>').join('')+(dayEvts.length>3?'<div style="font-size:6px;color:var(--muted)">+</div>':'')+'</div>';
+    }
+    html+='</div>';
+  }
+  grid.innerHTML=html;
+  calSelectDay(_calSel);
+  renderUpcoming();
+  renderRoutine();
+}
+
+function calSelectDay(ds){
+  _calSel=ds;
+  const evts=(D.calendar.events||[]).filter(e=>e.date===ds);
+  const d=new Date(ds+'T12:00:00');
+  document.getElementById('cal-day-title').textContent=d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('cal-new-date').value=ds;
+  const el=document.getElementById('cal-day-events');
+  if(!evts.length){el.innerHTML='<div style="color:var(--muted);padding:8px 0">No events</div>';return;}
+  el.innerHTML=evts.sort((a,b)=>(a.time||'').localeCompare(b.time||'')).map(e=>{
+    const col=_catCols[e.category]||'var(--muted)';
+    const icon=_catIcons[e.category]||'📌';
+    return'<div style="padding:6px;background:var(--bg);border-radius:6px;border-left:3px solid '+col+';margin-bottom:4px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-weight:600">'+icon+' '+(e.time||'')+' '+e.title+'</span><button onclick="calDelEvent(\''+e.id+'\')" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:10px">✕</button></div>'+(e.notes?'<div style="color:var(--muted);margin-top:2px;font-size:9px">'+e.notes+'</div>':'')+(e.done?'<span style="color:var(--green);font-size:9px">✅ Done</span>':'')+'</div>';
+  }).join('');
+}
+
+function calAddEvent(){
+  if(!D.calendar)D.calendar={events:[],routine:{}};
+  const dt=document.getElementById('cal-new-date').value;
+  const tm=document.getElementById('cal-new-time').value;
+  const ti=document.getElementById('cal-new-title').value.trim();
+  if(!dt||!ti){toast('Need date + title');return;}
+  D.calendar.events.push({id:'ev_'+Date.now(),date:dt,time:tm||null,title:ti,category:document.getElementById('cal-new-cat').value,notes:document.getElementById('cal-new-notes').value.trim(),done:false});
+  localStorage.setItem('calendar',JSON.stringify(D.calendar));
+  document.getElementById('cal-new-title').value='';
+  document.getElementById('cal-new-notes').value='';
+  renderCalendar();toast('Event added');
+}
+
+function calDelEvent(id){
+  if(!confirm('Delete this event?'))return;
+  D.calendar.events=D.calendar.events.filter(e=>e.id!==id);
+  localStorage.setItem('calendar',JSON.stringify(D.calendar));
+  renderCalendar();toast('Event deleted');
+}
+
+function renderUpcoming(){
+  const el=document.getElementById('cal-upcoming');
+  if(!D.calendar)return;
+  const now=new Date().toISOString().slice(0,10);
+  const upcoming=(D.calendar.events||[]).filter(e=>e.date>=now&&!e.done).sort((a,b)=>a.date.localeCompare(b.date)||((a.time||'').localeCompare(b.time||''))).slice(0,8);
+  if(!upcoming.length){el.innerHTML='No upcoming events';return;}
+  el.innerHTML=upcoming.map(e=>{
+    const d=new Date(e.date+'T12:00:00');
+    const dayDiff=Math.round((d-new Date(now+'T12:00:00'))/86400000);
+    const when=dayDiff===0?'<span style="color:var(--green);font-weight:700">TODAY</span>':dayDiff===1?'<span style="color:var(--amber)">Tomorrow</span>':dayDiff<=7?'<span style="color:var(--blue)">In '+dayDiff+' days</span>':d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+    return'<div style="padding:4px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between"><span>'+(_catIcons[e.category]||'📌')+' '+e.title+'</span><span>'+when+'</span></div>';
+  }).join('');
+}
+
+function renderRoutine(){
+  const el=document.getElementById('cal-routine');
+  if(!D.calendar||!D.calendar.routine)return;
+  const selDay=new Date(_calSel+'T12:00:00').getDay();
+  const isRest=selDay===0||selDay===4; // Sun/Thu
+  const routine=isRest?D.calendar.routine.rest:D.calendar.routine.training;
+  const label=isRest?'Rest Day':'Training Day';
+  if(!routine){el.innerHTML='No routine configured';return;}
+  el.innerHTML='<div style="grid-column:1/-1;font-size:10px;color:var(--accent2);font-weight:700;margin-bottom:4px">'+label+' Schedule ('+_calSel+')</div>'+routine.map(r=>'<div style="background:var(--bg);border-radius:6px;padding:6px 8px;border:1px solid var(--border);display:flex;gap:8px;align-items:center"><span style="font-weight:700;color:var(--accent);min-width:40px">'+r.time+'</span><span>'+r.label+'</span></div>').join('');
 }
 
 // ===== AI ENGINE MONITOR =====

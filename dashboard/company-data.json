@@ -1239,5 +1239,174 @@
         "notes": "Full rebuild after reset, GetHookd automation"
       }
     ]
+  },
+  "calendar": {
+    "events": [
+      {
+        "id": "ev1",
+        "date": "2026-03-01",
+        "time": "09:00",
+        "title": "Kill/Scale Decision \u2014 THALYVE-SMS-TEST-01",
+        "category": "deadline",
+        "notes": "48hr no-touch complete. Review ad data, make kill/scale call per BBA framework.",
+        "done": false
+      },
+      {
+        "id": "ev2",
+        "date": "2026-03-01",
+        "time": "06:00",
+        "title": "Send Ad Performance Screenshots",
+        "category": "reminder",
+        "notes": "Anton sends Ads Manager screenshots for Forge to analyze",
+        "done": false
+      },
+      {
+        "id": "ev3",
+        "date": "2026-03-06",
+        "time": "00:00",
+        "title": "75 Hard Challenge Completion \ud83c\udf89",
+        "category": "personal",
+        "notes": "Day 75! Anton finishes 75 Hard.",
+        "done": false
+      },
+      {
+        "id": "ev4",
+        "date": "2026-03-12",
+        "time": "09:00",
+        "title": "Shopify Plan Downgrade DEADLINE",
+        "category": "deadline",
+        "notes": "Must downgrade before March 12 or full price kicks in (was \u00a31/mo promo)",
+        "done": false
+      },
+      {
+        "id": "ev5",
+        "date": "2026-03-27",
+        "time": "09:00",
+        "title": "GitHub PAT Rotation",
+        "category": "deadline",
+        "notes": "forge-deploy PAT expires. Generate new one before this date.",
+        "done": false
+      },
+      {
+        "id": "ev6",
+        "date": "2026-03-03",
+        "time": "07:00",
+        "title": "Weekly COO Report",
+        "category": "business",
+        "notes": "Forge delivers weekly report to Telegram",
+        "done": false
+      },
+      {
+        "id": "ev7",
+        "date": "2026-03-03",
+        "time": "03:00",
+        "title": "Product Research Pipeline",
+        "category": "business",
+        "notes": "Automated Mon 3AM cron \u2014 3-5 new products",
+        "done": false
+      }
+    ],
+    "routine": {
+      "training": [
+        {
+          "time": "05:00",
+          "label": "Wake \u2192 Hygiene, Hydrate"
+        },
+        {
+          "time": "05:15",
+          "label": "45min Walk (75 Hard outdoor)"
+        },
+        {
+          "time": "06:15",
+          "label": "Deep Work Block 1 (4hr max)"
+        },
+        {
+          "time": "10:15",
+          "label": "Mobility (neck/shoulder)"
+        },
+        {
+          "time": "10:30",
+          "label": "Meal 1 + Italian listening"
+        },
+        {
+          "time": "12:00",
+          "label": "Walk to gym"
+        },
+        {
+          "time": "12:15",
+          "label": "Weights (~1hr)"
+        },
+        {
+          "time": "13:15",
+          "label": "Zone 2 (Mon/Tue only)"
+        },
+        {
+          "time": "14:15",
+          "label": "Walk home \u2192 Shake \u2192 Shower"
+        },
+        {
+          "time": "14:30",
+          "label": "Meditation (10min)"
+        },
+        {
+          "time": "14:40",
+          "label": "Nonfiction reading"
+        },
+        {
+          "time": "15:00",
+          "label": "Meal 3 (The Anton Bowl)"
+        },
+        {
+          "time": "16:00",
+          "label": "Work Block 2 (hard focus)"
+        },
+        {
+          "time": "19:00",
+          "label": "Light work"
+        },
+        {
+          "time": "20:00",
+          "label": "Italian practice"
+        },
+        {
+          "time": "21:00",
+          "label": "Magnesium \u2192 21:15 Lights out"
+        }
+      ],
+      "rest": [
+        {
+          "time": "05:00",
+          "label": "Wake \u2192 Hygiene, Hydrate"
+        },
+        {
+          "time": "05:15",
+          "label": "Walk + Zone 2 (fasted)"
+        },
+        {
+          "time": "06:30",
+          "label": "Deep Work (4hr)"
+        },
+        {
+          "time": "10:30",
+          "label": "Mobility"
+        },
+        {
+          "time": "12:00",
+          "label": "Meal 1 (shake)"
+        },
+        {
+          "time": "14:00",
+          "label": "Light work, reading, recovery"
+        },
+        {
+          "time": "17:00",
+          "label": "Meal 2 (Big Anton Bowl)"
+        },
+        {
+          "time": "21:00",
+          "label": "Magnesium \u2192 21:15 Lights out"
+        }
+      ]
+    }
   }
 }
