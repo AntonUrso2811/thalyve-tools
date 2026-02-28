@@ -1,0 +1,69 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-02-28T09:10:00Z",
+  "campaign": {
+    "name": "THALYVE-SMS-TEST-01",
+    "type": "Advantage+ Sales",
+    "budget": "CBO $100/day",
+    "objective": "Purchase",
+    "launched": "2026-02-27",
+    "product": "THALYVE Evolved Stretch Mark Stick",
+    "cogs": 8.44,
+    "prices": [39.99, 69.99, 89.99],
+    "blendedAOV": 54.99,
+    "blendedCOGS": 13.08,
+    "beROAS": 1.31,
+    "targetCPA": 20.01,
+    "platform": "Meta (Ad Rail)",
+    "adSets": 3,
+    "adsPerSet": 3,
+    "totalAds": 9,
+    "targeting": "Fully broad — NO age, NO gender, NO interests. Advantage+ does ALL targeting."
+  },
+  "dailyData": [],
+  "decisionLog": [
+    {
+      "id": "DEC-001",
+      "date": "2026-02-27",
+      "time": "14:00",
+      "decision": "LAUNCH",
+      "scope": "campaign",
+      "target": "THALYVE-SMS-TEST-01",
+      "reasoning": "Warmup complete (40hrs). 9 ads active. Advantage+ Sales, CBO $100/day. Fully broad targeting. 48hr no-touch rule starts now.",
+      "madeBy": "Anton",
+      "executedBy": "Ad Rail",
+      "status": "executed",
+      "outcome": ""
+    },
+    {
+      "id": "DEC-002",
+      "date": "2026-02-27",
+      "time": "14:00",
+      "decision": "HOLD",
+      "scope": "campaign",
+      "target": "THALYVE-SMS-TEST-01",
+      "reasoning": "48hr no-touch rule — do NOT adjust anything until Mar 1. Let Meta's algorithm learn.",
+      "madeBy": "Anton",
+      "executedBy": "Forge",
+      "status": "active",
+      "outcome": ""
+    }
+  ],
+  "killCriteria": {
+    "adSet": [
+      "$20+ spend, 0 add-to-carts → KILL",
+      "$40+ spend, 0 purchases → KILL",
+      "CPA 2× target ($40) after 3+ purchases → KILL",
+      "ROAS below 1.0× after $100 spend → KILL"
+    ],
+    "product": [
+      "All ad sets killed → KILL product",
+      "$150+ total spend, 0 purchases → KILL product",
+      "No path to B/E ROAS (1.31×) → KILL product"
+    ],
+    "scale": [
+      "ROAS above 1.31× after 5+ purchases → SCALE 20-30%",
+      "CPA consistently below $20 → SCALE"
+    ]
+  }
+}

@@ -258,6 +258,15 @@ Settings: US only, Women 18-65+, Auto placement, 7-day click + 1-day view</div>
   </div>
 </div>
 
+<!-- DECISION LOG -->
+<div class="timeline" id="decision-log-section">
+  <h2>📋 Decision Log — Full Audit Trail</h2>
+  <p style="font-size:11px;color:var(--sub);margin-bottom:12px">Every kill, scale, hold, and test decision with reasoning. Auto-synced by Forge from conversations.</p>
+  <div id="decision-log">
+    <div style="text-align:center;padding:20px;color:var(--dim);font-size:11px">Loading decision log...</div>
+  </div>
+</div>
+
 <!-- KILL CRITERIA REFERENCE -->
 <div class="brief">
   <h2>🔴 Kill Criteria (Quick Reference)</h2>
@@ -281,7 +290,7 @@ Settings: US only, Women 18-65+, Auto placement, 7-day click + 1-day view</div>
   </div>
 </div>
 
-<div class="footer">🔱 THALYVE™ Ad Tracker v1.0 — Built by Forge — Feb 2026<br>Data saves locally in your browser (localStorage)</div>
+<div class="footer">🔱 THALYVE™ Ad Tracker v1.1 — Built by Forge — Feb 2026<br>Performance data: localStorage | Decision log: ad-data.json (Forge-synced)</div>
 
 </div>
 
@@ -487,9 +496,87 @@ function generateActions() {
   panel.innerHTML = actions.length ? actions.join('') : '<div class="action-item"><span class="action-badge badge-test">OK</span> <span>All ad sets running normally</span></div>';
 }
 
+// Decision Log from JSON
+let _adJson = null;
+async function loadAdJSON() {
+  try {
+    const r = await fetch('ad-data.json?t=' + Date.now());
+    _adJson = await r.json();
+    // Sync daily data from JSON if present
+    if (_adJson.dailyData && _adJson.dailyData.length) {
+      // JSON overrides localStorage
+      data = _adJson.dailyData;
+      save();
+    }
+    renderDecisionLog();
+    render();
+  } catch(e) {
+    console.error('Failed to load ad-data.json:', e);
+    document.getElementById('decision-log').innerHTML = '<div style="text-align:center;padding:12px;color:var(--dim);font-size:10px">No decision log data</div>';
+  }
+}
+
+function renderDecisionLog() {
+  if (!_adJson || !_adJson.decisionLog || !_adJson.decisionLog.length) {
+    document.getElementById('decision-log').innerHTML = '<div style="text-align:center;padding:12px;color:var(--dim);font-size:10px">No decisions recorded yet</div>';
+    return;
+  }
+  const badgeMap = {
+    'LAUNCH': { cls: 'badge-test', icon: '🚀' },
+    'KILL': { cls: 'badge-kill', icon: '🔴' },
+    'SCALE': { cls: 'badge-scale', icon: '📈' },
+    'HOLD': { cls: 'badge-hold', icon: '⏸️' },
+    'TEST': { cls: 'badge-test', icon: '🧪' },
+    'ADJUST': { cls: 'badge-hold', icon: '🔧' }
+  };
+  const statusColors = {
+    'executed': 'var(--green)',
+    'active': 'var(--blue)',
+    'pending': 'var(--amber)',
+    'reversed': 'var(--red)'
+  };
+  // Reverse chronological
+  const sorted = [..._adJson.decisionLog].reverse();
+  let html = sorted.map(d => {
+    const b = badgeMap[d.decision] || { cls: 'badge-test', icon: '📌' };
+    const sc = statusColors[d.status] || 'var(--sub)';
+    return `<div class="tl-item" style="flex-wrap:wrap">
+      <div class="tl-date" style="min-width:90px">
+        <div>${d.date}</div>
+        <div style="font-size:9px;color:var(--dim)">${d.time || ''}</div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <span class="action-badge ${b.cls}" style="font-size:10px">${b.icon} ${d.decision}</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">${d.target || ''}</span>
+          <span style="font-size:9px;color:${sc};border:1px solid ${sc};padding:1px 6px;border-radius:4px">${d.status}</span>
+        </div>
+        <div style="font-size:11px;color:var(--sub);line-height:1.5">${d.reasoning}</div>
+        <div style="font-size:9px;color:var(--dim);margin-top:4px">
+          Decision: <strong style="color:var(--text)">${d.madeBy}</strong> · Executed: <strong style="color:var(--text)">${d.executedBy}</strong>
+          ${d.outcome ? ' · Outcome: <span style="color:var(--accent2)">' + d.outcome + '</span>' : ''}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  
+  // Stats bar
+  const total = _adJson.decisionLog.length;
+  const kills = _adJson.decisionLog.filter(d => d.decision === 'KILL').length;
+  const scales = _adJson.decisionLog.filter(d => d.decision === 'SCALE').length;
+  const statsBar = `<div style="display:flex;gap:12px;margin-bottom:12px;padding:8px 12px;background:var(--card2);border-radius:8px;border:1px solid var(--border);font-size:10px;color:var(--sub);flex-wrap:wrap">
+    <span>📊 <strong style="color:var(--text)">${total}</strong> decisions</span>
+    <span>🔴 <strong style="color:var(--red)">${kills}</strong> kills</span>
+    <span>📈 <strong style="color:var(--green)">${scales}</strong> scales</span>
+    <span>📅 Since ${_adJson.decisionLog[0]?.date || '—'}</span>
+  </div>`;
+  
+  document.getElementById('decision-log').innerHTML = statsBar + html;
+}
+
 // Init
 document.getElementById('f-date').valueAsDate = new Date();
-render();
+loadAdJSON();
 </script>
 </body>
 </html>
