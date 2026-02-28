@@ -127,6 +127,12 @@ a{text-decoration:none;color:inherit}
 </div>
 
 <div class="content">
+  <!-- Recently Visited -->
+  <div id="recent-section" style="display:none;margin-bottom:28px">
+    <div class="section-title">⚡ Recently Visited</div>
+    <div class="tools-grid" id="recent-grid"></div>
+  </div>
+
   <div class="section-title">🏢 Business Operations</div>
   <div class="tools-grid">
     <a href="dashboard/" class="tool-card primary">
@@ -201,6 +207,48 @@ a{text-decoration:none;color:inherit}
 </footer>
 
 <script>
+// Recently Visited tracking
+const RECENT_KEY='ae_recent_tools';
+const toolCards=document.querySelectorAll('.tool-card[href]');
+const toolMap={};
+toolCards.forEach(c=>{
+  const href=c.getAttribute('href');
+  const name=c.querySelector('h3')?.textContent||'';
+  const desc=c.querySelector('p')?.textContent||'';
+  const iconEl=c.querySelector('.icon');
+  const iconBg=iconEl?iconEl.style.background:'';
+  const emoji=iconEl?iconEl.textContent.trim():'📌';
+  toolMap[href]={name,desc,emoji,iconBg};
+  c.addEventListener('click',function(){
+    const recent=JSON.parse(localStorage.getItem(RECENT_KEY)||'[]');
+    const now=Date.now();
+    const idx=recent.findIndex(r=>r.href===href);
+    if(idx>-1){recent[idx].ts=now;recent[idx].count=(recent[idx].count||1)+1;}
+    else{recent.push({href,ts:now,count:1});}
+    recent.sort((a,b)=>b.ts-a.ts);
+    if(recent.length>6)recent.length=6;
+    localStorage.setItem(RECENT_KEY,JSON.stringify(recent));
+  });
+});
+// Render recent on load
+(function(){
+  const recent=JSON.parse(localStorage.getItem(RECENT_KEY)||'[]');
+  if(!recent.length)return;
+  const sec=document.getElementById('recent-section');
+  const grid=document.getElementById('recent-grid');
+  sec.style.display='block';
+  grid.innerHTML=recent.slice(0,4).map(r=>{
+    const t=toolMap[r.href]||{name:r.href,desc:'',emoji:'📌',iconBg:''};
+    const ago=Math.round((Date.now()-r.ts)/60000);
+    const agoStr=ago<1?'Just now':ago<60?ago+'m ago':Math.round(ago/60)+'h ago';
+    return`<a href="${r.href}" class="tool-card" style="border-color:rgba(124,58,237,0.15)">
+      <div class="icon" style="background:${t.iconBg||'var(--card)'}">${t.emoji}</div>
+      <div class="info"><h3>${t.name}</h3><p>${t.desc}</p><p style="color:var(--accent2);margin-top:2px">${agoStr} · ${r.count} visit${r.count>1?'s':''}</p></div>
+      <span class="arrow">→</span>
+    </a>`;
+  }).join('');
+})();
+
 // Auto-update pipeline from research-data.json
 (async()=>{try{const r=await fetch('tracker/research-data.json?t='+Date.now());if(!r.ok)return;const d=await r.json();if(!Array.isArray(d))return;
 const counts={research:0,source:0,test:0,scale:0,brand:0};
