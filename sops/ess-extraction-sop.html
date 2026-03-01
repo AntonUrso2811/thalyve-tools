@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Extract ESS Transcripts</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05060a;--card:#0f1018;--border:#1a1b28;--text:#eeeef2;--sub:#7c7c96;--accent:#7c5cfc;--accent2:#9b7dff;--green:#0fd68c;--amber:#ffb020;--red:#ff4d6a;--blue:#4d9eff}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.6}
+.app{max-width:800px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:24px;font-weight:800;text-align:center;margin-bottom:4px}
+.sub{text-align:center;color:var(--sub);font-size:12px;margin-bottom:30px}
+h2{font-size:16px;font-weight:700;color:var(--accent);margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.card.key{border-color:var(--accent);border-left:4px solid var(--accent)}
+p{font-size:12px;color:var(--sub);margin-bottom:8px}
+ol,ul{font-size:12px;color:var(--text);padding-left:20px;margin-bottom:8px}
+li{margin-bottom:8px}
+strong{color:var(--text)}
+code{background:#1a1b28;padding:2px 6px;border-radius:4px;font-size:11px;color:var(--accent2)}
+.nav{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;justify-content:center}
+.nav a{font-size:11px;color:var(--sub);text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid var(--border);transition:.2s}
+.nav a:hover{color:var(--accent);border-color:var(--accent)}
+.step{display:flex;gap:12px;margin-bottom:14px}
+.step-num{width:28px;height:28px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;margin-top:2px}
+.step-text{font-size:13px;flex:1}
+.step-text small{display:block;color:var(--sub);font-size:11px;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:11px;margin:12px 0}
+th{text-align:left;padding:8px;color:var(--sub);font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border);background:var(--bg)}
+td{padding:8px;border-bottom:1px solid var(--border)}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="nav">
+<a href="../hub/">← SOP Hub</a>
+<a href="../">🏠 Home</a>
+<a href="javascript:location.reload(true)">🔄 Refresh</a>
+</div>
+
+<h1>🔧 How to Extract ESS Transcripts</h1>
+<p class="sub">~30 seconds per lesson · No tools needed · Just Chrome DevTools</p>
+
+<div class="card key">
+<p><strong>What this does:</strong> Extracts video captions from Skool lessons so Forge turns them into SOPs and actionable frameworks — without watching hours of video.</p>
+</div>
+
+<h2>Steps</h2>
+<div class="card">
+<div class="step"><div class="step-num">1</div><div class="step-text"><strong>Open the lesson on Skool</strong><small>skool.com/ess3/classroom → click the lesson</small></div></div>
+<div class="step"><div class="step-num">2</div><div class="step-text"><strong>Open Developer Tools</strong><small>Mac: <code>Cmd + Option + I</code> · Windows: <code>F12</code></small></div></div>
+<div class="step"><div class="step-num">3</div><div class="step-text"><strong>Click the Network tab</strong><small>Top of the DevTools panel</small></div></div>
+<div class="step"><div class="step-num">4</div><div class="step-text"><strong>Type <code>vtt</code> in the filter box</strong><small>Top left of the Network panel</small></div></div>
+<div class="step"><div class="step-num">5</div><div class="step-text"><strong>Press Play on the video</strong><small>Just tap play — don't need to watch it</small></div></div>
+<div class="step"><div class="step-num">6</div><div class="step-text"><strong>Right-click the .vtt file → Copy → Copy URL</strong><small>A file like <code>72357154.vtt?expires=...</code> will appear</small></div></div>
+<div class="step"><div class="step-num">7</div><div class="step-text"><strong>Send to Forge in Telegram:</strong><small>① Paste the URL<br>② Tell me the lesson number + title (e.g. "2.18 - Creating A Brief")<br>③ If there's a linked doc/PDF below the video, send that too</small></div></div>
+</div>
+
+<h2>If No VTT Appears</h2>
+<div class="card">
+<ol>
+<li>Look for <code>playlist_json</code> or <code>.m3u8</code> in the Network tab instead</li>
+<li>Or do a <strong>screen recording</strong> and send the file — Forge will transcribe with Whisper AI</li>
+</ol>
+</div>
+
+<h2>What Forge Does With It</h2>
+<div class="card">
+<table>
+<tr><th>Output</th><th>Location</th></tr>
+<tr><td>Raw transcript (.vtt + .txt)</td><td><code>reference/ess-transcripts/</code></td></tr>
+<tr><td>Linked resources (docs, PDFs)</td><td><code>reference/ess-resources/</code></td></tr>
+<tr><td>Extracted SOP (.md)</td><td><code>sops/ess/</code></td></tr>
+<tr><td>HTML page on Hub</td><td><code>thalyve-tools/sops/</code></td></tr>
+</table>
+<p style="margin-top:8px"><strong>Naming:</strong> <code>{lesson#}-{short-title}</code> across all folders</p>
+</div>
+
+</div>
+</body>
+</html>
