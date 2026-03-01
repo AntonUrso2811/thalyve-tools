@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative Assets Hub — Anton Empire</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05060a;--card:#0f1018;--border:#1a1b28;--text:#eeeef2;--sub:#7c7c96;--accent:#7c5cfc;--accent2:#9b7dff;--green:#0fd68c;--amber:#ffb020;--red:#ff4d6a}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.6}
+.nav{background:rgba(17,17,17,.95);border-bottom:1px solid #333;padding:6px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap}
+.nav a{font-size:10px;text-decoration:none;color:#999;padding:3px 8px;border-radius:4px;background:#1a1a1a}
+.nav a:hover{color:#fff}
+.app{max-width:860px;margin:0 auto;padding:24px 16px 60px}
+h1{font-size:28px;font-weight:800;text-align:center;margin:32px 0 8px;background:linear-gradient(135deg,var(--accent2),#c0afff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:var(--sub);font-size:12px;margin-bottom:32px}
+h2{font-size:18px;font-weight:700;color:var(--accent2);margin:36px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+h3{font-size:14px;font-weight:700;color:var(--text);margin:20px 0 10px}
+p{font-size:13px;color:var(--sub);margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:12px 0}
+.product-section{background:linear-gradient(135deg,rgba(15,214,140,.06),rgba(15,214,140,.02));border:1px solid rgba(15,214,140,.15);border-radius:12px;padding:20px;margin:20px 0}
+.product-name{font-size:16px;font-weight:800;color:var(--green)}
+.product-meta{font-size:11px;color:var(--sub);margin-top:4px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px}
+th{background:var(--card);color:var(--accent2);font-weight:700;text-align:left;padding:8px 12px;border:1px solid var(--border)}
+td{padding:8px 12px;border:1px solid var(--border);color:var(--sub)}
+code{background:#1a1b28;color:var(--accent2);padding:2px 6px;border-radius:4px;font-size:11px}
+pre{background:#0a0b10;border:1px solid var(--border);border-radius:8px;padding:12px;overflow-x:auto;font-size:11px;line-height:1.5;margin:12px 0;color:var(--sub)}
+.badge{display:inline-block;font-size:9px;padding:2px 8px;border-radius:10px;font-weight:700}
+.b-live{background:rgba(15,214,140,.12);color:var(--green)}
+.b-draft{background:rgba(255,176,32,.1);color:var(--amber)}
+.b-pending{background:rgba(124,92,252,.12);color:var(--accent2)}
+.asset-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.asset-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px}
+.asset-card h4{font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px}
+.asset-card p{font-size:11px;margin:0}
+.status-row{display:flex;gap:8px;align-items:center;margin:4px 0}
+.status-dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.dot-green{background:var(--green)}
+.dot-amber{background:var(--amber)}
+.dot-red{background:var(--red)}
+.footer{text-align:center;padding:24px;font-size:9px;color:#4a4a62;margin-top:40px;border-top:1px solid var(--border)}
+@media(max-width:600px){.asset-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="nav">
+<div class="nav-links">
+<a href="../">🏠 Home</a>
+<a href="../dashboard/">📊 Command</a>
+<a href="../tracker/">🔍 Tracker</a>
+<a href="../hub/">📁 SOPs</a>
+<a href="../personal/">💪 Personal</a>
+</div>
+<div style="font-size:9px;color:#666">Anton Empire</div>
+</div>
+
+<div class="app">
+<h1>🎨 Creative Assets Hub</h1>
+<p class="subtitle">Organized by product • Images, copy, prompts, brand kits • Updated March 1, 2026</p>
+
+<!-- CEREMONIAL CACAO -->
+<div class="product-section">
+<div class="product-name">☕ THALYVE™ Ceremonial Cacao</div>
+<div class="product-meta">Product ID: 10358671114587 • Live at thalyve.com/products/ceremonial-cacao</div>
+</div>
+
+<h3>📋 Core Documents</h3>
+<table>
+<tr><th>Document</th><th>Location</th><th>Status</th></tr>
+<tr><td>Deep Research</td><td><code>reference/brand-kits/ceremonial-cacao-research.md</code></td><td><span class="badge b-live">✅ Done</span></td></tr>
+<tr><td>Brand Kit</td><td><code>reference/brand-kits/ceremonial-cacao-brand-kit.md</code></td><td><span class="badge b-live">✅ Done</span></td></tr>
+<tr><td>Image Prompts</td><td><code>reference/brand-kits/ceremonial-cacao-image-prompts.md</code></td><td><span class="badge b-live">✅ Done</span></td></tr>
+<tr><td>Product Page Template</td><td><code>templates/product.ceremonial-cacao.json</code> (Shopify)</td><td><span class="badge b-live">✅ v3 Live</span></td></tr>
+<tr><td>Avatar Sheet</td><td><em>To be generated</em></td><td><span class="badge b-pending">Queued</span></td></tr>
+<tr><td>Offer Brief</td><td><em>To be generated</em></td><td><span class="badge b-pending">Queued</span></td></tr>
+<tr><td>Necessary Beliefs</td><td><em>To be generated</em></td><td><span class="badge b-pending">Queued</span></td></tr>
+</table>
+
+<h3>🖼️ Product Images</h3>
+<div class="asset-grid">
+<div class="asset-card">
+<h4>Hero Product Shot</h4>
+<p>Kraft pouch + ceramic mug + cacao beans on white</p>
+<div class="status-row"><span class="status-dot dot-amber"></span><span style="font-size:10px;color:var(--amber)">Prompt ready — awaiting Higgsfield generation</span></div>
+</div>
+<div class="asset-card">
+<h4>Lifestyle: Morning Ritual</h4>
+<p>Hands preparing cacao, warm light, minimalist kitchen</p>
+<div class="status-row"><span class="status-dot dot-amber"></span><span style="font-size:10px;color:var(--amber)">Prompt ready</span></div>
+</div>
+<div class="asset-card">
+<h4>Lifestyle: Ingredient Spread</h4>
+<p>Overhead flat-lay, cacao pods, nibs, spices</p>
+<div class="status-row"><span class="status-dot dot-amber"></span><span style="font-size:10px;color:var(--amber)">Prompt ready</span></div>
+</div>
+<div class="asset-card">
+<h4>Lifestyle: Cup Close-Up</h4>
+<p>Macro of frothy cacao, crema, wooden spoon</p>
+<div class="status-row"><span class="status-dot dot-amber"></span><span style="font-size:10px;color:var(--amber)">Prompt ready</span></div>
+</div>
+<div class="asset-card">
+<h4>Lifestyle: Wellness Context</h4>
+<p>Person with cacao on meditation cushion, morning</p>
+<div class="status-row"><span class="status-dot dot-amber"></span><span style="font-size:10px;color:var(--amber)">Prompt ready</span></div>
+</div>
+<div class="asset-card">
+<h4>Ad Creative: Split Screen</h4>
+<p>Coffee vs Cacao, vintage medical illustration</p>
+<div class="status-row"><span class="status-dot dot-amber"></span><span style="font-size:10px;color:var(--amber)">Prompt ready</span></div>
+</div>
+</div>
+
+<h3>📝 Copy Assets</h3>
+<table>
+<tr><th>Asset</th><th>Status</th><th>Notes</th></tr>
+<tr><td>PDP Copy (full page)</td><td><span class="badge b-live">✅ Live</span></td><td>PAS framework, 17 sections, custom Liquid</td></tr>
+<tr><td>Headline Variations (A/B/C)</td><td><span class="badge b-pending">Queued</span></td><td>Per AI Image Ad SOP — 3 types per ad set</td></tr>
+<tr><td>Ad Primary Text (3 segments)</td><td><span class="badge b-pending">Queued</span></td><td>Coffee replacer / Circulation / Wellness ritual</td></tr>
+<tr><td>Email Copy (Klaviyo)</td><td><span class="badge b-pending">Queued</span></td><td>Welcome + reorder (Day 25) flows</td></tr>
+</table>
+
+<h3>🎯 Ad Campaign Assets</h3>
+<table>
+<tr><th>Campaign</th><th>Status</th><th>Creative Count</th></tr>
+<tr><td>THALYVE-CACAO-TEST-01</td><td><span class="badge b-pending">Not started</span></td><td>0/9 (target: 3 ad sets × 3 images)</td></tr>
+</table>
+
+<!-- STRETCH MARK STICK -->
+<div class="product-section" style="margin-top:48px">
+<div class="product-name">🧴 THALYVE™ Evolved Stretch Mark Stick</div>
+<div class="product-meta">Product ID: 10316338233691 • Campaign PAUSED • Gold standard template</div>
+</div>
+
+<h3>📋 Core Documents</h3>
+<table>
+<tr><th>Document</th><th>Status</th></tr>
+<tr><td>Product Page Template (gold standard)</td><td><span class="badge b-live">✅ Live</span></td></tr>
+<tr><td>Deep Research</td><td><span class="badge b-pending">To be formalized</span></td></tr>
+<tr><td>Brand Kit</td><td><span class="badge b-pending">To be formalized</span></td></tr>
+</table>
+
+<h3>🎯 Campaign History</h3>
+<table>
+<tr><th>Campaign</th><th>Spend</th><th>Result</th><th>Status</th></tr>
+<tr><td>THALYVE-SMS-TEST-01</td><td>~$168</td><td>0 purchases, 3 ATCs, 2.96% CTR</td><td><span class="badge" style="background:rgba(255,77,106,.1);color:var(--red)">KILLED</span></td></tr>
+</table>
+
+<!-- SOPs -->
+<h2>📁 Related SOPs</h2>
+<table>
+<tr><th>SOP</th><th>Version</th><th>Link</th></tr>
+<tr><td>AI Image Ad Creation</td><td>v4.0</td><td><a href="ai-image-ad-creation.html" style="color:var(--accent2)">View</a></td></tr>
+<tr><td>Store Build Automation</td><td>v1.0</td><td><a href="store-build-automation.html" style="color:var(--accent2)">View</a></td></tr>
+<tr><td>Product Research</td><td>v1.0</td><td><a href="ess-product-research.html" style="color:var(--accent2)">View</a></td></tr>
+</table>
+
+<!-- FILE STRUCTURE -->
+<h2>📂 File Organization</h2>
+<pre>
+workspace/
+├── reference/
+│   └── brand-kits/
+│       ├── ceremonial-cacao-research.md       ← Deep research
+│       ├── ceremonial-cacao-brand-kit.md      ← Colors, fonts, positioning
+│       ├── ceremonial-cacao-image-prompts.md  ← Higgsfield prompts
+│       └── [product]-*.md                     ← Per product
+├── sops/
+│   ├── ai-image-ad-creation-sop.md           ← v4.0 master SOP
+│   └── store-build-automation-sop.md         ← Store build process
+└── thalyve-tools/sops/
+    ├── ai-image-ad-creation.html             ← Hub page
+    ├── creative-assets.html                  ← THIS PAGE
+    └── store-build-automation.html           ← Hub page
+
+Google Drive (future):
+/THALYVE_Creative_Assets/
+├── 01_CAMPAIGNS/
+├── 02_FOUNDATIONAL_DOCS/
+├── 03_WINNING_CONCEPTS/
+├── 04_IMAGE_AD_BOARD/
+└── 05_COMPLIANCE/
+</pre>
+
+<div class="footer">🔱 Anton Empire — Creative Assets Hub — Updated March 1, 2026</div>
+</div>
+</body>
+</html>
