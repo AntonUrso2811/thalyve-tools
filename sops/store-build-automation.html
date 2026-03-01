@@ -162,16 +162,11 @@ code{background:#1a1b28;padding:2px 6px;border-radius:4px;font-size:11px;color:v
 <p style="margin-top:8px"><strong>Everything else = Forge handles it.</strong></p>
 </div>
 
-<h2>⚠️ Current Blocker</h2>
-<div class="card danger">
-<span class="tag tag-blocker">Needs Fix</span>
-<p><strong>Shopify API token returning 401 (Invalid).</strong> Need to regenerate:</p>
-<ol>
-<li>Shopify Partners → Apps → Forge Sync → API credentials</li>
-<li>Generate new Admin API access token</li>
-<li>Send to Forge via Telegram</li>
-</ol>
-<p>Until fixed: Forge builds via browser automation or guides Anton through admin.</p>
+<h2>🔑 Shopify API Auth</h2>
+<div class="card">
+<p><strong>Forge Sync = Dev Dashboard app.</strong> No token to copy from UI.</p>
+<p>Tokens obtained programmatically via <strong>client credentials grant</strong> — valid 24hrs, auto-refreshed by daily cron.</p>
+<p>Client ID + Secret in macOS Keychain. Forge handles token refresh automatically.</p>
 </div>
 
 <h2>Architecture Rules</h2>
