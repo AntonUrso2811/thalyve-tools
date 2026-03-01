@@ -1,0 +1,10 @@
+/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+/dashboard/*
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/dashboard/company-data.json
+  Cache-Control: no-cache, no-store, must-revalidate

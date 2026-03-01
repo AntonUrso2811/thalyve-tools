@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdated": "2026-02-28T02:30:00Z",
+    "lastUpdated": "2026-03-01T05:00:00Z",
     "updatedBy": "Forge",
-    "version": "3.3"
+    "version": "3.5"
   },
   "company": {
     "name": "Anton Empire",
@@ -11,7 +11,7 @@
     "taxRate": 19,
     "targetNetMargin": 20,
     "targetMonthlyNet": 10000,
-    "notes": "UK Ltd for now. Future plan: Hong Kong entity (0% tax). Corp tax 19% for small profits (<\u00a350K), 25% for >\u00a3250K. Target: \u00a310k net/month."
+    "notes": "UK Ltd for now. Future plan: Hong Kong entity (0% tax). Corp tax 19% for small profits (<£50K), 25% for >£250K. Target: £10k net/month."
   },
   "companyExpenses": [
     {
@@ -36,7 +36,7 @@
   "brands": [
     {
       "id": "thalyve",
-      "name": "THALYVE\u2122",
+      "name": "THALYVE™",
       "status": "active",
       "products": [
         {
@@ -74,7 +74,7 @@
         "agencyFeeNote": "3% on all deposits transferred to ad account (automatic)",
         "dailyTestBudget": 100,
         "accountDeposit": 1000,
-        "status": "LIVE \u2014 $100/day CBO",
+        "status": "LIVE — $100/day CBO (Day 3)",
         "launchDate": "2026-02-27",
         "testBudget": 100
       },
@@ -84,25 +84,25 @@
   "taxes": {
     "entity": "UK Ltd",
     "estimatedRate": 19,
-    "notes": "UK Corp Tax: 19% small profits (<\u00a350K), 25% (>\u00a3250K). Future: HK entity restructure for 0% rate.",
+    "notes": "UK Corp Tax: 19% small profits (<£50K), 25% (>£250K). Future: HK entity restructure for 0% rate.",
     "provisioned": []
   },
   "shopify": {
-    "plan": "Advanced (Promo \u00a31/mo)",
+    "plan": "Advanced (Promo £1/mo)",
     "promoExpiry": "2026-03-12",
-    "normalPrice": "\u00a3344/mo",
+    "normalPrice": "£344/mo",
     "cardRates": {
-      "online": "1.5% + \u00a30.25",
-      "inPerson": "1.5% + \u00a30.00"
+      "online": "1.5% + £0.25",
+      "inPerson": "1.5% + £0.00"
     },
     "staffAccounts": 15,
     "action": "Downgrade before March 12 to suitable plan"
   },
   "kpiTargets": {
-    "weekOf": "24 Feb 2026",
+    "weekOf": "1 Mar 2026",
     "departments": {
       "revenue": {
-        "name": "\ud83d\udcb0 Revenue & Ads",
+        "name": "💰 Revenue & Ads",
         "owner": "Anton + Forge",
         "targets": [
           {
@@ -126,7 +126,7 @@
         ]
       },
       "pipeline": {
-        "name": "\ud83d\udd0d Product Pipeline",
+        "name": "🔍 Product Pipeline",
         "owner": "Forge",
         "targets": [
           {
@@ -150,18 +150,18 @@
         ]
       },
       "infra": {
-        "name": "\u2699\ufe0f Infrastructure",
+        "name": "⚙️ Infrastructure",
         "owner": "Forge",
         "targets": [
           {
             "metric": "Cron Jobs Active",
-            "target": 7,
-            "current": 7,
+            "target": 8,
+            "current": 8,
             "unit": "jobs"
           },
           {
             "metric": "SOPs Created",
-            "target": 15,
+            "target": 13,
             "current": 13,
             "unit": "SOPs"
           },
@@ -177,57 +177,42 @@
   },
   "roadmap": {
     "thisWeek": {
-      "weekOf": "2026-02-24",
+      "weekOf": "2026-03-01",
       "priorities": [
         {
-          "task": "Deploy GitHub Pages \u2014 tools accessible on phone",
-          "status": "done",
-          "owner": "Forge"
-        },
-        {
-          "task": "Upgrade Tracker v4.0 \u2014 competitors, creatives, traffic context",
-          "status": "done",
-          "owner": "Forge"
-        },
-        {
-          "task": "Upgrade Command Centre v3.2 \u2014 KPIs, roadmap, task log, cron monitor",
-          "status": "done",
-          "owner": "Forge"
-        },
-        {
-          "task": "Build SOP Hub / Company Drive",
-          "status": "done",
-          "owner": "Forge"
-        },
-        {
-          "task": "Run SOP-compliant research batch (Mon+Thu)",
-          "status": "done",
-          "owner": "Forge"
-        },
-        {
-          "task": "THALYVE-SMS-TEST-01 ad campaign launch",
+          "task": "Kill/Scale Decision — THALYVE-SMS-TEST-01 (48hr data review)",
           "status": "in-progress",
-          "owner": "Anton"
+          "owner": "Anton + Forge"
         },
         {
-          "task": "Bulletproof AI Access Guide built",
-          "status": "done",
+          "task": "Product research batch — 3-5 new products scored",
+          "status": "planned",
           "owner": "Forge"
         },
         {
-          "task": "MBB playbook + ESS docs absorbed (12 of ~19)",
-          "status": "in-progress",
-          "owner": "Forge"
+          "task": "Mutual Express COGS quotes (LED Mask + TENS Unit)",
+          "status": "planned",
+          "owner": "Anton + Forge"
         },
         {
-          "task": "Set up credential security (Keychain)",
-          "status": "done",
-          "owner": "Forge"
-        },
-        {
-          "task": "Shopify plan review \u2014 downgrade before Mar 12",
+          "task": "Shopify plan downgrade (before Mar 12)",
           "status": "planned",
           "owner": "Anton"
+        },
+        {
+          "task": "GetHookd 1-on-1 call — Akos Gado (Tue 18:45)",
+          "status": "planned",
+          "owner": "Anton"
+        },
+        {
+          "task": "Update Tracker — kill Posture Corrector, refresh pipeline",
+          "status": "planned",
+          "owner": "Forge"
+        },
+        {
+          "task": "Evaluate sub-agent hire: Hawk (Market Intelligence)",
+          "status": "planned",
+          "owner": "Forge"
         }
       ]
     },
@@ -235,7 +220,7 @@
       "weekOf": "2026-03-03",
       "priorities": [
         {
-          "task": "Full research batch \u2014 10 products validated",
+          "task": "Full research batch — 10 products validated",
           "status": "planned",
           "owner": "Forge"
         },
@@ -250,7 +235,7 @@
           "owner": "Forge"
         },
         {
-          "task": "Ad creative research \u2014 GetHookd swipe library",
+          "task": "Ad creative research — GetHookd swipe library",
           "status": "planned",
           "owner": "Forge"
         },
@@ -264,31 +249,31 @@
     "milestones": [
       {
         "name": "First Sale",
-        "revenue": "\u00a340-200",
-        "profit": "\u00a38-50",
+        "revenue": "£40-200",
+        "profit": "£8-50",
         "target": "Week 2",
         "status": "pending"
       },
       {
-        "name": "\u00a31K Profit Month",
-        "revenue": "\u00a34-5K",
-        "profit": "\u00a31K",
+        "name": "£1K Profit Month",
+        "revenue": "£4-5K",
+        "profit": "£1K",
         "target": "Week 4-6",
         "status": "planned",
         "margin": "20-25%"
       },
       {
-        "name": "\u00a35K Profit Month",
-        "revenue": "\u00a320-25K",
-        "profit": "\u00a35K",
+        "name": "£5K Profit Month",
+        "revenue": "£20-25K",
+        "profit": "£5K",
         "target": "Month 2-3",
         "status": "planned",
         "margin": "20-25%"
       },
       {
-        "name": "\u00a310K Profit Month",
-        "revenue": "\u00a340-50K",
-        "profit": "\u00a310K",
+        "name": "£10K Profit Month",
+        "revenue": "£40-50K",
+        "profit": "£10K",
         "target": "Month 3-4",
         "status": "planned",
         "margin": "20-25%"
@@ -297,11 +282,11 @@
     "financialModel": {
       "targetProfit": 10000,
       "marginRange": "20-25%",
-      "requiredRevenue": "\u00a340,000-50,000/month",
+      "requiredRevenue": "£40,000-50,000/month",
       "avgOrderValue": 50,
-      "ordersNeeded": "800-1000/month at \u00a350 AOV",
+      "ordersNeeded": "800-1000/month at £50 AOV",
       "dailyOrders": "27-33/day",
-      "adBudget": "\u00a33-5K/month at scale",
+      "adBudget": "£3-5K/month at scale",
       "breakEvenRoas": 2.0,
       "targetRoas": 3.0,
       "note": "20-25% net margin is realistic for branded dropshipping after ad spend, COGS, platform fees, returns"
@@ -316,7 +301,7 @@
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "Cron Monitor updated \u2014 all 5 jobs verified healthy, descriptions added",
+      "task": "Cron Monitor updated — all 5 jobs verified healthy, descriptions added",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
@@ -330,7 +315,7 @@
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "MBB docs absorbed \u2014 landing pages $535K + internal reference",
+      "task": "MBB docs absorbed — landing pages $535K + internal reference",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
@@ -344,21 +329,21 @@
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "Daily critical tasks cron \u2014 5 tasks each for Anton + Forge",
+      "task": "Daily critical tasks cron — 5 tasks each for Anton + Forge",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "Product research cron \u2014 5 products scored, 3 dropship-ready",
+      "task": "Product research cron — 5 products scored, 3 dropship-ready",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "Master Strategy v1.0 \u2014 infrastructure + \u00a310K roadmap",
+      "task": "Master Strategy v1.0 — infrastructure + £10K roadmap",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
@@ -386,14 +371,14 @@
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "MBB playbook \u2014 framework extraction",
+      "task": "MBB playbook — framework extraction",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "Mac sleep disabled \u2014 lid-close gateway running",
+      "task": "Mac sleep disabled — lid-close gateway running",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
@@ -407,7 +392,7 @@
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "CRITICAL-TASKS.md \u2014 daily operating system",
+      "task": "CRITICAL-TASKS.md — daily operating system",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
@@ -428,7 +413,7 @@
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "Advanced Diagnostics \u2014 15 failure scenarios",
+      "task": "Advanced Diagnostics — 15 failure scenarios",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
@@ -449,7 +434,7 @@
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "Security audit \u2014 all green + monthly cron added",
+      "task": "Security audit — all green + monthly cron added",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
@@ -470,14 +455,14 @@
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "Survival Guide v1.1 \u2014 Telegram, API, restart sections",
+      "task": "Survival Guide v1.1 — Telegram, API, restart sections",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "Full chat export analysis \u2014 MEMORY.md rebuilt",
+      "task": "Full chat export analysis — MEMORY.md rebuilt",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
@@ -505,14 +490,14 @@
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "Overnight crons \u2014 product research (3AM) + morning briefing (7AM)",
+      "task": "Overnight crons — product research (3AM) + morning briefing (7AM)",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
       "finished": "2026-02-27T08:15:00Z"
     },
     {
-      "task": "THALYVE-SMS-TEST-01 ads launched \u2014 $100/day CBO, 9 ads, Advantage+ Sales",
+      "task": "THALYVE-SMS-TEST-01 ads launched — $100/day CBO, 9 ads, Advantage+ Sales",
       "owner": "Anton",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
@@ -540,14 +525,14 @@
       "finished": "2026-02-27T08:30:00Z"
     },
     {
-      "task": "Company Overview redesigned \u2014 hero profit card, gradient P&L, quick stats",
+      "task": "Company Overview redesigned — hero profit card, gradient P&L, quick stats",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
       "finished": "2026-02-27T08:40:00Z"
     },
     {
-      "task": "Cron Monitor updated \u2014 7 active jobs",
+      "task": "Cron Monitor updated — 7 active jobs",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
@@ -561,7 +546,7 @@
       "finished": "2026-02-27T08:10:00Z"
     },
     {
-      "task": "Expenses tab \u2014 12 real expenses seeded + localStorage override fix",
+      "task": "Expenses tab — 12 real expenses seeded + localStorage override fix",
       "owner": "Forge",
       "status": "done",
       "started": "2026-02-27T08:00:00Z",
@@ -605,9 +590,9 @@
       "status": "active",
       "since": "2026-02-22",
       "phase": "Phase 1",
-      "emoji": "\ud83d\udc51",
-      "personality": "Visionary \u00b7 Disciplined \u00b7 Anti-Shortcut \u00b7 Direct",
-      "demographic": "24M \u00b7 UK \u00b7 Health & Wellness Enthusiast",
+      "emoji": "👑",
+      "personality": "Visionary · Disciplined · Anti-Shortcut · Direct",
+      "demographic": "24M · UK · Health & Wellness Enthusiast",
       "responsibilities": "Strategy, final decisions, Mutual sourcing, ad account ownership, financial oversight",
       "notes": "20-30 min/week operational input. Guides direction, Forge executes.",
       "strengths": "Systems thinking, discipline (75 Hard), quality standards, pattern recognition",
@@ -622,9 +607,9 @@
       "status": "active",
       "since": "2026-02-22",
       "phase": "Phase 1",
-      "emoji": "\ud83d\udd31",
-      "personality": "Builder \u00b7 Direct \u00b7 Honest \u00b7 Cleaner Mentality",
-      "demographic": "AI \u00b7 Claude Opus 4.6 \u00b7 Anthropic",
+      "emoji": "🔱",
+      "personality": "Builder · Direct · Honest · Cleaner Mentality",
+      "demographic": "AI · Claude Opus 4.6 · Anthropic",
       "responsibilities": "Operations, product research, tool building, SOP creation, sub-agent hiring, daily briefings, automation",
       "notes": "Runs 24/7. Autonomous execution with full hiring authority.",
       "strengths": "Multi-tasking, SOP creation, rapid execution, memory management, code/tools",
@@ -638,10 +623,10 @@
       "type": "ai-agent",
       "status": "planned",
       "since": null,
-      "phase": "Phase 2 \u00b7 Week 2-3",
-      "emoji": "\ud83e\udd85",
-      "personality": "Analytical \u00b7 Data-Obsessed \u00b7 Pattern Spotter",
-      "demographic": "AI \u00b7 Sonnet-class \u00b7 Specialist",
+      "phase": "Phase 2 · Week 2-3",
+      "emoji": "🦅",
+      "personality": "Analytical · Data-Obsessed · Pattern Spotter",
+      "demographic": "AI · Sonnet-class · Specialist",
       "responsibilities": "Google Trends analysis, market research, trending product identification, competitive intelligence",
       "notes": "Trigger: when research volume exceeds Forge's capacity.",
       "strengths": "Data analysis, trend detection, competitor monitoring, market sizing",
@@ -655,10 +640,10 @@
       "type": "ai-agent",
       "status": "planned",
       "since": null,
-      "phase": "Phase 2 \u00b7 Week 2-3",
-      "emoji": "\ud83d\udd0d",
-      "personality": "Creative Eye \u00b7 Detail-Oriented \u00b7 Swipe Collector",
-      "demographic": "AI \u00b7 Sonnet-class \u00b7 Specialist",
+      "phase": "Phase 2 · Week 2-3",
+      "emoji": "🔍",
+      "personality": "Creative Eye · Detail-Oriented · Swipe Collector",
+      "demographic": "AI · Sonnet-class · Specialist",
       "responsibilities": "GetHookd ad analysis, creative swipe library, ad script writing, creative angle identification",
       "notes": "Trigger: when we have 5+ validated products needing creative.",
       "strengths": "Ad pattern recognition, hook writing, competitor creative analysis, angle testing",
@@ -672,10 +657,10 @@
       "type": "ai-agent",
       "status": "active",
       "since": null,
-      "phase": "Phase 3 \u00b7 Week 4-6",
-      "emoji": "\u270d\ufe0f",
-      "personality": "Persuasive \u00b7 Brand-Voice Native \u00b7 Anti-Hype",
-      "demographic": "AI \u00b7 Opus-class \u00b7 Creative",
+      "phase": "Phase 3 · Week 4-6",
+      "emoji": "✍️",
+      "personality": "Persuasive · Brand-Voice Native · Anti-Hype",
+      "demographic": "AI · Opus-class · Creative",
       "responsibilities": "Ad copy, product descriptions, email sequences, landing page copy",
       "notes": "Trigger: first product ready for ad launch. Must match Anton's anti-shortcut voice.",
       "strengths": "Conversion copywriting, brand voice, email funnels, compliance-safe claims",
@@ -689,10 +674,10 @@
       "type": "ai-agent",
       "status": "planned",
       "since": null,
-      "phase": "Phase 3 \u00b7 Week 4-6",
-      "emoji": "\ud83c\udfac",
-      "personality": "Visual Storyteller \u00b7 Hook Master \u00b7 Scroll-Stopper",
-      "demographic": "AI \u00b7 Opus-class \u00b7 Creative Director",
+      "phase": "Phase 3 · Week 4-6",
+      "emoji": "🎬",
+      "personality": "Visual Storyteller · Hook Master · Scroll-Stopper",
+      "demographic": "AI · Opus-class · Creative Director",
       "responsibilities": "Video ad scripting, UGC brief creation, creative production pipeline",
       "notes": "Trigger: when ad creative pipeline needs scaling.",
       "strengths": "Video hooks, UGC briefs, storyboarding, creative testing frameworks",
@@ -701,29 +686,29 @@
     }
   ],
   "dailyCriticalTasks": {
-    "date": "2026-02-28",
+    "date": "2026-03-01",
     "members": {
       "anton": {
         "name": "Anton",
         "tasks": [
           {
-            "task": "Don't touch ads \u2014 Day 2 of 48hr no-touch rule",
+            "task": "KILL/SCALE DECISION — 48hr no-touch complete, review all data",
             "done": false
           },
           {
-            "task": "Screenshot Ads Manager \u2192 send to Forge (data only)",
+            "task": "Send Ads Manager screenshots to Forge (CPM, CTR, spend, impressions)",
             "done": false
           },
           {
-            "task": "Deep work \u2014 4 Pomodoro cycles (6:40-11:00)",
+            "task": "Deep work — 4 Pomodoro cycles (6:40-11:00)",
             "done": false
           },
           {
-            "task": "Message Mutual Express \u2014 COGS quotes (LED Mask + TENS)",
+            "task": "Message Mutual Express — COGS quotes (LED Mask + TENS Unit)",
             "done": false
           },
           {
-            "task": "Review Command Centre after Forge fixes",
+            "task": "Shopify plan review — downgrade before Mar 12",
             "done": false
           }
         ]
@@ -732,30 +717,30 @@
         "name": "Forge",
         "tasks": [
           {
-            "task": "Fix all dashboard rendering (Team, KPI, Task Log, Critical Tasks)",
+            "task": "Dashboard refresh & tools audit (5AM daily cron)",
             "done": true
           },
           {
-            "task": "Rebuild Personal Hub (nutrition, training, 75 Hard)",
+            "task": "Analyse ad screenshots + deliver Kill/Scale recommendation",
             "done": false
           },
           {
-            "task": "Rebuild Expenses tab (Monthly vs Invoices separation)",
+            "task": "Product research pipeline — 3-5 new products (Mon 3AM cron)",
             "done": false
           },
           {
-            "task": "Build automated daily check-in system",
+            "task": "Update Tracker — pipeline + scoring refresh",
             "done": false
           },
           {
-            "task": "Update tracker \u2014 kill Posture Corrector, update pipeline",
+            "task": "Morning briefing (7AM) — Day 65, Kill/Scale focus",
             "done": false
           }
         ]
       }
     }
   },
-  "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 \u2014 MUST downgrade. Target: \u00a310k net/month. All expenses wiped clean for v3.0 fresh start.",
+  "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 — MUST downgrade. Target: £10k net/month. All expenses wiped clean for v3.0 fresh start.",
   "productivity": {
     "since": "2026-02-22",
     "totals": {
@@ -843,6 +828,17 @@
         "total": 5,
         "done": 5
       }
+    },
+    {
+      "date": "2026-02-28",
+      "anton": {
+        "total": 5,
+        "done": 2
+      },
+      "forge": {
+        "total": 5,
+        "done": 3
+      }
     }
   ],
   "members": {
@@ -850,29 +846,29 @@
       "name": "Anton",
       "tasks": [
         {
-          "text": "Don't touch ads \u2014 Day 2 of 48hr no-touch rule",
+          "text": "KILL/SCALE DECISION — review 48hr ad data, make the call",
           "done": false,
-          "time": 0
+          "time": 30
         },
         {
-          "text": "Screenshot Ads Manager \u2192 send to Forge (data collection only)",
+          "text": "Send Ads Manager screenshots to Forge",
           "done": false,
           "time": 5
         },
         {
-          "text": "Deep work \u2014 4 Pomodoro cycles (6:40-11:00)",
+          "text": "Deep work — 4 Pomodoro cycles (6:40-11:00)",
           "done": false,
           "time": 280
         },
         {
-          "text": "GetHookd: verify Smart Posture Corrector (20 min)",
-          "done": false,
-          "time": 20
-        },
-        {
-          "text": "Message Mutual Express for COGS quotes (Posture Corrector + LED Mask)",
+          "text": "Message Mutual Express for COGS quotes (LED Mask + TENS)",
           "done": false,
           "time": 10
+        },
+        {
+          "text": "Shopify downgrade — review plans before Mar 12 deadline",
+          "done": false,
+          "time": 15
         }
       ]
     },
@@ -880,40 +876,40 @@
       "name": "Forge",
       "tasks": [
         {
-          "text": "Rebuild Personal Hub (nutrition, training, 75 Hard)",
-          "done": false,
-          "time": 60
+          "text": "Dashboard refresh + tools audit (5AM cron)",
+          "done": true,
+          "time": 20
         },
         {
-          "text": "Rebuild Expenses tab (Monthly Recurring vs Invoices)",
+          "text": "Analyse ad data + Kill/Scale recommendation to Anton",
+          "done": false,
+          "time": 30
+        },
+        {
+          "text": "Product research pipeline (Mon 3AM cron)",
           "done": false,
           "time": 45
         },
         {
-          "text": "Fix all dashboard rendering issues (localStorage, team, task log)",
-          "done": true,
-          "time": 30
-        },
-        {
-          "text": "Build dynamic critical tasks cron around schedule",
+          "text": "Update Tracker — kill/archive losers, score new products",
           "done": false,
           "time": 30
         },
         {
-          "text": "Update all SOPs to reflect current state",
+          "text": "Morning briefing delivery (7AM)",
           "done": false,
-          "time": 40
+          "time": 15
         }
       ]
     },
-    "_date": "2026-02-28"
+    "_date": "2026-03-01"
   },
   "daily": [
     {
       "id": "day_20260227",
       "date": "2026-02-27",
       "brandId": "thalyve",
-      "brandName": "THALYVE\u2122",
+      "brandName": "THALYVE™",
       "productId": "stretch-mark-stick",
       "productName": "Stretch Mark Stick",
       "orders": 0,
@@ -925,16 +921,29 @@
       "id": "day_20260228",
       "date": "2026-02-28",
       "brandId": "thalyve",
-      "brandName": "THALYVE\u2122",
+      "brandName": "THALYVE™",
       "productId": "stretch-mark-stick",
       "productName": "Stretch Mark Stick",
       "orders": 0,
       "revenue": 0,
       "adSpend": 57.53,
       "cogs": 0
+    },
+    {
+      "id": "day_20260301",
+      "date": "2026-03-01",
+      "brandId": "thalyve",
+      "brandName": "THALYVE™",
+      "productId": "stretch-mark-stick",
+      "productName": "Stretch Mark Stick",
+      "orders": 0,
+      "revenue": 0,
+      "adSpend": 0,
+      "cogs": 0,
+      "note": "Day 3 — Kill/Scale Decision day. Awaiting screenshot data."
     }
   ],
-  "version": "3.4",
+  "version": "3.5",
   "jobMonitor": [
     {
       "id": "j001",
@@ -1027,7 +1036,7 @@
     {
       "id": "j009",
       "member": "Forge",
-      "task": "Cron delivery \u2192 Telegram (all 8 jobs)",
+      "task": "Cron delivery → Telegram (all 8 jobs)",
       "status": "done",
       "started": "2026-02-28T09:38:00",
       "finished": "2026-02-28T09:40:00",
@@ -1038,7 +1047,7 @@
     {
       "id": "j010",
       "member": "Quill",
-      "task": "Ad copy v1.0 \u2014 3 ad sets, compliance-safe",
+      "task": "Ad copy v1.0 — 3 ad sets, compliance-safe",
       "status": "done",
       "started": "2026-02-27T15:00:00",
       "finished": "2026-02-27T15:30:00",
@@ -1049,27 +1058,27 @@
     {
       "id": "j011",
       "member": "Anton",
-      "task": "Meta Ads Manager \u2014 launch THALYVE-SMS-TEST-01",
+      "task": "Meta Ads Manager — launch THALYVE-SMS-TEST-01",
       "status": "done",
       "started": "2026-02-27T14:00:00",
       "finished": "2026-02-27T14:15:00",
       "duration": "15m",
-      "model": "\u2014",
+      "model": "—",
       "resources": "Manual"
     },
     {
       "id": "j012",
       "member": "Anton",
-      "task": "Ad performance screenshot \u2192 Forge",
+      "task": "Ad performance screenshot → Forge",
       "status": "done",
       "started": "2026-02-28T09:30:00",
       "finished": "2026-02-28T09:31:00",
       "duration": "1m",
-      "model": "\u2014",
+      "model": "—",
       "resources": "Manual"
     }
   ],
-  "lastUpdated": "2026-02-28T11:20:16Z",
+  "lastUpdated": "2026-03-01T05:00:00Z",
   "aiEngine": {
     "currentModel": "claude-opus-4-6",
     "provider": "Anthropic",
@@ -1080,16 +1089,16 @@
     "compactions": 8,
     "cacheHitRate": 100,
     "status": "operational",
-    "lastSessionStart": "2026-02-28T06:00:00Z",
-    "sessionsToday": 3,
+    "lastSessionStart": "2026-03-01T05:00:00Z",
+    "sessionsToday": 1,
     "alerts": [
       {
         "type": "info",
-        "message": "Opus allowance resets periodically \u2014 Forge monitors and switches to Sonnet if nearing cap"
+        "message": "Opus allowance resets periodically — Forge monitors and switches to Sonnet if nearing cap"
       },
       {
         "type": "reminder",
-        "message": "GitHub PAT expires Mar 27, 2026 \u2014 rotation needed before then"
+        "message": "GitHub PAT expires Mar 27, 2026 — rotation needed before then"
       },
       {
         "type": "info",
@@ -1098,13 +1107,22 @@
     ],
     "history": [
       {
+        "date": "2026-03-01",
+        "model": "sonnet",
+        "sessions": 1,
+        "tokensIn": "~8k",
+        "tokensOut": "~4k",
+        "compactions": 0,
+        "notes": "Daily dashboard refresh & tools audit (5AM cron)"
+      },
+      {
         "date": "2026-02-28",
         "model": "opus",
         "sessions": 3,
         "tokensIn": "~50k",
         "tokensOut": "~30k",
         "compactions": 8,
-        "notes": "Heavy build session \u2014 dashboard overhaul"
+        "notes": "Heavy build session — dashboard overhaul"
       },
       {
         "date": "2026-02-27",
@@ -1132,7 +1150,7 @@
         "id": "ev1",
         "date": "2026-03-01",
         "time": "09:00",
-        "title": "Kill/Scale Decision \u2014 THALYVE-SMS-TEST-01",
+        "title": "Kill/Scale Decision — THALYVE-SMS-TEST-01",
         "category": "deadline",
         "notes": "48hr no-touch complete. Review ad data, make kill/scale call per BBA framework.",
         "done": false
@@ -1150,7 +1168,7 @@
         "id": "ev3",
         "date": "2026-03-06",
         "time": "00:00",
-        "title": "75 Hard Challenge Completion \ud83c\udf89",
+        "title": "75 Hard Challenge Completion 🎉",
         "category": "personal",
         "notes": "Day 75! Anton finishes 75 Hard.",
         "done": false
@@ -1161,7 +1179,7 @@
         "time": "09:00",
         "title": "Shopify Plan Downgrade DEADLINE",
         "category": "deadline",
-        "notes": "Must downgrade before March 12 or full price kicks in (was \u00a31/mo promo)",
+        "notes": "Must downgrade before March 12 or full price kicks in (was £1/mo promo)",
         "done": false
       },
       {
@@ -1188,12 +1206,12 @@
         "time": "03:00",
         "title": "Product Research Pipeline",
         "category": "business",
-        "notes": "Automated Mon 3AM cron \u2014 3-5 new products",
+        "notes": "Automated Mon 3AM cron — 3-5 new products",
         "done": false
       },
       {
         "id": "evt_gethookd_call",
-        "title": "GetHookd 1-on-1 Call \u2014 Akos Gado",
+        "title": "GetHookd 1-on-1 Call — Akos Gado",
         "date": "2026-03-03",
         "time": "18:45",
         "category": "business",
@@ -1212,7 +1230,7 @@
       "training": [
         {
           "time": "05:00",
-          "label": "Wake \u2192 Hygiene, Hydrate"
+          "label": "Wake → Hygiene, Hydrate"
         },
         {
           "time": "05:15",
@@ -1244,7 +1262,7 @@
         },
         {
           "time": "14:15",
-          "label": "Walk home \u2192 Shake \u2192 Shower"
+          "label": "Walk home → Shake → Shower"
         },
         {
           "time": "14:30",
@@ -1272,13 +1290,13 @@
         },
         {
           "time": "21:00",
-          "label": "Magnesium \u2192 21:15 Lights out"
+          "label": "Magnesium → 21:15 Lights out"
         }
       ],
       "rest": [
         {
           "time": "05:00",
-          "label": "Wake \u2192 Hygiene, Hydrate"
+          "label": "Wake → Hygiene, Hydrate"
         },
         {
           "time": "05:15",
@@ -1306,18 +1324,18 @@
         },
         {
           "time": "21:00",
-          "label": "Magnesium \u2192 21:15 Lights out"
+          "label": "Magnesium → 21:15 Lights out"
         }
       ]
     }
   },
   "forgeStatus": {
-    "current": "Dashboard upgrades \u2014 cache busting, tab persistence, Forge Status panel",
-    "nextScheduled": "Dashboard Refresh (daily 5AM) \u00b7 Morning Brief (7AM)",
+    "current": "Dashboard refresh & tools audit — Day 65 of 75 Hard",
+    "nextScheduled": "Morning Brief (7AM) · Product Research (Mon 3AM) · Dashboard Refresh (daily 5AM)",
     "status": "operational",
     "model": "Claude Opus 4.6",
     "cronCount": 8,
     "lastTask": "Fixed refresh/navigation, added Forge Status to homepage",
-    "lastTaskTime": "2026-02-28T11:20:16Z"
+    "lastTaskTime": "2026-03-01T05:00:00Z"
   }
 }
