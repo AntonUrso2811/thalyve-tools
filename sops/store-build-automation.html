@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Store Build Automation — Product to Live in 2hrs</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05060a;--card:#0f1018;--border:#1a1b28;--text:#eeeef2;--sub:#7c7c96;--accent:#7c5cfc;--accent2:#9b7dff;--green:#0fd68c;--amber:#ffb020;--red:#ff4d6a;--blue:#4d9eff}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.6}
+.app{max-width:800px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:22px;font-weight:800;text-align:center;margin-bottom:4px}
+.sub{text-align:center;color:var(--sub);font-size:12px;margin-bottom:30px}
+h2{font-size:15px;font-weight:700;color:var(--accent);margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+h3{font-size:13px;font-weight:700;color:var(--accent2);margin:16px 0 8px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.card.key{border-color:var(--accent);border-left:4px solid var(--accent)}
+.card.action{border-color:var(--green);border-left:4px solid var(--green)}
+.card.warning{border-color:var(--amber);border-left:4px solid var(--amber)}
+.card.danger{border-color:var(--red);border-left:4px solid var(--red)}
+p{font-size:12px;color:var(--sub);margin-bottom:8px}
+ol,ul{font-size:12px;color:var(--text);padding-left:20px;margin-bottom:8px}
+li{margin-bottom:6px}
+strong{color:var(--text)}
+code{background:#1a1b28;padding:2px 6px;border-radius:4px;font-size:11px;color:var(--accent2)}
+.nav{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;justify-content:center}
+.nav a{font-size:11px;color:var(--sub);text-decoration:none;padding:6px 12px;border-radius:8px;border:1px solid var(--border);transition:.2s}
+.nav a:hover{color:var(--accent);border-color:var(--accent)}
+.tag{display:inline-block;font-size:9px;font-weight:700;padding:3px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.tag-phase{background:rgba(124,92,252,.12);color:var(--accent)}
+.tag-time{background:rgba(15,214,140,.1);color:var(--green)}
+.tag-blocker{background:rgba(255,77,106,.12);color:var(--red)}
+.timeline{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.tl-item{flex:1;min-width:120px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
+.tl-num{font-size:20px;font-weight:800;color:var(--accent)}
+.tl-label{font-size:10px;color:var(--sub);margin-top:2px}
+.tl-time{font-size:11px;color:var(--green);font-weight:600;margin-top:4px}
+.page-map{font-size:11px;line-height:1.8;padding:12px;background:var(--bg);border-radius:8px;margin:8px 0}
+.page-map .section{color:var(--accent2);font-weight:600}
+.page-map .detail{color:var(--sub);padding-left:16px}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="nav">
+<a href="../hub/">← SOP Hub</a>
+<a href="../">🏠 Home</a>
+<a href="javascript:location.reload(true)">🔄 Refresh</a>
+</div>
+
+<h1>🏗 Store Build Automation</h1>
+<p class="sub">Product → Live Store in ~2 Hours · No Paid Apps · No Templates</p>
+
+<div class="card key">
+<p><strong>The deal:</strong> Anton greenlights a product → Forge builds everything → delivers a live, ready-to-advertise store. Product page, checkout, compliance, tracking, bundles — all done.</p>
+</div>
+
+<h2>⏱ Timeline</h2>
+<div class="timeline">
+<div class="tl-item"><div class="tl-num">1</div><div class="tl-label">Product Setup</div><div class="tl-time">20 min</div></div>
+<div class="tl-item"><div class="tl-num">2</div><div class="tl-label">Page Build</div><div class="tl-time">45 min</div></div>
+<div class="tl-item"><div class="tl-num">3</div><div class="tl-label">Checkout</div><div class="tl-time">20 min</div></div>
+<div class="tl-item"><div class="tl-num">4</div><div class="tl-label">Tracking</div><div class="tl-time">15 min</div></div>
+<div class="tl-item"><div class="tl-num">5</div><div class="tl-label">QC & Launch</div><div class="tl-time">20 min</div></div>
+</div>
+
+<h2>Phase 1: Product Setup</h2>
+<div class="card">
+<span class="tag tag-time">~20 min</span>
+<ul>
+<li>Create product in Shopify (API or admin)</li>
+<li>Compliance-safe title + description</li>
+<li><strong>Pricing tiers:</strong> 1x (4-5× COGS) / 2x (slight discount) / 3x (best value)</li>
+<li>Product images: hero, lifestyle, in-use, details</li>
+<li>SEO title + meta description</li>
+</ul>
+</div>
+
+<h2>Phase 2: Product Page</h2>
+<div class="card">
+<span class="tag tag-time">~45 min</span>
+<h3>Page Structure (MBB $535K Framework)</h3>
+<div class="page-map">
+<div class="section">📱 ABOVE THE FOLD</div>
+<div class="detail">Hero image · Title + subtitle (biggest benefit)</div>
+<div class="detail">Star rating · Price + bundle selector (1x/2x/3x)</div>
+<div class="detail">Trust badges (guarantee, free shipping, secure checkout)</div>
+<div class="detail">Sticky Add to Cart · Social proof counter</div>
+<br>
+<div class="section">📄 BELOW THE FOLD</div>
+<div class="detail">Problem section → Agitation → Solution (mechanism)</div>
+<div class="detail">How it works (3 steps) · Before/After visuals</div>
+<div class="detail">Benefits grid · Ingredients/What's inside</div>
+<div class="detail">Customer reviews · FAQ (objections handled)</div>
+<div class="detail">Guarantee section · Final CTA + bundle selector</div>
+</div>
+</div>
+
+<div class="card">
+<h3>Copy Rules (ESS + BBA)</h3>
+<ul>
+<li><strong>Headline:</strong> Biggest benefit + call out demographic</li>
+<li><strong>Subheadline:</strong> Unique mechanism (WHY this works)</li>
+<li><strong>Body:</strong> Problem → Failed solutions → New mechanism → Proof → CTA</li>
+<li><strong>Language:</strong> Real customer words from Amazon research</li>
+<li><strong>Compliance:</strong> No medical claims, "may help" language</li>
+<li><strong>Mobile-first:</strong> 80%+ traffic is mobile. Design for phone FIRST.</li>
+</ul>
+</div>
+
+<h2>Phase 3: Checkout & Trust</h2>
+<div class="card">
+<span class="tag tag-time">~20 min</span>
+<ul>
+<li>Minimal form fields · Trust badges in sidebar</li>
+<li>Express checkout: Shop Pay, Apple Pay, Google Pay</li>
+<li>Cart page: show savings on bundles</li>
+<li>Free domestic shipping (built into price)</li>
+<li>Guarantee reminder visible in checkout</li>
+</ul>
+</div>
+
+<h2>Phase 4: Tracking</h2>
+<div class="card">
+<span class="tag tag-time">~15 min</span>
+<ul>
+<li>Meta Pixel via Facebook Sales Channel</li>
+<li>CAPI → data sharing set to <strong>MAXIMUM</strong></li>
+<li>Domain verified in Business Manager</li>
+<li>Events: PageView → ViewContent → AddToCart → InitiateCheckout → Purchase</li>
+<li>Legal pages: Privacy, Terms, Refund, Shipping, Contact</li>
+</ul>
+</div>
+
+<h2>Phase 5: QC & Launch</h2>
+<div class="card action">
+<span class="tag tag-time">~20 min</span>
+<ul>
+<li>Full customer journey test (mobile + desktop)</li>
+<li>All images loading · All links working</li>
+<li>Pricing correct on all variants</li>
+<li>Payment processing (test order)</li>
+<li>Pixel firing on all events (Pixel Helper)</li>
+<li>Page speed &lt; 3 seconds</li>
+<li>Delivery: screenshots + test order + "Store is live. Ready for ads." 🔱</li>
+</ul>
+</div>
+
+<h2>What Forge Needs From Anton</h2>
+<div class="card">
+<ol>
+<li><strong>"Build [product name]"</strong> — greenlight</li>
+<li><strong>COGS</strong> — from Mutual Express</li>
+<li><strong>Images</strong> — supplier images or "use AI-generated"</li>
+<li><strong>Angle</strong> — specific positioning or "your call"</li>
+<li><strong>Pricing</strong> — approve or "stick to framework"</li>
+</ol>
+<p style="margin-top:8px"><strong>Everything else = Forge handles it.</strong></p>
+</div>
+
+<h2>⚠️ Current Blocker</h2>
+<div class="card danger">
+<span class="tag tag-blocker">Needs Fix</span>
+<p><strong>Shopify API token returning 401 (Invalid).</strong> Need to regenerate:</p>
+<ol>
+<li>Shopify Partners → Apps → Forge Sync → API credentials</li>
+<li>Generate new Admin API access token</li>
+<li>Send to Forge via Telegram</li>
+</ol>
+<p>Until fixed: Forge builds via browser automation or guides Anton through admin.</p>
+</div>
+
+<h2>Architecture Rules</h2>
+<div class="card">
+<ul>
+<li>🚫 No paid apps until £1K/month revenue</li>
+<li>💻 Liquid code &gt; page builders (we own everything)</li>
+<li>🎨 Dawn theme base — customise, don't replace</li>
+<li>📦 Every product gets bundles (1x/2x/3x) from Day 1</li>
+<li>📱 Mobile-first always</li>
+<li>⚡ Speed &gt; beauty</li>
+<li>🛡 Trust above the fold</li>
+</ul>
+</div>
+
+</div>
+</body>
+</html>
