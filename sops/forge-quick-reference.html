@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge Quick Reference — How It Works</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;padding:0 0 80px}
+.top-bar{background:#111;border-bottom:1px solid #222;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.top-bar a{color:#d4a04a;text-decoration:none;font-size:14px}
+.top-bar .refresh{cursor:pointer;font-size:18px}
+.container{max-width:800px;margin:0 auto;padding:20px 16px}
+h1{font-size:28px;color:#d4a04a;margin:20px 0 8px;text-align:center}
+.subtitle{text-align:center;color:#888;margin-bottom:30px;font-size:14px}
+h2{font-size:20px;color:#d4a04a;margin:32px 0 12px;padding-bottom:8px;border-bottom:1px solid #222}
+h3{font-size:16px;color:#b87333;margin:20px 0 8px}
+p{margin:8px 0;color:#ccc}
+.card{background:#141414;border:1px solid #222;border-radius:12px;padding:16px;margin:12px 0}
+.card.warning{border-color:#d4a04a33}
+.card.danger{border-color:#ff444433}
+.card.success{border-color:#4ade8033}
+.card-title{font-weight:700;color:#fff;margin-bottom:8px;font-size:15px}
+code{background:#1a1a1a;color:#d4a04a;padding:3px 8px;border-radius:4px;font-family:'SF Mono',Monaco,monospace;font-size:13px}
+pre{background:#111;border:1px solid #222;border-radius:8px;padding:12px;margin:8px 0;overflow-x:auto;font-family:'SF Mono',Monaco,monospace;font-size:13px;color:#d4a04a}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th{background:#1a1a1a;color:#d4a04a;text-align:left;padding:10px 12px;font-size:13px;border-bottom:2px solid #333}
+td{padding:10px 12px;border-bottom:1px solid #1a1a1a;font-size:13px;color:#ccc}
+tr:hover td{background:#141414}
+.emoji{font-size:18px;margin-right:6px}
+ul{margin:8px 0 8px 20px}
+li{margin:4px 0;color:#ccc}
+.layer{display:flex;align-items:center;gap:12px;padding:12px;background:#141414;border-radius:8px;margin:8px 0}
+.layer-num{background:#d4a04a;color:#0a0a0a;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.layer-title{font-weight:700;color:#fff}
+.layer-desc{color:#999;font-size:13px}
+.cmd{display:flex;align-items:center;gap:8px;margin:6px 0}
+.cmd-label{color:#888;font-size:13px;min-width:140px}
+.copy-btn{background:#1a1a1a;border:1px solid #333;color:#d4a04a;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px;flex-shrink:0}
+.copy-btn:active{background:#333}
+.pipeline-step{display:flex;align-items:center;gap:10px;padding:8px 0}
+.pipeline-num{color:#d4a04a;font-weight:700;font-size:14px;min-width:24px}
+.pipeline-arrow{color:#333}
+@media(max-width:600px){.cmd{flex-direction:column;align-items:flex-start;gap:4px}.cmd-label{min-width:auto}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="/thalyve-tools/">🏠 Home</a>
+  <span>⚡ Quick Reference</span>
+  <span class="refresh" onclick="location.reload()">🔄</span>
+</div>
+
+<div class="container">
+  <h1>🔱 Forge Quick Reference</h1>
+  <p class="subtitle">How your AI Chief of Staff works — and how to keep it running at full speed</p>
+
+  <h2>🏗️ How Forge Works</h2>
+  <p>Three layers, all running on your Mac Mini:</p>
+
+  <div class="layer">
+    <div class="layer-num">1</div>
+    <div>
+      <div class="layer-title">Gateway</div>
+      <div class="layer-desc">Daemon service on the Mac. Routes messages between Telegram ↔ Forge. Always running via LaunchAgent.</div>
+    </div>
+  </div>
+
+  <div class="layer">
+    <div class="layer-num">2</div>
+    <div>
+      <div class="layer-title">Brain (Claude Opus)</div>
+      <div class="layer-desc">API calls to Anthropic's servers. Processes every message, makes decisions, writes code, generates strategy.</div>
+    </div>
+  </div>
+
+  <div class="layer">
+    <div class="layer-num">3</div>
+    <div>
+      <div class="layer-title">Tools</div>
+      <div class="layer-desc">Browser (Higgsfield, web), file system, shell commands, Shopify API, GitHub, Telegram — everything Forge uses to execute.</div>
+    </div>
+  </div>
+
+  <h2>⚡ What Slows Forge Down</h2>
+
+  <table>
+    <thead>
+      <tr><th>Issue</th><th>Symptom</th><th>Fix</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Browser timeout</td><td>"Can't reach browser control service"</td><td>Gateway restart</td></tr>
+      <tr><td>Gateway crash</td><td>Messages not delivering</td><td><code>openclaw gateway restart</code></td></tr>
+      <tr><td>Token limit</td><td>Responses cut off or slow</td><td>Automatic (compaction)</td></tr>
+      <tr><td>Long context</td><td>Slower responses over time</td><td>Normal — context grows each message</td></tr>
+      <tr><td>API rate limit</td><td>Delayed responses</td><td>Wait 60s, automatic</td></tr>
+      <tr><td>Higgsfield stuck</td><td>Browser unresponsive</td><td>Close/reopen browser tab</td></tr>
+    </tbody>
+  </table>
+
+  <h2>🛠️ Terminal Commands</h2>
+  <p>Open Terminal on the Mac and run these. Tap any command to copy.</p>
+
+  <h3>90% Fix — Restart Gateway</h3>
+  <div class="card success">
+    <div class="cmd">
+      <code onclick="navigator.clipboard.writeText('openclaw gateway restart')">openclaw gateway restart</code>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('openclaw gateway restart')">📋 Copy</button>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:6px">Fixes most issues — browser timeouts, message delivery, stuck responses.</p>
+  </div>
+
+  <h3>If Restart Doesn't Work</h3>
+  <div class="card warning">
+    <div class="cmd">
+      <code onclick="navigator.clipboard.writeText('openclaw gateway stop')">openclaw gateway stop</code>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('openclaw gateway stop')">📋</button>
+    </div>
+    <div class="cmd">
+      <code onclick="navigator.clipboard.writeText('openclaw gateway start')">openclaw gateway start</code>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('openclaw gateway start')">📋</button>
+    </div>
+  </div>
+
+  <h3>Check Status</h3>
+  <div class="card">
+    <div class="cmd">
+      <code onclick="navigator.clipboard.writeText('openclaw gateway status')">openclaw gateway status</code>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('openclaw gateway status')">📋</button>
+    </div>
+    <div class="cmd">
+      <code onclick="navigator.clipboard.writeText('openclaw status')">openclaw status</code>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('openclaw status')">📋</button>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:6px">Send the output to Forge for diagnosis.</p>
+  </div>
+
+  <h3>Nuclear Option — Full Reset</h3>
+  <div class="card danger">
+    <div class="cmd">
+      <code onclick="navigator.clipboard.writeText('openclaw gateway stop && killall node && openclaw gateway start')">openclaw gateway stop && killall node && openclaw gateway start</code>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('openclaw gateway stop && killall node && openclaw gateway start')">📋</button>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:6px">Only use if everything else fails. Kills all Node processes and restarts clean.</p>
+  </div>
+
+  <h2>🚀 How To Keep Forge Fast</h2>
+  <div class="card">
+    <ul>
+      <li><strong>One task at a time</strong> — Forge is fastest when focused on a single deliverable</li>
+      <li><strong>Voice notes work great</strong> — keep doing what you're doing</li>
+      <li><strong>Don't repeat context</strong> — Forge remembers everything within a session</li>
+      <li><strong>Long sessions slow down</strong> — after 50+ messages, responses get slower (more context). This is normal. Gateway restart won't fix it.</li>
+      <li><strong>Browser tasks are slowest</strong> — Higgsfield/web automation = 10-30s per action. API calls (Shopify, GitHub) = instant</li>
+      <li><strong>Sub-agents for heavy lifting</strong> — parallel work without slowing the main chat</li>
+    </ul>
+  </div>
+
+  <h2>💬 Quick Prompts</h2>
+  <div class="card">
+    <ul>
+      <li><strong>"Deep Work"</strong> — Forge gives task briefing and goes silent</li>
+      <li><strong>"Status"</strong> — What's currently in progress</li>
+      <li><strong>"Restart"</strong> — Forge restarts the gateway itself</li>
+      <li><strong>Plain English / voice notes</strong> — no special format needed</li>
+    </ul>
+  </div>
+
+  <h2>⚠️ The One Thing You Should Never Do</h2>
+  <div class="card danger">
+    <p><strong>Don't close the Terminal window running the gateway.</strong></p>
+    <p style="font-size:13px;color:#888;margin-top:4px">If the Mac restarts, the gateway auto-starts via LaunchAgent. But if you manually kill it, run <code>openclaw gateway start</code>.</p>
+  </div>
+
+</div>
+
+</body>
+</html>
