@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Launch Pipeline — Greenlight to LIVE</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05060a;--card:#0f1018;--border:#1a1b28;--text:#eeeef2;--sub:#7c7c96;--accent:#7c5cfc;--accent2:#9b7dff;--green:#0fd68c;--amber:#ffb020;--red:#ff4d6a;--blue:#4d9eff}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.6}
+.app{max-width:800px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:22px;font-weight:800;text-align:center;margin-bottom:4px}
+.sub{text-align:center;color:var(--sub);font-size:12px;margin-bottom:30px}
+h2{font-size:15px;font-weight:700;color:var(--accent);margin:28px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+h3{font-size:13px;font-weight:700;color:var(--accent2);margin:16px 0 8px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.card.key{border-color:var(--accent);border-left:4px solid var(--accent)}
+.card.action{border-color:var(--green);border-left:4px solid var(--green)}
+.card.warning{border-color:var(--amber);border-left:4px solid var(--amber)}
+p{font-size:12px;color:var(--sub);margin-bottom:8px}
+ol,ul{font-size:12px;color:var(--text);padding-left:20px;margin-bottom:8px}
+li{margin-bottom:6px}
+strong{color:var(--text)}
+code{background:#1a1b28;padding:2px 6px;border-radius:4px;font-size:11px;color:var(--accent2)}
+.nav{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;justify-content:center}
+.nav a{background:var(--card);border:1px solid var(--border);color:var(--accent2);font-size:11px;padding:6px 14px;border-radius:20px;text-decoration:none;transition:all .2s}
+.nav a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.step{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.step-num{background:var(--accent);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;margin-top:2px}
+.step-content{flex:1}
+.step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px}
+.step-time{font-size:11px;color:var(--amber);font-weight:600;margin-bottom:6px}
+.step-tool{font-size:11px;color:var(--green);font-weight:600;margin-bottom:6px}
+.step-desc{font-size:12px;color:var(--sub)}
+.step-output{font-size:11px;color:var(--accent2);margin-top:4px}
+.timeline{border-left:2px solid var(--border);margin-left:15px;padding-left:0}
+table{width:100%;border-collapse:collapse;font-size:11px;margin:12px 0}
+th{text-align:left;color:var(--accent2);padding:8px;border-bottom:1px solid var(--border)}
+td{padding:8px;border-bottom:1px solid var(--border);color:var(--sub)}
+.total{font-size:16px;font-weight:800;color:var(--green);text-align:center;padding:16px;background:var(--card);border-radius:12px;border:1px solid var(--green);margin:20px 0}
+.rule{background:linear-gradient(135deg,#1a0a2e,#0a1a2e);border:2px solid var(--accent);border-radius:12px;padding:24px;text-align:center;margin:30px 0}
+.rule p{font-size:16px;font-weight:700;color:var(--text)}
+.rule .trigger{font-size:13px;color:var(--amber);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="nav">
+  <a href="../">🏠 Home</a>
+  <a href="../hub/">📁 SOP Hub</a>
+  <a href="../dashboard/">📊 Dashboard</a>
+  <a href="javascript:location.reload()">🔄</a>
+</div>
+
+<h1>🚀 Product Launch Pipeline</h1>
+<p class="sub">From Greenlight to LIVE — v1.0 | 2 March 2026</p>
+
+<div class="rule">
+  <p>Anton says "This is the product" → Forge delivers a LIVE, selling product page.</p>
+  <div class="trigger">No questions. No check-ins. Just delivery. 🔱</div>
+</div>
+
+<h2>The Pipeline — 10 Steps</h2>
+
+<div class="timeline">
+
+<div class="step">
+  <div class="step-num">1</div>
+  <div class="step-content">
+    <div class="step-title">Brand Kit</div>
+    <div class="step-time">⏱ 30 mins</div>
+    <div class="step-tool">🔧 Claude (Forge)</div>
+    <div class="step-desc">Target market psychology, colour palette (hex codes), typography, photography style, brand voice, compliance language. <strong>Every asset that follows must match this kit.</strong></div>
+    <div class="step-output">📄 reference/brand-kits/[handle]-brand-kit.md</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">2</div>
+  <div class="step-content">
+    <div class="step-title">Product Copy</div>
+    <div class="step-time">⏱ 45 mins</div>
+    <div class="step-tool">🔧 Claude (Forge) + BBA/ESS Frameworks</div>
+    <div class="step-desc">Hero headline, Problem→Agitation→Solution, benefits (6 cards), how-to (3 steps), comparison table, pain points, purity claims, FAQ (7-10 Qs), CTAs, SEO meta.</div>
+    <div class="step-output">📄 copy/[handle]-pdp-copy.md</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">3</div>
+  <div class="step-content">
+    <div class="step-title">Product Photography</div>
+    <div class="step-time">⏱ 1-2 hrs</div>
+    <div class="step-tool">🔧 Higgsfield (Nano Banana Pro)</div>
+    <div class="step-desc"><strong>ALWAYS attach packaging-MASTER reference.</strong> One prompt per gen, batch 4/4, vision-score every batch (8/10+ only). Gallery: Hero → Ritual → Ingredients → Comparison → Trust.</div>
+    <div class="step-output">📁 reference/brand-kits/ads/[handle]/</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">4</div>
+  <div class="step-content">
+    <div class="step-title">Selling Infographics</div>
+    <div class="step-time">⏱ 1 hr</div>
+    <div class="step-tool">🔧 Custom HTML + Chrome Headless Render</div>
+    <div class="step-desc">Text-heavy selling images AI can't generate: benefits grid, how-to steps, comparison chart, pain points, purity claims. All 1080×1080, brand kit colours/fonts.</div>
+    <div class="step-output">📁 templates/gallery-infographics/renders/</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">5</div>
+  <div class="step-content">
+    <div class="step-title">Custom Liquid Sections</div>
+    <div class="step-time">⏱ 1 hr</div>
+    <div class="step-tool">🔧 Claude (Forge)</div>
+    <div class="step-desc">Full custom HTML/CSS Liquid sections: comparison, benefits grid, how-to, purity, pain points, FAQ accordion. Mobile responsive, brand colours, hover effects.</div>
+    <div class="step-output">📁 shopify/sections/[handle]-*.liquid</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">6</div>
+  <div class="step-content">
+    <div class="step-title">Deploy Sections to Shopify</div>
+    <div class="step-time">⏱ 15 mins</div>
+    <div class="step-tool">🔧 Shopify Admin API</div>
+    <div class="step-desc">Upload Liquid sections → Create product-specific template (<code>product.[handle].json</code>). Each product gets its OWN template file — visible in Shopify dashboard.</div>
+    <div class="step-output">📄 templates/product.[handle].json on Shrine theme</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">7</div>
+  <div class="step-content">
+    <div class="step-title">Upload Images (Selling Order)</div>
+    <div class="step-time">⏱ 15 mins</div>
+    <div class="step-tool">🔧 Shopify Admin API</div>
+    <div class="step-desc">Upload gallery images in EXACT selling order. Compress to JPEG (200-500KB). Slot 1 = hero (this is the thumbnail everywhere).</div>
+    <div class="step-output">Product gallery on Shopify</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">8</div>
+  <div class="step-content">
+    <div class="step-title">Assign Template to Product</div>
+    <div class="step-time">⏱ 5 mins</div>
+    <div class="step-tool">🔧 Shopify Admin API</div>
+    <div class="step-desc">Set <code>template_suffix</code> on product to use the custom template. Product now renders with all custom sections.</div>
+    <div class="step-output">Product uses product.[handle].json</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">9</div>
+  <div class="step-content">
+    <div class="step-title">QC Check</div>
+    <div class="step-time">⏱ 30 mins</div>
+    <div class="step-tool">🔧 Browser + Vision Analysis</div>
+    <div class="step-desc">All images load in order, all sections render (mobile + desktop), brand colours match, ATC works, page speed OK, SEO meta set, no dead content.</div>
+    <div class="step-output">QC pass/fail report</div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-num">10</div>
+  <div class="step-content">
+    <div class="step-title">Deliver to Anton</div>
+    <div class="step-time">⏱ 5 mins</div>
+    <div class="step-tool">🔧 Telegram</div>
+    <div class="step-desc">Live URL, desktop + mobile screenshots, gallery lineup. <strong>"It's live. Check it."</strong></div>
+    <div class="step-output">📱 Telegram message with link + screenshots</div>
+  </div>
+</div>
+
+</div>
+
+<div class="total">⏱ Total: ~5-6 hours from greenlight to LIVE</div>
+
+<h2>Tools Summary</h2>
+<div class="card">
+<table>
+  <tr><th>Tool</th><th>Used For</th></tr>
+  <tr><td>Claude (Forge)</td><td>Brand kit, copy, Liquid sections, QC</td></tr>
+  <tr><td>Higgsfield</td><td>Product photography (PRIMARY)</td></tr>
+  <tr><td>HTML + Chrome</td><td>Selling infographics with text overlays</td></tr>
+  <tr><td>Shopify API</td><td>Deploy sections, upload images, assign templates</td></tr>
+  <tr><td>Gemini API</td><td>Backup image generation</td></tr>
+  <tr><td>Vision Model</td><td>QC scoring every image</td></tr>
+</table>
+</div>
+
+<h2>Image Gallery Order</h2>
+<div class="card action">
+<ol>
+  <li><strong>Hero</strong> — Product on clean background, packaging front and center</li>
+  <li><strong>Ritual/Usage</strong> — Product being used, lifestyle moment</li>
+  <li><strong>Ingredients</strong> — Flat-lay showing what's inside</li>
+  <li><strong>Infographic: Benefits</strong> — 6-card grid (HTML rendered)</li>
+  <li><strong>Infographic: How-To</strong> — 3 steps (HTML rendered)</li>
+  <li><strong>Infographic: Comparison</strong> — Us vs alternatives (HTML rendered)</li>
+  <li><strong>Trust/Purity</strong> — Premium, certifications, clean</li>
+  <li><strong>Back of Pack</strong> — Nutrition/ingredients (if applicable)</li>
+</ol>
+</div>
+
+<h2>File Structure Per Product</h2>
+<div class="card key">
+<pre style="font-size:11px;color:var(--accent2);overflow-x:auto">
+reference/brand-kits/
+  [handle]-brand-kit.md           ← Brand kit
+  ads/[handle]/                   ← All product images
+    packaging-MASTER-front.jpg    ← Locked packaging design
+
+copy/
+  [handle]-pdp-copy.md            ← All page copy
+
+templates/gallery-infographics/
+  [handle]/                       ← Infographic templates
+    renders/                      ← Rendered JPGs
+
+shopify/sections/
+  [handle]-comparison.liquid      ← Custom Liquid sections
+  [handle]-benefits.liquid
+  [handle]-how-to.liquid
+  [handle]-purity.liquid
+  [handle]-pain-points.liquid
+  [handle]-faq.liquid
+</pre>
+</div>
+
+</div>
+</body>
+</html>
