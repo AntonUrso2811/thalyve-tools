@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdated": "2026-03-01T21:00:00Z",
+    "lastUpdated": "2026-03-02T06:00:00Z",
     "updatedBy": "Forge",
-    "version": "3.5"
+    "version": "3.6"
   },
   "company": {
     "name": "Anton Empire",
@@ -99,7 +99,7 @@
     "action": "Downgrade before March 12 to suitable plan"
   },
   "kpiTargets": {
-    "weekOf": "1 Mar 2026",
+    "weekOf": "2 Mar 2026",
     "departments": {
       "revenue": {
         "name": "\ud83d\udcb0 Revenue & Ads",
@@ -686,34 +686,34 @@
     }
   ],
   "dailyCriticalTasks": {
-    "date": "2026-03-01",
+    "date": "2026-03-02",
     "members": {
       "anton": {
         "tasks": [
           {
             "id": "a1",
-            "done": true,
-            "task": "Send all BBA Phase 6 VTT links to Forge"
+            "done": false,
+            "task": "Kill/Scale Decision — THALYVE-SMS-TEST-01 ($115.06 spent, 0 purchases — MOST URGENT)"
           },
           {
             "id": "a2",
-            "done": true,
-            "task": "Send BBA prompt templates (PDF + XLSX)"
+            "done": false,
+            "task": "Fix the Checkout — walk through thalyve.com as customer, screenshot friction points"
           },
           {
             "id": "a3",
-            "done": true,
-            "task": "Send Ads Manager screenshots for final data"
+            "done": false,
+            "task": "GetHookd: Verify Smart Posture Corrector (9.5/10 pipeline pick)"
           },
           {
             "id": "a4",
-            "done": true,
-            "task": "Confirm weekly schedule for daily briefings"
+            "done": false,
+            "task": "Send missing BBA Phase 4+ docs to Forge (AI Video Ads, AI Image Ads, Post-Andromeda)"
           },
           {
             "id": "a5",
-            "done": true,
-            "task": "Review Space Goods competitor analysis"
+            "done": false,
+            "task": "Fix Telegram Group Security Gap — message Forge: 'Fix the Telegram group command allowlist'"
           }
         ],
         "name": "Anton"
@@ -723,27 +723,27 @@
           {
             "id": "f1",
             "done": true,
-            "task": "Extract BBA Phase 6 (6.01-6.06) transcripts"
+            "task": "Product research cron (3AM) — 5 products scored, top pick: 4-in-1 Microcurrent + Red Light Wand (87/100)"
           },
           {
             "id": "f2",
             "done": true,
-            "task": "Generate 6 cacao product images via Higgsfield"
+            "task": "Dashboard sync (6AM cron) — company-data.json updated + pushed"
           },
           {
             "id": "f3",
-            "done": true,
-            "task": "Create Higgsfield SOP (permanent)"
+            "done": false,
+            "task": "Morning briefing delivery (7AM) — Day 66 of 75 Hard"
           },
           {
             "id": "f4",
-            "done": true,
-            "task": "Build cacao Brand Kit HTML page for SOP Hub"
+            "done": false,
+            "task": "Kill/Scale recommendation — analyse campaign data once Anton sends screenshots"
           },
           {
             "id": "f5",
-            "done": true,
-            "task": "Analyze Space Goods PDP + gap analysis"
+            "done": false,
+            "task": "Lock Telegram group command allowlist to Anton's ID (1401956424) once triggered"
           }
         ],
         "name": "Forge"
@@ -752,11 +752,11 @@
   },
   "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 \u2014 MUST downgrade. Target: \u00a310k net/month. All expenses wiped clean for v3.0 fresh start.",
   "productivity": {
-    "date": "2026-03-01",
-    "forgeHours": 8,
-    "humanEquivHours": 48,
-    "costSaved": 1200,
-    "tasksCompleted": 10
+    "date": "2026-03-02",
+    "forgeHours": 1,
+    "humanEquivHours": 6,
+    "costSaved": 150,
+    "tasksCompleted": 2
   },
   "taskHistory": [
     {
@@ -802,6 +802,17 @@
         "total": 5,
         "done": 3
       }
+    },
+    {
+      "date": "2026-03-01",
+      "anton": {
+        "total": 5,
+        "done": 0
+      },
+      "forge": {
+        "total": 5,
+        "done": 1
+      }
     }
   ],
   "members": {
@@ -809,29 +820,29 @@
       "name": "Anton",
       "tasks": [
         {
-          "text": "KILL/SCALE DECISION \u2014 review 48hr ad data, make the call",
+          "text": "Kill/Scale Decision \u2014 THALYVE-SMS-TEST-01 (\u26a1 MOST URGENT)",
           "done": false,
-          "time": 30
+          "time": 15
         },
         {
-          "text": "Send Ads Manager screenshots to Forge",
+          "text": "Fix the Checkout \u2014 walk through thalyve.com as a customer",
           "done": false,
-          "time": 5
+          "time": 45
         },
         {
-          "text": "Deep work \u2014 4 Pomodoro cycles (6:40-11:00)",
+          "text": "GetHookd: Verify Smart Posture Corrector (9.5/10 pick)",
           "done": false,
-          "time": 280
+          "time": 20
         },
         {
-          "text": "Message Mutual Express for COGS quotes (LED Mask + TENS)",
+          "text": "Send missing BBA Phase 4+ docs to Forge",
           "done": false,
           "time": 10
         },
         {
-          "text": "Shopify downgrade \u2014 review plans before Mar 12 deadline",
+          "text": "Fix Telegram Group Security Gap (message Forge to trigger fix)",
           "done": false,
-          "time": 15
+          "time": 5
         }
       ]
     },
@@ -839,33 +850,33 @@
       "name": "Forge",
       "tasks": [
         {
-          "text": "Dashboard refresh + tools audit (5AM cron)",
+          "text": "Product research cron (3AM) \u2014 5 products scored, top: Microcurrent Wand 87/100",
           "done": true,
-          "time": 20
-        },
-        {
-          "text": "Analyse ad data + Kill/Scale recommendation to Anton",
-          "done": false,
-          "time": 30
-        },
-        {
-          "text": "Product research pipeline (Mon 3AM cron)",
-          "done": false,
           "time": 45
         },
         {
-          "text": "Update Tracker \u2014 kill/archive losers, score new products",
+          "text": "Dashboard sync (6AM cron) \u2014 company-data.json updated",
+          "done": true,
+          "time": 10
+        },
+        {
+          "text": "Morning briefing delivery (7AM) \u2014 Day 66",
+          "done": false,
+          "time": 15
+        },
+        {
+          "text": "Kill/Scale recommendation \u2014 awaiting Ads Manager screenshots from Anton",
           "done": false,
           "time": 30
         },
         {
-          "text": "Morning briefing delivery (7AM)",
+          "text": "Lock Telegram group allowlist to Anton's ID (1401956424)",
           "done": false,
-          "time": 15
+          "time": 5
         }
       ]
     },
-    "_date": "2026-03-01"
+    "_date": "2026-03-02"
   },
   "daily": [
     {
@@ -901,12 +912,25 @@
       "productName": "Stretch Mark Stick",
       "orders": 0,
       "revenue": 0,
+      "adSpend": 100,
+      "cogs": 0,
+      "note": "Day 3 \u2014 Kill/Scale Decision day. $115.06 total spend across test. 0 purchases."
+    },
+    {
+      "id": "day_20260302",
+      "date": "2026-03-02",
+      "brandId": "thalyve",
+      "brandName": "THALYVE\u2122",
+      "productId": "stretch-mark-stick",
+      "productName": "Stretch Mark Stick",
+      "orders": 0,
+      "revenue": 0,
       "adSpend": 0,
       "cogs": 0,
-      "note": "Day 3 \u2014 Kill/Scale Decision day. Awaiting screenshot data."
+      "note": "Day 4 \u2014 Awaiting Kill/Scale Decision from Anton. Campaign may be killed."
     }
   ],
-  "version": "3.5",
+  "version": "3.6",
   "jobMonitor": [
     {
       "id": "j001",
@@ -1041,7 +1065,7 @@
       "resources": "Manual"
     }
   ],
-  "lastUpdated": "2026-03-01T13:30:47",
+  "lastUpdated": "2026-03-02T06:00:00",
   "aiEngine": {
     "currentModel": "claude-opus-4-6",
     "provider": "Anthropic",
@@ -1069,6 +1093,15 @@
       }
     ],
     "history": [
+      {
+        "date": "2026-03-02",
+        "model": "sonnet",
+        "sessions": 1,
+        "tokensIn": "~10k",
+        "tokensOut": "~5k",
+        "compactions": 0,
+        "notes": "Product research cron (3AM, 5 products) + dashboard sync (6AM)"
+      },
       {
         "date": "2026-03-01",
         "model": "sonnet",
@@ -1293,12 +1326,12 @@
     }
   },
   "forgeStatus": {
-    "current": "Dashboard refresh & tools audit \u2014 Day 65 of 75 Hard",
-    "nextScheduled": "Morning Brief (7AM) \u00b7 Product Research (Mon 3AM) \u00b7 Dashboard Refresh (daily 5AM)",
+    "current": "Dashboard sync (6AM) + product research complete \u2014 Day 66 of 75 Hard",
+    "nextScheduled": "Morning Brief (7AM) \u00b7 Kill/Scale Rec (awaiting screenshots) \u00b7 Dashboard Sync (daily 6AM)",
     "status": "operational",
-    "model": "Claude Opus 4.6",
+    "model": "Claude Sonnet 4.6",
     "cronCount": 8,
-    "lastTask": "Fixed refresh/navigation, added Forge Status to homepage",
-    "lastTaskTime": "2026-03-01T05:00:00Z"
+    "lastTask": "Dashboard sync + product research cron (5 products, top: Microcurrent Wand 87/100)",
+    "lastTaskTime": "2026-03-02T06:00:00Z"
   }
 }
