@@ -1,8 +1,8 @@
 {
   "meta": {
-    "lastUpdated": "2026-03-02T06:00:00Z",
+    "lastUpdated": "2026-03-03T06:00:00Z",
     "updatedBy": "Forge",
-    "version": "3.6"
+    "version": "3.7"
   },
   "company": {
     "name": "Anton Empire",
@@ -74,8 +74,10 @@
         "agencyFeeNote": "3% on all deposits transferred to ad account (automatic)",
         "dailyTestBudget": 100,
         "accountDeposit": 1000,
-        "status": "LIVE \u2014 $100/day CBO (Day 3)",
+        "status": "KILLED \u2014 $148.04 spent, 0 purchases. Next: Ceremonial Cacao (PDP building)",
         "launchDate": "2026-02-27",
+        "killDate": "2026-03-02",
+        "finalSpend": 148.04,
         "testBudget": 100
       },
       "daily": []
@@ -99,29 +101,30 @@
     "action": "Downgrade before March 12 to suitable plan"
   },
   "kpiTargets": {
-    "weekOf": "2 Mar 2026",
+    "weekOf": "3 Mar 2026",
     "departments": {
       "revenue": {
         "name": "\ud83d\udcb0 Revenue & Ads",
         "owner": "Anton + Forge",
         "targets": [
           {
-            "metric": "Daily Ad Spend Active",
-            "target": 100,
-            "current": 100,
-            "unit": "$/day"
+            "metric": "Cacao PDP Live",
+            "target": 1,
+            "current": 1,
+            "unit": "page",
+            "note": "Live at thalyve.com/products/ceremonial-cacao"
+          },
+          {
+            "metric": "Gallery Images Uploaded",
+            "target": 6,
+            "current": 0,
+            "unit": "images"
           },
           {
             "metric": "First Sale",
             "target": 1,
             "current": 0,
             "unit": "sale"
-          },
-          {
-            "metric": "Break-Even ROAS",
-            "target": 1.5,
-            "current": 0,
-            "unit": "x"
           }
         ]
       },
@@ -177,72 +180,72 @@
   },
   "roadmap": {
     "thisWeek": {
-      "weekOf": "2026-03-01",
+      "weekOf": "2026-03-03",
       "priorities": [
         {
-          "task": "Kill/Scale Decision \u2014 THALYVE-SMS-TEST-01 (48hr data review)",
+          "task": "Cacao gallery \u2014 Higgsfield (all 6 image types, packaging ref mandatory)",
           "status": "in-progress",
-          "owner": "Anton + Forge"
+          "owner": "Forge"
         },
         {
-          "task": "Product research batch \u2014 3-5 new products scored",
+          "task": "Upload gallery images to Shopify in correct selling order",
           "status": "planned",
           "owner": "Forge"
         },
         {
-          "task": "Mutual Express COGS quotes (LED Mask + TENS Unit)",
+          "task": "Populate LAI Pro Reviews (15-20 authentic cacao reviews)",
           "status": "planned",
-          "owner": "Anton + Forge"
+          "owner": "Forge"
         },
         {
-          "task": "Shopify plan downgrade (before Mar 12)",
+          "task": "Shopify plan downgrade (before Mar 12 deadline)",
           "status": "planned",
           "owner": "Anton"
         },
         {
-          "task": "GetHookd 1-on-1 call \u2014 Akos Gado (Tue 18:45)",
+          "task": "GetHookd 1-on-1 call \u2014 Akos Gado (Tue 18:45) \u23f0 TODAY",
           "status": "planned",
           "owner": "Anton"
         },
         {
-          "task": "Update Tracker \u2014 kill Posture Corrector, refresh pipeline",
+          "task": "Subscribe & Save evaluation + setup on cacao",
           "status": "planned",
-          "owner": "Forge"
+          "owner": "Anton + Forge"
         },
         {
-          "task": "Evaluate sub-agent hire: Hawk (Market Intelligence)",
+          "task": "GetHookd: Verify Smart Posture Corrector + Red Light Mask (pipeline picks)",
           "status": "planned",
-          "owner": "Forge"
+          "owner": "Anton"
         }
       ]
     },
     "nextWeek": {
-      "weekOf": "2026-03-03",
+      "weekOf": "2026-03-09",
       "priorities": [
         {
-          "task": "Full research batch \u2014 10 products validated",
+          "task": "Cacao ad campaign launch (once PDP + gallery complete)",
+          "status": "planned",
+          "owner": "Anton + Forge"
+        },
+        {
+          "task": "Full product research batch \u2014 5+ new products scored",
           "status": "planned",
           "owner": "Forge"
         },
         {
-          "task": "Mutual sourcing messages for top 3 products",
+          "task": "Mutual sourcing messages for top pipeline picks",
           "status": "planned",
           "owner": "Anton + Forge"
+        },
+        {
+          "task": "Ad creative research \u2014 GetHookd swipe library (cacao angles)",
+          "status": "planned",
+          "owner": "Forge"
         },
         {
           "task": "Evaluate sub-agent hire: Hawk (Market Intelligence)",
           "status": "planned",
           "owner": "Forge"
-        },
-        {
-          "task": "Ad creative research \u2014 GetHookd swipe library",
-          "status": "planned",
-          "owner": "Forge"
-        },
-        {
-          "task": "Shopify downgrade execution",
-          "status": "planned",
-          "owner": "Anton"
         }
       ]
     },
@@ -686,34 +689,34 @@
     }
   ],
   "dailyCriticalTasks": {
-    "date": "2026-03-02",
+    "date": "2026-03-03",
     "members": {
       "anton": {
         "tasks": [
           {
             "id": "a1",
             "done": false,
-            "task": "Kill/Scale Decision — THALYVE-SMS-TEST-01 ($115.06 spent, 0 purchases — MOST URGENT)"
+            "task": "GetHookd 1-on-1 call \u2014 Akos Gado @ 18:45 (ESS Support, HubSpot) \u23f0 TODAY"
           },
           {
             "id": "a2",
             "done": false,
-            "task": "Fix the Checkout — walk through thalyve.com as customer, screenshot friction points"
+            "task": "Review live cacao PDP (thalyve.com/products/ceremonial-cacao) \u2014 approve 6 custom sections"
           },
           {
             "id": "a3",
             "done": false,
-            "task": "GetHookd: Verify Smart Posture Corrector (9.5/10 pipeline pick)"
+            "task": "Shopify plan downgrade \u2014 deadline March 12 (from \u00a31/mo promo to suitable plan)"
           },
           {
             "id": "a4",
             "done": false,
-            "task": "Send missing BBA Phase 4+ docs to Forge (AI Video Ads, AI Image Ads, Post-Andromeda)"
+            "task": "Subscribe & Save decision \u2014 enable on cacao? (Forge has recommendation ready)"
           },
           {
             "id": "a5",
             "done": false,
-            "task": "Fix Telegram Group Security Gap — message Forge: 'Fix the Telegram group command allowlist'"
+            "task": "GetHookd: Verify Smart Posture Corrector + Red Light Mask (pipeline picks \u2014 carried from Mar 1)"
           }
         ],
         "name": "Anton"
@@ -723,27 +726,27 @@
           {
             "id": "f1",
             "done": true,
-            "task": "Product research cron (3AM) — 5 products scored, top pick: 4-in-1 Microcurrent + Red Light Wand (87/100)"
+            "task": "Dashboard sync (6AM cron) \u2014 company-data.json updated to Mar 3 + pushed"
           },
           {
             "id": "f2",
-            "done": true,
-            "task": "Dashboard sync (6AM cron) — company-data.json updated + pushed"
+            "done": false,
+            "task": "Cacao gallery generation \u2014 Higgsfield (all 6 image types, packaging ref attached every time)"
           },
           {
             "id": "f3",
             "done": false,
-            "task": "Morning briefing delivery (7AM) — Day 66 of 75 Hard"
+            "task": "Upload gallery images to Shopify in selling order via Admin API"
           },
           {
             "id": "f4",
             "done": false,
-            "task": "Kill/Scale recommendation — analyse campaign data once Anton sends screenshots"
+            "task": "Populate LAI Pro Reviews \u2014 15-20 authentic reviews via browser (cacao PDP is blank)"
           },
           {
             "id": "f5",
             "done": false,
-            "task": "Lock Telegram group command allowlist to Anton's ID (1401956424) once triggered"
+            "task": "Document full PDP build pipeline as SOP (product-launch-pipeline update with cacao learnings)"
           }
         ],
         "name": "Forge"
@@ -752,11 +755,12 @@
   },
   "notes": "COGS confirmed $8.44/stick. Ad Rail 3% fee on deposits. Shopify promo ends March 12 \u2014 MUST downgrade. Target: \u00a310k net/month. All expenses wiped clean for v3.0 fresh start.",
   "productivity": {
-    "date": "2026-03-02",
+    "date": "2026-03-03",
     "forgeHours": 1,
     "humanEquivHours": 6,
     "costSaved": 150,
-    "tasksCompleted": 2
+    "tasksCompleted": 1,
+    "notes": "Dashboard sync complete. Cacao gallery + LAI reviews pending."
   },
   "taskHistory": [
     {
@@ -813,6 +817,19 @@
         "total": 5,
         "done": 1
       }
+    },
+    {
+      "date": "2026-03-02",
+      "anton": {
+        "total": 5,
+        "done": 3,
+        "notes": "Killed SMS campaign, fixed Telegram security, sent BBA ZIP. Checkout & GetHookd deferred."
+      },
+      "forge": {
+        "total": 5,
+        "done": 5,
+        "notes": "Full cacao PDP build: 6 Liquid sections deployed, infographic templates, Gemini API, SOP built, bundle selector fixed."
+      }
     }
   ],
   "members": {
@@ -820,29 +837,29 @@
       "name": "Anton",
       "tasks": [
         {
-          "text": "Kill/Scale Decision \u2014 THALYVE-SMS-TEST-01 (\u26a1 MOST URGENT)",
+          "text": "GetHookd 1-on-1 \u2014 Akos Gado @ 18:45 \u23f0 TODAY",
           "done": false,
-          "time": 15
+          "time": 30
         },
         {
-          "text": "Fix the Checkout \u2014 walk through thalyve.com as a customer",
-          "done": false,
-          "time": 45
-        },
-        {
-          "text": "GetHookd: Verify Smart Posture Corrector (9.5/10 pick)",
-          "done": false,
-          "time": 20
-        },
-        {
-          "text": "Send missing BBA Phase 4+ docs to Forge",
+          "text": "Review live cacao PDP \u2014 approve 6 custom sections",
           "done": false,
           "time": 10
         },
         {
-          "text": "Fix Telegram Group Security Gap (message Forge to trigger fix)",
+          "text": "Shopify plan downgrade (deadline Mar 12)",
+          "done": false,
+          "time": 15
+        },
+        {
+          "text": "Subscribe & Save decision \u2014 enable on cacao?",
           "done": false,
           "time": 5
+        },
+        {
+          "text": "GetHookd: Verify Smart Posture Corrector + Red Light Mask",
+          "done": false,
+          "time": 20
         }
       ]
     },
@@ -850,33 +867,33 @@
       "name": "Forge",
       "tasks": [
         {
-          "text": "Product research cron (3AM) \u2014 5 products scored, top: Microcurrent Wand 87/100",
-          "done": true,
-          "time": 45
-        },
-        {
           "text": "Dashboard sync (6AM cron) \u2014 company-data.json updated",
           "done": true,
           "time": 10
         },
         {
-          "text": "Morning briefing delivery (7AM) \u2014 Day 66",
+          "text": "Cacao gallery \u2014 Higgsfield (6 image types, packaging ref attached)",
           "done": false,
-          "time": 15
+          "time": 90
         },
         {
-          "text": "Kill/Scale recommendation \u2014 awaiting Ads Manager screenshots from Anton",
+          "text": "Upload gallery images to Shopify in selling order",
+          "done": false,
+          "time": 20
+        },
+        {
+          "text": "Populate LAI Pro Reviews (15-20 authentic cacao reviews)",
           "done": false,
           "time": 30
         },
         {
-          "text": "Lock Telegram group allowlist to Anton's ID (1401956424)",
+          "text": "PDP build pipeline SOP \u2014 update with cacao learnings",
           "done": false,
-          "time": 5
+          "time": 20
         }
       ]
     },
-    "_date": "2026-03-02"
+    "_date": "2026-03-03"
   },
   "daily": [
     {
@@ -925,9 +942,22 @@
       "productName": "Stretch Mark Stick",
       "orders": 0,
       "revenue": 0,
+      "adSpend": 33.01,
+      "cogs": 0,
+      "note": "SMS campaign KILLED. Final total: $148.04 / 0 purchases. Moving to Ceremonial Cacao."
+    },
+    {
+      "id": "day_20260303",
+      "date": "2026-03-03",
+      "brandId": "thalyve",
+      "brandName": "THALYVE\u2122",
+      "productId": "ceremonial-cacao",
+      "productName": "Ceremonial Cacao",
+      "orders": 0,
+      "revenue": 0,
       "adSpend": 0,
       "cogs": 0,
-      "note": "Day 4 \u2014 Awaiting Kill/Scale Decision from Anton. Campaign may be killed."
+      "note": "Cacao PDP live (6 custom sections). Building gallery images today. No ads running."
     }
   ],
   "version": "3.6",
@@ -1065,7 +1095,7 @@
       "resources": "Manual"
     }
   ],
-  "lastUpdated": "2026-03-02T06:00:00",
+  "lastUpdated": "2026-03-03T06:00:00",
   "aiEngine": {
     "currentModel": "claude-opus-4-6",
     "provider": "Anthropic",
@@ -1094,13 +1124,22 @@
     ],
     "history": [
       {
-        "date": "2026-03-02",
+        "date": "2026-03-03",
         "model": "sonnet",
         "sessions": 1,
-        "tokensIn": "~10k",
-        "tokensOut": "~5k",
+        "tokensIn": "~5k",
+        "tokensOut": "~3k",
         "compactions": 0,
-        "notes": "Product research cron (3AM, 5 products) + dashboard sync (6AM)"
+        "notes": "Dashboard sync (6AM) \u2014 Mar 3 tasks loaded, SMS archived, cacao pipeline active"
+      },
+      {
+        "date": "2026-03-02",
+        "model": "opus",
+        "sessions": 4,
+        "tokensIn": "~120k",
+        "tokensOut": "~70k",
+        "compactions": 4,
+        "notes": "Massive build day \u2014 SMS killed, cacao PDP live (6 Liquid sections), infographic templates, Gemini API, bundle selector fixed, product-launch SOP built"
       },
       {
         "date": "2026-03-01",
@@ -1326,12 +1365,12 @@
     }
   },
   "forgeStatus": {
-    "current": "Dashboard sync (6AM) + product research complete \u2014 Day 66 of 75 Hard",
-    "nextScheduled": "Morning Brief (7AM) \u00b7 Kill/Scale Rec (awaiting screenshots) \u00b7 Dashboard Sync (daily 6AM)",
+    "current": "Dashboard sync (6AM) complete \u2014 Cacao PDP live, gallery images + LAI reviews next \u2014 Day 67 of 75 Hard",
+    "nextScheduled": "Morning Brief (5:30AM) \u00b7 Cacao gallery (Higgsfield) \u00b7 LAI reviews \u00b7 Dashboard Sync (daily 6AM)",
     "status": "operational",
     "model": "Claude Sonnet 4.6",
     "cronCount": 8,
-    "lastTask": "Dashboard sync + product research cron (5 products, top: Microcurrent Wand 87/100)",
-    "lastTaskTime": "2026-03-02T06:00:00Z"
+    "lastTask": "Dashboard sync (Mar 3) \u2014 SMS campaign archived, cacao pipeline active, 5/5 Mar 2 tasks done",
+    "lastTaskTime": "2026-03-03T06:00:00Z"
   }
 }
